@@ -1,0 +1,18 @@
+[
+  {
+    "path": "posts/welcome/",
+    "title": "Welcome to Memonomics Lab",
+    "description": "We are a group of Imperial College and LSE researchers using social media data to answer questions relevant to economics and current affairs.",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-08-05",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-08-05T09:56:58+01:00",
+    "input_file": {}
+  }
+]

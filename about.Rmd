@@ -1,0 +1,12 @@
+---
+title: "About"
+description: |
+  Welcome to Datastories Hub. This is a repository to support teaching of a variety of data analysis courses at Imperial College Business School.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+
+print("test")
+```
