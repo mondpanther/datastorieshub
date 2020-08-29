@@ -1,25 +1,10 @@
 ---
-title: "Exercises"
-site: distill::distill_website
-listing: exercises
+  title: "Exercises" 
 ---
 
+<br>
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
-
-
-Here you find links to exercises on various aspects of the course
-
-# Getting familiar with R
-
-- Practice basic tasks with R: 
-
-
-
-
-
+- [Exercise Set 1](exercises1.html): Getting to know R
 
 
 
