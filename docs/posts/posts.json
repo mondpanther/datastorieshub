@@ -1,8 +1,8 @@
 [
   {
     "path": "posts/welcome/",
-    "title": "Welcome to Memonomics Lab",
-    "description": "We are a group of Imperial College and LSE researchers using social media data to answer questions relevant to economics and current affairs.",
+    "title": "Welcome to Datastories Hub",
+    "description": "This is a repository for data analysis teaching at Imperial College Business School. Have fun!",
     "author": [
       {
         "name": "Ralf Martin",
@@ -12,7 +12,7 @@
     "date": "2020-08-05",
     "categories": [],
     "preview": {},
-    "last_modified": "2020-08-05T09:56:58+01:00",
+    "last_modified": "2020-08-29T07:12:30+01:00",
     "input_file": {}
   }
 ]
