@@ -13,7 +13,8 @@ Here you find links to exercises on various aspects of the course
 
 # Getting familiar with R
 
-- [Practice basic tasks with R](exercises1.html) 
+- Practice basic tasks with R: [Exercises 1](testexercises.html) 
+
 
 
 

@@ -19,26 +19,26 @@
  <!--/radix_placeholder_import_source-->
 
   <!--radix_placeholder_meta_tags-->
-  <title>Datastories Hub: Exercises</title>
+  <title>Datastories Hub: Exercises 1</title>
   
   
   
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Datastories Hub: Exercises"/>
+  <meta property="og:title" content="Datastories Hub: Exercises 1"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Datastories Hub"/>
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Datastories Hub: Exercises"/>
+  <meta property="twitter:title" content="Datastories Hub: Exercises 1"/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Exercises"]},{"type":"NULL"}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 1"]},{"type":"character","attributes":{},"value":["webex::webex_default"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -1279,7 +1279,7 @@
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Exercises","authors":[]}
+{"title":"Exercises 1","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1302,17 +1302,80 @@
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Exercises</h1>
+<h1>Exercises 1</h1>
 
 </div>
 
 
 <div class="d-article">
-<p>Here you find links to exercises on various aspects of the course</p>
-<h1 id="getting-familiar-with-r">Getting familiar with R</h1>
+<p>This is a Web Exercise template created by the <a href="http://www.psy.gla.ac.uk">psychology teaching team at the University of Glasgow</a>, based on ideas from <a href="https://software-carpentry.org/lessons/">Software Carpentry</a>. This template shows how instructors can easily create interactive web documents that students can use in self-guided learning.</p>
+<p>The webex package provides a number of functions that you use in <a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">inline R code</a> to create HTML widgets (text boxes, pull down menus, buttons that reveal hidden content). Examples are given below. Knit this file to HTML to see how it works.</p>
+<p><strong>NOTE: To use the widgets in the compiled HTML file, you need to have a JavaScript-enabled browser. The widgets don’t work in the built-in RStudio browser. In the built-in browser, click the “Open in Browser” button to open the file in your operating system’s browser.</strong></p>
+<h2 id="fill-in-the-blanks-fitb">Fill-In-The-Blanks (<code>fitb()</code>)</h2>
+<p>Create fill-in-the-blank questions using <code>fitb()</code>, providing the answer as the first argument.</p>
 <ul>
-<li>Practice basic tasks with R: <a href="exercises1.html">Exercises 1</a></li>
+<li>2 + 2 is <input class='solveme nospaces' size='1' data-answer='["4"]'/></li>
 </ul>
+<p>You can also create these questions dynamically, using variables from your R session.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<ul>
+<li>The square root of 9 is: <input class='solveme nospaces' size='1' data-answer='["3"]'/></li>
+</ul>
+<p>The blanks are case-sensitive; if you don’t care about case, use the argument <code>ignore_case = TRUE</code>.</p>
+<ul>
+<li>What is the letter after D? <input class='solveme nospaces ignorecase' size='1' data-answer='["E"]'/></li>
+</ul>
+<p>If you want to ignore differences in whitespace use, use the argument <code>ignore_ws = TRUE</code> (which is the default) and include spaces in your answer anywhere they could be acceptable.</p>
+<ul>
+<li>How do you load the tidyverse package? <input class='solveme nospaces ignorecase regex' size='20' data-answer='["library( tidyverse )","library( \"tidyverse\" )","library( &apos;tidyverse&apos; )"]'/></li>
+</ul>
+<p>You can set more than one possible correct answer by setting the answers as a vector.</p>
+<ul>
+<li>Type a vowel: <input class='solveme nospaces ignorecase' size='1' data-answer='["A","E","I","O","U"]'/></li>
+</ul>
+<h2 id="multiple-choice-mcq">Multiple Choice (<code>mcq()</code>)</h2>
+<ul>
+<li>“Never gonna give you up, never gonna: <select class='solveme' data-answer='["let you down"]'> <option></option> <option>let you go</option> <option>turn you down</option> <option>run away</option> <option>let you down</option></select>”</li>
+<li>“I <select class='solveme' data-answer='["bless the rains"]'> <option></option> <option>bless the rains</option> <option>guess it rains</option> <option>sense the rain</option></select> down in Africa” -Toto</li>
+</ul>
+<h2 id="true-or-false-torf">True or False (<code>torf()</code>)</h2>
+<ul>
+<li>True or False? You can permute values in a vector using <code>sample()</code>. <select class='solveme' data-answer='["TRUE"]'> <option></option> <option>TRUE</option> <option>FALSE</option></select></li>
+</ul>
+<h2 id="hidden-solutions-and-hints">Hidden solutions and hints</h2>
+<p>You can fence off a solution area that will be hidden behind a button using <code>hide()</code> before the solution and <code>unhide()</code> after, each as inline R code. Pass the text you want to appear on the button to the <code>hide()</code> function.</p>
+<p>If the solution is an RMarkdown code chunk, instead of using <code>hide()</code> and <code>unhide()</code>, simply set the <code>webex.hide</code> chunk option to TRUE, or set it to the string you wish to display on the button.</p>
+<h3 id="example-problem">Example problem</h3>
+<p><strong>Recreate the scatterplot below, using the built-in <code>cars</code> dataset.</strong></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="test-exercise_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<div class="solution">
+<button>
+I need a hint
+</button>
+<p>See the documentation for <code>plot()</code> (<code>?plot</code>)</p>
+</div>
+<!-- note: you could also just set webex.hide to TRUE -->
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+plot(cars$speed, cars$dist)</code></pre>
+</div>
+<!-- TO CHANGE WIDGET COLOURS:
+  move command below out of this HTML comment area
+  and then re-compile;
+  unfilled becomes yellow, correct becomes pink 
+     
+
+<style>
+    .solveme { border-color: #FFFF00; }
+    .solveme.correct { border-color: #FF3399; }
+</style>
+
+
+-->
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
