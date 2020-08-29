@@ -1,12 +1,6 @@
 name: Datastories Hub
 author: Ralf Martin
-output_dir: docs
-output:
-  html_document:
-    theme: flatly
-    lib_dir: site_libs
-    self_contained: no
-    css: webex.css
+output_dir: "docs"
 navbar:
   title: Datastories Hub
   right:
@@ -15,3 +9,7 @@ navbar:
       href: index.html
     - text: "Exercises"
       href: exercises.html
+output:
+  distill::distill_article:
+    css: webex.css
+

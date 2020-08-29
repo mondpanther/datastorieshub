@@ -1,14 +1,8 @@
 ---
-title: "Datastories Hub" 
+title: "Recent posts" 
+site: distill::distill_website
+listing: posts
 ---
-
-Welcome to the Datastories Hub. This is a repository to support Data Analytics Teaching at Imperial College Business School. 
-
-<br>
-
-# Resources
-
-- [Exercises](exercises.html)
 
 
 
