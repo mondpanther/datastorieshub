@@ -1,8 +1,8 @@
 [
   {
-    "path": "posts/exercises/",
-    "title": "Exercises 1",
-    "description": "Exercises to get familiar with R",
+    "path": "posts/quickguides/",
+    "title": "Quick Guide - R project organisation",
+    "description": "Organizing your R Working with Scripts, Markdown and Project files",
     "author": [
       {
         "name": "Ralf Martin",
@@ -10,9 +10,29 @@
       }
     ],
     "date": "2020-08-29",
-    "categories": [],
+    "categories": [
+      "Quickguides"
+    ],
     "preview": {},
-    "last_modified": "2020-08-29T13:49:26+01:00",
-    "input_file": {}
+    "last_modified": "2020-08-29T18:48:22+01:00",
+    "input_file": "quickguide_Rscripts.utf8.md"
+  },
+  {
+    "path": "posts/exercises/",
+    "title": "Exercises 2",
+    "description": "Exercises to get familiar with R.",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-08-30",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-08-30T08:24:19+01:00",
+    "input_file": "exercises2.utf8.md"
   }
 ]
