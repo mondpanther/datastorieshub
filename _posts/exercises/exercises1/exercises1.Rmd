@@ -1,0 +1,32 @@
+---
+title: "Exercises 1"
+description: |
+  Starting to think like an econometrician.
+author:
+  - name: Ralf Martin
+    url: https://mondpanther.github.io/wwwmondpanther/
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    self_contained: true
+    css: ../../webex.css
+    includes:
+      after_body: ../../webex.js
+categories:
+  - Exercises
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+
+```{r setup, include = FALSE, message=FALSE}
+library("webex")
+library(ggplot2)
+knitr::opts_chunk$set(fig.path='../../images/')
+```
+
+
+
+In the lecture we discussed the notion of causality. We contrasted the a certain causality mechanism (your story) with the causality mechanism(s) that might be driving your data (the data story). For good dataanalysis you need to be aware of both: Have a clear idea of what you want to analyse or explore as well as of all the things that could be going on in your data. To practice this I ask you to go through a couple of examples. These are typically strong correlations that have been found in a dataset or another. 
+

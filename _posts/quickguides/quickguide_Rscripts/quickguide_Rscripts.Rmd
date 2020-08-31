@@ -1,0 +1,58 @@
+---
+title: "Quick Guide - R project organisation"
+description: |
+  Organizing your R Working with Scripts, Markdown and Project files
+author:
+  - name: Ralf Martin
+    url: https://mondpanther.github.io/wwwmondpanther/
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    self_contained: true
+    css: webex.css
+    includes:
+      after_body: webex.js
+categories:
+  - Quickguides
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+
+```{r setup, include = FALSE, message=FALSE}
+library("webex")
+library(ggplot2)
+knitr::opts_chunk$set(fig.path='../../images/')
+```
+
+
+
+# Introduction
+R(Studio) includes powerful tools to organise your data work. Here we discuss three: 
+
+- The creation of projects 
+
+- R scripts
+
+- R markdown scripts
+
+# Projects
+For every major project you do with R you should probably create a dedicated project folder. In that folder you should store a project file (with extension `Rproj`).
+In the project folder you should store scripts related to the project (text files with code that prepares the data and does the analysis for your project and indeed markdown files that create any reports or essays you write)
+
+The project file (and the possibly hidden `.Rproj.user` subdirectory) store all sorts of background info on the project. Such as for instance, which files beling to it. It also allows to carry on easily where you left of when you work on a project over a longer time (and presumably shut down R or your computer in between). Whenever you open the project file it also sets the active directory to the project directory which makes things easier if you are writing scripts that refer to directories and files on your harddrive.
+
+The easiest way to create both a project directory and the project file is from within Rstudio. The exact steps are described below. Before you do anything else with R you should probably create a project for your personal coursework. You probably want to create another project (along with project directory) later for your group coursework (that directory you also might want to share via a service like dropbox or github with your coursework group)
+
+## Creating a new project
+
+
+
+# R scripts
+
+
+# R markdown scripts
+
+
+
