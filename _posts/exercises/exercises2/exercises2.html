@@ -2183,7 +2183,7 @@ auto %&gt;% summary()</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 auto_summary &lt;- auto %&gt;%   select(mpg, weight)  %&gt;% 
-             summarise_all( list(mmm=mean,  p50=median  ) ) </code></pre>
+             summarise_all( list(mmm=mean,  p50=median, sd=sd  ) ) </code></pre>
 </div>
 <div class="solution">
 <button>
@@ -2194,24 +2194,81 @@ Answer:
 <pre class="r"><code>
 auto_summary</code></pre>
 <pre><code>
-  mpg_mmm weight_mmm mpg_p50 weight_p50
-1 21.2973   3019.459      20       3190</code></pre>
+  mpg_mmm weight_mmm mpg_p50 weight_p50   mpg_sd weight_sd
+1 21.2973   3019.459      20       3190 5.785503  777.1936</code></pre>
 </div>
 </div>
 <h3 id="part-f">Part (f)</h3>
+<p>The summary statistics in the previous part are not displayed very nice. The dplyr and tidyr offer alot of nice functions to reshape any output in whichever way you want. Below is a somewhat elaborate example. Below I am explaining step by step what it does. However, before you look at my explanation, maybe you can run those commands yourself step by step and figure what they do?</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 auto_summary_reshape &lt;- auto_summary %&gt;% gather(stat, val) %&gt;%
                     separate(stat, into = c(&quot;var&quot;, &quot;stat&quot;), sep = &quot;_&quot;) %&gt;%
-                    spread(stat, val) %&gt;% select(var,p50,mmm) %&gt;% mutate(order=c(2,1)) %&gt;% arrange(order)</code></pre>
+                    spread(stat,val) </code></pre>
 </div>
+<div class="solution">
+<button>
+Explanation:
+</button>
+<p>The code above reshapes the <code>auto_summary</code> dataframe so that it looks like this:</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
-auto_summary_reshape %&gt;% arrange(var)</code></pre>
+auto_summary_reshape </code></pre>
 <pre><code>
-     var  p50       mmm order
-1    mpg   20   21.2973     2
-2 weight 3190 3019.4595     1</code></pre>
+     var       mmm  p50         sd
+1    mpg   21.2973   20   5.785503
+2 weight 3019.4595 3190 777.193567</code></pre>
+</div>
+<p>We can break this in all the steps to see how it does that:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+ step = auto_summary %&gt;% gather(stat, val)
+ step</code></pre>
+<pre><code>
+        stat         val
+1    mpg_mmm   21.297297
+2 weight_mmm 3019.459459
+3    mpg_p50   20.000000
+4 weight_p50 3190.000000
+5     mpg_sd    5.785503
+6  weight_sd  777.193567</code></pre>
+</div>
+<p>The gather command arranges what you sent them down the pipe as key value pairs; i.e. 2 columns where the first column is the key (i.e. a name or label) for the value that follows in the value column. <code>stat</code> and <code>val</code> are simply how we want to call those two columns</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+ step = step %&gt;% separate(stat, into = c(&quot;var&quot;, &quot;stat&quot;), sep = &quot;_&quot;)
+ step</code></pre>
+<pre><code>
+     var stat         val
+1    mpg  mmm   21.297297
+2 weight  mmm 3019.459459
+3    mpg  p50   20.000000
+4 weight  p50 3190.000000
+5    mpg   sd    5.785503
+6 weight   sd  777.193567</code></pre>
+</div>
+<p>The separate command splits the <code>stat</code> column in two new columns, <code>var</code> and <code>stat</code> where <code>sep=&quot;_&quot;</code> tells R where to separate the original <code>stat</code> column.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+ step = step %&gt;% spread(stat, val) 
+ step</code></pre>
+<pre><code>
+     var       mmm  p50         sd
+1    mpg   21.2973   20   5.785503
+2 weight 3019.4595 3190 777.193567</code></pre>
+</div>
+<p>The spread command spreads out the stat column again; i.e. creates a new column for every category represented in stat. Alternatively, we could have spread var:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+auto_summary %&gt;% gather(stat, val) %&gt;%
+                    separate(stat, into = c(&quot;var&quot;, &quot;stat&quot;), sep = &quot;_&quot;) %&gt;%
+                    spread(var,val) </code></pre>
+<pre><code>
+  stat       mpg    weight
+1  mmm 21.297297 3019.4595
+2  p50 20.000000 3190.0000
+3   sd  5.785503  777.1936</code></pre>
+</div>
 </div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

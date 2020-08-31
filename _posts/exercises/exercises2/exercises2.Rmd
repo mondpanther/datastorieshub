@@ -177,7 +177,7 @@ You can even do several of those pipes in a row. For instance, look at the follo
 
 ```{r, echo=TRUE}
 auto_summary <- auto %>%   select(mpg, weight)  %>% 
-             summarise_all( list(mmm=mean,  p50=median  ) ) 
+             summarise_all( list(mmm=mean,  p50=median, sd=sd  ) ) 
 
 ```
 
@@ -200,27 +200,70 @@ auto_summary
 
 
 ### Part (`r part()`)
- 
+The summary statistics in the previous part are not displayed very nice.
+The dplyr and tidyr offer alot of nice functions to reshape any output
+in whichever way you want. Below is a somewhat elaborate example. Below I am explaining step by step what it does. However, before you look at my explanation, maybe you can run those commands yourself step by step and figure what they do?
+
 ```{r, echo=TRUE}
 
 auto_summary_reshape <- auto_summary %>% gather(stat, val) %>%
                     separate(stat, into = c("var", "stat"), sep = "_") %>%
-                    spread(stat, val) %>% select(var,p50,mmm) %>% mutate(order=c(2,1)) %>% arrange(order)
-
+                    spread(stat,val) 
 
 
 ```
 
 
- 
+
+
+
+`r hide("Explanation:")`
+
+The code above reshapes the `auto_summary` dataframe so that it looks like this:
+
 ```{r, echo=TRUE}
-
-
-
-auto_summary_reshape %>% arrange(var)
+auto_summary_reshape 
 ```
 
 
+We can break this in all the steps to see how it does that:
 
+```{r,echo=TRUE}
+
+ step = auto_summary %>% gather(stat, val)
+ step
+```
+The gather command arranges what you sent them down the pipe as key value pairs; i.e. 2 columns
+where the first column is the key (i.e. a name or label) for the value that follows in the value column. `stat` and `val` are simply how we want to call those two columns
+
+
+```{r,echo=TRUE}
+
+ step = step %>% separate(stat, into = c("var", "stat"), sep = "_")
+ step
+```
+
+The separate command splits the `stat` column in two new columns, `var` and `stat` where `sep="_"` tells R where to separate the original `stat` column.
+
+
+
+```{r,echo=TRUE}
+
+ step = step %>% spread(stat, val) 
+ step
+```
+
+The spread command spreads out the stat column again; i.e. creates a new column for every category represented in stat. Alternatively, we could have spread var:
+
+
+```{r, echo=TRUE}
+auto_summary %>% gather(stat, val) %>%
+                    separate(stat, into = c("var", "stat"), sep = "_") %>%
+                    spread(var,val) 
+
+```
+
+
+`r unhide()`
 
 
