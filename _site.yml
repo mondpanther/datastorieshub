@@ -8,7 +8,7 @@ navbar:
       icon: fa-home
       href: index.html
     - text: "Exercises"
-      href: listexercises.html
+      href: /#Exercises
 base_url: https://mondpanther.github.io/datastorieshub/
 output:
   distill::distill_article:

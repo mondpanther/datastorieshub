@@ -1,6 +1,7 @@
 ---
   title: "Exercises" 
+  site: distill::distill_website
   listing: 
-    posts: 
-      exercises
+    posts: exercises 
+      
 ---
