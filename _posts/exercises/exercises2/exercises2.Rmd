@@ -9,9 +9,9 @@ date: "`r Sys.Date()`"
 output:
   distill::distill_article:
     self_contained: true
-    css: webex.css
+    css: ../../webex.css
     includes:
-      after_body: webex.js
+      after_body: ../../webex.js
 categories:
   - Exercises
 editor_options: 
@@ -23,7 +23,21 @@ editor_options:
 ```{r setup, include = FALSE, message=FALSE}
 library("webex")
 library(ggplot2)
-knitr::opts_chunk$set(fig.path='../../images/')
+knitr::opts_chunk$set(fig.path='../../../images/')
+
+
+
+part=function(reset=FALSE){
+  if(reset){ pp <<- 0}
+  pp <<- pp+1
+  rr=letters[pp]
+  
+  return(rr)
+}
+
+part(TRUE)
+part()
+
 ```
 
 
@@ -38,11 +52,11 @@ You can download this dataset from [here](https://www.dropbox.com/s/gm22o5efboc3
 To do anything with data you need get a dataset into a dataframe (essentially another word for table) in memory. For that you can first store it on your computer's harddrive and then  load it. You can do that using RStudio's import file menu very similar to how you would open an Excel worksheet, say:
 
 ```{r out.extra='style="max-width: 500px"', echo=F}
-knitr::include_graphics("../../images/fileimport.png")
+knitr::include_graphics("../../../images/fileimport.png")
 ```
 
 
-### Part (a) 
+### Part (`r part(TRUE)`) 
 Instead of using the import dialog, can you load the dataset with an R command either from the console command line or via an R script?
 
 
@@ -66,17 +80,17 @@ Note that `header=TRUE` means that R can figure out the column names from the fi
 
 
 
-### Part (b)
+### Part (`r part()`)
 Can you suggest an alternative version of the previous command with a relative path to locate the file?
 `r hide("Answer:")`
 ```{r, echo = TRUE}
 getwd()
 ```
 
-To write a relative path you need to know which the current active directory is. With the `getwd()` command you can find out. In my case this happens to be the  `C:/Users/Ralf Martin/Dropbox/datastories/datastorieshub/_posts/exercises` directory. Hence to get to directory `C:/Users/Ralf Martin/Dropbox/datastories/data` we need to go 3 directories up (to directory `C:/Users/Ralf Martin/Dropbox/datastories` ) and then down into the data directory. Note that you can use `..` to indicate to R that you want to move up one layer of the directory structure. Hence the corect command with relative path notation becomes:
+To write a relative path you need to know which the current active directory is. With the `getwd()` command you can find out. In my case this happens to be the  `C:/Users/Ralf Martin/Dropbox/datastories/datastorieshub/_posts/exercises/exercises2` directory. Hence to get to directory `C:/Users/Ralf Martin/Dropbox/datastories/data` we need to go 4 directories up (to directory `C:/Users/Ralf Martin/Dropbox/datastories` ) and then down into the data directory. Note that you can use `..` to indicate to R that you want to move up one layer of the directory structure. Hence the corect command with relative path notation becomes:
 
 ```{r, echo = TRUE}
-auto <- read.csv("../../../data/auto.csv", header=TRUE)
+auto <- read.csv("../../../../data/auto.csv", header=TRUE)
 
 ```
 
@@ -85,7 +99,7 @@ auto <- read.csv("../../../data/auto.csv", header=TRUE)
 `r unhide()`
 
 
-### Part (c)
+### Part (`r part()`)
 Probably the easiest way to load a web based CSV file into R is directly from the web. This can be achieved by using the file URL in the `read.csv` command. Can you work out how?
 
 
@@ -99,7 +113,7 @@ You can figure out the URL by right clicking on a hyperlink.
 `r unhide()`
 
 
-### Part (d)
+### Part (`r part()`)
 Describe the data set. 
 
 How many observations does the data set have? `r fitb(nrow(auto))`
@@ -141,11 +155,12 @@ Note that you only need to do this once on a given computer (it's like installin
 However, each time you re-start R you need to load the packages you want to use into memory again. For that you use
 
 ```{r,echo=TRUE}
-library(dplyr,tidyr)
+library(dplyr)
+library(tidyr)
 ```
 `r unhide()`
 
-### Part (f)
+### Part (`r part()`)
 One of the great things included in those packages is the functionality of piping, which we shall be using extensively throughout this course. Piping allows you to send
 the result from one R command to the next. This typically allows for more transparent code as you will hopefully appreciate maybe not just yet but sometime halfway through the course.
 
@@ -183,8 +198,27 @@ auto_summary
 
 `r unhide()`
 
- 
 
+### Part (`r part()`)
+ 
+```{r, echo=TRUE}
+
+auto_summary_reshape <- auto_summary %>% gather(stat, val) %>%
+                    separate(stat, into = c("var", "stat"), sep = "_") %>%
+                    spread(stat, val) %>% select(var,p50,mmm) %>% mutate(order=c(2,1)) %>% arrange(order)
+
+
+
+```
+
+
+ 
+```{r, echo=TRUE}
+
+
+
+auto_summary_reshape %>% arrange(var)
+```
 
 
 
