@@ -267,3 +267,71 @@ auto_summary %>% gather(stat, val) %>%
 `r unhide()`
 
 
+# Exercise 2.2 
+This github repository provides COVID related data for the US at the state and county level: [https://github.com/nytimes/covid-19-data](https://github.com/nytimes/covid-19-data) 
+
+### Part(`r part(reset=TRUE)`)
+Download the state level data (in csv format) from [here]("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv") and load 
+it into an R dataframe. Have a look at the dataframe.
+How many rows are there? What do the rows represent? What do the columns represent?
+
+`r hide("Answer:")`
+
+To load the dataset into a dataframe you can use:
+
+```{r,echo=TRUE}
+covid=read.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv")
+
+```
+
+You can view the dataframe like an excel table by clicking on the name of the dataframe in the `Global Environment` tab, which also shows us the number of rows and columns of the dataframe (note that you might have a different number of rows as the dataframe is constantly updated online)
+
+
+```{r out.extra='style="max-width: 400px"', echo=F}
+knitr::include_graphics("../../../images/dflook.png")
+```
+
+We see that the dataframe contains daily COVID case and death numbers for every us state.
+
+`r unhide()`
+
+
+### Part(`r part(reset=TRUE)`) 
+
+Compute the total number of deaths and cases by July 31st 2020. Try to work this out using online tips at first. If you spend to much time working it out check the solution.
+
+
+`r hide("Answer")`
+
+With `filter()` we can select specific rows of a dataframe. With `group_by()` you can group the rows of a dataframe into groups defined by one or indeed several categorical variables. 
+Note that the date variable is a factor variable. You can see this in the `Global Environment` tab:
+
+```{r out.extra='style="max-width: 400px"', echo=F}
+knitr::include_graphics("../../../images/factor.png")
+```
+
+We will talk a lot about factor variables later in the course. For now it's enough to know that with the function `as.character()` you can convert the date variable from a factor to a character string which is necessary to compare it to character string such as "2020-08-01". As ever you can only compare like with like.
+
+Hence, the following comand provides the result (note I am loading again the library dplyr which is not necessariy if you have done that already in this session)
+
+```{r,echo=TRUE}
+library(dplyr)
+
+
+covid_sum=covid %>% dplyr::filter(as.character(date)<"2020-08-01") %>%
+          group_by(state) %>% 
+          summarise(cases=sum(cases), deaths=sum(deaths))
+
+head(covid_sum,10)
+
+``` 
+
+
+
+
+
+`r unhide()`
+
+
+
+
