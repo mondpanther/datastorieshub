@@ -398,9 +398,93 @@ ggplot(usdaily, aes(x=date, y=deathsOcases)) +
 ```
 
 
-Now what we expect to find?
+Now what do we expect to find?
 To die from COVID you have te get sick and it will take at least a couple of days. Hence, we would expect to see death rates to be low at first and then to increase. Over time we would hope that doctors get better at treating COVID patients. Also, people who know they are at risk will increasingly shielding so that the only people who get sick will be those who are less likely to die. Both factors should bring the death rate down after an initial peak. This is what we are seeing when only looking at the series from the end of March onwards with a peak in mid May.
 However, there is a first peak in early March. What could explain this? The most plausible explanation is probably measurement error: early on cases of infections where probably not counted properly as there was no systematic way of testing the population. On the other, if somebody was so ill that they die this would almost certainly be picked up by the authorities. Hence death figures were not under counted. Also, early on numbers were low. So a couple of counts too few for cases could easily swing the ratio.
+[Here](https://www.ft.com/content/c011e214-fb95-4a64-b23c-2bd87ebb29d7?utm_source=pocket-newtab-global-en-GB) is some further discussion of this.
+
+
+`r unhide()`
+
+
+
+### Part(`r part()`) 
+A large part of data analysis work is getting the data into a format that lends itself to analysis. And a very big part of that is the process of combining datasets from different sources. Here we start learning how this can be done in an efficient way.
+[Here]("https://www.dropbox.com/s/tp4kiq8if372rcz/populationdata.csv?dl=1") you find a dataset in csv format with information on the size (in terms of population) of different US states. Can you combine this with the COVID case count dataframe for US states at the end of July that we created earlier?
+
+
+`r hide("Answer:")`
+
+First you need to load the population dataset into a dataframe as well:
+
+```{r}
+pop=read.csv("https://www.dropbox.com/s/tp4kiq8if372rcz/populationdata.csv?dl=1")
+
+```
+
+
+To combine the two dataframes we can use a command called `merge()`:
+
+```{r}
+covid_julyb=covid_july %>% merge(pop,by="state", all.x=TRUE)
+
+```
+
+This tells R to create a new dataframe (`covid_julyb`) by combinig the information in `covid_july`
+and `pop`. Rows are being matched using the variable `state`. Maybe you noted that pop has only 2 observations whereas `covid_july` has 55. This is because `pop` doesn't include information on places such as Guam and a couple of other Islands that are not formal US states but controlled by the US, whereas `covid_july` does. The `all.x` option tells R to keep observations from the first dataset (i.e. `covid_july`) even if no equivalent observation in the second dataset can be found. This is also known as a left join. Similarly there is a right join with `all.y=TRUE` or a full join with `all=TRUE`. You might want to read a bit more about the merge command e.g. [here](https://www.dummies.com/programming/r/how-to-use-the-merge-function-with-data-sets-in-r/)
+
+
+`r unhide()`
+
+
+
+
+### Part(`r part()`) 
+Using the newly created dataframe create a new variable COVID cases per capita (i.e. per head of population).
+Explore the relationship between per capita cases and population density. What kind of relationship would you expect? What do you find?
+
+`r hide("Answer:")`
+
+Add per capita cases with mutate (to make things easier to read we use cases per 1000 of population):
+
+```{r}
+
+covid_julyb=covid_julyb %>% mutate(casesOpop000=cases/pop*1000)
+
+
+```
+
+We would we expect a positive relationship between per capita cases and density: if 
+
+
+A scatter plot is usually the best way to get going on a question like this. We can once more use the ggplot command (geom_smooth(method=lm) adds a regression line):
+
+
+```{r}
+
+usdaily=usdaily %>% mutate(date=as.Date(date), deathsOcases=deaths/cases)
+ggplot(covid_julyb, aes(x=density, y=casesOpop000 ))+ 
+      geom_point() + geom_smooth(method=lm)
+  
+```
+
+
+Dropping the outlier on the right (i.e. Washington DC which is not really a State)
+
+```{r}
+ggplot(covid_julyb %>% filter(density<6000), aes(x=density, y=casesOpop000 ))+ 
+      geom_point() + geom_smooth(method=lm)
+```
+
+
+Hence, there is clearly a positive relationship between density and covid cases. It becomes more pro-nounced when dropping DC.
+This is also confirmed when looking at the parameters of the regression line directly, which we can do with the lm() command.
+
+```{r}
+summary(lm(casesOpop000~density,covid_julyb  %>% filter(density<6000) ))
+```
+
+
 
 
 `r unhide()`
