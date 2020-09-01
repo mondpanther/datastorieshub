@@ -24,7 +24,7 @@ editor_options:
 library("webex")
 library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../../images/')
-
+knitr::opts_chunk$set(echo=TRUE)
 
 
 part=function(reset=FALSE){
@@ -278,33 +278,34 @@ How many rows are there? What do the rows represent? What do the columns represe
 `r hide("Answer:")`
 
 To load the dataset into a dataframe you can use:
-
 ```{r,echo=TRUE}
 covid=read.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv")
 
 ```
-
 You can view the dataframe like an excel table by clicking on the name of the dataframe in the `Global Environment` tab, which also shows us the number of rows and columns of the dataframe (note that you might have a different number of rows as the dataframe is constantly updated online)
-
-
 ```{r out.extra='style="max-width: 400px"', echo=F}
 knitr::include_graphics("../../../images/dflook.png")
 ```
 
-We see that the dataframe contains daily COVID case and death numbers for every us state.
+We see that the dataframe contains daily COVID case and death numbers for every us state. Note that the numbers never reduce which suggests that these are cumulative figues (i.e. total number of cases and deaths up until a give day)
+
 
 `r unhide()`
 
 
-### Part(`r part(reset=TRUE)`) 
 
-Compute the total number of deaths and cases by July 31st 2020. Try to work this out using online tips at first. If you spend to much time working it out check the solution.
+
+### Part(`r part()`) 
+
+Compute the death rate (deaths over cases) for every state by July 31st, 2020 using R. Also add columns that contain the share of deaths in total deaths and the share of cases in total cases
+
+
+
 
 
 `r hide("Answer")`
 
-With `filter()` we can select specific rows of a dataframe. With `group_by()` you can group the rows of a dataframe into groups defined by one or indeed several categorical variables. 
-Note that the date variable is a factor variable. You can see this in the `Global Environment` tab:
+With `filter()` we can select specific rows of a dataframe. With `mutate()` we can create new variables in dataframe or modify exisitng ones. Note that the date variable is a factor variable. You can see this in the `Global Environment` tab:
 
 ```{r out.extra='style="max-width: 400px"', echo=F}
 knitr::include_graphics("../../../images/factor.png")
@@ -318,20 +319,88 @@ Hence, the following comand provides the result (note I am loading again the lib
 library(dplyr)
 
 
-covid_sum=covid %>% dplyr::filter(as.character(date)<"2020-08-01") %>%
-          group_by(state) %>% 
-          summarise(cases=sum(cases), deaths=sum(deaths))
+covid_july=covid %>% dplyr::filter(as.character(date)=="2020-07-31") %>%
+          mutate(deathsOcases=deaths/cases,
+                 deaths_sh=deaths/sum(deaths),
+                 cases_sh=cases/sum(cases))
 
-head(covid_sum,10)
+head(covid_july,10)
 
 ``` 
 
+The `head()` command shows you the first couple of lines of a dataframe. That is useful if you wann a have a peek to examine larger dataframes.
+`r unhide()`
 
 
 
+
+
+### Part(`r part()`) 
+Which is the state with the higest death rate (by July 31)? Can you work it out with an R command (rather than just looking through the table)?
+
+`r hide("Answer:")`
+
+```{r,echo=TRUE}
+covid_july %>% filter(deathsOcases==max(deathsOcases))
+          
+```
+
+`r unhide()`
+
+
+### Part(`r part()`) 
+Can you compute daily figures of deaths and cases for the US as a whole from the state level data? We haven't discussed all commands necessary for that yet. But see if you can work it out from checking online. If that takes too much time just check the answer below. As ever, ther are many different ways how could do that.
+
+`r hide("Answer:")`
+
+We can use the `group_by()` command which is par of dplyr. It allows to group rows of a dataframe by one (or several) categorical variables. We can then apply other commands that will be done seperately for each of those groups. In the case below we want to sum over all states for every day:
+
+
+
+
+```{r}
+
+usdaily=covid %>% group_by(date) %>% summarise(deaths=sum(deaths),cases=sum(cases))
+head(usdaily)
+
+```
 
 `r unhide()`
 
 
 
 
+### Part(`r part()`) 
+Examine the US death rate over time. How would you expect this series to behave? How does it behave? How do you explain what you find?
+
+
+`r hide("Answer:")`
+The best way to do this is with a figure. We shall be talking in the next lecture a lot more about plotting. However, no harm done trying this out. There are a number of commands to plot something. However, the most versatile is the ggplot command. (You need to install and load the ggplot2 package before you can use it.). Also: things will look better if you tell R that the date column is date. We can do this with the `as.Date()` command.
+
+Couple of words about the ggplot command: 
+
+- You start by telling R which dataframe to use (`usdaily`)
+- with `aes()` for aesthetic you declare which variables to use for x and y axis.
+- By adding further commands with a `+` sign you control how things look; e.g. that you want to see points (`gem_point()`) and that you want monthly date labels.
+
+
+```{r}
+library(ggplot2)
+
+usdaily=usdaily %>% mutate(date=as.Date(date), deathsOcases=deaths/cases)
+ggplot(usdaily, aes(x=date, y=deathsOcases)) +
+      geom_point() + 
+      scale_x_date(date_breaks="1 month",date_labels = "%b")
+  
+
+
+
+```
+
+
+Now what we expect to find?
+To die from COVID you have te get sick and it will take at least a couple of days. Hence, we would expect to see death rates to be low at first and then to increase. Over time we would hope that doctors get better at treating COVID patients. Also, people who know they are at risk will increasingly shielding so that the only people who get sick will be those who are less likely to die. Both factors should bring the death rate down after an initial peak. This is what we are seeing when only looking at the series from the end of March onwards with a peak in mid May.
+However, there is a first peak in early March. What could explain this? The most plausible explanation is probably measurement error: early on cases of infections where probably not counted properly as there was no systematic way of testing the population. On the other, if somebody was so ill that they die this would almost certainly be picked up by the authorities. Hence death figures were not under counted. Also, early on numbers were low. So a couple of counts too few for cases could easily swing the ratio.
+
+
+`r unhide()`

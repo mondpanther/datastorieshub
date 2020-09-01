@@ -1,0 +1,74 @@
+[
+  {
+    "path": "posts/exercises/exercises2/",
+    "title": "Exercises 2",
+    "description": "Exercises to get familiar with R.",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-01",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-01T09:26:01+01:00",
+    "input_file": "exercises2.utf8.md"
+  },
+  {
+    "path": "posts/exercises/exercises1/",
+    "title": "Exercises 1",
+    "description": "Starting to think like an econometrician.",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-08-31",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-08-31T08:12:04+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/quickguides/quickguide_ttests/",
+    "title": "Quick Guide - Hypothesis testing",
+    "description": "What is significant?",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-08-31",
+    "categories": [
+      "Quickguides"
+    ],
+    "preview": {},
+    "last_modified": "2020-08-31T08:06:43+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/quickguides/quickguide_Rscripts/",
+    "title": "Quick Guide - R project organisation",
+    "description": "Organizing your R Working with Scripts, Markdown and Project files",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-08-30",
+    "categories": [
+      "Quickguides"
+    ],
+    "preview": {},
+    "last_modified": "2020-08-30T11:53:36+01:00",
+    "input_file": {}
+  }
+]
