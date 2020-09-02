@@ -577,6 +577,16 @@ df=df%>% mutate(Y=2+0.5*X+eps)
 Run a regression of Y on X. What value do you find for the coefficient on X? Would you think this is an unbiased estimate?
 
 
+`r hide("Answer:")`
+```{r}
+  
+    reg=lm(Y~X,df)
+    summary(reg)
+  
+
+```
+`r unhide()`
+
 
 ### Part (d)
 
@@ -594,9 +604,62 @@ We can do this in R with the following for-loop command
 
 
 
-i.e. the lines of code between the first line and “}” will be repeated 1000 times. The variable i will increase by 1 on each round. 
+i.e. the lines of code between the first line and `}` will be repeated 1000 times. The variable `i` will increase by 1 on each round. 
 
-	Compute the average value of the estimate of the X coefficient across the 1000 repetitions. In order to do that you need to somehow save the value of the coefficient in each round.
+`r hide("Answer:")`
+
+```{r}
+beta <- double(1000)
+for(i in 1:1000){
+    
+    #print(i)
+    
+    df=data.frame(eps=rnorm(obs))
+    df=df%>% mutate(X=runif(obs))
+    df=df%>% mutate(Y=2+0.5*X+eps)
+    #print(lm(Y~X,df)$coefficients[[2]])
+    beta[i]<-lm(Y~X,df)$coefficients[[2]]
+}
+
+```
+
+Note: with `$coefficients[[2]]` we extract the coefficient estimate of the second (i.e. the slope) coefficient from the
+regression results and store it in a vector called `beta`
+
+
+
+
+`r unhide()`
+
+### Part (e)
+Compute the average value of the estimate of the X coefficient across the 1000 repetitions.
+
+
+`r hide("Answer:")`
+
+```{r}
+
+mean(beta)
+
+results=data.frame(beta)
+ggplot(results, aes(x=beta)) + 
+       geom_histogram(color="black",fill="white",bins=40) + 
+       theme_minimal()
+
+```
+
+Note: we can use ggplot to draw a histogram of all the results for beta as well.
+This shows that while we not always get a value close to 0.5, over many replications the value we find are centered around the true value of 0.5
+
+
+
+`r unhide()`
+
+
+
+
+
+
 
 
 
