@@ -143,7 +143,7 @@ names(auto)
 ```
 `r unhide()`
 
-### Part (e)
+### Part (`r part()`)
 Much of the power of R derives from extensions (so called packages) that have been contributed to widen the capabilities of the basic software. A particularly nice extension are the dplyr and tidyr packages that allow vastly more efficient and transparent wrangling of data. Can you install those packages on your computer and load them into memory?
 
 
@@ -477,14 +477,127 @@ ggplot(covid_julyb %>% filter(density<6000), aes(x=density, y=casesOpop000 ))+
 ```
 
 
-Hence, there is clearly a positive relationship between density and covid cases. It becomes more pro-nounced when dropping DC.
+Hence, there is clearly a positive relationship between density and covid cases. It becomes more pro-nounced when dropping Washington DC.
 This is also confirmed when looking at the parameters of the regression line directly, which we can do with the lm() command.
 
 ```{r}
 summary(lm(casesOpop000~density,covid_julyb  %>% filter(density<6000) ))
 ```
 
+`r unhide()`
 
+
+
+### Part (`r part()`)
+Computers - unlike humans - are good at doing repeated tasks reliably without frustration. A basic way to accomplish that in a programming language are are loops. 
+Let's look at a concrete example. Suppose you want to create time series figures of COVID death rates for several US states: California, Texas, New York and Alaska, say. 
+Try if you can work out how to do that with a for loop using the help function and online googling.
+If your are stuck check out the answer below.
+
+`r hide("Answer:")`
+
+
+Let's start by arranging the states in a collection. Also add a death rate column to the covid dataframe (and clear up the date variable):
+
+```{r}
+states=c("California","Texas","New York","Alaska")
+
+covid=covid%>% mutate(deathsOcases=deaths/cases, date=as.Date(date))
+
+```
+
+
+Now loop over those states:
+
+```{r}
+
+for(s in states){
+  print(s)
+  p=ggplot(covid  %>% filter(state==s), aes(x=date, y=deathsOcases)) +
+      geom_point() + ggtitle(s)
+      scale_x_date(date_breaks="1 month",date_labels = "%b")
+  
+  print(p)
+}
+
+```
+
+It's interesting to see quite a variation in the shape of this series between different states. New York hasn't managed a meaningful decline in death rates. In Texas on the other hand death rates are increasing again after a substantial decline in July.
 
 
 `r unhide()`
+
+
+
+
+# Exercise 2.3
+### Part (a)
+Besides analysing data we can use R to make up data. Why would we do that? It's a common approach called "Monte-Carlo Analysis". If we make up the data we know the underlying model that is driving the data. We can use to this to test the methods we are using. Do they lead us to the true underlying model or do they have biases that give us the wrong answer? 
+In this exercise we walk through how this can be done in a simple case. As ever: try to work through all of this while creating an R script or R markdown file.
+First we need to decide about the sample size. 	Let’s use a sample of size 100. It makes sense to assign this number to a variable as follows:
+
+```{r}
+obs<-100
+```
+
+
+Assume that the data is driven by the following true model $Y=2+0.5 X +\epsilon$ where $\epsilon$ is a random variable that follows a standard normal distribution; i.e. its distribution follows the famous bell curve. Using R you can draw realisations  of such a random variable using the function `rnorm()`
+To assign those values to a variable called `eps` we can write
+ 
+```{r} 
+df=data.frame(eps=rnorm(obs))
+```
+where the `data.frame` command arranges the newly created variable eps into a dataframe rather than being standalone.
+
+Similarly we can generate the explanatory variable X as:
+
+```{r}
+df=df%>% mutate(X=runif(obs))
+```
+
+This will draw the values of X by drawing random variables on the interval between 0 and 1 with uniform (i.e. all values have the same) probility.
+Look at the values of X and $\epsilon$. Here are the first 10:
+
+```{r}
+head(df,10)
+```
+
+
+### Part (b)
+Now create the Y variable according to the formula above.
+
+`r hide("Answer:")`
+```{r}
+df=df%>% mutate(Y=2+0.5*X+eps)
+```
+
+`r unhide()`
+
+### Part (c)
+Run a regression of Y on X. What value do you find for the coefficient on X? Would you think this is an unbiased estimate?
+
+
+
+### Part (d)
+
+Now use a “for”-loop to repeat the steps from section (a)-(c) 1000 times. 
+
+
+We can do this in R with the following for-loop command
+
+
+`for(i in 1:1000) {`
+
+  `<several lines of code >`
+
+`}`
+
+
+
+i.e. the lines of code between the first line and “}” will be repeated 1000 times. The variable i will increase by 1 on each round. 
+
+	Compute the average value of the estimate of the X coefficient across the 1000 repetitions. In order to do that you need to somehow save the value of the coefficient in each round.
+
+
+
+
