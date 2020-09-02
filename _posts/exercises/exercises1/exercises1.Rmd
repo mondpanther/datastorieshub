@@ -28,5 +28,8 @@ knitr::opts_chunk$set(fig.path='../../images/')
 
 
 
-In the lecture we discussed the notion of causality. We contrasted the a certain causality mechanism (your story) with the causality mechanism(s) that might be driving your data (the data story). For good dataanalysis you need to be aware of both: Have a clear idea of what you want to analyse or explore as well as of all the things that could be going on in your data. To practice this I ask you to go through a couple of examples. These are typically strong correlations that have been found in a dataset or another. 
+In the lecture we discussed the notion of causality. We contrasted the a certain causality mechanism (your story) with the causality mechanism(s) that might be driving your data (the data story). For good dataanalysis you need to be aware of both: Have a clear idea of what you want to analyse or explore as well as of all the things that could be going on in your data. To practice this I ask you to go through a couple of examples. These are typically strong correlations that have been found in one dataset or another. For each example, could you think of a mechanism or reason that would support the causal chain to work in both directions. You might want to share some of your ideas on the course forum. For each case I give you a suggestions as example when clicking the answer tab.
+
+
+
 

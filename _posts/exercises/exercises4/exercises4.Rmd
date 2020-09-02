@@ -1,7 +1,7 @@
 ---
-title: "Exercises 3"
+title: "Exercises 4"
 description: |
-  How to have visualisations
+  Testing your knowledge of testing
 author:
   - name: Ralf Martin
     url: https://mondpanther.github.io/wwwmondpanther/
@@ -40,8 +40,8 @@ part()
 
 ```
 
-Your task this week is to get some data from somewhere and create a figure or visualisation in R along with a discussion of what we might be seeing. To help you with that, this exercise sheets walks you through a couple of examples.
 
 
-# Exercise 3.1
+# Exercise 4.1
+
 
