@@ -1,23 +1,5 @@
 [
   {
-    "path": "posts/exercises/exercises2/",
-    "title": "Exercises 2",
-    "description": "Exercises to get familiar with R.",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-09-02",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-09-02T09:20:49+01:00",
-    "input_file": {}
-  },
-  {
     "path": "posts/exercises/exercises3/",
     "title": "Exercises 3",
     "description": "How to have visualisations",
@@ -52,6 +34,24 @@
     "preview": {},
     "last_modified": "2020-09-02T12:21:50+01:00",
     "input_file": "exercises4.utf8.md"
+  },
+  {
+    "path": "posts/exercises/exercises2/",
+    "title": "Exercises 2",
+    "description": "Exercises to get familiar with R.",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-02",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-02T17:34:51+01:00",
+    "input_file": "exercises2.utf8.md"
   },
   {
     "path": "posts/exercises/exercises1/",

@@ -56,7 +56,7 @@ knitr::include_graphics("../../../images/fileimport.png")
 ```
 
 
-### Part (`r part(TRUE)`) 
+### Part (`r part(TRUE)`)  
 Instead of using the import dialog, can you load the dataset with an R command either from the console command line or via an R script?
 
 
@@ -67,6 +67,7 @@ If you use the RStudio dialog just discussed it will show you the R command that
 `r unhide()`
 
 `r hide("Answer:")`
+
 ```{r load auto, echo = TRUE}
 auto <- read.csv("C:/Users/Ralf Martin/Dropbox/datastories/data/auto.csv", header=TRUE)
 
@@ -106,6 +107,7 @@ Probably the easiest way to load a web based CSV file into R is directly from th
 `r hide("Answer:")`
 ```{r, echo = TRUE}
 auto <- read.csv("https://www.dropbox.com/s/gm22o5efboc3q0w/auto.csv?dl=1", header=TRUE)
+
 
 ```
 
