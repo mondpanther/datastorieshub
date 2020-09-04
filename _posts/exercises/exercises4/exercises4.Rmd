@@ -47,7 +47,9 @@ A researcher hypothesizes that year of schooling, S, may be related to the numbe
 
 She is prepared to test the null hypothesis `r  $H0: \beta_{2}=0$` against the alternative hypothesis `r  $H1: \beta_{2}=0 beta_{2}\neq 0 $` at the 5 and 1 percent levels. She has a sample of 60 observations. What are the t-distribution values and what will she conclude in the following cases?
 
-1. If `r  $\hat{\beta}_{2} = -0.20, \sigma_{hat{\beta}_{2}}=0.07$`?
+
+### Part (`r part(TRUE)`)  
+If `r  $\hat{\beta}_{2} = -0.20, \sigma_{hat{\beta}_{2}}=0.07$`?
 
 The t-value (rounded up to 3 decimal places) is: `r fitb(-2.857)`
 
@@ -56,7 +58,8 @@ Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("YES")`
 Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("YES")`
 
 
-2. If `r  $\hat{\beta}_{2} = -0.12, \sigma_{hat{\beta}_{2}}=0.07$`?
+### Part (`r part()`)
+If `r  $\hat{\beta}_{2} = -0.12, \sigma_{hat{\beta}_{2}}=0.07$`?
 
 The t-value (rounded up to 3 decimal places) is: `r fitb(-1.714)`
 
@@ -65,7 +68,8 @@ Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("NO")`
 Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("NO")`
 
 
-3. If `r  $\hat{\beta}_{2} = 0.06, \sigma_{hat{\beta}_{2}}=0.07$`?
+### Part (`r part()`)
+If `r  $\hat{\beta}_{2} = 0.06, \sigma_{hat{\beta}_{2}}=0.07$`?
 
 The t-value (rounded up to 3 decimal places) is: `r fitb(0.857)`
 
@@ -74,7 +78,8 @@ Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("NO")`
 Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("NO")`
 
 
-4. If `r  $\hat{\beta}_{2} = 0.20, \sigma_{hat{\beta}_{2}}=0.07$`?
+### Part (`r part()`)
+If `r  $\hat{\beta}_{2} = 0.20, \sigma_{hat{\beta}_{2}}=0.07$`?
 
 The t-value (rounded up to 3 decimal places) is: `r fitb(2.857)`
 
@@ -119,21 +124,38 @@ Significantly different from 0 at 5 and 1 percent; i.e. we reject the H0 at eith
     
 # Exercise 4.2
 
-```{r}  
+Lets use the WAGE1.DTA dataset again!
+
+```{r, echo = TRUE}  
   library(foreign)
-  data <- read.dta("../data/WAGE1.dta")
+  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AADZ4MZhDDk9R8sFSjBvmcRma/WAGE1.DTA?dl=1", header=TRUE) 
 ```
 
-## a)
-```{r}
+### Part (`r part()`)
+
+Regress wages on education (years of schooling). Perform a test of the hypothesis that the coefficient on schooling is equal to 0. 
+
+Can you reject the hypothesis? (YES/NO) `r fitb("YES")`
+
+`r hide("Answer:")`
+```{r, echo = TRUE}
   mod <- lm(wage~educ,data)
   summary(mod)
 ```  
 
 i.e. t>2 and P very close to 0. Hence coefficient on education is highly significant (we can reject hypothesis that it is equal to 0)
 
-## b)
-```{r}
+`r unhide()`
+  
+
+
+### Part (`r part()`)
+Regress tenure (years with current employer) on education. Can you think of a causal mechanism that could support this specificiation?
+
+Can you reject the hypothesis? (YES/NO) `r fitb("NO")`
+
+`r hide("Answer:")`
+```{r, echo = TRUE}
   mod2 <- lm(tenure~educ,data)
   summary(mod2)
 ```
@@ -142,53 +164,90 @@ i.e. there is a negative relationship: one year of extra education reduces tenur
 
 One reason why education might lead less tenure is that time is finite and being in education allows for less time to work on a job. Also: we are dealing here with time spend with the same employer. So it could be that employees that are more educated tend to change jobs more often (they might have more general skills that are in high demand by various employers). As a consequence they accumulate less time with a specific employer.
 
+`r unhide()`
+
+
+
 # Exercise 4.3
-```{r}  
+
+Lets go back to the auto dataset.
+
+```{r, echo = TRUE}  
   library(foreign)
-  data <- read.dta("../data/auto.dta")
+  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AACNkMy47ilXAMh3nmiIs_Bqa/auto.dta?dl=1",header=TRUE)
 ```
 
-## a)
+### Part (`r part()`)
+Draw a scatterplot of price versus weight. 
+Which cars, in terms of weight, tend to be more expensive? (HEAVIER/LIGHTER)`r fitb("HEAVIER")`
+
+
 ```{r}
 
+`r hide("Answer:")`
+```{r, echo = TRUE}
   plot(data$weight,data$price)
 ```
 
-Heavier cars tend to be more expensive
+Heavier cars tend to be more expensive.
 
-## b)
-```{r}
+`r unhide()`
+
+### Part (`r part()`)
+Run a regression of price on weight. 
+
+What is the constant? `r fitb(-6.7074)`
+
+What is the slope coefficient? `r fitb(2.0441)`
+
+`r hide("Answer:")`
+```{r, echo = TRUE}
+
   mod<-lm(price~weight,data)
   summary(mod)
 ```
+`r unhide()`
 
-## c)
+### Part (`r part()`)
+What is the predicted price of a car weighing 2,500lb? `r fitb(5103.449)`
+What is the predicted price of a car weighing 2,500lb? `r fitb(8169.543)`
 
-```{r}
+`r hide("Answer:")`
+```{r, echo = TRUE}
   value_to_forecast <- data.frame(weight=c(2500,4000))
   forecast <- predict(mod,value_to_forecast)
 ```  
   
-alternatively:
-```{r}
+Alternatively:
+```{r, echo = TRUE}
   mod$coefficients[[1]]+mod$coefficients[[2]]*2500
   mod$coefficients[[1]]+mod$coefficients[[2]]*4000
 ```
+`r unhide()`
 
-## d)
+### Part (`r part()`)
+What is the expected price difference between two cars, one of which is 500kg(!) heavier?`r fitb(2252.557)`
 
-```{r}
+`r hide("Answer:")`
+```{r, echo = TRUE}
   mod$coefficients[[2]]*1102
 ```
-  
-## e)
+`r unhide()`
 
-```{r}
+### Part (`r part()`)
+What is the predicted price of a car weighing 500lb?`r fitb(1015.324)`
+
+Do you think this number is very meaningful? (YES/NO) `r fitb("NO")` Why or why not?
+
+`r hide("Answer:")`
+```{r, echo = TRUE}
   mod$coefficients[[1]]+mod$coefficients[[2]]*500
 ```  
+The lightest car in the sample weighs 1760lb. It is unlikely to tell us much about a car weighing 500lb. 
+ 
+`r unhide()`
 
-The lightest car in the sample weighs 1760. It is unlikely to tell us much about a car weighing 500lb. 
-  
+
 # Exercise 4.4
 
 Note there was a typo in the exercise. Rather than "x=runif(obs)*eps^2" use "runif(obs)*eps"
