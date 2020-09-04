@@ -1,23 +1,5 @@
 [
   {
-    "path": "posts/exercises/exercises3/",
-    "title": "Exercises 3",
-    "description": "How to have visualisations",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-09-02",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-09-02T10:10:53+01:00",
-    "input_file": {}
-  },
-  {
     "path": "posts/exercises/exercises4/",
     "title": "Exercises 4",
     "description": "Testing your knowledge of testing",
@@ -27,13 +9,13 @@
         "url": "https://mondpanther.github.io/wwwmondpanther/"
       }
     ],
-    "date": "2020-09-02",
+    "date": "2020-09-04",
     "categories": [
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-02T12:21:50+01:00",
-    "input_file": "exercises4.utf8.md"
+    "last_modified": "2020-09-04T12:02:11+01:00",
+    "input_file": {}
   },
   {
     "path": "posts/exercises/exercises2/",
@@ -51,7 +33,25 @@
     ],
     "preview": {},
     "last_modified": "2020-09-02T17:34:51+01:00",
-    "input_file": "exercises2.utf8.md"
+    "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises3/",
+    "title": "Exercises 3",
+    "description": "How to have visualisations",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-02",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-02T10:10:53+01:00",
+    "input_file": {}
   },
   {
     "path": "posts/exercises/exercises1/",
