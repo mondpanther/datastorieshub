@@ -19,7 +19,6 @@ editor_options:
 ---
 
 
-
 ```{r setup, include = FALSE, message=FALSE}
 library("webex")
 library(ggplot2)
@@ -44,4 +43,200 @@ part()
 
 # Exercise 4.1
 
+A researcher hypothesizes that year of schooling, S, may be related to the number of siblings (brothers and sisters) one has, SIBLINGS, according to the relationship `r  $$S = \beta_{1}+\beta_{2}SIBLINGS+\epsilon$$`
 
+She is prepared to test the null hypothesis `r  $H0: \beta_{2}=0$` against the alternative hypothesis `r  $H1: \beta_{2}=0 beta_{2}\neq 0 $` at the 5 and 1 percent levels. She has a sample of 60 observations. What are the t-distribution values and what will she conclude in the following cases?
+
+1. If `r  $\hat{\beta}_{2} = -0.20, \sigma_{hat{\beta}_{2}}=0.07$`?
+
+The t-value (rounded up to 3 decimal places) is: `r fitb(-2.857)`
+
+Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("YES")`
+
+Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("YES")`
+
+
+2. If `r  $\hat{\beta}_{2} = -0.12, \sigma_{hat{\beta}_{2}}=0.07$`?
+
+The t-value (rounded up to 3 decimal places) is: `r fitb(-1.714)`
+
+Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("NO")`
+
+Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("NO")`
+
+
+3. If `r  $\hat{\beta}_{2} = 0.06, \sigma_{hat{\beta}_{2}}=0.07$`?
+
+The t-value (rounded up to 3 decimal places) is: `r fitb(0.857)`
+
+Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("NO")`
+
+Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("NO")`
+
+
+4. If `r  $\hat{\beta}_{2} = 0.20, \sigma_{hat{\beta}_{2}}=0.07$`?
+
+The t-value (rounded up to 3 decimal places) is: `r fitb(2.857)`
+
+Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("YES")`
+
+Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("YES")`
+
+
+`r hide("Hint:")`
+Recall that the rejection threshold c for the normal distribution are `r abs(qnorm(0.025))` and `r abs(qnorm(0.005))` for a 5% and 1% significance level.
+For the t distribution the same values are `r abs(qt(0.025,58))` and `r abs(qt(0.005,58))` (Note that we have 58 degrees of freedom).
+
+We can also work out p-values
+```{r}
+  pt(abs(-0.2)/0.07,58)
+  pt(abs(-0.12)/0.07,58)
+  pt(0.06/0.07,58)
+  pt(0.20/0.07,58)
+```
+`r unhide()`
+
+`r hide("Answer:")`
+```{r, echo = TRUE}
+
+Hence we get the following answers
+
+1.	t=-0.2/0.07=-2.857
+Significantly different from 0 at 5 and 1 percent; i.e. we reject the H0 at either significance level.
+
+2.	t=-0.12/0.07=-1.714
+Not significantly different from 0 at 5 and 1 percent; i.e. we don't reject the H0
+
+3.	t=0.06/0.07=0.857
+Not significantly different from 0 at 5 and 1 percent.
+
+4.	t=0.2/0.07=2.857
+Significantly different from 0 at 5 and 1 percent; i.e. we reject the H0 at either significance level.
+
+```
+`r unhide()`
+  
+    
+# Exercise 4.2
+
+```{r}  
+  library(foreign)
+  data <- read.dta("../data/WAGE1.dta")
+```
+
+## a)
+```{r}
+  mod <- lm(wage~educ,data)
+  summary(mod)
+```  
+
+i.e. t>2 and P very close to 0. Hence coefficient on education is highly significant (we can reject hypothesis that it is equal to 0)
+
+## b)
+```{r}
+  mod2 <- lm(tenure~educ,data)
+  summary(mod2)
+```
+
+i.e. there is a negative relationship: one year of extra education reduces tenure by 0.14 years. That said: this is not a significant relationship.
+
+One reason why education might lead less tenure is that time is finite and being in education allows for less time to work on a job. Also: we are dealing here with time spend with the same employer. So it could be that employees that are more educated tend to change jobs more often (they might have more general skills that are in high demand by various employers). As a consequence they accumulate less time with a specific employer.
+
+# Exercise 4.3
+```{r}  
+  library(foreign)
+  data <- read.dta("../data/auto.dta")
+```
+
+## a)
+```{r}
+
+  plot(data$weight,data$price)
+```
+
+Heavier cars tend to be more expensive
+
+## b)
+```{r}
+  mod<-lm(price~weight,data)
+  summary(mod)
+```
+
+## c)
+
+```{r}
+  value_to_forecast <- data.frame(weight=c(2500,4000))
+  forecast <- predict(mod,value_to_forecast)
+```  
+  
+alternatively:
+```{r}
+  mod$coefficients[[1]]+mod$coefficients[[2]]*2500
+  mod$coefficients[[1]]+mod$coefficients[[2]]*4000
+```
+
+## d)
+
+```{r}
+  mod$coefficients[[2]]*1102
+```
+  
+## e)
+
+```{r}
+  mod$coefficients[[1]]+mod$coefficients[[2]]*500
+```  
+
+The lightest car in the sample weighs 1760. It is unlikely to tell us much about a car weighing 500lb. 
+  
+# Exercise 4.4
+
+Note there was a typo in the exercise. Rather than "x=runif(obs)*eps^2" use "runif(obs)*eps"
+This will create a strong positive correlationb between x and eps that leads to a bias of the estimator.
+
+```{r}
+    obs <- 100
+    eps <- rnorm(obs)
+    x <- runif(obs)*eps
+    
+    x_wrong= runif(obs)*eps^2
+    
+    cor(x,eps)  # Note that x and eps will be highly positively correlated
+    
+    cor(x_wrong,eps)  # when we square the eps we don't get a strong correlation because small 
+    
+    y <- 2+0.5*x+eps
+    mod<-lm(y~x)
+    summary(mod)
+    
+```
+
+
+```{r}  
+
+
+  beta <- double(1000)
+  
+  cc = double(1000)
+  
+  for(i in 1:1000){
+    eps <- rnorm(obs)
+    x <- runif(obs)  *eps
+    
+    
+    
+    y <- 2 + 0.5*x+eps
+    mod<-lm(y~x)
+    beta[i]<-mod$coefficients[[2]]
+    
+    
+    cc[i]=cor(x,eps)
+  }
+  
+  hist(beta,50)
+  mean(beta)
+  mean(cc)
+```  
+
+i.e. the mean of beta is much larger than 0.5  
+  
