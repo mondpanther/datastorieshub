@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/exercises/exercises1/",
+    "title": "Exercises 1",
+    "description": "Starting to think like an econometrician.",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-07",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-07T14:31:11+01:00",
+    "input_file": "exercises1.utf8.md"
+  },
+  {
     "path": "posts/exercises/exercises4/",
     "title": "Exercises 4",
     "description": "Testing your knowledge of testing",
@@ -51,24 +69,6 @@
     ],
     "preview": {},
     "last_modified": "2020-09-02T10:10:53+01:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/exercises/exercises1/",
-    "title": "Exercises 1",
-    "description": "Starting to think like an econometrician.",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-08-31",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-08-31T08:12:04+01:00",
     "input_file": {}
   },
   {
