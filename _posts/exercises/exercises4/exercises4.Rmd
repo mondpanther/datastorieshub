@@ -43,7 +43,7 @@ part()
 
 # Exercise 4.1
 
-A researcher hypothesizes that year of schooling, S, may be related to the number of siblings (brothers and sisters) one has, SIBLINGS, according to the relationship `r  $$S = \beta_{1}+\beta_{2}SIBLINGS+\epsilon$$`
+A researcher hypothesizes that year of schooling, S, may be related to the number of siblings (brothers and sisters) one has, SIBLINGS, according to the relationship `r $$S = \beta_{1}+\beta_{2}SIBLINGS+\epsilon$$`
 
 She is prepared to test the null hypothesis `r  $H0: \beta_{2}=0$` against the alternative hypothesis `r  $H1: \beta_{2}=0 beta_{2}\neq 0 $` at the 5 and 1 percent levels. She has a sample of 60 observations. What are the t-distribution values and what will she conclude in the following cases?
 
@@ -128,7 +128,7 @@ Lets use the WAGE1.DTA dataset again!
 
 ```{r, echo = TRUE}  
   library(foreign)
-  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AADZ4MZhDDk9R8sFSjBvmcRma/WAGE1.DTA?dl=1", header=TRUE) 
+  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AADZ4MZhDDk9R8sFSjBvmcRma/WAGE1.DTA?dl=1") 
 ```
 
 ### Part (`r part()`)
@@ -174,7 +174,7 @@ Lets go back to the auto dataset.
 
 ```{r, echo = TRUE}  
   library(foreign)
-  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AACNkMy47ilXAMh3nmiIs_Bqa/auto.dta?dl=1",header=TRUE)
+  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AACNkMy47ilXAMh3nmiIs_Bqa/auto.dta?dl=1")
 ```
 
 ### Part (`r part()`)
@@ -254,13 +254,16 @@ The lightest car in the sample weighs 1760lb. It is unlikely to tell us much abo
 
 Conduct another Monter-Carlo expercise as in the previous exercise session (exercise session 2.3). Generate the $\epsilon$ shocks as before. For the X, however, use the following command: x=unif(obs)*eps.
 
-Otherwise take the same steps as in the previous Monte Carlo exercise, using the the same true model $Y=2+0.5 X +\epsilon$
+Otherwise take the same steps as in the previous Monte Carlo exercise, using the the same true model $Y=2+0.5 X +\epsilon$. Produce a histogram to visualise your betas. 
 
 [PS NOTE: I think the question doesn't really work like that, need to maybe edit or provide hints?...]
 
 ### Part (`r part()`)
 What average estimate for the coefficient associated with X do you find now? (Round up to the nearest whole number) `r fitb(2)`
 
+
+### Part (`r part()`)
+How does it relate to the true value of the coefficient of 0.5, is it larger or smaller? `r mcq(c("Larger", "Smaller", answer = "Larger"))`
 
 `r hide("Answer:")`
 ```{r, echo = TRUE}
