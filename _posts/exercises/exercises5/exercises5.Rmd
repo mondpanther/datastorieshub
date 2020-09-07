@@ -1,0 +1,482 @@
+---
+title: "Exercises 5"
+description: |
+  Exercises to get familiar with R.
+author:
+  - name: Ralf Martin
+    url: https://mondpanther.github.io/wwwmondpanther/
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    self_contained: true
+    css: ../../webex.css
+    includes:
+      after_body: ../../webex.js
+categories:
+  - Exercises
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+
+```{r setup, include = FALSE, message=FALSE}
+library("webex")
+library(ggplot2)
+knitr::opts_chunk$set(fig.path='../../../images/')
+knitr::opts_chunk$set(echo=TRUE)
+part=function(reset=FALSE){
+  if(reset){ pp <<- 0}
+  pp <<- pp+1
+  rr=letters[pp]
+  
+  return(rr)
+}
+part(TRUE)
+part()
+```
+
+# Exercise 5.1
+
+For this question we will use a dataset from a randomized experiment conducted by Marianne Bertrand and Sendhil Mullainathan, who sent 4,870 fictitious resumes out to employers in response to job adverts in Boston and Chicago in 2001. The resumes differ in various attributes including the names of the applicants, and different resumes were randomly allocated to job openings. Some of the names are distinctly white sounding and some distinctly black sounding. The researchers collecting these data were interested to learn whether black sounding names obtain fewer callbacks for interviews than white names. Load the data set bm.dta.
+
+```{r}  
+  library(haven)
+  data <- read_dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AABua74TH54FcmOsAs0ayMY5a/bm.dta?dl=1")
+  summary(data)
+```
+
+### Part (a)
+The data set contains two dummy variables (0-1 variables) for gender (female) and whether the applicant has computer skills (computerskills). Tabulate these variables by black. 
+
+Do gender and computer skills look balanced – i.e. random -  across race groups? `r mcq(c("No", answer = "Yes"))`
+
+`r hide("Answer:")`
+```{r, echo = TRUE}
+  table(data$female,data$black)
+  prop.table(table(data$female,data$black))
+```
+There are many more female than male CVs (i.e. about 38%+38%=76% of the sample are female). However, gender seems not all correlated with race; i.e. the split between black and non black is virtually half for both men and women.
+
+A similar pattern emerges for computer skills and racial background.
+
+```{r, echo = TRUE}
+  prop.table(table(data$computerskills,data$black))
+```  
+`r unhide()`
+
+## b)
+```{r}
+  table(data$education,data$black)
+  prop.table(table(data$education,data$black))
+  
+  table(data$ofjobs,data$black)
+  prop.table(table(data$ofjobs,data$black))
+```
+
+There is no clear relation between education/number of jobs and race either. 
+If we are worried about small discrepancies we could also run a regression to test if differences are significant:
+```{r}
+ data$ofjobs=factor(data$ofjobs)
+ summary(lm(black~ofjobs,data))
+ 
+
+```
+Hence the different job categories are individually (and jointly) insignificant. Note an OLS regression always reports a test that all coefficients are jointly not significant (the p-value of 0.741 reported at the end of the output)
+
+
+## c)
+```{r}
+  mean(data$yearsexp[data$black==1])
+  sd(data$yearsexp[data$black==1])
+  mean(data$yearsexp[data$black==0])
+  sd(data$yearsexp[data$black==0])
+```
+
+## d)
+If there was any evidence of a systematic relationship between race and any of those characteristics we could potentially be in trouble when simply comparing interview call backs for different race groups. Any differences found could simply due to those other factors rather than racial bias by employers.
+
+## e-f)
+```{r}
+  prop.table(table(data$call))
+
+  prop.table(table(data$call,data$black))
+  prop.table(table(data$call,data$black),2) 
+  " Note that by specifying 2 we report proportions by column (if you specify 1 it reports proportions by rows)"
+  
+```
+
+We see that most CVs never received a call back (i.e. overall only 8.05% received a call back). However, there seems to be a clear difference between the races. Whereas for white people call back rates where above average (9.65%) they were below average for black people (6.45%) suggesting a racial bias by employers.
+
+# Exercise 2
+```{r}  
+  library(foreign)
+  data <- read.dta("../data/bm.dta")
+```
+
+
+## a-b)
+```{r}
+  mod <- lm(call~black,data)
+  summary(mod)
+```
+
+alternatively we can use logit:
+```{r}
+  mod2 <- glm(call~black,data,family=binomial)
+  summary(mod2)
+  library(margins)
+  margins(mod2)
+  
+```
+Note that the marginal effects using logit are very similar to the linear model.
+
+
+# Exercise 3
+```{r}
+  library(foreign)
+  data <- read.dta("../data/cps.dta")
+  summary(data)
+```
+
+## a)
+
+```{r}
+  HE <- as.integer(data$education=="some col" | data$education=="col+")
+  mean(HE)
+  sum(HE)
+  #adding HE variable to dataframe
+  data["HE"] <- HE
+  summary(data)
+```  
+Note that nearly 63% of the sample have some college education.
+  
+## b)
+
+```{r}
+  #modify employed as a dichotomous variable
+  table(data$employed)
+  table(as.integer(data$employed))
+  data["employed2"] <- as.integer(data$employed)-1
+  summary(data)
+  mod1 <- lm(employed2~black,data)
+  summary(mod1)
+  
+```
+A regression of employment status on a dummy indicating a black racial background suggests that black people are significantly less likely to be employed. The difference amounts to 9.1 percentage points.
+
+
+
+## c)
+```{r}
+  mod2 <- lm(HE~black,data)
+  summary(mod2)
+```
+The difference in the probability of having higher eduction between people with non black and black background is 11 percentage points.
+
+## d)
+
+The result in (b) is consistent with racial bias. However, from (c) we also see that people with black background tend to have less college education and college education is another major driver of having employment:
+
+
+```{r}
+  summary(lm(employed2~HE,data))
+
+
+```
+Hence, far from implying a racial issue, the result in  (b) could simply reflect employers preference for more highly educated workers.
+We can examine this by doing the analysis in (b) separately for workers with different educational attainment; i.e.:
+
+
+```{r}
+  mod3 <- lm(employed2~black,data,subset=data$HE==1)
+  summary(mod3)
+  
+  
+  mod4 <- lm(employed2~black,data,subset=data$HE==0)
+  summary(mod4)
+```
+
+
+The results suggest that for either group there is a significant racial gap when it comes to being employed. Note that the effect is considerably stronger for less educated workers.
+Hence this re-enforces the hypothesis that there is discrimination against workers with black background which is un-related to their productivity in the workplace. However, there might be further caveats: our simple regression cannot account for the quality of the college education which can vary considerably and might vary systematically along racial lines. Furthermore, an important driver for a good education and for various other skills might have to do with parental income and status. Again, this is likely to vary systematically along racial lines.
+While it is interesting to ask if employers discriminate above and beyond what could be expected on the basis of education and skill of workers – which is what we were implicitly doing above -  we might also be concerned about the overall impact of racial background on labor market outcomes which includes initially different educational outcomes. Hence, depending on our interest we might be primarily focused on the effect of race holding education fixed or we might be focused on the overall effect.
+
+
+  
+# Exercise 4
+```{r}
+  library(foreign)
+  data <- read.dta("../data/cps.dta")
+  summary(data)
+```
+
+
+## a)
+```{r}
+  #adding HE variable to dataframe
+  data["HE"] <- as.integer(data$education=="some col" | data$education=="col+")
+  #modify emplyed as a dichotomous variable
+  data["employed2"] <- as.integer(data$employed)-1
+  mod1 <- lm(employed2~black+HE,data)
+  summary(mod1)
+  mod2 <- lm(employed2~black+HE+black*HE,data)
+  summary(mod2)
+```
+
+
+## b)
+The test for the interaction coefficient is singificant. That suggest the negative "black" effect is significatly less strong for higher educated workers; i.e. it's important to have the more complicated model with interaction term.
+Some alternative ways of testing include:
+
+```{r}
+  anova(mod2,mod1)
+  # or alternatively
+  library(lmtest)
+  waldtest(mod2,mod1)
+  # or alternatively
+  coeftest(mod2)
+```
+
+
+## c)
+Hence college educated black people have a 12.5-8.2=4.3 percentage point lower likelihood of being employed.
+For non college educated the propbability is 12.5 percentage point lower; i.e. short of rounding error this corresponds to exactly what we found in exercise 3 as well.
+
+
+
+# Exercise 5
+We can allow for a separate response for women by including a female dummy and also interact the education variable with gender status. Note that you can do this by creating the various variables first. A faster way is to use R’s ability to create new variables as part of the model description of the lm command:
+
+
+```{r}
+  library(foreign)
+  library(car)
+  data <- read.dta("../data/WAGE1.dta")
+  
+  
+  
+  mod2 <- lm(wage~educ+educ*female,data)
+  summary(mod2)
+  
+  linearHypothesis(mod2,c("educ:female=0","female=0"))
+```
+Note that this leads to “female” parameters that individually are not significant.
+However, a joint significant test reveals that the variables combined have explanatory power; i.e. the low significance in the regression is likely a consequence of co-linearity of the female and female*education variables. We can also see this by just regressing on a female dummy which leads to a highly significant (and negative) effect (as we have seen before)
+
+
+```{r}
+    summary( lm(wage~educ+female:educ,data))
+```  
+You might consequently ask, which is the right model? There are several considerations
+1.	Work with the more general model even though the coefficients are individually not significant what matters is that they jointly matter.
+2.	Consider theory: is it more plausible that there are other factors that imply that women have a lower wage whatever they do or is it more plausible that the impact of education is radically different? The former seems more plausible to me but you are free to differ.
+
+
+  
+  
+# Exercise 6
+```{r}
+  library(foreign)
+  library(lmtest)
+  library(car)
+  data <- read.dta("../data/production2.dta")
+  summary(data)
+```  
+## a)+b)
+
+We can regress the following linear regression model:
+
+$$\ln Y=\alpha \ln K +\beta \ln L +\varepsilon$$
+
+```{r}
+
+  mod1 <- lm(log(vadd)~log(emp)+log(cap),data[data$year==58,])
+  summary(mod1)
+```
+
+## b)
+
+```{r}
+library(car)
+linearHypothesis(mod1,"log(emp)+log(cap)=1" )
+```
+
+## c)
+If H0 is true we have that $\beta=1-\alpha$. This means we can re-write the original equation as
+$$\ln\frac{Y}{L}=\alpha \ln\frac{K}{L}+\varepsilon$$
+
+
+
+Hence we can regress $\ln\frac{Y}{L}$ on $\ln\frac{K}{L})$ and $\ln L$ and do a t-test on the hypothesis that the coefficient on $\ln L$ is equal to 0:
+
+
+```{r}
+mod2 <- lm(log(vadd/emp)~log(cap/emp)+log(emp),data[data$year==58,])
+summary(mod2)
+```
+Note that we get the same p-value as before because it is essentially the same test.
+
+## d)
+```{r}
+  memp58 <- mean(data$emp[data$year==58])
+  memp58
+  
+```
+Average industry employs 34 thousand workers (note from des that employment is measured in thousands).
+
+Adding 1000 workers to the average industry implies and increase of about 3%. Given that our estimate of β which we can interpret as an elasticity we would expect that value added increases by 3%×0.7=2.1%.
+
+## e) 
+There is concern of endogeneity with regression such as in (a). While clearly more input factors has a causal effect on outputs it is also plausible that industries which have for whatever reason a positive shock to their output might attract more workers and capital. What’s more: with more than one explanatory variable it’s no longer that easy to predict the sign of the bias because it not only depends on the relationship between the error and the dependent variable but also on the relationship between the various explanatory variables as well as the relative strength of endogeneity for different variables. For instance in the case of production function regression the suspicion is that the labour coefficient is upward biased whereas the capital coefficient is downward biased. Not because one is positively correlated with the shock and the other is negatively correlated but because labour – being a more flexible production factor – is likely to be more positively correlated with the shock than capital.
+
+
+
+
+# Exercise 7
+
+
+```{r}
+  library(foreign)
+  library(lmtest)
+  library(car)
+  data <- read.dta("../data/attend.dta")
+  summary(data)
+```
+
+## a)
+Attending one extra lecture add 0.0278 to the standardized final score. In total there were 32 classes. Based on this, attending only half of those classes would imply a reduction in final outcome of 16×0.0278=0.44. This seems fairly substantial. While it is not enough to make a difference between a weak student (e.g. somebody in the bottom quartile; stndfnl=-0.78780) and a strong student (say somebody in the top quartile, stndfnl=0.68280) it has the potential to move a median student (stndfnl=0.0525) into top quartile territory (see summary stats for stndfnl below)
+
+```{r}
+  mod1 <- lm(stndfnl~attend,data)
+  summary(mod1)
+  summary(data$stndfnl)
+  mod1$coefficients[[2]]*sd(data$attend)/sd(data$stndfnl)
+```
+
+
+## b)
+The regression in (a) could be biased for a number of reasons. The main worry would be that students who are better irrespective of attendance are also more diligent in general and therefore more likely to attend class.
+In absence of a good instrument (e.g. a nice instrument would be if some students where kept from attending class because of some weather or transport problem) we have to rely on the inclusion of further controls to deal which hopefully control for ability/diligence etc. of students.
+
+
+## c)
+```{r}  
+mod2 <- lm(stndfnl~attend+termgpa,data)
+summary(mod2)
+```
+
+The term grade point average is strongly positive and sisgnificant and leads to a negative attendance effect. Note that the termgpa is most likely affected by higher attendance; However, by including it as a separate explanatory variable the resulting estimate ignore this effect. Instead what we are picking up is the final grade of people that attended class a lot but it did not make a difference to their term GPA. In other words these are probably very weak students who desperately tried to improve by attending classes a lot but it did not have a positive effect on either their term GPA or their final score.
+
+
+
+```{r}
+mod3 <- lm(stndfnl~attend+priGPA,data)
+summary(mod3)
+
+```
+priGPA is the GPA before the term. Again, we find a strong positive relation with stndfnl which is not surprising as ability to get good (or bad) results is very persistent. Again, the attendance coefficient becomes negative although this is not significant. Unlike for termgpa we cannot argue that attendance causes priGPA as well: attendance cannot affect past grades. So perhaps this means that there is really no causal effect of attendance on final outcomes.
+
+```{r}
+mod4 <- lm(stndfnl~attend+ACT,data)
+summary(mod4)
+
+```
+
+The college entrance results captured by ACT are another way of controlling for ability. However, including it, far from destroying the effect of attendance makes is slightly stronger. A mechanism that could explain this is as follows: far from being more diligent, the most able students might have actually somewhat of a cavalier attitude. They know they are good and they know they don’t attend class to be good. Thus if this was the only effect we expect a downward bias in the simple regression of final scores on attendance. 
+It is plausible that ACT captures this as it is the college entrance score. 
+
+  
+## d)
+In reality we will have both effects potentially causing endogeneity (diligent students attending more class and cavalier geniuses not attending class) Our best bet to control for it is by including both ACT and priGPA. However, we should not include termGPA because of the potential reverse causality.
+This leads to a lower effect of attendance (0.017) but it is still significant.
+
+```{r}
+  mod5 <- lm(stndfnl~attend+priGPA+ACT,data)
+  summary(mod5)
+  
+
+```
+
+
+## e)
+```{r}
+  mod6 <- lm(stndfnl~attend+priGPA+ACT+hwrte,data)
+  summary(mod6)
+  
+
+```
+
+Including hwrte reduces the coefficient on attend and makes it not significant. However, the effect of hwrte is equally not very significant. This is likely because the two variables are very co-linear: students who attend class a lot are also more likely to do their homework diligently and so it is difficult to separately identify the effect of the two. 
+
+It is easy to imagine a situation where knowing them separately would be useful: Suppose a teacher is trying to figure out if it would be more useful to give another lecture or instead set another homework.
+Equally, it might not important or even outright wrong to try to distinguish the two; e.g. suppose a teacher wants to work out the effect of introducing sanctions (i.e. a negative participation grade) for not attending lectures. Part of the mechanism from more lecture to better grades might a positive effect on homework as well (e.g. students might be less forgetful about homework or they might be worried about looking bad in class). This causal effect of attendance would be ignored in a joint regression.
+
+  
+  
+## f)
+“skipped” is perfectly collinear with “attend”
+
+```{r}
+  mod7 <- lm(stndfnl~attend+priGPA+ACT+hwrte+skipped,data)
+  summary(mod7)
+
+```
+
+
+  
+# Exercise 8
+```{r}
+
+  library(foreign)
+  library(lmtest)
+  data <- read.dta("../data/TeachingRatings.dta")
+  summary(data)
+
+```
+
+
+## a+c)  
+We get a significant slope coefficient of 0.133
+
+```{r}
+  mod1 <- lm(course_eval~beauty,data)
+  summary(mod1)
+
+
+```
+
+
+
+## b) 
+Going from the 25th to the 75th percentile on the beauty scale corresponds to a change of 1.2 “beauty”.
+That implies a change of 0.16 teaching scores. Hence, you should not despair as a teaching when you are ugly (phew). It’s not a enough to move a below average teacher (e.g. at 25th percentile) to above average.
+
+
+```{r}
+  mod1$coefficients[[2]]*sd(data$beauty)/sd(data$course_eval)
+  mod1$coefficients[[2]]*(quantile(data$beauty,0.75)[[1]]-quantile(data$beauty,0.25)[[1]])
+
+```
+
+
+  
+## d)
+
+```{r}
+  mod2 <- lm(course_eval~beauty+female,data)
+  summary(mod2)
+
+```
+
+
+The beauty coefficient becomes a bit bigger (0.149). This is because it seems that women tend to get lower teaching but higher beauty scores.
+
+## e) 
+
+R2 goes from 0.0357 to 0.0663. Adding more variables will always increase the R2.
+
+## f) 
+
+As usual we have to consider confounding factors. It’s not immediately clear why other factors driving good teaching could have a reverse causality on teaching. But here is one story: beauty is of course a very subjective measure. We perceive people who are well dressed as more beautiful. Perhaps the same factors that make a person dress well are also useful when teaching (e.g. lecture slides are more tidy). Hence, when we just consider beauty we may in part pick up the effect of tidier lecture slides.
+
