@@ -250,19 +250,22 @@ The lightest car in the sample weighs 1760lb. It is unlikely to tell us much abo
 
 # Exercise 4.4
 
-Note there was a typo in the exercise. Rather than "x=runif(obs)*eps^2" use "runif(obs)*eps"
-This will create a strong positive correlationb between x and eps that leads to a bias of the estimator.
+Conduct another Monter-Carlo expercise as in the previous exercise session (exercise session 2.3). Generate the $\epsilon$ shocks as before. For the X, however, use the following command: x=unif(obs)*eps.
 
-```{r}
+Otherwise take the same steps as in the previous Monte Carlo exercise, using the the same true model $Y=2+0.5 X +\epsilon$[PS NOTE: I think the question doesn't really work like that, need to edit or provide hints?...]
+
+### Part (`r part()`)
+What average estimate for the coefficient associated with X do you find now? (Round up to the nearest whole number) `r fitb(2)`
+
+
+`r hide("Answer:")`
+```{r, echo = TRUE}
+
     obs <- 100
     eps <- rnorm(obs)
     x <- runif(obs)*eps
     
-    x_wrong= runif(obs)*eps^2
-    
     cor(x,eps)  # Note that x and eps will be highly positively correlated
-    
-    cor(x_wrong,eps)  # when we square the eps we don't get a strong correlation because small 
     
     y <- 2+0.5*x+eps
     mod<-lm(y~x)
@@ -299,3 +302,4 @@ This will create a strong positive correlationb between x and eps that leads to 
 
 i.e. the mean of beta is much larger than 0.5  
   
+`r unhide()`
