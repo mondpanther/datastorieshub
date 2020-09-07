@@ -53,9 +53,9 @@ If `r  $\hat{\beta}_{2} = -0.20, \sigma_{hat{\beta}_{2}}=0.07$`?
 
 The t-value (rounded up to 3 decimal places) is: `r fitb(-2.857)`
 
-Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("YES")`
+Can she reject H0 at at the 5% significance level? `r mcq(c("Yes", "No", answer = "Yes"))`
 
-Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("YES")`
+Can she reject H0 at at the 1% significance level? `r mcq(c("Yes", "No", answer = "Yes"))`
 
 
 ### Part (`r part()`)
@@ -63,9 +63,9 @@ If `r  $\hat{\beta}_{2} = -0.12, \sigma_{hat{\beta}_{2}}=0.07$`?
 
 The t-value (rounded up to 3 decimal places) is: `r fitb(-1.714)`
 
-Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("NO")`
+Can she reject H0 at at the 5% significance level? `r mcq(c("Yes", "No", answer = "No"))`
 
-Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("NO")`
+Can she reject H0 at at the 1% significance level)? `r mcq(c("Yes", "No", answer = "No"))`
 
 
 ### Part (`r part()`)
@@ -73,9 +73,9 @@ If `r  $\hat{\beta}_{2} = 0.06, \sigma_{hat{\beta}_{2}}=0.07$`?
 
 The t-value (rounded up to 3 decimal places) is: `r fitb(0.857)`
 
-Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("NO")`
+Can she reject H0 at at the 5% significance level? `r mcq(c("Yes", "No", answer = "No"))`
 
-Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("NO")`
+Can she reject H0 at at the 1% significance level? `r mcq(c("Yes", "No", answer = "No"))`
 
 
 ### Part (`r part()`)
@@ -83,9 +83,9 @@ If `r  $\hat{\beta}_{2} = 0.20, \sigma_{hat{\beta}_{2}}=0.07$`?
 
 The t-value (rounded up to 3 decimal places) is: `r fitb(2.857)`
 
-Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("YES")`
+Can she reject H0 at at the 5% significance level? `r mcq(c("Yes", "No", answer = "Yes"))`
 
-Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("YES")`
+Can she reject H0 at at the 1% significance level? `r mcq(c("Yes", "No", answer = "Yes"))`
 
 
 `r hide("Hint:")`
@@ -135,7 +135,7 @@ Lets use the WAGE1.DTA dataset again!
 
 Regress wages on education (years of schooling). Perform a test of the hypothesis that the coefficient on schooling is equal to 0. 
 
-Can you reject the hypothesis? (YES/NO) `r fitb("YES")`
+Can you reject the hypothesis? `r mcq(c("Yes", "No", answer = "Yes"))`
 
 `r hide("Answer:")`
 ```{r, echo = TRUE}
@@ -152,7 +152,7 @@ i.e. t>2 and P very close to 0. Hence coefficient on education is highly signifi
 ### Part (`r part()`)
 Regress tenure (years with current employer) on education. Can you think of a causal mechanism that could support this specificiation?
 
-Can you reject the hypothesis? (YES/NO) `r fitb("NO")`
+Can you reject the hypothesis? `r mcq(c("Yes", "No", answer = "No"))`
 
 `r hide("Answer:")`
 ```{r, echo = TRUE}
@@ -179,7 +179,7 @@ Lets go back to the auto dataset.
 
 ### Part (`r part()`)
 Draw a scatterplot of price versus weight. 
-Which cars, in terms of weight, tend to be more expensive? (HEAVIER/LIGHTER)`r fitb("HEAVIER")`
+Which cars, in terms of weight, tend to be more expensive? `r mcq(c("Heavier", "Lighter", answer = "Heavier"))`
 
 
 ```{r}
@@ -237,7 +237,9 @@ What is the expected price difference between two cars, one of which is 500kg(!)
 ### Part (`r part()`)
 What is the predicted price of a car weighing 500lb?`r fitb(1015.324)`
 
-Do you think this number is very meaningful? (YES/NO) `r fitb("NO")` Why or why not?
+Do you think this number is very meaningful? `r mcq(c("Yes", "No", answer = "No"))`
+
+Why or why not? Check answer below to see if you're right. 
 
 `r hide("Answer:")`
 ```{r, echo = TRUE}
@@ -252,7 +254,9 @@ The lightest car in the sample weighs 1760lb. It is unlikely to tell us much abo
 
 Conduct another Monter-Carlo expercise as in the previous exercise session (exercise session 2.3). Generate the $\epsilon$ shocks as before. For the X, however, use the following command: x=unif(obs)*eps.
 
-Otherwise take the same steps as in the previous Monte Carlo exercise, using the the same true model $Y=2+0.5 X +\epsilon$[PS NOTE: I think the question doesn't really work like that, need to edit or provide hints?...]
+Otherwise take the same steps as in the previous Monte Carlo exercise, using the the same true model $Y=2+0.5 X +\epsilon$
+
+[PS NOTE: I think the question doesn't really work like that, need to maybe edit or provide hints?...]
 
 ### Part (`r part()`)
 What average estimate for the coefficient associated with X do you find now? (Round up to the nearest whole number) `r fitb(2)`
