@@ -36,6 +36,24 @@
     "input_file": {}
   },
   {
+    "path": "posts/exercises/exercises5/",
+    "title": "Exercises 5",
+    "description": "Under construction",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-08",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-08T10:09:31+01:00",
+    "input_file": "exercises5.utf8.md"
+  },
+  {
     "path": "posts/exercises/exercises2/",
     "title": "Exercises 2",
     "description": "Exercises to get familiar with R.",
