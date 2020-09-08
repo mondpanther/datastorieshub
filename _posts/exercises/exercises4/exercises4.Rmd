@@ -43,49 +43,49 @@ part()
 
 # Exercise 4.1
 
-A researcher hypothesizes that year of schooling, S, may be related to the number of siblings (brothers and sisters) one has, SIBLINGS, according to the relationship `r  $$S = \beta_{1}+\beta_{2}SIBLINGS+\epsilon$$`
+A researcher hypothesizes that year of schooling, S, may be related to the number of siblings (brothers and sisters) one has, SIBLINGS, according to the relationship $$S = \beta_{1}+\beta_{2}SIBLINGS+\epsilon$$
 
-She is prepared to test the null hypothesis `r  $H0: \beta_{2}=0$` against the alternative hypothesis `r  $H1: \beta_{2}=0 beta_{2}\neq 0 $` at the 5 and 1 percent levels. She has a sample of 60 observations. What are the t-distribution values and what will she conclude in the following cases?
+She is prepared to test the null hypothesis $H0: \beta_{2}=0$ against the alternative hypothesis $H1: \beta_{2}\neq 0$ at the 5 and 1 percent levels. She has a sample of 60 observations. What are the t-distribution values and what will she conclude in the following cases?
 
 
-### Part (`r part(TRUE)`)  
-If `r  $\hat{\beta}_{2} = -0.20, \sigma_{hat{\beta}_{2}}=0.07$`?
+### Part (a)
+If $\hat{\beta}_{2} = -0.20, \sigma_{\hat{\beta}_{2}}=0.07$?
 
 The t-value (rounded up to 3 decimal places) is: `r fitb(-2.857)`
 
-Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("YES")`
+Can she reject H0 at at the 5% significance level? `r mcq(c("No", answer = "Yes"))`
 
-Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("YES")`
+Can she reject H0 at at the 1% significance level? `r mcq(c("No", answer = "Yes"))`
 
 
-### Part (`r part()`)
-If `r  $\hat{\beta}_{2} = -0.12, \sigma_{hat{\beta}_{2}}=0.07$`?
+### Part (b)
+If $\hat{\beta}_{2} = -0.12, \sigma_{\hat{\beta}_{2}}=0.07$?
 
 The t-value (rounded up to 3 decimal places) is: `r fitb(-1.714)`
 
-Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("NO")`
+Can she reject H0 at at the 5% significance level? `r mcq(c("Yes", answer = "No"))`
 
-Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("NO")`
+Can she reject H0 at at the 1% significance level)? `r mcq(c("Yes", answer = "No"))`
 
 
-### Part (`r part()`)
-If `r  $\hat{\beta}_{2} = 0.06, \sigma_{hat{\beta}_{2}}=0.07$`?
+### Part (c)
+If $\hat{\beta}_{2} = 0.06, \sigma_{\hat{\beta}_{2}}=0.07$?
 
 The t-value (rounded up to 3 decimal places) is: `r fitb(0.857)`
 
-Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("NO")`
+Can she reject H0 at at the 5% significance level? `r mcq(c("Yes", answer = "No"))`
 
-Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("NO")`
+Can she reject H0 at at the 1% significance level? `r mcq(c("Yes", answer = "No"))`
 
 
-### Part (`r part()`)
-If `r  $\hat{\beta}_{2} = 0.20, \sigma_{hat{\beta}_{2}}=0.07$`?
+### Part (d)
+If $\hat{\beta}_{2} = 0.20, \sigma_{\hat{\beta}_{2}}=0.07$?
 
 The t-value (rounded up to 3 decimal places) is: `r fitb(2.857)`
 
-Can she reject H0 at at the 5% significance level (YES/NO)? `r fitb("YES")`
+Can she reject H0 at at the 5% significance level? `r mcq(c("No", answer = "Yes"))`
 
-Can she reject H0 at at the 1% significance level (YES/NO)? `r fitb("YES")`
+Can she reject H0 at at the 1% significance level? `r mcq(c("No", answer = "Yes"))`
 
 
 `r hide("Hint:")`
@@ -102,23 +102,21 @@ We can also work out p-values
 `r unhide()`
 
 `r hide("Answer:")`
-```{r, echo = TRUE}
 
 Hence we get the following answers
 
-1.	t=-0.2/0.07=-2.857
+1.	t=-0.2/0.07= -2.857
 Significantly different from 0 at 5 and 1 percent; i.e. we reject the H0 at either significance level.
 
-2.	t=-0.12/0.07=-1.714
+2.	t=-0.12/0.07= -1.714
 Not significantly different from 0 at 5 and 1 percent; i.e. we don't reject the H0
 
-3.	t=0.06/0.07=0.857
+3.	t=0.06/0.07= 0.857
 Not significantly different from 0 at 5 and 1 percent.
 
-4.	t=0.2/0.07=2.857
+4.	t=0.2/0.07= 2.857
 Significantly different from 0 at 5 and 1 percent; i.e. we reject the H0 at either significance level.
 
-```
 `r unhide()`
   
     
@@ -128,14 +126,14 @@ Lets use the WAGE1.DTA dataset again!
 
 ```{r, echo = TRUE}  
   library(foreign)
-  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AADZ4MZhDDk9R8sFSjBvmcRma/WAGE1.DTA?dl=1", header=TRUE) 
+  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AADZ4MZhDDk9R8sFSjBvmcRma/WAGE1.DTA?dl=1") 
 ```
 
-### Part (`r part()`)
+### Part (a)
 
 Regress wages on education (years of schooling). Perform a test of the hypothesis that the coefficient on schooling is equal to 0. 
 
-Can you reject the hypothesis? (YES/NO) `r fitb("YES")`
+Can you reject the hypothesis? `r mcq(c("Yes", answer = "Yes"))`
 
 `r hide("Answer:")`
 ```{r, echo = TRUE}
@@ -143,16 +141,16 @@ Can you reject the hypothesis? (YES/NO) `r fitb("YES")`
   summary(mod)
 ```  
 
-i.e. t>2 and P very close to 0. Hence coefficient on education is highly significant (we can reject hypothesis that it is equal to 0)
+i.e. t>2 and P very close to 0. Hence coefficient on education is highly significant (we can reject hypothesis that it is equal to 0).
 
 `r unhide()`
   
 
 
-### Part (`r part()`)
+### Part (b)
 Regress tenure (years with current employer) on education. Can you think of a causal mechanism that could support this specificiation?
 
-Can you reject the hypothesis? (YES/NO) `r fitb("NO")`
+Can you reject the hypothesis? `r mcq(c("Yes", answer = "No"))`
 
 `r hide("Answer:")`
 ```{r, echo = TRUE}
@@ -174,26 +172,25 @@ Lets go back to the auto dataset.
 
 ```{r, echo = TRUE}  
   library(foreign)
-  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AACNkMy47ilXAMh3nmiIs_Bqa/auto.dta?dl=1",header=TRUE)
+  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AACNkMy47ilXAMh3nmiIs_Bqa/auto.dta?dl=1")
 ```
 
-### Part (`r part()`)
+### Part (a)
 Draw a scatterplot of price versus weight. 
-Which cars, in terms of weight, tend to be more expensive? (HEAVIER/LIGHTER)`r fitb("HEAVIER")`
+Which cars, in terms of weight, tend to be more expensive? `r mcq(c("Lighter", answer = "Heavier"))`
 
-
-```{r}
 
 `r hide("Answer:")`
 ```{r, echo = TRUE}
-  plot(data$weight,data$price)
+  library(ggplot2)
+  ggplot(data, aes(x=price, y=weight)) + geom_point()
 ```
 
 Heavier cars tend to be more expensive.
 
 `r unhide()`
 
-### Part (`r part()`)
+### Part (b)
 Run a regression of price on weight. 
 
 What is the constant? `r fitb(-6.7074)`
@@ -208,9 +205,10 @@ What is the slope coefficient? `r fitb(2.0441)`
 ```
 `r unhide()`
 
-### Part (`r part()`)
-What is the predicted price of a car weighing 2,500lb? `r fitb(5103.449)`
-What is the predicted price of a car weighing 2,500lb? `r fitb(8169.543)`
+### Part (c)
+What is the predicted price of a car weighing 2,500lb?  `r fitb(5103.449)`
+
+What is the predicted price of a car weighing 2,500lb?  `r fitb(8169.543)`
 
 `r hide("Answer:")`
 ```{r, echo = TRUE}
@@ -225,8 +223,8 @@ Alternatively:
 ```
 `r unhide()`
 
-### Part (`r part()`)
-What is the expected price difference between two cars, one of which is 500kg(!) heavier?`r fitb(2252.557)`
+### Part (d)
+What is the expected price difference between two cars, one of which is 500kg(!) heavier? `r fitb(2252.557)`
 
 `r hide("Answer:")`
 ```{r, echo = TRUE}
@@ -234,10 +232,12 @@ What is the expected price difference between two cars, one of which is 500kg(!)
 ```
 `r unhide()`
 
-### Part (`r part()`)
-What is the predicted price of a car weighing 500lb?`r fitb(1015.324)`
+### Part (e)
+What is the predicted price of a car weighing 500lb?  `r fitb(1015.324)`
 
-Do you think this number is very meaningful? (YES/NO) `r fitb("NO")` Why or why not?
+Do you think this number is very meaningful? `r mcq(c("Yes", answer = "No"))`
+
+Why or why not? Check the answer below to see if you're right. 
 
 `r hide("Answer:")`
 ```{r, echo = TRUE}
@@ -250,19 +250,25 @@ The lightest car in the sample weighs 1760lb. It is unlikely to tell us much abo
 
 # Exercise 4.4
 
-Note there was a typo in the exercise. Rather than "x=runif(obs)*eps^2" use "runif(obs)*eps"
-This will create a strong positive correlationb between x and eps that leads to a bias of the estimator.
+Conduct another Monter-Carlo expercise as in the previous exercise session (exercise session 2.3). Generate the $\epsilon$ shocks as before. For the X, however, use the following command instead: x=unif(obs)*eps.
 
-```{r}
+Otherwise take the same steps as in the previous Monte Carlo exercise, using the the same true model $Y=2+0.5 X +\epsilon$. Produce a histogram to visualise your betas. 
+
+### Part (a)
+What average estimate for the coefficient associated with X do you find now? (Round up to the nearest whole number) `r fitb(2)`
+
+
+### Part (b)
+How does it relate to the true value of the coefficient of 0.5, is it larger or smaller? `r mcq(c("Smaller", answer = "Larger"))`
+
+`r hide("Answer:")`
+```{r, echo = TRUE}
+
     obs <- 100
     eps <- rnorm(obs)
     x <- runif(obs)*eps
     
-    x_wrong= runif(obs)*eps^2
-    
     cor(x,eps)  # Note that x and eps will be highly positively correlated
-    
-    cor(x_wrong,eps)  # when we square the eps we don't get a strong correlation because small 
     
     y <- 2+0.5*x+eps
     mod<-lm(y~x)
@@ -272,7 +278,6 @@ This will create a strong positive correlationb between x and eps that leads to 
 
 
 ```{r}  
-
 
   beta <- double(1000)
   
@@ -299,3 +304,4 @@ This will create a strong positive correlationb between x and eps that leads to 
 
 i.e. the mean of beta is much larger than 0.5  
   
+`r unhide()`
