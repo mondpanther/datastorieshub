@@ -1,6 +1,6 @@
 ---
 title: "Exercises 5"
-description: Becoming a Data Detective: Uncovering Racial Bias
+description: Becoming a Data Detective: Uncovering Racial Bias & more
 author:
   - name: Ralf Martin
     url: https://mondpanther.github.io/wwwmondpanther/
@@ -246,6 +246,10 @@ Note that nearly 63% of the sample have some college education.
 
 First make employed into dichotomous variable and then conduct a regression analysis of the chances of being employed for people with different racial backgrounds. 
 
+Are black people significantly less likely to be employed?  `r mcq(c("No", answer = "Yes"))`
+
+If yes, what is the percentage difference (rounded to the nearest percentage point)? `r fitb(9)`
+
 `r hide("Answer:")`
 
 ```{r}
@@ -264,38 +268,34 @@ A regression of employment status on a dummy indicating a black racial backgroun
 
 ### Part (c)
 
-Conduct a regression analysis of the chances of having college education for people with different racial backgrounds
+Conduct a regression analysis of the chances of having college education for people with different racial backgrounds.
+
+What is the percentage difference (rounded to the nearest percentage point)? `r fitb(11)`
 
 `r hide("Answer:")`
-`r unhide()`
 
-### Part (d)
-
-On the basis of your evidence what can you conclude about racial discrimination in the US labor market? What are potential caveats? What analysis could you undertake to address some of these caveats?
-
-
-`r hide("Answer:")`
-`r unhide()`
-
-## a)
-
-
-## b)
-
-
-
-
-
-## c)
 ```{r}
   mod2 <- lm(HE~black,data)
   summary(mod2)
 ```
-The difference in the probability of having higher eduction between people with non black and black background is 11 percentage points.
+The difference in the probability of having higher education between people with non black and black background is 11 percentage points.
 
-## d)
+`r unhide()`
 
-The result in (b) is consistent with racial bias. However, from (c) we also see that people with black background tend to have less college education and college education is another major driver of having employment:
+### Part (d)
+
+On the basis of your evidence what can you conclude about racial discrimination in the US labor market? 
+
+Do we see a open-and-shut case of racial bias here? `r mcq(c("Yes", answer = "No"))`
+
+Think of the potential caveats and alternative explanations. 
+
+What analysis could you undertake to address some of these caveats? `r mcq(c("None, it's fine as it is", answer = "Run a regression holding education level constant", "Include parental income data and run a regression holding this variable constant",))`
+
+
+`r hide("Answer:")`
+
+The result in (b) is consistent with racial bias. However, from (c) we also see that people with black background tend to have less college education and college education is another major driver of being employed:
 
 
 ```{r}
@@ -317,30 +317,40 @@ We can examine this by doing the analysis in (b) separately for workers with dif
 ```
 
 
-The results suggest that for either group there is a significant racial gap when it comes to being employed. Note that the effect is considerably stronger for less educated workers.
-Hence this re-enforces the hypothesis that there is discrimination against workers with black background which is un-related to their productivity in the workplace. However, there might be further caveats: our simple regression cannot account for the quality of the college education which can vary considerably and might vary systematically along racial lines. Furthermore, an important driver for a good education and for various other skills might have to do with parental income and status. Again, this is likely to vary systematically along racial lines.
+The results suggest that for either group there is a significant racial gap when it comes to being employed. Note that the effect is considerably stronger for less educated workers. Hence this re-enforces the hypothesis that there is discrimination against workers with black background which is un-related to their productivity in the workplace. 
+
+However, there might be further caveats: our simple regression cannot account for the quality of the college education which can vary considerably and might vary systematically along racial lines. Furthermore, an important driver for a good education and for various other skills might have to do with parental income and status. Again, this is likely to vary systematically along racial lines.
+
 While it is interesting to ask if employers discriminate above and beyond what could be expected on the basis of education and skill of workers – which is what we were implicitly doing above -  we might also be concerned about the overall impact of racial background on labor market outcomes which includes initially different educational outcomes. Hence, depending on our interest we might be primarily focused on the effect of race holding education fixed or we might be focused on the overall effect.
 
-
-  
-# Exercise 4
-
-`r hide("Answer:")`
 `r unhide()`
 
 
+  
+# Exercise 5.4
+
+Consider once more the cps.dta dataset. In exercise 3 we argued that not accounting for education might bias our estimate of the impact of racial background. We then examined the issue by looking at college educated vs not college educated workers separately. 
+
 ```{r}
   library(foreign)
-  data <- read.dta("../data/cps.dta")
+  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AAAOb_v-Y2V0NN4-rxahZjl4a/cps.dta?dl=1")
   summary(data)
 ```
 
+### Part (a)
 
-## a)
+First add the HE (higher education) variable to the data frame and modify the employed variable as a dichotomous variable calling it "employed2". Can you propose an alternative strategy using a multivariate regression approach?
+
+What is the command for a linear regression with two variables (we call this model "mod1")? mod1 <- `r fitb("lm(employed2~black+HE,data)", ignore_case = TRUE, ignore_ws = TRUE)`
+
+What is the command for a slightly more complex linear regression with two variables and their interaction (we call this model "mod2")? mod2 <- `r fitb("lm(employed2~black+HE+black*HE,data)", ignore_case = TRUE, ignore_ws = TRUE)`
+
+`r hide("Answer:")`
+
 ```{r}
   #adding HE variable to dataframe
   data["HE"] <- as.integer(data$education=="some col" | data$education=="col+")
-  #modify emplyed as a dichotomous variable
+  #modify employed as a dichotomous variable
   data["employed2"] <- as.integer(data$employed)-1
   mod1 <- lm(employed2~black+HE,data)
   summary(mod1)
@@ -348,9 +358,18 @@ While it is interesting to ask if employers discriminate above and beyond what c
   summary(mod2)
 ```
 
+`r unhide()`
 
-## b)
-The test for the interaction coefficient is singificant. That suggest the negative "black" effect is significatly less strong for higher educated workers; i.e. it's important to have the more complicated model with interaction term.
+### Part (b)
+
+There are potentially two models you might have used in part (a) one that implies that the effect of race is the same for both educational groups or one that implies the effect of race is different for different educational groups. 
+
+Which model is more appropriate? `r mcq(c("The one without the interaction term", answer = "The one with the interaction term"))`
+
+`r hide("Answer:")`
+
+The test for the interaction coefficient is significant. That suggest the negative "black" effect is significatly less strong for higher educated workers; i.e. it's important to have the more complicated model with interaction term.
+
 Some alternative ways of testing include:
 
 ```{r}
@@ -362,52 +381,91 @@ Some alternative ways of testing include:
   coeftest(mod2)
 ```
 
+`r unhide()`
 
-## c)
-Hence college educated black people have a 12.5-8.2=4.3 percentage point lower likelihood of being employed.
-For non college educated the propbability is 12.5 percentage point lower; i.e. short of rounding error this corresponds to exactly what we found in exercise 3 as well.
+### Part (c)
+
+On the basis of your regressions in (b), what is the racial gap for college educated people in percentage points (to 1 decimal place)? `r fitb(4.3)`
+
+What is the racial gap for non college educated people in percentage points (to 1 decimal place)? `r fitb(12.5)`
+
+Think of how this compares to your findings in Exercise 5.3.
+
+
+`r hide("Answer:")`
+
+College educated black people have a 12.5-8.2=4.3 percentage points lower likelihood of being employed.
+For non college educated the propbability is 12.5 percentage points lower; i.e. short of rounding error this corresponds to exactly what we found in exercise 3 as well.
+
+`r unhide()`
 
 
 
-# Exercise 5
-We can allow for a separate response for women by including a female dummy and also interact the education variable with gender status. Note that you can do this by creating the various variables first. A faster way is to use R’s ability to create new variables as part of the model description of the lm command:
+# Exercise 5.5
 
+Use wage1.dta and examine once more the relationship between education and wages. 
 
 ```{r}
   library(foreign)
   library(car)
-  data <- read.dta("../data/WAGE1.dta")
-  
-  
-  
+  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AADZ4MZhDDk9R8sFSjBvmcRma/WAGE1.DTA?dl=1")
+```
+
+Would you say the relationship is different for men and women? `r mcq(c("No", answer = "Yes"))`
+
+`r hide("Answer:")`
+
+We can allow for a separate response for women by including a female dummy and also interact the education variable with gender status. Note that you can do this by creating the various variables first. A faster way is to use R’s ability to create new variables as part of the model description of the lm command:
+
+
+```{r}
+ 
   mod2 <- lm(wage~educ+educ*female,data)
   summary(mod2)
   
   linearHypothesis(mod2,c("educ:female=0","female=0"))
 ```
 Note that this leads to “female” parameters that individually are not significant.
-However, a joint significant test reveals that the variables combined have explanatory power; i.e. the low significance in the regression is likely a consequence of co-linearity of the female and female*education variables. We can also see this by just regressing on a female dummy which leads to a highly significant (and negative) effect (as we have seen before)
-
+However, a joint significance test reveals that the variables combined have explanatory power; i.e. the low significance in the regression is likely a consequence of co-linearity of the female and female*education variables. We can also see this by just regressing on a female dummy which leads to a highly significant (and negative) effect (as we have seen before).
 
 ```{r}
     summary( lm(wage~educ+female:educ,data))
 ```  
-You might consequently ask, which is the right model? There are several considerations
+You might consequently ask, which is the right model? There are several considerations:
+
 1.	Work with the more general model even though the coefficients are individually not significant what matters is that they jointly matter.
 2.	Consider theory: is it more plausible that there are other factors that imply that women have a lower wage whatever they do or is it more plausible that the impact of education is radically different? The former seems more plausible to me but you are free to differ.
 
+`r unhide()`
+  
+   
+  
+# Exercise 5.6
 
-  
-  
-# Exercise 6
+Use the production2.dta dataset. This data set contains data on output (value added) and inputs at the industry level for 459 industries in 1958 and 1993. 
+
 ```{r}
   library(foreign)
   library(lmtest)
   library(car)
-  data <- read.dta("../data/production2.dta")
+  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AAB8jv5xON_4OlZG50sj2l-xa/production2.dta?dl=1")
   summary(data)
 ```  
-## a)+b)
+
+Suppose the relationship between output and inputs is described by a Cobb-Douglas production function: $$Y_{i} = AK_{\alpha}^{i}L_{\beta}^{i}$$ 
+
+
+where $Y_{i}$ is a measure of output, $K_{i}$ is the capital stock, and $L_{i}$ is employment. Answer all questions for the year 1958 only. 
+
+### Part (a)
+
+Transform the production function to a linear equation by taking logs. Estimate the parameters and by an OLS regression using total value added as your measure of output.
+
+What coefficient on the log(emp) variable (rounded to 3 decimal places)? `r fitb(0.697)`
+
+What coefficient on the log(cap) variable (rounded to 3 decimal places)? `r fitb(0.276)`
+
+`r hide("Answer:")`
 
 We can regress the following linear regression model:
 
@@ -419,21 +477,43 @@ $$\ln Y=\alpha \ln K +\beta \ln L +\varepsilon$$
   summary(mod1)
 ```
 
-## b)
+`r unhide()`
+
+### Part (b)
+
+Test whether your estimates are consistent with the production function exhibiting constant returns to scale, i.e. 
+
+$$H_{0}: \alpha+\beta=1$$
+
+against the alternative 
+
+$$H_{1}: \alpha+\beta\neq1$$
+
+Do you reject the null hypothesis at the 5% level? `r mcq(c("Yes", answer = "No"))`
+
+What is the p-value of your test (rounded to 3 decimal places)? `r fitb(0.043)`
+
+`r hide("Answer:")`
 
 ```{r}
 library(car)
 linearHypothesis(mod1,"log(emp)+log(cap)=1" )
 ```
 
-## c)
+`r unhide()`
+
+### Part (c)
+
+An alternative way to test the hypothesis of constant returns to scale is to impose this restriction on the parameters and transform your regression model. Derive the necessary transformation, and show how the constant returns hypothesis amounts to a t-test in this transformed model. Carry out this test. 
+
+Does your result match what you found in (b)? `r mcq(c("No", answer = "Yes"))`
+
+`r hide("Answer:")`
+
 If H0 is true we have that $\beta=1-\alpha$. This means we can re-write the original equation as
 $$\ln\frac{Y}{L}=\alpha \ln\frac{K}{L}+\varepsilon$$
 
-
-
 Hence we can regress $\ln\frac{Y}{L}$ on $\ln\frac{K}{L})$ and $\ln L$ and do a t-test on the hypothesis that the coefficient on $\ln L$ is equal to 0:
-
 
 ```{r}
 mod2 <- lm(log(vadd/emp)~log(cap/emp)+log(emp),data[data$year==58,])
@@ -441,34 +521,64 @@ summary(mod2)
 ```
 Note that we get the same p-value as before because it is essentially the same test.
 
-## d)
+`r unhide()`
+
+
+### Part (d)
+
+What is the average size in numbers employed across all industries in 1958? `r fitb(34000)`
+
+Suppose an industry of average size employs an additional 1000 workers. What does the model estimated in part (a) imply about the effect this will have on value added (in percent, to 1 decimal place)? `r fitb(2.1)`
+
+`r hide("Answer:")`
+
 ```{r}
   memp58 <- mean(data$emp[data$year==58])
   memp58
   
 ```
-Average industry employs 34 thousand workers (note from des that employment is measured in thousands).
+Average industry employs 34 thousand workers (note that employment is measured in thousands).
 
 Adding 1000 workers to the average industry implies and increase of about 3%. Given that our estimate of β which we can interpret as an elasticity we would expect that value added increases by 3%×0.7=2.1%.
 
-## e) 
+`r unhide()`
+
+
+### Part (e)
+
+Do you think that our estimates in (a) could be biased? `r mcq(c("No", answer = "Yes"))`
+
+Think of why.
+
+`r hide("Answer:")`
+
 There is concern of endogeneity with regression such as in (a). While clearly more input factors has a causal effect on outputs it is also plausible that industries which have for whatever reason a positive shock to their output might attract more workers and capital. What’s more: with more than one explanatory variable it’s no longer that easy to predict the sign of the bias because it not only depends on the relationship between the error and the dependent variable but also on the relationship between the various explanatory variables as well as the relative strength of endogeneity for different variables. For instance in the case of production function regression the suspicion is that the labour coefficient is upward biased whereas the capital coefficient is downward biased. Not because one is positively correlated with the shock and the other is negatively correlated but because labour – being a more flexible production factor – is likely to be more positively correlated with the shock than capital.
 
+`r unhide()`
 
 
+# Exercise 5.7
 
-# Exercise 7
-
+Use the dataset attend.dta to analyze whether attending lectures has a causal effect on final exam performance. The dataset contains 674 observations on college students who took a particular course. Most variables on the dataset should be self-explanatory. The ACT is a college entry test. GPA is grade point average, the average performance in all courses. 
 
 ```{r}
   library(foreign)
   library(lmtest)
   library(car)
-  data <- read.dta("../data/attend.dta")
+  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AABGEGjs2k7bZZQxU0H9SDtga/attend.dta?dl=1")
   summary(data)
 ```
 
-## a)
+### Part (a)
+
+Run a regression of stndfnl, the standardized final exam score, on attend, the number of lectures attended (note: the data is from the US where they call a lecture a class). 
+
+How much will attending one extra lecture add to the standardised final score (4 decimal places)? `r fitb(0.0278)`
+
+Is the effect large or small? `r mcq(c("Quite small", answer = "Quite large"))`
+
+`r hide("Answer:")`
+
 Attending one extra lecture add 0.0278 to the standardized final score. In total there were 32 classes. Based on this, attending only half of those classes would imply a reduction in final outcome of 16×0.0278=0.44. This seems fairly substantial. While it is not enough to make a difference between a weak student (e.g. somebody in the bottom quartile; stndfnl=-0.78780) and a strong student (say somebody in the top quartile, stndfnl=0.68280) it has the potential to move a median student (stndfnl=0.0525) into top quartile territory (see summary stats for stndfnl below)
 
 ```{r}
@@ -478,10 +588,63 @@ Attending one extra lecture add 0.0278 to the standardized final score. In total
   mod1$coefficients[[2]]*sd(data$attend)/sd(data$stndfnl)
 ```
 
+`r unhide()`
+
+### Part (b)
+
+Do you think that our estimates in (a) could be biased? `r mcq(c("No", answer = "Yes"))`
+
+What would be the ideal way of addressing the problem? `r mcq(c("Do a randomised controlled trial", "Include variables to control for ability/diligence", answer = "Use an instrumental variable"))`
+
+`r hide("Answer:")`
+
+The regression in (a) could be biased for a number of reasons. The main worry would be that students who are better irrespective of attendance are also more diligent in general and therefore more likely to attend class.
+
+The best way of dealing with endogeneity in this context would be to use an instrumental variable. In absence of a good instrument (e.g. a nice instrument would be if some students where kept from attending class because of some weather or transport problem) we have to rely on the inclusion of further controls to deal which hopefully control for ability/diligence etc. of students.
+
+`r unhide()`
+
+### Part (c)
+
+Enter each of the following variables one at a time as a control in your regression: termgpa, priGPA, ACT. For each of these controls, answer the following questions: 
+1.	Does entering the control variable help solve the problem you discussed in part (b) and gets you closer to a causal effect of lecture attendance?
+2.	Does entering the control variable create potential new problems in interpreting the coefficient on attend causally? Why? 
+3.	What happens to the coefficient on attend? Interpret this result.
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (d)
+
+Drawing on your discussion in (c), which of the control variables termgpa, priGPA, ACT would you like to have in your regression in order to uncover the causal effect of lecture attendance? Why? Run your preferred specification and discuss the result.
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (e)
+
+Students who are diligent in attending lectures may also be more diligent about other aspects of their coursework, like completing homework. There is a variable hwrte in the dataset indicating the percentage of homework turned in. Add this variable as a regressor to your preferred specification from (d). What role does this variable take on in your regression and is it a regressor you want in order to uncover the causal effect of lecture attendance on student performance? What is the effect of hwrte on exam performance? What happens to the coefficient on attend? Interpret your results.
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (f)
+
+There is a variable skipped in the dataset indicating the number of skipped lectures. Add this variable as a regressor to your preferred specification from (d). What happens and why?
+
+
+`r hide("Answer:")`
+`r unhide()`
+
+
+
+
+## a)
+
+
 
 ## b)
-The regression in (a) could be biased for a number of reasons. The main worry would be that students who are better irrespective of attendance are also more diligent in general and therefore more likely to attend class.
-In absence of a good instrument (e.g. a nice instrument would be if some students where kept from attending class because of some weather or transport problem) we have to rely on the inclusion of further controls to deal which hopefully control for ability/diligence etc. of students.
+
 
 
 ## c)
