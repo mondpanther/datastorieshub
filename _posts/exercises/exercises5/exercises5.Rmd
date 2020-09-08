@@ -546,9 +546,7 @@ Adding 1000 workers to the average industry implies and increase of about 3%. Gi
 
 ### Part (e)
 
-Do you think that our estimates in (a) could be biased? `r mcq(c("No", answer = "Yes"))`
-
-Think of why.
+Do you think that our estimates in (a) could be biased? `r mcq(c("No", answer = "Yes"))` If so, why would that be? 
 
 `r hide("Answer:")`
 
@@ -607,54 +605,22 @@ The best way of dealing with endogeneity in this context would be to use an inst
 ### Part (c)
 
 Enter each of the following variables one at a time as a control in your regression: termgpa, priGPA, ACT. For each of these controls, answer the following questions: 
-1.	Does entering the control variable help solve the problem you discussed in part (b) and gets you closer to a causal effect of lecture attendance?
-2.	Does entering the control variable create potential new problems in interpreting the coefficient on attend causally? Why? 
-3.	What happens to the coefficient on attend? Interpret this result.
+
+1.	Does entering the control variable termgpa help solve the problem you discussed in part (b) and gets you closer to a causal effect of lecture attendance? `r mcq(c("Yes", answer = "No"))`
+
+2.	Does entering the control variable priGPA create potential new problems in interpreting the coefficient on attend causally? `r mcq(c("No", answer = "Yes"))`
+ Why? 
+
+3.	What happens to the coefficient on attend when you add the ACT variable? It becomes `r mcq(c("negative and not significant", "negative and significant", "positive and not significant", answer = "positive and significant"))`. Interpret this result.
 
 `r hide("Answer:")`
-`r unhide()`
 
-### Part (d)
-
-Drawing on your discussion in (c), which of the control variables termgpa, priGPA, ACT would you like to have in your regression in order to uncover the causal effect of lecture attendance? Why? Run your preferred specification and discuss the result.
-
-`r hide("Answer:")`
-`r unhide()`
-
-### Part (e)
-
-Students who are diligent in attending lectures may also be more diligent about other aspects of their coursework, like completing homework. There is a variable hwrte in the dataset indicating the percentage of homework turned in. Add this variable as a regressor to your preferred specification from (d). What role does this variable take on in your regression and is it a regressor you want in order to uncover the causal effect of lecture attendance on student performance? What is the effect of hwrte on exam performance? What happens to the coefficient on attend? Interpret your results.
-
-`r hide("Answer:")`
-`r unhide()`
-
-### Part (f)
-
-There is a variable skipped in the dataset indicating the number of skipped lectures. Add this variable as a regressor to your preferred specification from (d). What happens and why?
-
-
-`r hide("Answer:")`
-`r unhide()`
-
-
-
-
-## a)
-
-
-
-## b)
-
-
-
-## c)
 ```{r}  
 mod2 <- lm(stndfnl~attend+termgpa,data)
 summary(mod2)
 ```
 
 The term grade point average is strongly positive and sisgnificant and leads to a negative attendance effect. Note that the termgpa is most likely affected by higher attendance; However, by including it as a separate explanatory variable the resulting estimate ignore this effect. Instead what we are picking up is the final grade of people that attended class a lot but it did not make a difference to their term GPA. In other words these are probably very weak students who desperately tried to improve by attending classes a lot but it did not have a positive effect on either their term GPA or their final score.
-
 
 
 ```{r}
@@ -669,12 +635,18 @@ mod4 <- lm(stndfnl~attend+ACT,data)
 summary(mod4)
 
 ```
+The college entrance results captured by ACT are another way of controlling for ability. However, including it, far from destroying the effect of attendance makes is slightly stronger. A mechanism that could explain this is as follows: far from being more diligent, the most able students might have actually somewhat of a cavalier attitude. They know they are good and they know they don’t attend class to be good. Thus if this was the only effect we expect a downward bias in the simple regression of final scores on attendance. It is plausible that ACT captures this as it is the college entrance score. 
 
-The college entrance results captured by ACT are another way of controlling for ability. However, including it, far from destroying the effect of attendance makes is slightly stronger. A mechanism that could explain this is as follows: far from being more diligent, the most able students might have actually somewhat of a cavalier attitude. They know they are good and they know they don’t attend class to be good. Thus if this was the only effect we expect a downward bias in the simple regression of final scores on attendance. 
-It is plausible that ACT captures this as it is the college entrance score. 
+`r unhide()`
 
-  
-## d)
+### Part (d)
+
+Drawing on your discussion in (c), which of the control variables termgpa, priGPA, ACT would you like to have in your regression in order to uncover the causal effect of lecture attendance? `r mcq(c("termgpa", "priGPA", "ACT", "termgpa and priGPA", "termgpa and ACT", "All three", answer = "ACT and priGPA"))` 
+
+Why? Run your preferred specification and think of why it's best.
+
+`r hide("Answer:")`
+
 In reality we will have both effects potentially causing endogeneity (diligent students attending more class and cavalier geniuses not attending class) Our best bet to control for it is by including both ACT and priGPA. However, we should not include termGPA because of the potential reverse causality.
 This leads to a lower effect of attendance (0.017) but it is still significant.
 
@@ -682,26 +654,43 @@ This leads to a lower effect of attendance (0.017) but it is still significant.
   mod5 <- lm(stndfnl~attend+priGPA+ACT,data)
   summary(mod5)
   
-
 ```
+`r unhide()`
 
+### Part (e)
 
-## e)
+Students who are diligent in attending lectures may also be more diligent about other aspects of their coursework, like completing homework. There is a variable hwrte in the dataset indicating the percentage of homework turned in. Add this variable as a regressor to your preferred specification from (d). 
+
+Is hwrte significant at the 5% level? `r mcq(c("Yes", answer = "No"))`
+
+Is it a regressor you want in order to uncover the causal effect of lecture attendance on student performance? `r mcq(c("Yes", answer = "No"))`
+
+What happens to the coefficient on attend? `r mcq(c("It increases and becomes significant", "It reduces and becomes significant", "It increases and becomes not significant", answer = "It reduces and becomes not significant"))`
+
+Interpret your results.
+
+`r hide("Answer:")`
+
 ```{r}
   mod6 <- lm(stndfnl~attend+priGPA+ACT+hwrte,data)
   summary(mod6)
-  
-
 ```
 
 Including hwrte reduces the coefficient on attend and makes it not significant. However, the effect of hwrte is equally not very significant. This is likely because the two variables are very co-linear: students who attend class a lot are also more likely to do their homework diligently and so it is difficult to separately identify the effect of the two. 
 
-It is easy to imagine a situation where knowing them separately would be useful: Suppose a teacher is trying to figure out if it would be more useful to give another lecture or instead set another homework.
-Equally, it might not important or even outright wrong to try to distinguish the two; e.g. suppose a teacher wants to work out the effect of introducing sanctions (i.e. a negative participation grade) for not attending lectures. Part of the mechanism from more lecture to better grades might a positive effect on homework as well (e.g. students might be less forgetful about homework or they might be worried about looking bad in class). This causal effect of attendance would be ignored in a joint regression.
+It is easy to imagine a situation where knowing them separately would be useful: Suppose a teacher is trying to figure out if it would be more useful to give another lecture or instead set another homework. Equally, it might not important or even outright wrong to try to distinguish the two; e.g. suppose a teacher wants to work out the effect of introducing sanctions (i.e. a negative participation grade) for not attending lectures. Part of the mechanism from more lecture to better grades might a positive effect on homework as well (e.g. students might be less forgetful about homework or they might be worried about looking bad in class). This causal effect of attendance would be ignored in a joint regression.
 
-  
-  
-## f)
+`r unhide()`
+
+### Part (f)
+
+There is a variable skipped in the dataset indicating the number of skipped lectures. Add this variable as a regressor to your preferred specification from (d). 
+
+What happens and why?  It becomes `r mcq(c("negative and not significant", "negative and significant", "positive and not significant", "positive and significant", answer = "none of the above because it is perfectly collinear with attend"))`. Interpret this result.
+
+
+`r hide("Answer:")`
+
 “skipped” is perfectly collinear with “attend”
 
 ```{r}
@@ -710,34 +699,51 @@ Equally, it might not important or even outright wrong to try to distinguish the
 
 ```
 
+`r unhide()`
 
-  
-# Exercise 8
+ 
+# Exercise 5.8
+
+Download the data TeachingRatings.dta. This data set contains data on the teaching evaluations of 463 professors at the University of Texas, and various attributes of the professor and course. 
+
+
 ```{r}
 
   library(foreign)
   library(lmtest)
-  data <- read.dta("../data/TeachingRatings.dta")
+  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AACPj9dkKUrGIGji8Ar8nEPla/TeachingRatings.dta?dl=1")
   summary(data)
 
 ```
 
+### Part (a)
 
-## a+c)  
-We get a significant slope coefficient of 0.133
+Run a regression of course_eval on beauty. Beauty is an index that was based on a subjective scoring. 
+
+What is the slope coefficient of the regression? `r fitb(0.133)`
+
+`r hide("Answer:")`
+
+We get a slope coefficient of 0.133.
 
 ```{r}
   mod1 <- lm(course_eval~beauty,data)
   summary(mod1)
 
-
 ```
 
+`r unhide()`
 
+### Part (b)
 
-## b) 
+The number in (a) will not have much meaning to anyone who doesn’t know anything about the data. 
+
+Is the effect of beauty on course_eval big or small? `r mcq(c("Big", answer = "Small"))` How would you go about assessing this?
+
+`r hide("Answer:")`
+
 Going from the 25th to the 75th percentile on the beauty scale corresponds to a change of 1.2 “beauty”.
-That implies a change of 0.16 teaching scores. Hence, you should not despair as a teaching when you are ugly (phew). It’s not a enough to move a below average teacher (e.g. at 25th percentile) to above average.
+That implies a change of 0.16 teaching scores. Hence, you should not despair as a teacher when you are ugly (phew). It’s not a enough to move a below average teacher (e.g. at 25th percentile) to above average.
 
 
 ```{r}
@@ -746,9 +752,32 @@ That implies a change of 0.16 teaching scores. Hence, you should not despair as 
 
 ```
 
+`r unhide()`
 
-  
-## d)
+### Part (c)
+
+Is the slope coefficient in (a) statistically significantly different from zero? `r mcq(c("No", answer = "Yes"))`
+
+`r hide("Answer:")`
+
+We get a significant slope coefficient.
+
+```{r}
+  mod1 <- lm(course_eval~beauty,data)
+  summary(mod1)
+```
+
+`r unhide()`
+
+
+
+### Part (d)
+
+Run a regression of course_eval on beauty and female. Did the coefficient on beauty become bigger or smaller? `r mcq(c("Smaller", answer = "Bigger"))`
+
+How would you explain this?
+
+`r hide("Answer:")`
 
 ```{r}
   mod2 <- lm(course_eval~beauty+female,data)
@@ -756,14 +785,34 @@ That implies a change of 0.16 teaching scores. Hence, you should not despair as 
 
 ```
 
-
 The beauty coefficient becomes a bit bigger (0.149). This is because it seems that women tend to get lower teaching but higher beauty scores.
 
-## e) 
+`r unhide()`
 
-R2 goes from 0.0357 to 0.0663. Adding more variables will always increase the R2.
+### Part (e)
 
-## f) 
+What is the $R^{2}$ of the regression in (d)? `r fitb(0.0663)`
+
+Does it increase or decrease compared to the regression which does not include female? `r mcq(c("Decrease", answer = "Increase"))`
+
+Think why that could be.
+
+`r hide("Answer:")`
+
+$R^{2}$ goes from 0.0357 to 0.0663. Adding more variables will always increase the $R^{2}$ .
+
+`r unhide()`
+
+
+### Part (f)
+
+Is it possible that even in this case, the interpretation of the effect of beauty might not necessarily be causal? `r mcq(c("No", answer = "Yes"))`
+
+Think of why. 
+
+`r hide("Answer:")`
 
 As usual we have to consider confounding factors. It’s not immediately clear why other factors driving good teaching could have a reverse causality on teaching. But here is one story: beauty is of course a very subjective measure. We perceive people who are well dressed as more beautiful. Perhaps the same factors that make a person dress well are also useful when teaching (e.g. lecture slides are more tidy). Hence, when we just consider beauty we may in part pick up the effect of tidier lecture slides.
+
+`r unhide()
 
