@@ -212,13 +212,23 @@ Note that the marginal effects using logit are very similar to the linear model.
 
 
 # Exercise 5.3
+
+
+For this question, download the data set cps.dta, which comes from the responses to the monthly US Current Population Survey (CPS) in 2001, a large labour market survey. This data set contains data on 8,891 individuals living in Boston and Chicago. We want to use these data to compare the skills of real live blacks and whites (as opposed to made up CVs), and their employment outcomes and see how they differ from the findings in the exercises involving the bm.dta dataset. 
+
 ```{r}
   library(foreign)
-  data <- read.dta("../data/cps.dta")
+  data <- read.dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AAAOb_v-Y2V0NN4-rxahZjl4a/cps.dta?dl=1")
   summary(data)
 ```
 
-## a)
+### Part (a)
+
+The data set contains a variable education, which takes on four values (high school dropouts, high school graduates, some college, and college degree and more). Use the education variable to create a new dummy for resumes indicating some college or more (i.e. those in the “some college” category plus those in the college and more category). 
+
+What percentage of respondents has at least some college education (rounded up to the nearest percent)? `r fitb(63)`
+
+`r hide("Answer:")`
 
 ```{r}
   HE <- as.integer(data$education=="some col" | data$education=="col+")
@@ -229,8 +239,14 @@ Note that the marginal effects using logit are very similar to the linear model.
   summary(data)
 ```  
 Note that nearly 63% of the sample have some college education.
-  
-## b)
+
+`r unhide()`
+
+### Part (b)
+
+First make employed into dichotomous variable and then conduct a regression analysis of the chances of being employed for people with different racial backgrounds. 
+
+`r hide("Answer:")`
 
 ```{r}
   #modify employed as a dichotomous variable
@@ -243,6 +259,30 @@ Note that nearly 63% of the sample have some college education.
   
 ```
 A regression of employment status on a dummy indicating a black racial background suggests that black people are significantly less likely to be employed. The difference amounts to 9.1 percentage points.
+
+`r unhide()`
+
+### Part (c)
+
+Conduct a regression analysis of the chances of having college education for people with different racial backgrounds
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (d)
+
+On the basis of your evidence what can you conclude about racial discrimination in the US labor market? What are potential caveats? What analysis could you undertake to address some of these caveats?
+
+
+`r hide("Answer:")`
+`r unhide()`
+
+## a)
+
+
+## b)
+
+
 
 
 
@@ -284,6 +324,11 @@ While it is interesting to ask if employers discriminate above and beyond what c
 
   
 # Exercise 4
+
+`r hide("Answer:")`
+`r unhide()`
+
+
 ```{r}
   library(foreign)
   data <- read.dta("../data/cps.dta")
