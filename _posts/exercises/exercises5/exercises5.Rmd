@@ -1,7 +1,6 @@
 ---
 title: "Exercises 5"
-description: |
-  Exercises to get familiar with R.
+description: Becoming a Data Detective: Uncovering Racial Bias
 author:
   - name: Ralf Martin
     url: https://mondpanther.github.io/wwwmondpanther/
@@ -65,7 +64,22 @@ A similar pattern emerges for computer skills and racial background.
 ```  
 `r unhide()`
 
-## b)
+### Part (b)
+
+Do a similar tabulation for education and the number of jobs previous held (ofjobs). These variables take on 5 and 7 different values, respectively. 
+
+Does education and the number of previous jobs look balanced across race groups? `r mcq(c("No", answer = "Yes"))`
+
+To be sure, run a regression. Are the differences significant? `r mcq(c("Yes", answer = "No"))`
+
+`r hide("Hint:")`
+
+You can tabulate to eye-ball proportions but if you want to be sure that there aren't small discrepancies, it is always best to run a regression.
+
+`r unhide()`
+
+`r hide("Answer:")`
+
 ```{r}
   table(data$education,data$black)
   prop.table(table(data$education,data$black))
@@ -80,59 +94,124 @@ If we are worried about small discrepancies we could also run a regression to te
  data$ofjobs=factor(data$ofjobs)
  summary(lm(black~ofjobs,data))
  
-
 ```
-Hence the different job categories are individually (and jointly) insignificant. Note an OLS regression always reports a test that all coefficients are jointly not significant (the p-value of 0.741 reported at the end of the output)
+Hence the different job categories are individually (and jointly) insignificant. Note an OLS regression always reports a test that all coefficients are jointly not significant (the p-value of 0.741 reported at the end of the output).
 
+`r unhide()`
 
-## c)
+### Part (c)
+
+Look at the mean and standard deviation for the variable for years of experience (yearsexp) separately for black and whites. 
+
+Does this variable look similar by race?  `r mcq(c("No", answer = "Yes"))`
+
+`r hide("Answer:")`
+
 ```{r}
   mean(data$yearsexp[data$black==1])
   sd(data$yearsexp[data$black==1])
   mean(data$yearsexp[data$black==0])
   sd(data$yearsexp[data$black==0])
 ```
+`r unhide()`
 
-## d)
+### Part (d)
+
+What do you make of the overall results on resume characteristics? 
+
+Is it important to figure out if these variables look similar across the race groups? `r mcq(c("No", answer = "Yes"))` Think why or why not.
+
+`r hide("Answer:")`
 If there was any evidence of a systematic relationship between race and any of those characteristics we could potentially be in trouble when simply comparing interview call backs for different race groups. Any differences found could simply due to those other factors rather than racial bias by employers.
+`r unhide()`
 
-## e-f)
+### Part (e)
+
+The variable of interest on the data set is the variable call, which indicates a call back for an interview. 
+
+What percentage of people receive a call back (rounded up to 2 decimal places)? `r fitb(8.05)`
+
+Do you find differences in call back rates by race?  `r mcq(c("No", answer = "Yes"))`
+
+`r hide("Answer:")`
 ```{r}
   prop.table(table(data$call))
 
   prop.table(table(data$call,data$black))
   prop.table(table(data$call,data$black),2) 
-  " Note that by specifying 2 we report proportions by column (if you specify 1 it reports proportions by rows)"
+  
+  # Note that by specifying 2 we report proportions by column (if you specify 1 it reports proportions by rows)
   
 ```
+We see that most CVs never received a call back (i.e. overall only 8.05% received a call back). 
 
-We see that most CVs never received a call back (i.e. overall only 8.05% received a call back). However, there seems to be a clear difference between the races. Whereas for white people call back rates where above average (9.65%) they were below average for black people (6.45%) suggesting a racial bias by employers.
+`r unhide()`
 
-# Exercise 2
+### Part (f)
+
+What do you conclude from the results of the Bertand and Mullainathan experiment? 
+
+Are black people as likely to receive a call back as white people? `r mcq(c("Yes", answer = "No"))`
+
+`r hide("Answer:")`
+There seems to be a clear difference between the races. Whereas for white people call back rates where above average (9.65%) they were below average for black people (6.45%) suggesting a racial bias by employers.
+
+`r unhide()`
+
+
+# Exercise 5.2
+
+Lets use the dataset from the experiment by Bertand and Mullainathan (bm.dta) again. 
+
 ```{r}  
   library(foreign)
-  data <- read.dta("../data/bm.dta")
+  data <- read_dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AABua74TH54FcmOsAs0ayMY5a/bm.dta?dl=1")
 ```
+### Part (a)
+Develop a regression to examine if the difference in interview callbacks between black and white “sounding” CVs is significantly different. 
+
+What is the code for the simplest linear regression (we call this model "mod")? mod <- `r fitb("lm(call~black,data)", ignore_case = TRUE, ignore_ws = TRUE)`
+
+Whata is the code for the simplest logit regression (we call this model "mod2")? mod2 <- `r fitb("glm(call~black,data,family=binomial)", ignore_case = TRUE, ignore_ws = TRUE)`
+
+`r hide("Answer:")`
+
+```{r}
+  mod <- lm(call~black,data)
+  mod2 <- glm(call~black,data,family=binomial)
+```
+`r unhide()`
+
+### Part (b)
+
+Execute both regression models in turn. 
+
+Are the results similar? `r mcq(c("No", answer = "Yes"))`
 
 
-## a-b)
+`r hide("Answer:")`
+
+Linear regression:
+
 ```{r}
   mod <- lm(call~black,data)
   summary(mod)
 ```
 
-alternatively we can use logit:
+Alternatively we can use logit:
+
 ```{r}
   mod2 <- glm(call~black,data,family=binomial)
   summary(mod2)
   library(margins)
-  margins(mod2)
-  
+  margins(mod2) 
 ```
 Note that the marginal effects using logit are very similar to the linear model.
 
+`r unhide()`
 
-# Exercise 3
+
+# Exercise 5.3
 ```{r}
   library(foreign)
   data <- read.dta("../data/cps.dta")
