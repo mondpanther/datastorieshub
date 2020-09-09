@@ -26,4 +26,162 @@ library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../images/')
 ```
 
+# Exercise 6.1
+
+Consider the dataset Brexit.dta. It contains data on the outcome of the Brexit vote from June 23 this year by local area along with a range of area characteristics. The variable pct_leave records the percentage of voters in an area that voted for leave.
+
+```{r }
+library(haven)
+df=read_dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AAC_4UZXJG9kmImypJXTZ9IOa/brexit.dta?dl=1")
+names(df)
+```
+
+### Part (a)
+
+Consider the variable b_migr11. It records the share (in %) of foreign born residents in an area (according to the last census, which was in 2011).  There is no shortage of politicians claiming that the vote for Brexit was due to immigration particularly after 2005 when Eastern European countries joined the EU and their residents could freely move to countries like Britain. Hence, we would expect there to be a strong effect from the presence of foreigners in an area to the vote outcome. Explore this using the pct_leave and b_migr11 variables using graphical and regression analysis.
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (b)
+
+Various commentators have suggested that it might not be so much the level of immigrants as such, but the experience of a change due to more foreigners in an area that was driving the vote. The variable b_migr contains the share of immigrants in 1991.
+Construct a new variable recording the change in the share of immigrants between 2011 and 1992. Explore its impact by extending the regression model from part a). Discuss what you find.
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (c)
+
+According to your model from part (b), what would have happened to the vote if there would not have been any change in the share of migrants between 1991 and 2011? Answer this by working out the change in an area’s leave percentage if the 2011 migrant share would move to back to its level in 1991 in every area. In how many areas would the vote flip from a majority support for Brexit to a majority support for Remain?
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (d)
+
+Can you think of any reason why the estimates in (b) might not adequately reflect the causal impact of immigration on the vote?
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (e)
+
+The dataset contains a large number of additional characteristics about a local area. Select at least one other variable and explore and discuss its impact on the leave vote by adding to your model from part b). This could, but doesn’t have to be a variable that might address your concerns from part d.
+
+`r hide("Answer:")`
+`r unhide()`
+
+
+
+
+
+# Exercise 6.2
+
+The dataset data/prod.dta contains production data for various companies from 1979 to 1986. 
+
+```{r }
+library(haven)
+df=read_dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AACD9OHn_yCnKFAX7hbEASVha/prod.dta?dl=1")
+names(df)
+```
+
+### Part (a)
+
+Examine the data using a Cobb Douglas production function in terms of value added; i.e. regress ln value added on ln capital and ln labour (va contains the value added, k the capital stock and l labour all not in logs). On the basis of the regression examine the hypothesis that the production function has constant returns to scale (i.e. the labour and capital coefficients would add ot 1).
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (b)
+
+The variable sic3dig contains an industry classifier which groups the firms into 17 industries. Can you explain why it might useful to include industry classifiers in order to estimate the production function better?
+
+Re-estimate the production function controlling for industry. Does your assessment about contant returns to scale change based on this new estimate?
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (c)
+
+Pick any two of the 17 industries. For each industry industry separately, estimate a Cobb-Douglas production function. Would you say the functions are very different in the two industries?
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (d)
+
+Conduct a hypothesis test to compare the two functions formally. Note, that for that you need to estimate both functions using a single regression model.
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (d)
+
+Re-estimate your extended model from d) by allowing for fixed effects. Does this effect your assessment concerning the hypothesis that the production functions are identical in the two industries?
+
+`r hide("Answer:")`
+`r unhide()`
+
+
+
+
+# Exercise 6.3
+
+Use the dataset4.dta dataset. It contains weekly prices for rail transport of grain in the US midwest during the 1880s, and the quantity shipped. The railroad companies at the time operated a cartel, called the Joint Executive Committee (JEC), which is believed to have raised prices above the level that would have otherwise prevailed. This practice was legal before the Sherman Act of 1890 (antitrust legislation) was passed. From time to time, cheating by cartel members brought about a temporary collapse of the collusive price setting agreement. A dummy variable – “cartel”- in the data set indicates the period when price fixing was in effect. 
+
+```{r }
+library(haven)
+df=read_dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AABQXwWvdZdvGlT6Y8LIfoMha/dataset4.dta?dl=1")
+names(df)
+```
+
+### Part (a)
+
+Run an OLS regression of the log quantity on the log price, controlling for ice, indicating that the Great Lakes were frozen preventing transport by ship, and a set of seasonal dummy variables (to capture seasonality in demand; note that dataset has 12 seasonal dummies; i.e. they tread every month as a season). 
+What is the estimated price elasticity?
+
+Do you think you are estimating a demand curve? Explain.
+
+What is the economic rationale of including the variable “ice” in the regression?
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (b)
+
+Consider using cartel as an instrument for price in order to identify the demand curve. 
+
+Discuss whether the instrument is likely to satisfy the conditions for a valid instrument. To what degree can you use the data to check these conditions?
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (c)
+
+Estimate the first stage and reduced form equations and explain what you find.
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (d)
+
+Estimate the demand function by IV. What is your estimated demand elasiticity? 
+
+How does it differ from your OLS estimate in (a) and why?
+
+`r hide("Answer:")`
+`r unhide()`
+
+### Part (e)
+
+Microeconomic theory suggests that a monopolist (like the cartel) should operate in a region of the demand curve where demand is elastic (i.e. the elasticity is < -1). Is this the case for your estimated demand elasticity? What does the statistical evidence say on this question? 
+
+`r hide("Answer:")`
+`r unhide()`
+
+
+
+
+
 
