@@ -9,13 +9,13 @@
         "url": "https://mondpanther.github.io/wwwmondpanther/"
       }
     ],
-    "date": "2020-09-07",
+    "date": "2020-09-08",
     "categories": [
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-07T14:31:11+01:00",
-    "input_file": "exercises1.utf8.md"
+    "last_modified": "2020-09-08T09:48:42+01:00",
+    "input_file": {}
   },
   {
     "path": "posts/exercises/exercises4/",
@@ -27,13 +27,121 @@
         "url": "https://mondpanther.github.io/wwwmondpanther/"
       }
     ],
-    "date": "2020-09-04",
+    "date": "2020-09-08",
     "categories": [
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-04T12:02:11+01:00",
+    "last_modified": "2020-09-08T08:37:22+01:00",
     "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises5/",
+    "title": "Exercises 5",
+    "description": "Under construction",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-08",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-08T10:09:31+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises6/",
+    "title": "Exercises 6",
+    "description": "Under construction",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-08",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-08T10:16:44+01:00",
+    "input_file": "exercises6.utf8.md"
+  },
+  {
+    "path": "posts/exercises/exercises8/",
+    "title": "Exercises 8",
+    "description": "Under construction",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-08",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-08T10:18:54+01:00",
+    "input_file": "exercises8.utf8.md"
+  },
+  {
+    "path": "posts/exercises/exercises7/",
+    "title": "Exercises 7",
+    "description": "Under construction",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-08",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-08T10:19:17+01:00",
+    "input_file": "exercises7.utf8.md"
+  },
+  {
+    "path": "posts/exercises/exercises9/",
+    "title": "Exercises 9",
+    "description": "Under construction",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-08",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-08T10:19:58+01:00",
+    "input_file": "exercises9.utf8.md"
+  },
+  {
+    "path": "posts/exercises/exercises10/",
+    "title": "Exercises 10",
+    "description": "Under construction",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-08",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-08T10:21:22+01:00",
+    "input_file": "exercises10.utf8.md"
   },
   {
     "path": "posts/exercises/exercises2/",
