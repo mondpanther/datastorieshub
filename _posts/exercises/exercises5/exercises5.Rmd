@@ -290,7 +290,7 @@ Do we see a open-and-shut case of racial bias here? `r mcq(c("Yes", answer = "No
 
 Think of the potential caveats and alternative explanations. 
 
-What analysis could you undertake to address some of these caveats? `r mcq(c("None, it's fine as it is", answer = "Run a regression holding education level constant", "Include parental income data and run a regression holding this variable constant",))`
+What analysis could you undertake to address some of these caveats? `r mcq(c("None, it's fine as it is", answer = "Run a regression holding education level constant", "Include parental income data and run a regression holding this variable constant"))`
 
 
 `r hide("Answer:")`
@@ -620,7 +620,7 @@ mod2 <- lm(stndfnl~attend+termgpa,data)
 summary(mod2)
 ```
 
-The term grade point average is strongly positive and sisgnificant and leads to a negative attendance effect. Note that the termgpa is most likely affected by higher attendance; However, by including it as a separate explanatory variable the resulting estimate ignore this effect. Instead what we are picking up is the final grade of people that attended class a lot but it did not make a difference to their term GPA. In other words these are probably very weak students who desperately tried to improve by attending classes a lot but it did not have a positive effect on either their term GPA or their final score.
+The term grade point average is strongly positive and significant and leads to a negative attendance effect. Note that the termgpa is most likely affected by higher attendance; However, by including it as a separate explanatory variable the resulting estimate ignore this effect. Instead what we are picking up is the final grade of people that attended class a lot but it did not make a difference to their term GPA. In other words these are probably very weak students who desperately tried to improve by attending classes a lot but it did not have a positive effect on either their term GPA or their final score.
 
 
 ```{r}
