@@ -259,13 +259,15 @@ Does this change your assessment concerning the hypothesis that the production f
 
 `r hide("Answer:")`
 
-It seems that once we allow for fixed effects the interaction coefficients are no longer significant even in a joint significant test.
-
-
 ```{r }
 
+mod_fe=plm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, index=c("id","year"),data=prod, subset=prod$ysic3dig=="311"|subset=prod$ysic3dig=="321", model="within")
+summary(mod_fe)
+
+linearHypothesis(mod_fe, c("log(k):sic3dig321=0","log(l):sic3dig321=0"), vcov=vcovHC)
 
 ```
+It seems that once we allow for fixed effects the interaction coefficients are no longer significant even in a joint significant test.
 
 `r unhide()`
 
@@ -278,8 +280,8 @@ Use the dataset4.dta dataset. It contains weekly prices for rail transport of gr
 
 ```{r }
 library(haven)
-df=read_dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AABQXwWvdZdvGlT6Y8LIfoMha/dataset4.dta?dl=1")
-names(df)
+d4=read_dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AABQXwWvdZdvGlT6Y8LIfoMha/dataset4.dta?dl=1")
+names(d4)
 ```
 
 ### Part (a)
@@ -294,14 +296,16 @@ Think of what the the economic rationale is of including the variable “ice” 
 
 `r hide("Answer:")`
 
+```{r }
+m1=lm(log(quantity)~log(price)+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
+coeftest(m1, vcov=vcovHC)
+
+```
+
 The regression implies a price elasticity of -0.64; i.e. a 1% increase in price will lead to a 0.64% reduction in demand.
 We can interpret this as a demand curve, if the price coefficient really represents the effect of a price change on demand holding all other things constant. 
 One reason why this might not be the case is if shocks to demand cause price changes. On the other hand if we can control for big potential shocks to demand it will be possible to recover un-biased estimates. A big potential demand shock here is the freezing of the lakes: Because rail transport becomes the only option and hence demand increases it might lead to price changes. Indeed we see that “ice” has a significant positive effect on demand.
 
-```{r }
-
-
-```
 
 `r unhide()`
 
@@ -338,14 +342,18 @@ What is the effect of cartel on price in the reduced form?   `r mcq(c("Positive"
 First stage suggests highly significant effect of cartel on price.
 
 ```{r }
+fs=lm(log(price)~cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
+coeftest(fs,vcov=vcovHC)
 
+linearHypothesis(fs,”cartel=0”)
 
 ```
 
 Reduced form shows strong negative effect of cartel on price as would be expected.
 
 ```{r }
-
+rf=lm(log(quantity)~cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
+coeftest(rf,vcov=vcovHC)
 
 ```
 
@@ -363,7 +371,9 @@ How does it differ from your OLS estimate in (a)? `r mcq(c("More positive", answ
 IV regression suggests a price elasticity of -0.86; i.e. the estimate has become stronger (more elastic; i.e. more negative) compared to OLS. This is consistent with positive demand shocks in exerting a positive influence on price (i.e. the OLS estimate would be biased upward so that it becomes less negative than is true in reality)
 
 ```{r }
-
+library(AER)
+iv=ivreg(log(quantity)~log(price)+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12| cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
+robust.se(iv)
 
 ```
 
@@ -391,12 +401,11 @@ t-stat=(-0.8666+1)/0.131= 1.0204783
 For critical value:
 
 ```{r }
-
+qnorm(0.95)
 
 ```
 
 Hence, we do not reject the null hypothesis; i.e. we cannot conclude that basic mircoeconomics is violated here.
-
 
 
 `r unhide()`
