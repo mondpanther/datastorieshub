@@ -40,36 +40,101 @@ names(df)
 
 Consider the variable b_migr11. It records the share (in %) of foreign born residents in an area (according to the last census, which was in 2011).  There is no shortage of politicians claiming that the vote for Brexit was due to immigration particularly after 2005 when Eastern European countries joined the EU and their residents could freely move to countries like Britain. Hence, we would expect there to be a strong effect from the presence of foreigners in an area to the vote outcome. Explore this using the pct_leave and b_migr11 variables using graphical and regression analysis.
 
+Which way is the line of best fit sloping on your scatter plot? `r mcq(c("Upwards", answer = "Downwards"))`
+
+What is the constant (rounded to 3 decimal places)?  `r fitb(58.553)`
+
+What is the slope coefficient (rounded to 3 decimal places)?  `r fitb(-0.504)`
+
 `r hide("Answer:")`
+
+```{r }
+library(ggplot2)
+ggplot(df, aes(x=b_migr11, y=pct_leave)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+```
+Looking at the scatter plot it seems there is rather a negative relationship between the proportion of foreigners in an area and the support for leave; i.e. exactly the opposite of what one would expect. Regression analysis confirms this:
+
+
+```{r }
+summary(lm(pct_leave~b_migr11, data=df))
+```
+
+We see that there is a significant negative relationship. 1 percentage point more foreigners in an area leads to 0.5 percentage point loss in support for the vote to leave.
+
 `r unhide()`
 
 ### Part (b)
 
 Various commentators have suggested that it might not be so much the level of immigrants as such, but the experience of a change due to more foreigners in an area that was driving the vote. The variable b_migr contains the share of immigrants in 1991.
-Construct a new variable recording the change in the share of immigrants between 2011 and 1992. Explore its impact by extending the regression model from part a). Discuss what you find.
+
+Construct a new variable recording the change in the share of immigrants between 2011 and 1992. Explore its impact by extending the regression model from part a). 
+
+What is the coefficient on this new variable (rounded to 3 decimal places)?  `r fitb(0.926)`
+
+Is it statistically significant? `r mcq(c("No", answer = "Yes"))`
 
 `r hide("Answer:")`
+
+We can construct the change in migration shares as:
+
+```{r }
+ds["Db_migr"] <- ds$b_migr11-ds$b_migr
+```
+
+We can then regress
+
+```{r }
+summary(lm(pct_leave~Db_migr+b_migr11, data=df))
+```
+
+It seems that indeed the change in the migration share has a strong positive and significant impact on the leave share. Notice also that the share of migrants in 2011 now becomes larger as well. This is because the areas with higher increase in foreigners are also the areas with a higher share of foreigners (e.g. like London). Consequently, in the previous univariate regression the b_migr11 coefficient suffered from an upward bias.
+
+$$LeaveShare = \beta_{0}+\beta_{1}MShare_{2011}+\beta_{2}(MShare_{2011}-MShare_{1991})+\epsilon$$
+
 `r unhide()`
 
 ### Part (c)
 
-According to your model from part (b), what would have happened to the vote if there would not have been any change in the share of migrants between 1991 and 2011? Answer this by working out the change in an area’s leave percentage if the 2011 migrant share would move to back to its level in 1991 in every area. In how many areas would the vote flip from a majority support for Brexit to a majority support for Remain?
+Work out the change in an area’s leave percentage if the 2011 migrant share would move to back to its level in 1991 in every area. 
+
+According to your model from part (b), what would have happened to the vote if there would not have been any change in the share of migrants between 1991 and 2011? Support for Brexit would `r mcq(c("Decrease", answer = "Increase"))`
+
+In how many areas would the vote flip from a majority support for Brexit to a majority support for Remain? `r fitb(0)`
 
 `r hide("Answer:")`
+
+Note that the impact of changing the 2011 migrant share is a combination of the factors found in the previous section i.e. reducing the migrant share by one percentage point leads to a change in the leave share of $-(\beta_{1}+\beta_{2})=-(-1.099+0.926)=0.173$ percentage points. In other words, it would seem that a reversal in migrant presence would tend to lead to an increase in the support for Brexit, rather than an increase in the support for remain. Consequently, in no area would be find a flip in the vote from majority support for Brexit to remain. 
+
 `r unhide()`
 
 ### Part (d)
 
-Can you think of any reason why the estimates in (b) might not adequately reflect the causal impact of immigration on the vote?
+Can you think of any reason why the estimates in (b) might not adequately reflect the causal impact of immigration on the vote? What are plausible confounding forces? `r mcq(c("Aging population (more boomers)", answer = "Economic opportunity"))`
 
 `r hide("Answer:")`
+
+One reason could be as follows: an important factor that drives immigration is economic opportunity. Hence, it is quite likely that immigration is higher in areas of the country where economic growth was higher. This could mean that there is a positive correlation between the errors and immigration which could imply a downward bias in the estimate of the coefficient on immigration. This in turn could in principle be an explanation for why we find a negative coefficient for the immigration variable (i.e. immigration in 2011 has actually a positive effect on support for leave but we fail to detect it because it is conflated by the more substantial negative effect of economic conditions on the leave vote).
+
 `r unhide()`
 
 ### Part (e)
 
-The dataset contains a large number of additional characteristics about a local area. Select at least one other variable and explore and discuss its impact on the leave vote by adding to your model from part b). This could, but doesn’t have to be a variable that might address your concerns from part d.
+The dataset contains a large number of additional characteristics about a local area. Which variable would you add to your model from part b) to test the alternative explanation mentioned in d)? `r mcq(c("Number of Scottish people", "Share of people living in cities", answer = "Unemployment"))`
+
 
 `r hide("Answer:")`
+
+We can explore the point made in answer d) by using unemployment as an additional control variable.
+Below we include both the level of the unemployment rate in 2004 and the change in in the rate between 2011 and 2004.
+
+```{r }
+summary(lm(pct_leave~Db_migr + b_migr11 + Durate + urate2004, data=df))
+```
+
+Note that including the unemployment variables does not change the migration variables by much, which suggests that the economic conditions are not conflating the results on immigration. That said, note that the net negative effect of b_migr11 (coefficient for b_migr11+ coefficient for Db_migr) is slightly less negative than in in (b) which would be consistent with a slight conflation of the immigration effect by economic factors.
+
+Also, note that the change in the unemployment rate has a high and significant coefficient. If the unemployment rate goes up by 1 percentage point the support for leave goes up by about 1 percentage point as well. Hence, it might be more useful to consider economic conditions as a factor that has been driving the vote rather than recent immigration.
+
 `r unhide()`
 
 
@@ -82,15 +147,30 @@ The dataset data/prod.dta contains production data for various companies from 19
 
 ```{r }
 library(haven)
-df=read_dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AACD9OHn_yCnKFAX7hbEASVha/prod.dta?dl=1")
-names(df)
+prod=read_dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AACD9OHn_yCnKFAX7hbEASVha/prod.dta?dl=1")
+names(prod)
 ```
 
 ### Part (a)
 
-Examine the data using a Cobb Douglas production function in terms of value added; i.e. regress ln value added on ln capital and ln labour (va contains the value added, k the capital stock and l labour all not in logs). On the basis of the regression examine the hypothesis that the production function has constant returns to scale (i.e. the labour and capital coefficients would add ot 1).
+Examine the data using a Cobb-Douglas production function in terms of value added; i.e. regress ln value added on ln capital and ln labour (va contains the value added, k the capital stock and l labour all not in logs). On the basis of the regression examine the hypothesis that the production function has constant returns to scale (i.e. the labour and capital coefficients would add ot 1). 
+
+The hypothesis is `r mcq(c("Supported", answer = "Rejected"))`
 
 `r hide("Answer:")`
+
+
+```{r }
+
+prod$year=factor(prod$year)
+mod1=lm(log(va)~log(k)+log(l)+year, prod)
+summary(mod1)
+linearHypothesis(mod1, "log(k)+log(l)=1", vcov=vcovHC)
+
+```
+
+Constant returns are clearly rejected.
+
 `r unhide()`
 
 ### Part (b)
