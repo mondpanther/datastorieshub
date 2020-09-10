@@ -175,32 +175,94 @@ Constant returns are clearly rejected.
 
 ### Part (b)
 
-The variable sic3dig contains an industry classifier which groups the firms into 17 industries. Can you explain why it might useful to include industry classifiers in order to estimate the production function better?
+The variable sic3dig contains an industry classifier which groups the firms into 17 industries. 
 
-Re-estimate the production function controlling for industry. Does your assessment about contant returns to scale change based on this new estimate?
+Why might it be useful to include industry classifiers in order to estimate the production function better? `r mcq(c("It will increase the R^2 of the model", answer = "It could reduce bias"))`
+
+Re-estimate the production function controlling for industry. Does your assessment about constant returns to scale change based on this new estimate? `r mcq(c("Yes", answer = "No"))`
+
 
 `r hide("Answer:")`
+
+Typically the residual from a production function estimation is interpreted as productivity. However, it is plausible that more productive firms will want to employ more production factors. This might lead to a correlation between residuals and the explanatory variables which could lead to biases. A big part of that might come from variations between sectors; i.e. some sectors are just more productive and profitable and those will also be the sectors that attract more capital and other production factors.
+
+```{r }
+prod$ysic3dig=factor(prod$sic3dig)
+mod2=lm(log(va)~log(k)+log(l)+year+sic3dig, prod)
+summary(mod2)
+
+linearHypothesis(mod2, "log(k)+log(l)=1", vcov=vcovHC)
+
+```
+i.e. the test continues to be rejected. Consequently, we don’t find constant returns to scale.
+
 `r unhide()`
 
 ### Part (c)
 
-Pick any two of the 17 industries. For each industry industry separately, estimate a Cobb-Douglas production function. Would you say the functions are very different in the two industries?
+Which two of the 17 industries have the largest number of observations?  `r mcq(c("311 and 323", "381 and 383", answer = "311 and 321"))`
+
+For each of the two industries separately, estimate a Cobb-Douglas production function. 
+
+Would you say the functions are very different in the two industries? `r mcq(c("No", answer = "Yes"))`
 
 `r hide("Answer:")`
+
+```{r }
+table(prod$ysic3dig)
+```
+The table reveals that the two industries with the largest number of observations are 311 and 321. 
+
+```{r }
+mod311=lm(log(va)~log(k)+log(l)+year, prod, subset=prod$ysic3dig=="311")
+summary(mod311)
+
+```
+In each case the labor coefficient is larger than the capital coefficient. However, the numbers are not necessarily very close. In the case of sector 311 the capital coefficient is only half of the coefficient for sector 321. Still, to make sure they are statistically different it’s good to do a formal test which is the next question.
+
 `r unhide()`
 
 ### Part (d)
 
 Conduct a hypothesis test to compare the two functions formally. Note, that for that you need to estimate both functions using a single regression model.
 
+Are the coefficients statistically diffferent from zero?  `r mcq(c("Yes", answer = "No"))`
+
+Could they be jointly significant?  `r mcq(c("No", answer = "Yes"))`
+
 `r hide("Answer:")`
+
+
+```{r }
+mod_inter=lm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, prod, subset=prod$ysic3dig=="311"|subset=prod$ysic3dig=="321")
+summary(mod_inter)
+coeftest(mod_inter, vcov=vcovHC)
+```
+
+It turns out the coefficients are not statistically different; i.e. the t-tests for the interaction coefficients are not significantly different from zero. However, it could still be the case that they are jointly significant (e.g. there could be a high degree of  collinearity in the interaction variables.)
+
+We can examine that with the linearHypothesis command:
+
+```{r }
+linearHypothesis(mod_inter, c("log(k):sic3dig321=0","log(l):sic3dig321=0"), vcov=vcovHC)
+
+```
+This suggests that the production function for sector 321 is weakly significantly different from that in sector 311.
+
 `r unhide()`
 
-### Part (d)
+### Part (e)
 
-Re-estimate your extended model from d) by allowing for fixed effects. Does this effect your assessment concerning the hypothesis that the production functions are identical in the two industries?
+Re-estimate your extended model from d) by allowing for fixed effects. 
+
+Does this change your assessment concerning the hypothesis that the production functions are identical in the two industries? `r mcq(c("No", answer = "Yes"))`
 
 `r hide("Answer:")`
+
+It seems that once we allow for fixed effects the interaction coefficients are no longer significant even in a joint significant test.
+
+
+
 `r unhide()`
 
 
