@@ -1,30 +1,18 @@
----
-title: "Exercises 6"
-description: |
-  Under construction
-author:
-  - name: Ralf Martin
-    url: https://mondpanther.github.io/wwwmondpanther/
-date: "`r Sys.Date()`"
-output:
-  distill::distill_article:
-    self_contained: true
-    css: ../../webex.css
-    includes:
-      after_body: ../../webex.js
-categories:
-  - Exercises
-editor_options: 
-  chunk_output_type: inline
----
 
-
-
-```{r setup, include = FALSE, message=FALSE}
-library("webex")
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+if (!requireNamespace("webex")) {
+  stop("You must have the 'webex' package installed to knit HTML from this template.\n   devtools::install_github(\"psyteachr/webex\")")
+} else {
+  library("webex")
+}
+library(car)
+library(plm)
+library(AER)
+library(ivpack)
 library(ggplot2)
-knitr::opts_chunk$set(fig.path='../../images/')
 ```
+
 
 # Exercise 6.1
 
@@ -52,6 +40,7 @@ What is the slope coefficient (rounded to 3 decimal places)?  `r fitb(-0.504)`
 library(ggplot2)
 ggplot(df, aes(x=b_migr11, y=pct_leave)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
 ```
+
 Looking at the scatter plot it seems there is rather a negative relationship between the proportion of foreigners in an area and the support for leave; i.e. exactly the opposite of what one would expect. Regression analysis confirms this:
 
 
@@ -78,7 +67,7 @@ Is it statistically significant? `r mcq(c("No", answer = "Yes"))`
 We can construct the change in migration shares as:
 
 ```{r }
-ds["Db_migr"] <- ds$b_migr11-ds$b_migr
+df["Db_migr"] <- df$b_migr11-df$b_migr
 ```
 
 We can then regress
@@ -128,6 +117,7 @@ We can explore the point made in answer d) by using unemployment as an additiona
 Below we include both the level of the unemployment rate in 2004 and the change in in the rate between 2011 and 2004.
 
 ```{r }
+df["Durate"] <- df$urate2011-df$urate2004
 summary(lm(pct_leave~Db_migr + b_migr11 + Durate + urate2004, data=df))
 ```
 
@@ -161,12 +151,10 @@ The hypothesis is `r mcq(c("Supported", answer = "Rejected"))`
 
 
 ```{r }
-
 prod$year=factor(prod$year)
 mod1=lm(log(va)~log(k)+log(l)+year, prod)
 summary(mod1)
-linearHypothesis(mod1, "log(k)+log(l)=1", vcov=vcovHC)
-
+linearHypothesis(mod1,"log(k)+log(l)=1",vcov=vcovHC)
 ```
 
 Constant returns are clearly rejected.
@@ -190,9 +178,7 @@ Typically the residual from a production function estimation is interpreted as p
 prod$ysic3dig=factor(prod$sic3dig)
 mod2=lm(log(va)~log(k)+log(l)+year+sic3dig, prod)
 summary(mod2)
-
 linearHypothesis(mod2, "log(k)+log(l)=1", vcov=vcovHC)
-
 ```
 i.e. the test continues to be rejected. Consequently, we don’t find constant returns to scale.
 
@@ -216,7 +202,6 @@ The table reveals that the two industries with the largest number of observation
 ```{r }
 mod311=lm(log(va)~log(k)+log(l)+year, prod, subset=prod$ysic3dig=="311")
 summary(mod311)
-
 ```
 In each case the labor coefficient is larger than the capital coefficient. However, the numbers are not necessarily very close. In the case of sector 311 the capital coefficient is only half of the coefficient for sector 321. Still, to make sure they are statistically different it’s good to do a formal test which is the next question.
 
@@ -234,7 +219,7 @@ Could they be jointly significant?  `r mcq(c("No", answer = "Yes"))`
 
 
 ```{r }
-mod_inter=lm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, prod, subset=prod$ysic3dig=="311"|subset=prod$ysic3dig=="321")
+mod_inter=lm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, prod,subset=prod$sic3dig=="311"|prod$sic3dig=="321")
 summary(mod_inter)
 coeftest(mod_inter, vcov=vcovHC)
 ```
@@ -244,8 +229,7 @@ It turns out the coefficients are not statistically different; i.e. the t-tests 
 We can examine that with the linearHypothesis command:
 
 ```{r }
-linearHypothesis(mod_inter, c("log(k):sic3dig321=0","log(l):sic3dig321=0"), vcov=vcovHC)
-
+linearHypothesis(mod_inter, c("log(k):sic3dig=0","log(l):sic3dig=0"), vcov=vcovHC)
 ```
 This suggests that the production function for sector 321 is weakly significantly different from that in sector 311.
 
@@ -260,12 +244,9 @@ Does this change your assessment concerning the hypothesis that the production f
 `r hide("Answer:")`
 
 ```{r }
-
-mod_fe=plm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, index=c("id","year"),data=prod, subset=prod$ysic3dig=="311"|subset=prod$ysic3dig=="321", model="within")
+mod_fe=plm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, index=c("id","year"),data=prod, subset=prod$sic3dig=="311"|prod$sic3dig=="321", model="within")
 summary(mod_fe)
-
-linearHypothesis(mod_fe, c("log(k):sic3dig321=0","log(l):sic3dig321=0"), vcov=vcovHC)
-
+linearHypothesis(mod_fe, c("log(k):sic3dig=0","log(l):sic3dig=0"), vcov=vcovHC)
 ```
 It seems that once we allow for fixed effects the interaction coefficients are no longer significant even in a joint significant test.
 
@@ -299,7 +280,6 @@ Think of what the the economic rationale is of including the variable “ice” 
 ```{r }
 m1=lm(log(quantity)~log(price)+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
 coeftest(m1, vcov=vcovHC)
-
 ```
 
 The regression implies a price elasticity of -0.64; i.e. a 1% increase in price will lead to a 0.64% reduction in demand.
@@ -344,9 +324,7 @@ First stage suggests highly significant effect of cartel on price.
 ```{r }
 fs=lm(log(price)~cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
 coeftest(fs,vcov=vcovHC)
-
-linearHypothesis(fs,”cartel=0”)
-
+linearHypothesis(fs,"cartel=0")
 ```
 
 Reduced form shows strong negative effect of cartel on price as would be expected.
@@ -354,7 +332,6 @@ Reduced form shows strong negative effect of cartel on price as would be expecte
 ```{r }
 rf=lm(log(quantity)~cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
 coeftest(rf,vcov=vcovHC)
-
 ```
 
 
@@ -374,7 +351,6 @@ IV regression suggests a price elasticity of -0.86; i.e. the estimate has become
 library(AER)
 iv=ivreg(log(quantity)~log(price)+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12| cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
 robust.se(iv)
-
 ```
 
 `r unhide()`
@@ -390,8 +366,6 @@ Is this the case for your estimated demand elasticity? `r mcq(c("No", answer = "
 Hence we are tesing $H0: \beta(lnprice)=1  vs H1: \beta(lnprice)>-1$; (i.e. a one sided test)
 
 ```{r }
-
-
 ```
 
 i.e. even if $\beta(lnprice)$ is smaller than -1 as in our regressions it is possible to estimate a value that is larger than -1. There comes a point when the value is too large, however, which we can figure out by looking at the threshold that would lead to a stage 1 error of 5%
@@ -402,16 +376,12 @@ For critical value:
 
 ```{r }
 qnorm(0.95)
-
-```
+``` 
 
 Hence, we do not reject the null hypothesis; i.e. we cannot conclude that basic mircoeconomics is violated here.
 
 
 `r unhide()`
-
-
-
 
 
 
