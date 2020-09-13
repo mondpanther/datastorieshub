@@ -1,29 +1,387 @@
----
-title: "Exercises 6"
-description: |
-  Under construction
-author:
-  - name: Ralf Martin
-    url: https://mondpanther.github.io/wwwmondpanther/
-date: "`r Sys.Date()`"
-output:
-  distill::distill_article:
-    self_contained: true
-    css: ../../webex.css
-    includes:
-      after_body: ../../webex.js
-categories:
-  - Exercises
-editor_options: 
-  chunk_output_type: inline
----
 
-
-
-```{r setup, include = FALSE, message=FALSE}
-library("webex")
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+if (!requireNamespace("webex")) {
+  stop("You must have the 'webex' package installed to knit HTML from this template.\n   devtools::install_github(\"psyteachr/webex\")")
+} else {
+  library("webex")
+}
+library(car)
+library(plm)
+library(AER)
+library(ivpack)
 library(ggplot2)
-knitr::opts_chunk$set(fig.path='../../images/')
 ```
+
+
+# Exercise 6.1
+
+Consider the dataset Brexit.dta. It contains data on the outcome of the Brexit vote from June 23 this year by local area along with a range of area characteristics. The variable pct_leave records the percentage of voters in an area that voted for leave.
+
+```{r }
+library(haven)
+df=read_dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AAC_4UZXJG9kmImypJXTZ9IOa/brexit.dta?dl=1")
+names(df)
+```
+
+### Part (a)
+
+Consider the variable b_migr11. It records the share (in %) of foreign born residents in an area (according to the last census, which was in 2011).  There is no shortage of politicians claiming that the vote for Brexit was due to immigration particularly after 2005 when Eastern European countries joined the EU and their residents could freely move to countries like Britain. Hence, we would expect there to be a strong effect from the presence of foreigners in an area to the vote outcome. Explore this using the pct_leave and b_migr11 variables using graphical and regression analysis.
+
+Which way is the line of best fit sloping on your scatter plot? `r mcq(c("Upwards", answer = "Downwards"))`
+
+What is the constant (rounded to 3 decimal places)?  `r fitb(58.553)`
+
+What is the slope coefficient (rounded to 3 decimal places)?  `r fitb(-0.504)`
+
+`r hide("Answer:")`
+
+```{r }
+library(ggplot2)
+ggplot(df, aes(x=b_migr11, y=pct_leave)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+```
+
+Looking at the scatter plot it seems there is rather a negative relationship between the proportion of foreigners in an area and the support for leave; i.e. exactly the opposite of what one would expect. Regression analysis confirms this:
+
+
+```{r }
+summary(lm(pct_leave~b_migr11, data=df))
+```
+
+We see that there is a significant negative relationship. 1 percentage point more foreigners in an area leads to 0.5 percentage point loss in support for the vote to leave.
+
+`r unhide()`
+
+### Part (b)
+
+Various commentators have suggested that it might not be so much the level of immigrants as such, but the experience of a change due to more foreigners in an area that was driving the vote. The variable b_migr contains the share of immigrants in 1991.
+
+Construct a new variable recording the change in the share of immigrants between 2011 and 1992. Explore its impact by extending the regression model from part a). 
+
+What is the coefficient on this new variable (rounded to 3 decimal places)?  `r fitb(0.926)`
+
+Is it statistically significant? `r mcq(c("No", answer = "Yes"))`
+
+`r hide("Answer:")`
+
+We can construct the change in migration shares as:
+
+```{r }
+df["Db_migr"] <- df$b_migr11-df$b_migr
+```
+
+We can then regress
+
+```{r }
+summary(lm(pct_leave~Db_migr+b_migr11, data=df))
+```
+
+It seems that indeed the change in the migration share has a strong positive and significant impact on the leave share. Notice also that the share of migrants in 2011 now becomes larger as well. This is because the areas with higher increase in foreigners are also the areas with a higher share of foreigners (e.g. like London). Consequently, in the previous univariate regression the b_migr11 coefficient suffered from an upward bias.
+
+$$LeaveShare = \beta_{0}+\beta_{1}MShare_{2011}+\beta_{2}(MShare_{2011}-MShare_{1991})+\epsilon$$
+
+`r unhide()`
+
+### Part (c)
+
+Work out the change in an area’s leave percentage if the 2011 migrant share would move to back to its level in 1991 in every area. 
+
+According to your model from part (b), what would have happened to the vote if there would not have been any change in the share of migrants between 1991 and 2011? Support for Brexit would `r mcq(c("Decrease", answer = "Increase"))`
+
+In how many areas would the vote flip from a majority support for Brexit to a majority support for Remain? `r fitb(0)`
+
+`r hide("Answer:")`
+
+Note that the impact of changing the 2011 migrant share is a combination of the factors found in the previous section i.e. reducing the migrant share by one percentage point leads to a change in the leave share of $-(\beta_{1}+\beta_{2})=-(-1.099+0.926)=0.173$ percentage points. In other words, it would seem that a reversal in migrant presence would tend to lead to an increase in the support for Brexit, rather than an increase in the support for remain. Consequently, in no area would be find a flip in the vote from majority support for Brexit to remain. 
+
+`r unhide()`
+
+### Part (d)
+
+Can you think of any reason why the estimates in (b) might not adequately reflect the causal impact of immigration on the vote? What are plausible confounding forces? `r mcq(c("Aging population (more boomers)", answer = "Economic opportunity"))`
+
+`r hide("Answer:")`
+
+One reason could be as follows: an important factor that drives immigration is economic opportunity. Hence, it is quite likely that immigration is higher in areas of the country where economic growth was higher. This could mean that there is a positive correlation between the errors and immigration which could imply a downward bias in the estimate of the coefficient on immigration. This in turn could in principle be an explanation for why we find a negative coefficient for the immigration variable (i.e. immigration in 2011 has actually a positive effect on support for leave but we fail to detect it because it is conflated by the more substantial negative effect of economic conditions on the leave vote).
+
+`r unhide()`
+
+### Part (e)
+
+The dataset contains a large number of additional characteristics about a local area. Which variable would you add to your model from part b) to test the alternative explanation mentioned in d)? `r mcq(c("Number of Scottish people", "Share of people living in cities", answer = "Unemployment"))`
+
+
+`r hide("Answer:")`
+
+We can explore the point made in answer d) by using unemployment as an additional control variable.
+Below we include both the level of the unemployment rate in 2004 and the change in in the rate between 2011 and 2004.
+
+```{r }
+df["Durate"] <- df$urate2011-df$urate2004
+summary(lm(pct_leave~Db_migr + b_migr11 + Durate + urate2004, data=df))
+```
+
+Note that including the unemployment variables does not change the migration variables by much, which suggests that the economic conditions are not conflating the results on immigration. That said, note that the net negative effect of b_migr11 (coefficient for b_migr11+ coefficient for Db_migr) is slightly less negative than in in (b) which would be consistent with a slight conflation of the immigration effect by economic factors.
+
+Also, note that the change in the unemployment rate has a high and significant coefficient. If the unemployment rate goes up by 1 percentage point the support for leave goes up by about 1 percentage point as well. Hence, it might be more useful to consider economic conditions as a factor that has been driving the vote rather than recent immigration.
+
+`r unhide()`
+
+
+
+
+
+# Exercise 6.2
+
+The dataset data/prod.dta contains production data for various companies from 1979 to 1986. 
+
+```{r }
+library(haven)
+prod=read_dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AACD9OHn_yCnKFAX7hbEASVha/prod.dta?dl=1")
+names(prod)
+```
+
+### Part (a)
+
+Examine the data using a Cobb-Douglas production function in terms of value added; i.e. regress ln value added on ln capital and ln labour (va contains the value added, k the capital stock and l labour all not in logs). On the basis of the regression examine the hypothesis that the production function has constant returns to scale (i.e. the labour and capital coefficients would add ot 1). 
+
+The hypothesis is `r mcq(c("Supported", answer = "Rejected"))`
+
+`r hide("Answer:")`
+
+
+```{r }
+prod$year=factor(prod$year)
+mod1=lm(log(va)~log(k)+log(l)+year, prod)
+summary(mod1)
+linearHypothesis(mod1,"log(k)+log(l)=1",vcov=vcovHC)
+```
+
+Constant returns are clearly rejected.
+
+`r unhide()`
+
+### Part (b)
+
+The variable sic3dig contains an industry classifier which groups the firms into 17 industries. 
+
+Why might it be useful to include industry classifiers in order to estimate the production function better? `r mcq(c("It will increase the R^2 of the model", answer = "It could reduce bias"))`
+
+Re-estimate the production function controlling for industry. Does your assessment about constant returns to scale change based on this new estimate? `r mcq(c("Yes", answer = "No"))`
+
+
+`r hide("Answer:")`
+
+Typically the residual from a production function estimation is interpreted as productivity. However, it is plausible that more productive firms will want to employ more production factors. This might lead to a correlation between residuals and the explanatory variables which could lead to biases. A big part of that might come from variations between sectors; i.e. some sectors are just more productive and profitable and those will also be the sectors that attract more capital and other production factors.
+
+```{r }
+prod$ysic3dig=factor(prod$sic3dig)
+mod2=lm(log(va)~log(k)+log(l)+year+sic3dig, prod)
+summary(mod2)
+linearHypothesis(mod2, "log(k)+log(l)=1", vcov=vcovHC)
+```
+i.e. the test continues to be rejected. Consequently, we don’t find constant returns to scale.
+
+`r unhide()`
+
+### Part (c)
+
+Which two of the 17 industries have the largest number of observations?  `r mcq(c("311 and 323", "381 and 383", answer = "311 and 321"))`
+
+For each of the two industries separately, estimate a Cobb-Douglas production function. 
+
+Would you say the functions are very different in the two industries? `r mcq(c("No", answer = "Yes"))`
+
+`r hide("Answer:")`
+
+```{r }
+table(prod$ysic3dig)
+```
+The table reveals that the two industries with the largest number of observations are 311 and 321. 
+
+```{r }
+mod311=lm(log(va)~log(k)+log(l)+year, prod, subset=prod$ysic3dig=="311")
+summary(mod311)
+```
+In each case the labor coefficient is larger than the capital coefficient. However, the numbers are not necessarily very close. In the case of sector 311 the capital coefficient is only half of the coefficient for sector 321. Still, to make sure they are statistically different it’s good to do a formal test which is the next question.
+
+`r unhide()`
+
+### Part (d)
+
+Conduct a hypothesis test to compare the two functions formally. Note, that for that you need to estimate both functions using a single regression model.
+
+Are the coefficients statistically diffferent from zero?  `r mcq(c("Yes", answer = "No"))`
+
+Could they be jointly significant?  `r mcq(c("No", answer = "Yes"))`
+
+`r hide("Answer:")`
+
+
+```{r }
+mod_inter=lm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, prod,subset=prod$sic3dig=="311"|prod$sic3dig=="321")
+summary(mod_inter)
+coeftest(mod_inter, vcov=vcovHC)
+```
+
+It turns out the coefficients are not statistically different; i.e. the t-tests for the interaction coefficients are not significantly different from zero. However, it could still be the case that they are jointly significant (e.g. there could be a high degree of  collinearity in the interaction variables.)
+
+We can examine that with the linearHypothesis command:
+
+```{r }
+linearHypothesis(mod_inter, c("log(k):sic3dig=0","log(l):sic3dig=0"), vcov=vcovHC)
+```
+This suggests that the production function for sector 321 is weakly significantly different from that in sector 311.
+
+`r unhide()`
+
+### Part (e)
+
+Re-estimate your extended model from d) by allowing for fixed effects. 
+
+Does this change your assessment concerning the hypothesis that the production functions are identical in the two industries? `r mcq(c("No", answer = "Yes"))`
+
+`r hide("Answer:")`
+
+```{r }
+mod_fe=plm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, index=c("id","year"),data=prod, subset=prod$sic3dig=="311"|prod$sic3dig=="321", model="within")
+summary(mod_fe)
+linearHypothesis(mod_fe, c("log(k):sic3dig=0","log(l):sic3dig=0"), vcov=vcovHC)
+```
+It seems that once we allow for fixed effects the interaction coefficients are no longer significant even in a joint significant test.
+
+`r unhide()`
+
+
+
+
+# Exercise 6.3
+
+Use the dataset4.dta dataset. It contains weekly prices for rail transport of grain in the US midwest during the 1880s, and the quantity shipped. The railroad companies at the time operated a cartel, called the Joint Executive Committee (JEC), which is believed to have raised prices above the level that would have otherwise prevailed. This practice was legal before the Sherman Act of 1890 (antitrust legislation) was passed. From time to time, cheating by cartel members brought about a temporary collapse of the collusive price setting agreement. A dummy variable – “cartel”- in the data set indicates the period when price fixing was in effect. 
+
+```{r }
+library(haven)
+d4=read_dta("https://www.dropbox.com/sh/rqmo1hvij1veff0/AABQXwWvdZdvGlT6Y8LIfoMha/dataset4.dta?dl=1")
+names(d4)
+```
+
+### Part (a)
+
+Run an OLS regression of the log quantity on the log price, controlling for ice, indicating that the Great Lakes were frozen preventing transport by ship, and a set of seasonal dummy variables (to capture seasonality in demand; note that dataset has 12 seasonal dummies; i.e. they tread every month as a season). 
+
+What is the estimated price elasticity? `r fitb(-0.64)`
+
+Do you think you are estimating a demand curve? Explain. `r mcq(c("No", answer = "Yes"))`
+
+Think of what the the economic rationale is of including the variable “ice” in the regression?
+
+`r hide("Answer:")`
+
+```{r }
+m1=lm(log(quantity)~log(price)+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
+coeftest(m1, vcov=vcovHC)
+```
+
+The regression implies a price elasticity of -0.64; i.e. a 1% increase in price will lead to a 0.64% reduction in demand.
+We can interpret this as a demand curve, if the price coefficient really represents the effect of a price change on demand holding all other things constant. 
+One reason why this might not be the case is if shocks to demand cause price changes. On the other hand if we can control for big potential shocks to demand it will be possible to recover un-biased estimates. A big potential demand shock here is the freezing of the lakes: Because rail transport becomes the only option and hence demand increases it might lead to price changes. Indeed we see that “ice” has a significant positive effect on demand.
+
+
+`r unhide()`
+
+### Part (b)
+
+Consider using cartel as an instrument for price in order to identify the demand curve. 
+
+Is the instrument is likely to satisfy the conditions for a valid instrument? `r mcq(c("No", answer = "Yes"))`
+
+Can you use the data to check these conditions? `r mcq(c("No", "Yes", answer = "Somewhat"))`
+
+`r hide("Answer:")`
+
+Exogenous? Having a cartel is clearly a supply side factor that will by and large depend on the number of firms in the market and their respective manager to strike a deal, all factors un-related to demand.  However, the incentive to form a cartel is also driven the amount of money to be made from having a cartel which is a demand side factor. Having said that, it is more likely that long term structural aspects of of demand are relevant for this rather than the weekly changes over a relatively short time period (6 years). Hence, it is plausible that we can use cartel as an IV.
+
+Driving explanatory variable? It is almost the definition of a cartel that it has a positive impact on price. At any rate this is something we can check via a first stage regression.
+
+Exclusion? It is fairly plausible that the main effect of cartel on demand is via price. However, we can also imagine scenarios where the exclusion restriction might not hold in such a setting: imagine that the mere fact that the industry forms a cartel leads to some kind of negative press and consumer backlash perhaps with a boycott. Having said that, this is probably more of a concern with consumer goods rather than railway cargo transport.
+
+Note: What I discussed here is not the only possible way to answer this. In particular how to answer requirements 1 and 3 is somewhat down to subjective judgement. As long as students make a good case and mention and discuss all relevant requirements it’s ok to get full points.
+
+`r unhide()`
+
+### Part (c)
+
+Estimate the first stage and reduced form equations. 
+
+What is the effect of cartel on price in the first stage?  `r mcq(c("Not significant", answer = "Significant"))`
+
+What is the effect of cartel on price in the reduced form?   `r mcq(c("Positive", answer = "Negative"))`
+
+`r hide("Answer:")`
+
+First stage suggests highly significant effect of cartel on price.
+
+```{r }
+fs=lm(log(price)~cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
+coeftest(fs,vcov=vcovHC)
+linearHypothesis(fs,"cartel=0")
+```
+
+Reduced form shows strong negative effect of cartel on price as would be expected.
+
+```{r }
+rf=lm(log(quantity)~cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
+coeftest(rf,vcov=vcovHC)
+```
+
+
+`r unhide()`
+
+### Part (d)
+
+Estimate the demand function by IV. What is your estimated demand elasiticity?  `r fitb(-0.86)`
+
+How does it differ from your OLS estimate in (a)? `r mcq(c("More positive", answer = "More negative"))`
+
+`r hide("Answer:")`
+
+IV regression suggests a price elasticity of -0.86; i.e. the estimate has become stronger (more elastic; i.e. more negative) compared to OLS. This is consistent with positive demand shocks in exerting a positive influence on price (i.e. the OLS estimate would be biased upward so that it becomes less negative than is true in reality)
+
+```{r }
+library(AER)
+iv=ivreg(log(quantity)~log(price)+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12| cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
+robust.se(iv)
+```
+
+`r unhide()`
+
+### Part (e)
+
+Microeconomic theory suggests that a monopolist (like the cartel) should operate in a region of the demand curve where demand is elastic (i.e. the elasticity is < -1). 
+
+Is this the case for your estimated demand elasticity? `r mcq(c("No", answer = "Yes"))`
+
+`r hide("Answer:")`
+
+Hence we are tesing $H0: \beta(lnprice)=1  vs H1: \beta(lnprice)>-1$; (i.e. a one sided test)
+
+```{r }
+```
+
+i.e. even if $\beta(lnprice)$ is smaller than -1 as in our regressions it is possible to estimate a value that is larger than -1. There comes a point when the value is too large, however, which we can figure out by looking at the threshold that would lead to a stage 1 error of 5%
+
+t-stat=(-0.8666+1)/0.131= 1.0204783
+
+For critical value:
+
+```{r }
+qnorm(0.95)
+``` 
+
+Hence, we do not reject the null hypothesis; i.e. we cannot conclude that basic mircoeconomics is violated here.
+
+
+`r unhide()`
+
 
 
