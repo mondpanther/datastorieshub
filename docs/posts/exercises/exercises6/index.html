@@ -26,8 +26,8 @@
 <link rel="canonical" href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2020-09-08"/>
-<meta property="article:created" itemprop="dateCreated" content="2020-09-08"/>
+<meta property="article:published" itemprop="datePublished" content="2020-09-14"/>
+<meta property="article:created" itemprop="dateCreated" content="2020-09-14"/>
 <meta name="article:author" content="Ralf Martin"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -47,14 +47,14 @@
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
 <meta name="citation_title" content="Datastories Hub: Exercises 6"/>
 <meta name="citation_fulltext_html_url" content="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"/>
-<meta name="citation_online_date" content="2020/09/08"/>
-<meta name="citation_publication_date" content="2020/09/08"/>
+<meta name="citation_online_date" content="2020/09/14"/>
+<meta name="citation_publication_date" content="2020/09/14"/>
 <meta name="citation_author" content="Ralf Martin"/>
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 6"]},{"type":"character","attributes":{},"value":["Under construction"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2020-09-08"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 6"]},{"type":"character","attributes":{},"value":["Under construction"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2020-09-14"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1284,6 +1284,19 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
+  <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
   <script>/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
 
@@ -2362,7 +2375,7 @@ border-color: green;
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Exercises 6","description":"Under construction","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-09-08T00:00:00.000+01:00","citationText":"Martin, 2020"}
+{"title":"Exercises 6","description":"Under construction","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-09-14T00:00:00.000+01:00","citationText":"Martin, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2393,11 +2406,760 @@ border-color: green;
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br />2020-09-08
+<br />2020-09-14
 </div>
 
 <div class="d-article">
+<h1 id="exercise-6.1">Exercise 6.1</h1>
+<p>Consider the dataset Brexit.dta. It contains data on the outcome of the Brexit vote from June 23 this year by local area along with a range of area characteristics. The variable pct_leave records the percentage of voters in an area that voted for leave.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(haven)
+df=read_dta(&quot;https://www.dropbox.com/sh/rqmo1hvij1veff0/AAC_4UZXJG9kmImypJXTZ9IOa/brexit.dta?dl=1&quot;)
+names(df)</code></pre>
+<pre><code>
+  [1] &quot;oslaua&quot;               &quot;region_code&quot;         
+  [3] &quot;region&quot;               &quot;area&quot;                
+  [5] &quot;pct_turnout&quot;          &quot;pct_leave&quot;           
+  [7] &quot;pct_rejected&quot;         &quot;electorate&quot;          
+  [9] &quot;expectedballots&quot;      &quot;verifiedballotpapers&quot;
+ [11] &quot;votes_cast&quot;           &quot;valid_votes&quot;         
+ [13] &quot;remain&quot;               &quot;leave&quot;               
+ [15] &quot;rejected_ballots&quot;     &quot;no_official_mark&quot;    
+ [17] &quot;writing_or_mark&quot;      &quot;unmarked_or_void&quot;    
+ [19] &quot;pop91&quot;                &quot;pop11&quot;               
+ [21] &quot;sh_young&quot;             &quot;m_migr&quot;              
+ [23] &quot;b_migr&quot;               &quot;b_migr11&quot;            
+ [25] &quot;etn11_W&quot;              &quot;etn11_AI&quot;            
+ [27] &quot;etn11_AP&quot;             &quot;etn11_AB&quot;            
+ [29] &quot;etn11_AC&quot;             &quot;etn11_AO&quot;            
+ [31] &quot;etn11_BCA&quot;            &quot;etn11_BAF&quot;           
+ [33] &quot;etn11_BO&quot;             &quot;etn11_O&quot;             
+ [35] &quot;ni11_sco&quot;             &quot;ni11_bri&quot;            
+ [37] &quot;ni11_eng&quot;             &quot;ni11_oth&quot;            
+ [39] &quot;ni11_oe&quot;              &quot;shni11_sco&quot;          
+ [41] &quot;shni11_bri&quot;           &quot;shni11_eng&quot;          
+ [43] &quot;shni11_oth&quot;           &quot;shni11_oe&quot;           
+ [45] &quot;citshare&quot;             &quot;urate2004&quot;           
+ [47] &quot;urate2005&quot;            &quot;urate2006&quot;           
+ [49] &quot;urate2007&quot;            &quot;urate2008&quot;           
+ [51] &quot;urate2009&quot;            &quot;urate2010&quot;           
+ [53] &quot;urate2011&quot;            &quot;urate2012&quot;           
+ [55] &quot;urate2013&quot;            &quot;urate2014&quot;           
+ [57] &quot;urate2015&quot;            &quot;epop2004&quot;            
+ [59] &quot;epop2005&quot;             &quot;epop2006&quot;            
+ [61] &quot;epop2007&quot;             &quot;epop2008&quot;            
+ [63] &quot;epop2009&quot;             &quot;epop2010&quot;            
+ [65] &quot;epop2011&quot;             &quot;epop2012&quot;            
+ [67] &quot;epop2013&quot;             &quot;epop2014&quot;            
+ [69] &quot;epop2015&quot;             &quot;zage18_24&quot;           
+ [71] &quot;zage45_59&quot;            &quot;zage25_29&quot;           
+ [73] &quot;zage60&quot;               &quot;dlmig&quot;               
+ [75] &quot;zshi61_ACD&quot;           &quot;zshi61_F&quot;            
+ [77] &quot;zshi61_GHI&quot;           &quot;zshi61_JKO&quot;          
+ [79] &quot;zshi61_LMN&quot;           &quot;zshi71_ACD&quot;          
+ [81] &quot;zshi71_F&quot;             &quot;zshi71_GHI&quot;          
+ [83] &quot;zshi71_JKO&quot;           &quot;zshi71_LMN&quot;          
+ [85] &quot;zshi81_ACD&quot;           &quot;zshi81_F&quot;            
+ [87] &quot;zshi81_GHI&quot;           &quot;zshi81_JKO&quot;          
+ [89] &quot;zshi81_LMN&quot;           &quot;zshi91_ACD&quot;          
+ [91] &quot;zshi91_F&quot;             &quot;zshi91_GHI&quot;          
+ [93] &quot;zshi91_JKO&quot;           &quot;zshi91_LMN&quot;          
+ [95] &quot;zshi01_ACD&quot;           &quot;zshi01_F&quot;            
+ [97] &quot;zshi01_GHI&quot;           &quot;zshi01_JKO&quot;          
+ [99] &quot;zshi01_LMN&quot;           &quot;zshi11_ACD&quot;          
+[101] &quot;zshi11_F&quot;             &quot;zshi11_GHI&quot;          
+[103] &quot;zshi11_JKO&quot;           &quot;zshi11_LMN&quot;          
+[105] &quot;dzshi_ACD&quot;            &quot;dzshi_F&quot;             
+[107] &quot;dzshi_GHI&quot;            &quot;dzshi_JKO&quot;           
+[109] &quot;dzshi_LMN&quot;            &quot;zshedu11_noqual&quot;     
+[111] &quot;zshedu11_l1&quot;          &quot;zshedu11_l2&quot;         
+[113] &quot;zshedu11_l3&quot;          &quot;zshedu11_l4&quot;         
+[115] &quot;wrkage&quot;               &quot;age16over&quot;           
+[117] &quot;zsh11_wrk&quot;           </code></pre>
+</div>
+<h3 id="part-a">Part (a)</h3>
+<p>Consider the variable b_migr11. It records the share (in %) of foreign born residents in an area (according to the last census, which was in 2011). There is no shortage of politicians claiming that the vote for Brexit was due to immigration particularly after 2005 when Eastern European countries joined the EU and their residents could freely move to countries like Britain. Hence, we would expect there to be a strong effect from the presence of foreigners in an area to the vote outcome. Explore this using the pct_leave and b_migr11 variables using graphical and regression analysis.</p>
+<p>Which way is the line of best fit sloping on your scatter plot? <select class="solveme" data-answer="[&quot;Downwards&quot;]"> <option></option> <option>Upwards</option> <option>Downwards</option></select></p>
+<p>What is the constant (rounded to 3 decimal places)? <input class="solveme nospaces" size="6" data-answer="[&quot;58.553&quot;]"></input></p>
+<p>What is the slope coefficient (rounded to 3 decimal places)? <input class="solveme nospaces" size="6" data-answer="[&quot;-0.504&quot;]"></input></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(ggplot2)
+ggplot(df, aes(x=b_migr11, y=pct_leave)) + geom_point() + geom_smooth(method = &quot;lm&quot;, se = FALSE)</code></pre>
+<p><img src="data:image/png;base64,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" width="624" /></p>
+</div>
+<p>Looking at the scatter plot it seems there is rather a negative relationship between the proportion of foreigners in an area and the support for leave; i.e. exactly the opposite of what one would expect. Regression analysis confirms this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+summary(lm(pct_leave~b_migr11, data=df))</code></pre>
+<pre><code>
+Call:
+lm(formula = pct_leave ~ b_migr11, data = df)
 
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-30.4487  -5.3237   0.6445   5.6518  24.9745 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 58.55342    0.68603   85.35   &lt;2e-16 ***
+b_migr11    -0.50359    0.04668  -10.79   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 9.12 on 378 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.2354,    Adjusted R-squared:  0.2334 
+F-statistic: 116.4 on 1 and 378 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>We see that there is a significant negative relationship. 1 percentage point more foreigners in an area leads to 0.5 percentage point loss in support for the vote to leave.</p>
+</div>
+<h3 id="part-b">Part (b)</h3>
+<p>Various commentators have suggested that it might not be so much the level of immigrants as such, but the experience of a change due to more foreigners in an area that was driving the vote. The variable b_migr contains the share of immigrants in 1991.</p>
+<p>Construct a new variable recording the change in the share of immigrants between 2011 and 1992. Explore its impact by extending the regression model from part a).</p>
+<p>What is the coefficient on this new variable (rounded to 3 decimal places)? <input class="solveme nospaces" size="5" data-answer="[&quot;0.926&quot;]"></input></p>
+<p>Is it statistically significant? <select class="solveme" data-answer="[&quot;Yes&quot;]"> <option></option> <option>No</option> <option>Yes</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>We can construct the change in migration shares as:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+df[&quot;Db_migr&quot;] &lt;- df$b_migr11-df$b_migr</code></pre>
+</div>
+<p>We can then regress</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+summary(lm(pct_leave~Db_migr+b_migr11, data=df))</code></pre>
+<pre><code>
+Call:
+lm(formula = pct_leave ~ Db_migr + b_migr11, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-30.2777  -4.4700   0.6883   5.8477  28.5925 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  58.6970     0.6703  87.566  &lt; 2e-16 ***
+Db_migr       0.9259     0.2078   4.454 1.11e-05 ***
+b_migr11     -1.0987     0.1412  -7.783 6.86e-14 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 8.901 on 377 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.2736,    Adjusted R-squared:  0.2698 
+F-statistic:    71 on 2 and 377 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>It seems that indeed the change in the migration share has a strong positive and significant impact on the leave share. Notice also that the share of migrants in 2011 now becomes larger as well. This is because the areas with higher increase in foreigners are also the areas with a higher share of foreigners (e.g. like London). Consequently, in the previous univariate regression the b_migr11 coefficient suffered from an upward bias.</p>
+<p><span class="math display">\[LeaveShare = \beta_{0}+\beta_{1}MShare_{2011}+\beta_{2}(MShare_{2011}-MShare_{1991})+\epsilon\]</span></p>
+</div>
+<h3 id="part-c">Part (c)</h3>
+<p>Work out the change in an area’s leave percentage if the 2011 migrant share would move to back to its level in 1991 in every area.</p>
+<p>According to your model from part (b), what would have happened to the vote if there would not have been any change in the share of migrants between 1991 and 2011? Support for Brexit would <select class="solveme" data-answer="[&quot;Increase&quot;]"> <option></option> <option>Decrease</option> <option>Increase</option></select></p>
+<p>In how many areas would the vote flip from a majority support for Brexit to a majority support for Remain? <input class="solveme nospaces" size="1" data-answer="[&quot;0&quot;]"></input></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>Note that the impact of changing the 2011 migrant share is a combination of the factors found in the previous section i.e. reducing the migrant share by one percentage point leads to a change in the leave share of <span class="math inline">\(-(\beta_{1}+\beta_{2})=-(-1.099+0.926)=0.173\)</span> percentage points. In other words, it would seem that a reversal in migrant presence would tend to lead to an increase in the support for Brexit, rather than an increase in the support for remain. Consequently, in no area would be find a flip in the vote from majority support for Brexit to remain.</p>
+</div>
+<h3 id="part-d">Part (d)</h3>
+<p>Can you think of any reason why the estimates in (b) might not adequately reflect the causal impact of immigration on the vote? What are plausible confounding forces? <select class="solveme" data-answer="[&quot;Economic opportunity&quot;]"> <option></option> <option>Aging population (more boomers)</option> <option>Economic opportunity</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>One reason could be as follows: an important factor that drives immigration is economic opportunity. Hence, it is quite likely that immigration is higher in areas of the country where economic growth was higher. This could mean that there is a positive correlation between the errors and immigration which could imply a downward bias in the estimate of the coefficient on immigration. This in turn could in principle be an explanation for why we find a negative coefficient for the immigration variable (i.e. immigration in 2011 has actually a positive effect on support for leave but we fail to detect it because it is conflated by the more substantial negative effect of economic conditions on the leave vote).</p>
+</div>
+<h3 id="part-e">Part (e)</h3>
+<p>The dataset contains a large number of additional characteristics about a local area. Which variable would you add to your model from part b) to test the alternative explanation mentioned in d)? <select class="solveme" data-answer="[&quot;Unemployment&quot;]"> <option></option> <option>Number of Scottish people</option> <option>Share of people living in cities</option> <option>Unemployment</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>We can explore the point made in answer d) by using unemployment as an additional control variable. Below we include both the level of the unemployment rate in 2004 and the change in in the rate between 2011 and 2004.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+df[&quot;Durate&quot;] &lt;- df$urate2011-df$urate2004
+summary(lm(pct_leave~Db_migr + b_migr11 + Durate + urate2004, data=df))</code></pre>
+<pre><code>
+Call:
+lm(formula = pct_leave ~ Db_migr + b_migr11 + Durate + urate2004, 
+    data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-27.9548  -4.3850   0.6518   5.1247  19.8195 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  55.7178     1.3368  41.681  &lt; 2e-16 ***
+Db_migr       0.9224     0.2165   4.260 2.60e-05 ***
+b_migr11     -1.0015     0.1453  -6.894 2.42e-11 ***
+Durate        1.0426     0.1781   5.854 1.08e-08 ***
+urate2004    -0.3586     0.2610  -1.374     0.17    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 8.393 on 362 degrees of freedom
+  (14 observations deleted due to missingness)
+Multiple R-squared:  0.3543,    Adjusted R-squared:  0.3471 
+F-statistic: 49.65 on 4 and 362 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>Note that including the unemployment variables does not change the migration variables by much, which suggests that the economic conditions are not conflating the results on immigration. That said, note that the net negative effect of b_migr11 (coefficient for b_migr11+ coefficient for Db_migr) is slightly less negative than in in (b) which would be consistent with a slight conflation of the immigration effect by economic factors.</p>
+<p>Also, note that the change in the unemployment rate has a high and significant coefficient. If the unemployment rate goes up by 1 percentage point the support for leave goes up by about 1 percentage point as well. Hence, it might be more useful to consider economic conditions as a factor that has been driving the vote rather than recent immigration.</p>
+</div>
+<h1 id="exercise-6.2">Exercise 6.2</h1>
+<p>The dataset data/prod.dta contains production data for various companies from 1979 to 1986.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(haven)
+prod=read_dta(&quot;https://www.dropbox.com/sh/rqmo1hvij1veff0/AACD9OHn_yCnKFAX7hbEASVha/prod.dta?dl=1&quot;)
+names(prod)</code></pre>
+<pre><code>
+[1] &quot;year&quot;      &quot;id&quot;        &quot;go&quot;        &quot;m&quot;         &quot;l&quot;        
+[6] &quot;k&quot;         &quot;sic3dig&quot;   &quot;countyear&quot; &quot;va&quot;       </code></pre>
+</div>
+<h3 id="part-a-1">Part (a)</h3>
+<p>Examine the data using a Cobb-Douglas production function in terms of value added; i.e. regress ln value added on ln capital and ln labour (va contains the value added, k the capital stock and l labour all not in logs). On the basis of the regression examine the hypothesis that the production function has constant returns to scale (i.e. the labour and capital coefficients would add ot 1).</p>
+<p>The hypothesis is <select class="solveme" data-answer="[&quot;Rejected&quot;]"> <option></option> <option>Supported</option> <option>Rejected</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+prod$year=factor(prod$year)
+mod1=lm(log(va)~log(k)+log(l)+year, prod)
+summary(mod1)</code></pre>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + year, data = prod)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.7397 -0.4336  0.0305  0.4477  2.1339 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.985474   0.128579  23.219   &lt;2e-16 ***
+log(k)       0.346498   0.021273  16.288   &lt;2e-16 ***
+log(l)       0.938894   0.038330  24.495   &lt;2e-16 ***
+year80       0.036981   0.082998   0.446   0.6560    
+year81       0.141971   0.083009   1.710   0.0875 .  
+year82       0.092141   0.082992   1.110   0.2671    
+year83       0.005795   0.082994   0.070   0.9443    
+year84       0.035601   0.083003   0.429   0.6681    
+year85      -0.061518   0.083138  -0.740   0.4595    
+year86       0.108689   0.083340   1.304   0.1924    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.7091 on 1158 degrees of freedom
+Multiple R-squared:  0.7846,    Adjusted R-squared:  0.7829 
+F-statistic: 468.6 on 9 and 1158 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>
+linearHypothesis(mod1,&quot;log(k)+log(l)=1&quot;,vcov=vcovHC)</code></pre>
+<pre><code>
+Linear hypothesis test
+
+Hypothesis:
+log(k)  + log(l) = 1
+
+Model 1: restricted model
+Model 2: log(va) ~ log(k) + log(l) + year
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F    Pr(&gt;F)    
+1   1159                        
+2   1158  1 136.16 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>Constant returns are clearly rejected.</p>
+</div>
+<h3 id="part-b-1">Part (b)</h3>
+<p>The variable sic3dig contains an industry classifier which groups the firms into 17 industries.</p>
+<p>Why might it be useful to include industry classifiers in order to estimate the production function better? <select class="solveme" data-answer="[&quot;It could reduce bias&quot;]"> <option></option> <option>It will increase the R^2 of the model</option> <option>It could reduce bias</option></select></p>
+<p>Re-estimate the production function controlling for industry. Does your assessment about constant returns to scale change based on this new estimate? <select class="solveme" data-answer="[&quot;No&quot;]"> <option></option> <option>Yes</option> <option>No</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>Typically the residual from a production function estimation is interpreted as productivity. However, it is plausible that more productive firms will want to employ more production factors. This might lead to a correlation between residuals and the explanatory variables which could lead to biases. A big part of that might come from variations between sectors; i.e. some sectors are just more productive and profitable and those will also be the sectors that attract more capital and other production factors.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+prod$ysic3dig=factor(prod$sic3dig)
+mod2=lm(log(va)~log(k)+log(l)+year+sic3dig, prod)
+summary(mod2)</code></pre>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + year + sic3dig, data = prod)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.93449 -0.41661  0.01867  0.45730  2.17228 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.6788944  0.3071242   5.466 5.62e-08 ***
+log(k)       0.3411037  0.0211153  16.154  &lt; 2e-16 ***
+log(l)       0.9494168  0.0380563  24.948  &lt; 2e-16 ***
+year80       0.0366648  0.0822603   0.446   0.6559    
+year81       0.1415709  0.0822714   1.721   0.0856 .  
+year82       0.0923364  0.0822540   1.123   0.2619    
+year83       0.0060746  0.0822568   0.074   0.9411    
+year84       0.0351597  0.0822657   0.427   0.6692    
+year85      -0.0629129  0.0823992  -0.764   0.4453    
+year86       0.1065478  0.0826003   1.290   0.1973    
+sic3dig      0.0039455  0.0008438   4.676 3.27e-06 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.7028 on 1157 degrees of freedom
+Multiple R-squared:  0.7886,    Adjusted R-squared:  0.7867 
+F-statistic: 431.5 on 10 and 1157 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>
+linearHypothesis(mod2, &quot;log(k)+log(l)=1&quot;, vcov=vcovHC)</code></pre>
+<pre><code>
+Linear hypothesis test
+
+Hypothesis:
+log(k)  + log(l) = 1
+
+Model 1: restricted model
+Model 2: log(va) ~ log(k) + log(l) + year + sic3dig
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F    Pr(&gt;F)    
+1   1158                        
+2   1157  1 145.52 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>i.e. the test continues to be rejected. Consequently, we don’t find constant returns to scale.</p>
+</div>
+<h3 id="part-c-1">Part (c)</h3>
+<p>Which two of the 17 industries have the largest number of observations? <select class="solveme" data-answer="[&quot;311 and 321&quot;]"> <option></option> <option>311 and 323</option> <option>381 and 383</option> <option>311 and 321</option></select></p>
+<p>For each of the two industries separately, estimate a Cobb-Douglas production function.</p>
+<p>Would you say the functions are very different in the two industries? <select class="solveme" data-answer="[&quot;Yes&quot;]"> <option></option> <option>No</option> <option>Yes</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+table(prod$ysic3dig)</code></pre>
+<pre><code>
+311 321 322 323 324 331 332 341 342 351 352 355 356 369 371 381 383 
+400  88  88   8  32  72  72  16  56  16  48   8  56  48  24 112  24 </code></pre>
+</div>
+<p>The table reveals that the two industries with the largest number of observations are 311 and 321.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+mod311=lm(log(va)~log(k)+log(l)+year, prod, subset=prod$ysic3dig==&quot;311&quot;)
+summary(mod311)</code></pre>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + year, data = prod, subset = prod$ysic3dig == 
+    &quot;311&quot;)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.30248 -0.41505  0.07536  0.45801  1.73235 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.56445    0.20804  12.327  &lt; 2e-16 ***
+log(k)       0.41456    0.04113  10.079  &lt; 2e-16 ***
+log(l)       0.80244    0.07461  10.756  &lt; 2e-16 ***
+year80       0.08684    0.13017   0.667 0.505074    
+year81       0.26948    0.13017   2.070 0.039090 *  
+year82       0.39208    0.13033   3.008 0.002798 ** 
+year83       0.23738    0.13065   1.817 0.070003 .  
+year84       0.22519    0.13086   1.721 0.086078 .  
+year85       0.07980    0.13209   0.604 0.546113    
+year86       0.48876    0.13271   3.683 0.000263 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.6508 on 390 degrees of freedom
+Multiple R-squared:  0.8318,    Adjusted R-squared:  0.8279 
+F-statistic: 214.2 on 9 and 390 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>In each case the labor coefficient is larger than the capital coefficient. However, the numbers are not necessarily very close. In the case of sector 311 the capital coefficient is only half of the coefficient for sector 321. Still, to make sure they are statistically different it’s good to do a formal test which is the next question.</p>
+</div>
+<h3 id="part-d-1">Part (d)</h3>
+<p>Conduct a hypothesis test to compare the two functions formally. Note, that for that you need to estimate both functions using a single regression model.</p>
+<p>Are the coefficients statistically diffferent from zero? <select class="solveme" data-answer="[&quot;No&quot;]"> <option></option> <option>Yes</option> <option>No</option></select></p>
+<p>Could they be jointly significant? <select class="solveme" data-answer="[&quot;Yes&quot;]"> <option></option> <option>No</option> <option>Yes</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+mod_inter=lm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, prod,subset=prod$sic3dig==&quot;311&quot;|prod$sic3dig==&quot;321&quot;)
+summary(mod_inter)</code></pre>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + sic3dig * log(k) + sic3dig * 
+    log(l) + sic3dig + year, data = prod, subset = prod$sic3dig == 
+    &quot;311&quot; | prod$sic3dig == &quot;321&quot;)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.28294 -0.41035  0.05918  0.41383  1.74454 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    -24.166880  15.358977  -1.573 0.116276    
+log(k)           6.309703   3.124495   2.019 0.044004 *  
+log(l)          -5.635204   5.495529  -1.025 0.305689    
+sic3dig          0.086072   0.049179   1.750 0.080733 .  
+year80           0.100202   0.113938   0.879 0.379609    
+year81           0.252903   0.113923   2.220 0.026894 *  
+year82           0.352021   0.114143   3.084 0.002161 ** 
+year83           0.233218   0.114345   2.040 0.041942 *  
+year84           0.177992   0.114435   1.555 0.120516    
+year85           0.034356   0.115426   0.298 0.766105    
+year86           0.446495   0.115777   3.856 0.000131 ***
+log(k):sic3dig  -0.018972   0.009998  -1.898 0.058355 .  
+log(l):sic3dig   0.020729   0.017579   1.179 0.238910    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.6291 on 475 degrees of freedom
+Multiple R-squared:  0.8316,    Adjusted R-squared:  0.8274 
+F-statistic: 195.5 on 12 and 475 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>
+coeftest(mod_inter, vcov=vcovHC)</code></pre>
+<pre><code>
+t test of coefficients:
+
+                  Estimate  Std. Error t value  Pr(&gt;|t|)    
+(Intercept)    -24.1668805  14.2888306 -1.6913 0.0914330 .  
+log(k)           6.3097032   3.0724685  2.0536 0.0405588 *  
+log(l)          -5.6352036   5.5924232 -1.0076 0.3141357    
+sic3dig          0.0860720   0.0456747  1.8845 0.0601137 .  
+year80           0.1002017   0.1080746  0.9272 0.3543179    
+year81           0.2529032   0.1060883  2.3839 0.0175224 *  
+year82           0.3520211   0.1027869  3.4248 0.0006687 ***
+year83           0.2332183   0.1128211  2.0672 0.0392611 *  
+year84           0.1779922   0.1141448  1.5594 0.1195786    
+year85           0.0343561   0.1172765  0.2929 0.7696888    
+year86           0.4464949   0.1092866  4.0855 5.161e-05 ***
+log(k):sic3dig  -0.0189720   0.0098068 -1.9346 0.0536363 .  
+log(l):sic3dig   0.0207288   0.0178478  1.1614 0.2460545    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>It turns out the coefficients are not statistically different; i.e. the t-tests for the interaction coefficients are not significantly different from zero. However, it could still be the case that they are jointly significant (e.g. there could be a high degree of collinearity in the interaction variables.)</p>
+<p>We can examine that with the linearHypothesis command:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+linearHypothesis(mod_inter, c(&quot;log(k):sic3dig=0&quot;,&quot;log(l):sic3dig=0&quot;), vcov=vcovHC)</code></pre>
+<pre><code>
+Linear hypothesis test
+
+Hypothesis:
+log(k):sic3dig = 0
+log(l):sic3dig = 0
+
+Model 1: restricted model
+Model 2: log(va) ~ log(k) + log(l) + sic3dig * log(k) + sic3dig * log(l) + 
+    sic3dig + year
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F Pr(&gt;F)  
+1    477                   
+2    475  2 2.4557 0.0869 .
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>This suggests that the production function for sector 321 is weakly significantly different from that in sector 311.</p>
+</div>
+<h3 id="part-e-1">Part (e)</h3>
+<p>Re-estimate your extended model from d) by allowing for fixed effects.</p>
+<p>Does this change your assessment concerning the hypothesis that the production functions are identical in the two industries? <select class="solveme" data-answer="[&quot;Yes&quot;]"> <option></option> <option>No</option> <option>Yes</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+mod_fe=plm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, index=c(&quot;id&quot;,&quot;year&quot;),data=prod, subset=prod$sic3dig==&quot;311&quot;|prod$sic3dig==&quot;321&quot;, model=&quot;within&quot;)
+summary(mod_fe)</code></pre>
+<pre><code>
+Oneway (individual) effect Within Model
+
+Call:
+plm(formula = log(va) ~ log(k) + log(l) + sic3dig * log(k) + 
+    sic3dig * log(l) + sic3dig + year, data = prod, subset = prod$sic3dig == 
+    &quot;311&quot; | prod$sic3dig == &quot;321&quot;, model = &quot;within&quot;, index = c(&quot;id&quot;, 
+    &quot;year&quot;))
+
+Balanced Panel: n = 61, T = 8, N = 488
+
+Residuals:
+      Min.    1st Qu.     Median    3rd Qu.       Max. 
+-1.5714319 -0.2166290  0.0028078  0.2322813  1.3800158 
+
+Coefficients:
+                Estimate Std. Error t-value  Pr(&gt;|t|)    
+log(k)         -7.111061   7.404161 -0.9604  0.337405    
+log(l)         -3.940863   6.432306 -0.6127  0.540431    
+year80          0.102850   0.079814  1.2886  0.198247    
+year81          0.251459   0.079807  3.1508  0.001746 ** 
+year82          0.344801   0.080830  4.2657 2.469e-05 ***
+year83          0.230999   0.082761  2.7911  0.005494 ** 
+year84          0.183991   0.085504  2.1518  0.031985 *  
+year85          0.079124   0.090678  0.8726  0.383396    
+year86          0.477635   0.094902  5.0329 7.204e-07 ***
+log(k):sic3dig  0.023859   0.023623  1.0100  0.313097    
+log(l):sic3dig  0.013829   0.020471  0.6755  0.499719    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Total Sum of Squares:    96.276
+Residual Sum of Squares: 80.641
+R-Squared:      0.1624
+Adj. R-Squared: 0.019445
+F-statistic: 7.33249 on 11 and 416 DF, p-value: 1.6864e-11</code></pre>
+<pre class="r"><code>
+linearHypothesis(mod_fe, c(&quot;log(k):sic3dig=0&quot;,&quot;log(l):sic3dig=0&quot;), vcov=vcovHC)</code></pre>
+<pre><code>
+Linear hypothesis test
+
+Hypothesis:
+log(k):sic3dig = 0
+log(l):sic3dig = 0
+
+Model 1: restricted model
+Model 2: log(va) ~ log(k) + log(l) + sic3dig * log(k) + sic3dig * log(l) + 
+    sic3dig + year
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df  Chisq Pr(&gt;Chisq)
+1    418                     
+2    416  2 1.5389     0.4633</code></pre>
+</div>
+<p>It seems that once we allow for fixed effects the interaction coefficients are no longer significant even in a joint significant test.</p>
+</div>
+<h1 id="exercise-6.3">Exercise 6.3</h1>
+<p>Use the dataset4.dta dataset. It contains weekly prices for rail transport of grain in the US midwest during the 1880s, and the quantity shipped. The railroad companies at the time operated a cartel, called the Joint Executive Committee (JEC), which is believed to have raised prices above the level that would have otherwise prevailed. This practice was legal before the Sherman Act of 1890 (antitrust legislation) was passed. From time to time, cheating by cartel members brought about a temporary collapse of the collusive price setting agreement. A dummy variable – “cartel”- in the data set indicates the period when price fixing was in effect.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(haven)
+d4=read_dta(&quot;https://www.dropbox.com/sh/rqmo1hvij1veff0/AABQXwWvdZdvGlT6Y8LIfoMha/dataset4.dta?dl=1&quot;)
+names(d4)</code></pre>
+<pre><code>
+ [1] &quot;week&quot;     &quot;price&quot;    &quot;cartel&quot;   &quot;quantity&quot; &quot;seas1&quot;    &quot;seas2&quot;   
+ [7] &quot;seas3&quot;    &quot;seas4&quot;    &quot;seas5&quot;    &quot;seas6&quot;    &quot;seas7&quot;    &quot;seas8&quot;   
+[13] &quot;seas9&quot;    &quot;seas10&quot;   &quot;seas11&quot;   &quot;seas12&quot;   &quot;ice&quot;     </code></pre>
+</div>
+<h3 id="part-a-2">Part (a)</h3>
+<p>Run an OLS regression of the log quantity on the log price, controlling for ice, indicating that the Great Lakes were frozen preventing transport by ship, and a set of seasonal dummy variables (to capture seasonality in demand; note that dataset has 12 seasonal dummies; i.e. they tread every month as a season).</p>
+<p>What is the estimated price elasticity? <input class="solveme nospaces" size="5" data-answer="[&quot;-0.64&quot;]"></input></p>
+<p>Do you think you are estimating a demand curve? Explain. <select class="solveme" data-answer="[&quot;Yes&quot;]"> <option></option> <option>No</option> <option>Yes</option></select></p>
+<p>Think of what the the economic rationale is of including the variable “ice” in the regression?</p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+m1=lm(log(quantity)~log(price)+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
+coeftest(m1, vcov=vcovHC)</code></pre>
+<pre><code>
+t test of coefficients:
+
+              Estimate Std. Error t value  Pr(&gt;|t|)    
+(Intercept)  8.8612335  0.1888154 46.9307 &lt; 2.2e-16 ***
+log(price)  -0.6388847  0.0754054 -8.4727 9.516e-16 ***
+ice          0.4477537  0.1453460  3.0806  0.002249 ** 
+seas1       -0.1328219  0.0987687 -1.3448  0.179671    
+seas2        0.0668882  0.0935005  0.7154  0.474909    
+seas3        0.1114364  0.0998924  1.1156  0.265464    
+seas4        0.1554218  0.1367509  1.1365  0.256604    
+seas5        0.1096585  0.1369305  0.8008  0.423836    
+seas6        0.0468326  0.1890620  0.2477  0.804521    
+seas7        0.1225525  0.2118166  0.5786  0.563290    
+seas8       -0.2350079  0.1874514 -1.2537  0.210886    
+seas9        0.0035606  0.1849417  0.0193  0.984652    
+seas10       0.1692468  0.1855618  0.9121  0.362430    
+seas11       0.2151843  0.1853410  1.1610  0.246519    
+seas12       0.2196331  0.1825211  1.2033  0.229758    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>The regression implies a price elasticity of -0.64; i.e. a 1% increase in price will lead to a 0.64% reduction in demand. We can interpret this as a demand curve, if the price coefficient really represents the effect of a price change on demand holding all other things constant. One reason why this might not be the case is if shocks to demand cause price changes. On the other hand if we can control for big potential shocks to demand it will be possible to recover un-biased estimates. A big potential demand shock here is the freezing of the lakes: Because rail transport becomes the only option and hence demand increases it might lead to price changes. Indeed we see that “ice” has a significant positive effect on demand.</p>
+</div>
+<h3 id="part-b-2">Part (b)</h3>
+<p>Consider using cartel as an instrument for price in order to identify the demand curve.</p>
+<p>Is the instrument is likely to satisfy the conditions for a valid instrument? <select class="solveme" data-answer="[&quot;Yes&quot;]"> <option></option> <option>No</option> <option>Yes</option></select></p>
+<p>Can you use the data to check these conditions? <select class="solveme" data-answer="[&quot;Somewhat&quot;]"> <option></option> <option>No</option> <option>Yes</option> <option>Somewhat</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>Exogenous? Having a cartel is clearly a supply side factor that will by and large depend on the number of firms in the market and their respective manager to strike a deal, all factors un-related to demand. However, the incentive to form a cartel is also driven the amount of money to be made from having a cartel which is a demand side factor. Having said that, it is more likely that long term structural aspects of of demand are relevant for this rather than the weekly changes over a relatively short time period (6 years). Hence, it is plausible that we can use cartel as an IV.</p>
+<p>Driving explanatory variable? It is almost the definition of a cartel that it has a positive impact on price. At any rate this is something we can check via a first stage regression.</p>
+<p>Exclusion? It is fairly plausible that the main effect of cartel on demand is via price. However, we can also imagine scenarios where the exclusion restriction might not hold in such a setting: imagine that the mere fact that the industry forms a cartel leads to some kind of negative press and consumer backlash perhaps with a boycott. Having said that, this is probably more of a concern with consumer goods rather than railway cargo transport.</p>
+<p>Note: What I discussed here is not the only possible way to answer this. In particular how to answer requirements 1 and 3 is somewhat down to subjective judgement. As long as students make a good case and mention and discuss all relevant requirements it’s ok to get full points.</p>
+</div>
+<h3 id="part-c-2">Part (c)</h3>
+<p>Estimate the first stage and reduced form equations.</p>
+<p>What is the effect of cartel on price in the first stage? <select class="solveme" data-answer="[&quot;Significant&quot;]"> <option></option> <option>Not significant</option> <option>Significant</option></select></p>
+<p>What is the effect of cartel on price in the reduced form? <select class="solveme" data-answer="[&quot;Negative&quot;]"> <option></option> <option>Positive</option> <option>Negative</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>First stage suggests highly significant effect of cartel on price.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+fs=lm(log(price)~cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
+coeftest(fs,vcov=vcovHC)</code></pre>
+<pre><code>
+t test of coefficients:
+
+              Estimate Std. Error  t value  Pr(&gt;|t|)    
+(Intercept) -1.6937412  0.0729664 -23.2126 &lt; 2.2e-16 ***
+cartel       0.3578984  0.0270566  13.2278 &lt; 2.2e-16 ***
+ice          0.0350030  0.0548972   0.6376  0.524193    
+seas1        0.0387253  0.0672492   0.5758  0.565132    
+seas2        0.1362884  0.0649431   2.0986  0.036655 *  
+seas3        0.1890486  0.0673860   2.8055  0.005339 ** 
+seas4        0.0895226  0.0629519   1.4221  0.155999    
+seas5        0.0178628  0.0626018   0.2853  0.775572    
+seas6       -0.0257410  0.0753243  -0.3417  0.732779    
+seas7       -0.0671265  0.0802492  -0.8365  0.403526    
+seas8       -0.0358373  0.0755076  -0.4746  0.635390    
+seas9       -0.0057758  0.0771581  -0.0749  0.940376    
+seas10      -0.1002111  0.0745294  -1.3446  0.179733    
+seas11      -0.0867514  0.0780004  -1.1122  0.266909    
+seas12       0.0116931  0.0736123   0.1588  0.873891    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>
+linearHypothesis(fs,&quot;cartel=0&quot;)</code></pre>
+<pre><code>
+Linear hypothesis test
+
+Hypothesis:
+cartel = 0
+
+Model 1: restricted model
+Model 2: log(price) ~ cartel + ice + seas1 + seas2 + seas3 + seas4 + seas5 + 
+    seas6 + seas7 + seas8 + seas9 + seas10 + seas11 + seas12
+
+  Res.Df    RSS Df Sum of Sq      F    Pr(&gt;F)    
+1    314 23.251                                  
+2    313 13.989  1    9.2616 207.22 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>Reduced form shows strong negative effect of cartel on price as would be expected.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+rf=lm(log(quantity)~cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
+coeftest(rf,vcov=vcovHC)</code></pre>
+<pre><code>
+t test of coefficients:
+
+             Estimate Std. Error t value  Pr(&gt;|t|)    
+(Intercept) 10.041308   0.193288 51.9499 &lt; 2.2e-16 ***
+cartel      -0.310150   0.049899 -6.2156 1.631e-09 ***
+ice          0.392601   0.152242  2.5788   0.01037 *  
+seas1       -0.164532   0.102436 -1.6062   0.10924    
+seas2       -0.027154   0.111576 -0.2434   0.80788    
+seas3       -0.027955   0.100929 -0.2770   0.78198    
+seas4        0.074932   0.134776  0.5560   0.57863    
+seas5        0.058082   0.149984  0.3873   0.69883    
+seas6        0.016243   0.201809  0.0805   0.93590    
+seas7        0.118403   0.221429  0.5347   0.59322    
+seas8       -0.262543   0.200101 -1.3121   0.19046    
+seas9       -0.053367   0.198743 -0.2685   0.78847    
+seas10       0.172652   0.199851  0.8639   0.38830    
+seas11       0.226969   0.197428  1.1496   0.25118    
+seas12       0.168523   0.196695  0.8568   0.39223    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<h3 id="part-d-2">Part (d)</h3>
+<p>Estimate the demand function by IV. What is your estimated demand elasiticity? <input class="solveme nospaces" size="5" data-answer="[&quot;-0.86&quot;]"></input></p>
+<p>How does it differ from your OLS estimate in (a)? <select class="solveme" data-answer="[&quot;More negative&quot;]"> <option></option> <option>More positive</option> <option>More negative</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>IV regression suggests a price elasticity of -0.86; i.e. the estimate has become stronger (more elastic; i.e. more negative) compared to OLS. This is consistent with positive demand shocks in exerting a positive influence on price (i.e. the OLS estimate would be biased upward so that it becomes less negative than is true in reality)</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(AER)
+iv=ivreg(log(quantity)~log(price)+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12| cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
+robust.se(iv)</code></pre>
+<pre><code>
+[1] &quot;Robust Standard Errors&quot;</code></pre>
+<pre><code>
+t test of coefficients:
+
+              Estimate Std. Error t value  Pr(&gt;|t|)    
+(Intercept)  8.5735347  0.2106483 40.7007 &lt; 2.2e-16 ***
+log(price)  -0.8665866  0.1307362 -6.6285 1.484e-10 ***
+ice          0.4229339  0.1315103  3.2160  0.001436 ** 
+seas1       -0.1309732  0.1005382 -1.3027  0.193628    
+seas2        0.0909521  0.0927421  0.9807  0.327498    
+seas3        0.1358720  0.0980894  1.3852  0.166982    
+seas4        0.1525107  0.1313612  1.1610  0.246525    
+seas5        0.0735617  0.1271374  0.5786  0.563275    
+seas6       -0.0060642  0.1721703 -0.0352  0.971925    
+seas7        0.0602322  0.1964208  0.3066  0.759315    
+seas8       -0.2935992  0.1707605 -1.7194  0.086537 .  
+seas9       -0.0583723  0.1714096 -0.3405  0.733676    
+seas10       0.0858107  0.1738155  0.4937  0.621872    
+seas11       0.1517910  0.1716185  0.8845  0.377123    
+seas12       0.1786557  0.1668587  1.0707  0.285129    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<h3 id="part-e-2">Part (e)</h3>
+<p>Microeconomic theory suggests that a monopolist (like the cartel) should operate in a region of the demand curve where demand is elastic (i.e. the elasticity is &lt; -1).</p>
+<p>Is this the case for your estimated demand elasticity? <select class="solveme" data-answer="[&quot;Yes&quot;]"> <option></option> <option>No</option> <option>Yes</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>Hence we are tesing <span class="math inline">\(H0: \beta(lnprice)=1 vs H1: \beta(lnprice)&gt;-1\)</span>; (i.e. a one sided test)</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>i.e. even if <span class="math inline">\(\beta(lnprice)\)</span> is smaller than -1 as in our regressions it is possible to estimate a value that is larger than -1. There comes a point when the value is too large, however, which we can figure out by looking at the threshold that would lead to a stage 1 error of 5%</p>
+<p>t-stat=(-0.8666+1)/0.131= 1.0204783</p>
+<p>For critical value:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+qnorm(0.95)</code></pre>
+<pre><code>
+[1] 1.644854</code></pre>
+</div>
+<p>Hence, we do not reject the null hypothesis; i.e. we cannot conclude that basic mircoeconomics is violated here.</p>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2405,6 +3167,15 @@ border-color: green;
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <script>
 
@@ -2494,7 +3265,7 @@ window.onload = function() {
 <div class="appendix-bottom">
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Martin (2020, Sept. 8). Datastories Hub: Exercises 6. Retrieved from https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/</pre>
+  <pre class="citation-appendix short">Martin (2020, Sept. 14). Datastories Hub: Exercises 6. Retrieved from https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/</pre>
   <p>BibTeX citation</p>
   <pre class="citation-appendix long">@misc{martin2020exercises,
   author = {Martin, Ralf},
