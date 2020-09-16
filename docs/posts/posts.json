@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/exercises/exercises1/",
+    "title": "Exercises 1",
+    "description": "Starting to think like an econometrician.",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-16",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-16T09:18:20+01:00",
+    "input_file": "exercises1.utf8.md"
+  },
+  {
     "path": "posts/exercises/exercises6/",
     "title": "Exercises 6",
     "description": "Under construction",
@@ -15,24 +33,6 @@
     ],
     "preview": {},
     "last_modified": "2020-09-14T16:06:23+01:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/exercises/exercises1/",
-    "title": "Exercises 1",
-    "description": "Starting to think like an econometrician.",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-09-08",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-09-08T09:48:42+01:00",
     "input_file": {}
   },
   {
