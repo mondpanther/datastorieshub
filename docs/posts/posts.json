@@ -14,8 +14,28 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-16T09:18:20+01:00",
-    "input_file": "exercises1.utf8.md"
+    "last_modified": "2020-09-16T09:22:05+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises4/",
+    "title": "Exercises 4",
+    "description": "Testing your knowledge of testing",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-16",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": "posts/exercises/exercises4/distill-preview.png",
+    "last_modified": "2020-09-16T09:27:25+01:00",
+    "input_file": {},
+    "preview_width": 1248,
+    "preview_height": 768
   },
   {
     "path": "posts/exercises/exercises6/",
@@ -32,7 +52,7 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-14T16:06:23+01:00",
+    "last_modified": "2020-09-14T15:56:26+01:00",
     "input_file": {}
   },
   {
@@ -50,25 +70,7 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-08T10:21:22+01:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/exercises/exercises4/",
-    "title": "Exercises 4",
-    "description": "Testing your knowledge of testing",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-09-08",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-09-08T08:37:22+01:00",
+    "last_modified": "2020-09-08T10:21:21+01:00",
     "input_file": {}
   },
   {
@@ -86,7 +88,7 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-08T10:09:31+01:00",
+    "last_modified": "2020-09-08T10:09:30+01:00",
     "input_file": {}
   },
   {
@@ -122,7 +124,7 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-08T10:18:54+01:00",
+    "last_modified": "2020-09-08T10:18:52+01:00",
     "input_file": {}
   },
   {
@@ -140,7 +142,7 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-08T10:19:58+01:00",
+    "last_modified": "2020-09-08T10:19:57+01:00",
     "input_file": {}
   },
   {
@@ -157,9 +159,11 @@
     "categories": [
       "Exercises"
     ],
-    "preview": {},
-    "last_modified": "2020-09-02T17:34:51+01:00",
-    "input_file": {}
+    "preview": "posts/exercises/exercises2/distill-preview.png",
+    "last_modified": "2020-09-02T17:34:42+01:00",
+    "input_file": {},
+    "preview_width": 838,
+    "preview_height": 643
   },
   {
     "path": "posts/exercises/exercises3/",
