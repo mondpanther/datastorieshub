@@ -1,6 +1,8 @@
 ---
 title: "Foreigner's and Crime"
 output: html_document
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ```{r setup, include=FALSE}
@@ -183,3 +185,87 @@ Which we can also see in a scatterplot:
 
 ```
 
+
+
+# Merging data
+
+A big part of applied data analysis involves combining different bit of data. For that you need `merge` or `join` commands. Here is an example where we add more area level variables to our foreigners dataset:
+
+```{r}
+library(dplyr)
+
+ff_more=read.csv("https://www.dropbox.com/s/gwq2wmmxr8s3v7t/foreigners_more.csv?dl=1")  
+
+names(ff_more)
+
+inner=ff %>% inner_join(ff_more,by="area")
+full=ff %>% full_join(ff_more,by="area")
+
+
+
+```
+
+Dataframe `ff` has `r nrow(ff)` observations. Dataframe `ff_more` has `r nrow(ff_more)`.
+The inner join has `r nrow(inner)`, the full join `r nrow(full)`.
+
+# Doing stuff by region and how to use functions
+
+One of the variables we merged earlier includes a region variable. The following command counts the number of observations for every region.
+```{r}
+inner %>% group_by(region) %>% summarise(n())
+```
+
+![](https://www.researchgate.net/profile/Bethany_Toma2/publication/328861101/figure/fig1/AS:691532764045312@1541885667268/Map-of-NUTS-1-regions-in-the-UK-3.ppm)
+
+### Define the function:
+
+
+```{r}
+
+plotter=function(r){
+  
+  ffx=inner %>% filter(region==r)
+  
+  plot=ggplot(ffx, aes(x = b_migr11, y = crimesPc)) +
+    geom_smooth(method = "lm", se = FALSE) +
+    geom_point()+theme_minimal()+
+    xlab("% foreign born")+ylab("Crimes per capita")+
+    ggtitle(r)
+  
+  
+  reg=(lm(crimesPc~b_migr11,ffx))
+  return(list(plot,reg))
+}
+```
+
+### Call the function:
+```{r calling the function,message=FALSE}
+p=plotter("London") 
+p[[1]];summary(p[[2]])
+
+p=plotter("East")
+p[[1]];summary(p[[2]])
+
+p=plotter("South West")
+p[[1]];summary(p[[2]])
+
+
+```
+
+
+### Or maybe doing it with a loop?
+```{r,message=FALSE}
+regions=inner$region %>% unique()
+
+for(rrr in regions){
+  
+  p=plotter(rrr)
+  print(p[[1]])
+  print(summary(p[[2]]))
+
+}
+```
+
+
+
+```
