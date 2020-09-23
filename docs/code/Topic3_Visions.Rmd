@@ -1,0 +1,56 @@
+---
+title: "Visions"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(readxl)
+
+theme_set(theme_minimal())
+
+# Data Import
+Payment <- read_excel("C:/Users/Tarun/Desktop/2nd Sem/Data Viz/Assignment2/Payment.xlsx")
+
+#Creating new variable for net income percentage
+Payment <- mutate(Payment, `Take_Home_Income(as % of gross wage earning)` = (`Wages earning After Taxes`/`Gross wage earnings (US dollars with equal purchasing power)`)*100)
+
+
+Payment$`Take_Home_Income(as % of gross wage earning)` <- round(Payment$`Take_Home_Income(as % of gross wage earning)`, 2)
+
+# Formatting 
+payment2 <- Payment %>% gather(Salary_Breakup , value , 4,5,8)
+payment2$Salary_Breakup<- as.factor(payment2$Salary_Breakup)
+payment2$Country<- as.factor(payment2$Country)
+payment2$value <- as.numeric(payment2$value)
+
+#Plotting Facit
+pp1 <- ggplot(data = payment2, aes(x =Country, y = payment2$value, fill = payment2$Salary_Breakup))
+pp2 <- pp1 + geom_bar(stat = "identity", 
+                      show.legend = FALSE) + 
+  scale_fill_manual(values=c("#d55e00","#cc79a7","#0072b2"))+
+  geom_text(aes(label=paste0(value)), size = 2.5, position =position_stack(vjust = 1.1))+ 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        panel.spacing = unit(1, "lines"),
+        strip.background = element_blank(),
+        strip.placement = "outside",
+        panel.grid.major = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid.major.x = element_blank())+
+  labs( title = "Take Home Pay Comparison Of Workers Around The World",
+        subtitle = "Proportions Of Income Tax, Employees Social Security contributions & Net Income",
+        y = "Percentage", 
+        x = "Countries")+
+  facet_wrap(Salary_Breakup~., scales = "free_y", nrow = 3, strip.position = "top")
+
+
+```
