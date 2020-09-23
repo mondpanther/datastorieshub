@@ -219,7 +219,6 @@ inner %>% group_by(region) %>% summarise(n())
 
 ### Define the function:
 
-
 ```{r}
 
 plotter=function(r){
