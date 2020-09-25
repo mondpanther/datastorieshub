@@ -1,0 +1,103 @@
+---
+title: "COVID Hoaxism - Group Coursework Template"
+output: html_document
+author: Ralf Martin
+editor_options: 
+  chunk_output_type: inline
+chunk_output_type: inline
+---
+
+
+
+<!--html_preserve-->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3928947-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-3928947-4');
+  </script>
+<!--/html_preserve-->
+
+
+Last update:  `r format(Sys.time(), '%B %d , %Y - %H:%M ')`
+
+
+# Introduction
+
+
+This document provides you with a template or (draft) example on how this could look like. You should start with an introduction that motivates what you are working on. What question or issue are you going to address? 
+Here we are going to look into COVID Hoaxism; i.e. the phenomenon that people question the reality of the covid pandemic. Specifically we explore the hypothesis that such hoaxism has made the pandemic worse; i.e. there is a causal link from hoaxism to covid cases and/or deaths. A mechanism that would support this is if people don't observe social distancing or face coverings because they don't believe that the pandemic is happening.
+
+
+# Methods and data
+Explain how you are going to provide evidence on your chosen topic. For the case of covid hoaxism we are fitting a model of the following form
+$$ Y_i=\beta_1 HOAX_i + \beta_2 X_i + \epsilon_i$$ 
+where $Y_i$ are different outcome variables such as COVID cases and deaths per capita, $HOAX_i$
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(rtweet)
+library(tidytext)
+
+# plotting and pipes - tidyverse!
+library(ggplot2)
+library(dplyr)
+library(gdata)
+
+
+
+```
+
+
+
+
+
+```{r load some data}
+
+
+stats=read.csv("https://www.dropbox.com/s/8w4zbg40y84pnqk/statslong.csv?dl=1")
+
+# Creating some extra variables
+stats=stats%>%mutate(   pop=pop/1000, 
+                        hoaxshXdensity=(hoaxsh)*(density-mean(density)),
+                        tweetsPCXdensity=(tweetsPC)*(density-mean(density))
+                      )
+
+
+```
+
+
+
+
+```{r simple scatter}
+ggplot(stats,aes(x=hoaxsh, y=casesPC))+geom_point()+theme_minimal()
+ggplot(stats,aes(x=hoaxsh, y=casesPC))+geom_point()+theme_minimal()
+
+```
+
+
+
+
+
+```{r regressions}
+library(dplyr)
+lm(casesPC~hoaxsh,stats) %>% summary()
+lm(casesPC~density,stats) %>% summary()
+lm(casesPC~hoaxsh+density+tweetsPC,stats) %>% summary()
+lm(casesPC~hoaxsh+hoaxshXdensity+tweetsPCXdensity+density+tweetsPC,stats) %>% summary()
+
+
+
+lm(deathsPC~hoaxsh,stats) %>% summary()
+lm(deathsPC~density,stats) %>% summary()
+lm(deathsPC~hoaxsh+density+tweetsPC,stats) %>% summary()
+lm(deathsPC~hoaxsh+hoaxshXdensity+tweetsPCXdensity+density+tweetsPC,stats) %>% summary()
+
+```
