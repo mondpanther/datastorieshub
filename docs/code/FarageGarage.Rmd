@@ -166,14 +166,16 @@ An important implication of the OLS estimator is that it works out the $\beta$ p
 ff['residuals']=r1$residuals  
 #Note this is an alternative way of assigning a new variable to a dataframe.
 #Alternatively use:
-ff=ff %>% mutate(residuals=r1$residuals)
+ff=ff %>% mutate(residualsx1=r1$residuals)
 
 ```
 
 Note that the correlation is indeed 0:
 ```{r}
 
-  cor(ff %>% select(residuals,b_migr11),use="complete.obs")
+  ff %>% select(residuals,b_migr11, pop11)  %>% cor(use="complete.obs")
+
+  10^17
 ```
 
 Which we can also see in a scatterplot:
