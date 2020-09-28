@@ -25,6 +25,18 @@ We already have seen ggplot drawing scatterplots. Here we include a new example:
 
 The basic concern is that the believe by some that the COVID pandemic is a hoax, has made things worse; i.e. because people believe it is a hoax they are less cautious and as a consequence help to spread the desease more. One way to explore this is with data for US states. I measure hoaxism for individual states by the share of tweets expressing hoaxist ideas in all tweets related to COVID.
 
+Here are some examples of hoaxists Tweets:
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"> <a href="https://twitter.com/Dexxter____/status/1307626139465244672">Electro magnetic hoaxist</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"> <a href="https://twitter.com/ColleenHuberNMD/status/1310239404523360256">Human Rights Hoaxist</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"> <a href="https://twitter.com/isnt_it_red/status/1309184959853342724">I love Sweden Hoaxist</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
 Up to date data on this you can download as follows:
 
 ```{r, message=FALSE}
@@ -77,7 +89,7 @@ Now one thing that is really cool with ggplot is that you can overlay multiple p
 ggplot(stats,aes(x=hoaxsh, y=deathsPC, color=dens_quart))+ 
        geom_point() +
        theme_minimal()+
-       xlab("Share of Hoax Tweets") + 
+       xlab("Share of Hoax Tweets in %") + 
        ylab("Covid Deaths per capita") + 
        geom_smooth(method = "lm", se = FALSE)+
        ggtitle("Covid Deaths and Hoxism by Quartile of population density") +
@@ -351,11 +363,52 @@ ggplot(usbyday, aes(x = hoaxsh*100, y = dayofwf,fill = dayofwf,color=dayofwf )) 
 
 
 ## Maps
-As John Snow showed: some of the best visualisations involve plotting data onto maps. Here is an example of how you can 
+As John Snow showed: some of the best visualisations involve plotting data onto maps. Here is an example of how you can do that with the data we used above.
+
+For starters you need map data. `dplyr` has actually a command for that with some pre-specified maps
+```{r}
+library(dplyr)
+states_map <- map_data("state")
+head(states_map)
+
+```
+Note that this is polygon data for US states: i.e. all the corners of a particular state (in longitude and
+lattitude)
+<br>
+We can simply plot the map:
+```{r, message=FALSE}
+
+ggplot(states_map, aes(long, lat, group = group))+
+  geom_polygon(fill="white",color="black")+theme_void()
+```
+
+To convey data (e.g. the share of hoxism) we can use a heat map:
+```{r, message=FALSE}
+# First we need to add any data we want to put on the map to the 
+# polygon dataframe
+states_mapPdata=states_map %>% left_join(stats %>% mutate(state=tolower(as.character(state))), by = c("region" = "state"))
+#Note the state variable has to be adjusted to match with the region variable in the polygon dataframe
+
+ggplot(states_mapPdata, aes(long, lat, group = group))+
+  geom_polygon(aes(fill = hoaxsh),color="white")+theme_void()+
+  scale_fill_viridis_c(option = "C")+labs(fill = "Hoax Share in %") 
+
+
+
+
+```
+
+
+
 
 #D3
 D3 is powerful javascript library to make interactive web based 
 
+```{r,eval=FALSE,echo=FALSE}
+library(r2d3)
+r2d3(data = jsonlite::read_json("us.json"), d3_version = 3, dependencies = "topojson.min.js", script = "cartogram.js")
+
+```
 
 
 
