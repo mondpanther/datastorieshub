@@ -1,7 +1,7 @@
 name: Datastories Hub
 author: Ralf Martin
 output_dir: "docs"
-include: ["code"]
+include: ["code","slides"]
 navbar:
   title: Datastories Hub
   right:

@@ -13,7 +13,8 @@ filei=list.files(path="../slides",pattern="ESB")
 
 file=c(filei,fileo)
 
-path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
+#path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
+path="https://mondpanther.github.io/datastorieshub/slides/"
 full=paste0(path,file[[1]])
 
 
