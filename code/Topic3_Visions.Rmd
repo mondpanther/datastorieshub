@@ -389,10 +389,28 @@ To convey data (e.g. the share of hoxism) we can use a heat map:
 states_mapPdata=states_map %>% left_join(stats %>% mutate(state=tolower(as.character(state))), by = c("region" = "state"))
 #Note the state variable has to be adjusted to match with the region variable in the polygon dataframe
 
-ggplot(states_mapPdata, aes(long, lat, group = group))+
+p=ggplot(states_mapPdata, aes(long, lat, group = group))+
   geom_polygon(aes(fill = hoaxsh),color="white")+theme_void()+
   scale_fill_viridis_c(option = "C")+labs(fill = "Hoax Share in %") 
+p
 
+```
+
+
+
+```{r}
+centroid <- aggregate(cbind(long,lat) ~ region, data=states_mapPdata, FUN=mean)
+
+p+geom_text(data = centroid, mapping = aes(x=long, y=lat, label=region)) 
+
+
+testtext <- ggplot() +
+            geom_polygon(data = df, mapping = aes(x=long, y=lat, group = group, fill=location)) +
+            geom_text(data = centroid, mapping = aes(x=long, y=lat, label=region)) +
+            geom_path(color = "white") +
+            scale_fill_hue(l=40) +
+            coord_equal() +
+            theme(legend.position = "none", title = element_blank(), axis.text = element_blank())
 
 
 
