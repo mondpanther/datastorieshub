@@ -1,0 +1,31 @@
+---
+  title: "Lecture Slides - Data Analytics" 
+  site: distill::distill_website
+
+---
+
+
+
+```{r ,echo=FALSE, message=FALSE}
+
+fileo=list.files(path="../slides",pattern="Topic")
+filei=list.files(path="../slides",pattern="CCMF")
+
+file=c(filei,fileo)
+
+path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
+full=paste0(path,file[[1]])
+
+
+```
+
+```{r echo = FALSE, results = "asis"}
+
+for (i in seq(1,length(file))) {
+  
+  full=paste0(path,file[[i]])
+  cur=paste("- [", file[[i]],"](",full,") \n")
+  cat(cur)
+
+}
+```
