@@ -40,8 +40,10 @@ part()
 
 ```
 
-Your task this week is to get some data from somewhere and create a figure or visualisation in R along with a discussion of what we might be seeing. To help you with that, this exercise sheets walks you through a couple of examples.
+Your task this week is to get some data from somewhere and create a figure or visualisation in R along with a discussion of what we might be seeing. The R Markdown for lecture 3 provides you with some starting points. You find the Rmd code [here](https://mondpanther.github.io/datastorieshub/code/Topic3_Visions.Rmd) and the compiled html output [here](https://mondpanther.github.io/datastorieshub/code/Topic3_Visions.html)
 
 
-# Exercise 3.1
+
+
+
 

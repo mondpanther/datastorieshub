@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/exercises/exercises3/",
+    "title": "Exercises 3",
+    "description": "How to have visualisations",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-30",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-30T10:18:59+01:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/exercises/exercises1/",
     "title": "Exercises 1",
     "description": "Starting to think like an econometrician.",
@@ -159,24 +177,6 @@
     ],
     "preview": {},
     "last_modified": "2020-09-02T17:34:51+01:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/exercises/exercises3/",
-    "title": "Exercises 3",
-    "description": "How to have visualisations",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-09-02",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-09-02T10:10:53+01:00",
     "input_file": {}
   },
   {

@@ -142,7 +142,7 @@ usbyday=usbyday %>%  mutate(date=as_date(date))
 ```
 
 
-```{r, echo=FALSE}
+```{r, message=FALSE}
 library(scales)
 tsplot= usbyday  %>% ggplot( aes(x = date,y=hoaxsh*100  )  )+geom_line()  + theme_minimal() + 
      ylab("Share of hoax tweets [%]")  + xlab("Days")  
@@ -356,9 +356,9 @@ ggplot(usbyday, aes(x = hoaxsh*100, y = dayofwf,fill = dayofwf,color=dayofwf )) 
 ```
 
 
-
+<!--
 ## Pie Chart
-
+-->
 
 
 
@@ -420,22 +420,127 @@ centroid=states_mapPdata %>% group_by(region) %>%
 
 
 
-#D3
-D3 is powerful javascript library to make interactive web based 
 
-```{r,eval=FALSE,echo=FALSE}
-library(r2d3)
-r2d3(data = jsonlite::read_json("us.json"), d3_version = 3, dependencies = "topojson.min.js", script = "cartogram.js")
+
+
+# D3
+
+[D3](https://d3js.org/) is powerful javascript library to make interactive web based figures and visualisations. It's particularly cool for visualising networks.
+The R package [networkD3](https://christophergandrud.github.io/networkD3/) provides a simple interface to make some of the functionality available in R.
+
+E.g. we can create flow diagrams (also known as Sankey Networks)
+
+
+```{r}
+#library(dplyr)
+#library(ggalluvial)
+#library(ggplot2)
+library(networkD3)
+library(htmlwidgets)
+
+
+flows=read.csv("https://www.dropbox.com/s/b79lx9hwuo3rgv8/frdecovidtoall.csv?dl=1") %>% mutate(flow=per*10^6*coun)
+
+
+```
+
+The key ingredient are nodes
+```{r}
+
+nodes=bind_rows(flows %>% select(finalcat) %>% unique() %>% rename(sector=finalcat),
+                flows %>% select(to) %>% unique() %>% rename(sector=to)  ) %>% mutate(no=row_number()-1)
+
+```
+
+
+
+... and links
+
+```{r}
+
+
+links=flows %>% select(finalcat,to,flow)
+
+
+
+links=links%>% merge(nodes, by.x="to",by.y="sector") %>% dplyr::rename(tono=no) %>%
+               merge(nodes, by.x="finalcat",by.y="sector") %>% rename(fromno=no) %>% select(-finalcat,-to)
+
+
+links
 
 ```
 
 
 
 
+```{r}
+#test=Energy$nodes
+#test2=Energy$links
+library(gplots)
+color_scale <- data.frame(
+  range = col2hex(c("red","orange","green","black","grey")), 
+  domain = c("COVID core","COVID supporting","clean","dirty","grey"),
+  nodes = nodes,
+  stringsAsFactors = FALSE
+)
+
+```
+
+
+Let's plot the network
+```{r}
+p=sankeyNetwork(Links = links, Nodes = nodes, Source = "fromno",
+             Target = "tono", Value = "flow", NodeID = "sector",
+             units = "$", fontSize = 14, nodeWidth = 30,
+                colourScale = JS(sprintf(
+                         'd3.scaleOrdinal()  
+                          .domain(%s)
+                          .range(%s)
+                          ',
+                          jsonlite::toJSON(color_scale$domain),
+                          jsonlite::toJSON(color_scale$range)
+                      )))
+p
+
+
+
+```
 
 
 
 
+# dygraphs
+
+Even cooler time series
+
+
+```{r}
+
+library(dygraphs)
+library(xts)
+tsf <- xts(x=usbyday$hoaxsh*100, order.by=usbyday$date)
+
+
+dygraph(tsf, main = "Share of Hoaxtweets in %") %>% 
+                  dySeries("V1", label = "US")  %>% 
+                  dyRangeSelector(height = 20) 
+
+
+```
+
+
+
+
+<!--
+```{r,eval=FALSE,echo=FALSE}
+library(r2d3)
+r2d3(data = jsonlite::read_json("us.json"), d3_version = 3, dependencies = "topojson.min.js", script = "cartogram.js")
+
+```
+-->
+
+<!--
 ```{r ,eval=FALSE,echo=FALSE,message=FALSE}
 library(ggplot2)
 library(tidyverse)
@@ -479,3 +584,4 @@ pp2 <- pp1 + geom_bar(stat = "identity",
 
 
 ```
+-->
