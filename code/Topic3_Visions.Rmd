@@ -129,7 +129,7 @@ Working with dates and times can be tricky. But luckily R can help you with that
 let R know which variables capture dates (as opposed to normal numbers or characters)
 
 
-```{r}
+```{r,message=FALSE}
 
 library(lubridate)  # commands to help with dates and times
 
