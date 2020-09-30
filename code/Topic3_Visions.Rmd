@@ -142,7 +142,7 @@ usbyday=usbyday %>%  mutate(date=as_date(date))
 ```
 
 
-```{r, echo=FALSE}
+```{r, message=FALSE}
 library(scales)
 tsplot= usbyday  %>% ggplot( aes(x = date,y=hoaxsh*100  )  )+geom_line()  + theme_minimal() + 
      ylab("Share of hoax tweets [%]")  + xlab("Days")  
@@ -428,83 +428,107 @@ centroid=states_mapPdata %>% group_by(region) %>%
 [D3](https://d3js.org/) is powerful javascript library to make interactive web based figures and visualisations. It's particularly cool for visualising networks.
 The R package [networkD3](https://christophergandrud.github.io/networkD3/) provides a simple interface to make some of the functionality available in R.
 
+E.g. we can create flow diagrams (also known as Sankey Networks)
+
 
 ```{r}
 #library(dplyr)
 #library(ggalluvial)
 #library(ggplot2)
 library(networkD3)
-#library(htmlwidgets)
+library(htmlwidgets)
 
 
+flows=read.csv("https://www.dropbox.com/s/b79lx9hwuo3rgv8/frdecovidtoall.csv?dl=1") %>% mutate(flow=per*10^6*coun)
 
 
 ```
 
-
-
-
-```{r setupcc, include=FALSE}
-library(highcharter)
-library(dplyr)
-library(viridisLite)
-library(forecast)
-library(treemap)
-library(flexdashboard)
-
-thm <- 
-  hc_theme(
-    colors = c("#1a6ecc", "#434348", "#90ed7d"),
-    chart = list(
-      backgroundColor = "transparent",
-      style = list(fontFamily = "Source Sans Pro")
-    ),
-    xAxis = list(
-      gridLineWidth = 1
-    )
-  )
-
-```
-
-Column {data-width=600}
------------------------------------------------------------------------
-
-### Sales Forecast
-
+The key ingredient are nodes
 ```{r}
-AirPassengers %>% 
-  forecast(level = 90) %>% 
-  hchart() %>% 
-  hc_add_theme(thm)
+
+nodes=bind_rows(flows %>% select(finalcat) %>% unique() %>% rename(sector=finalcat),
+                flows %>% select(to) %>% unique() %>% rename(sector=to)  ) %>% mutate(no=row_number()-1)
+
 ```
 
-### Sales by State
+
+
+... and links
 
 ```{r}
 
 
-data("USArrests", package = "datasets")
-data("usgeojson")
+links=flows %>% select(finalcat,to,flow)
 
-USArrests <- USArrests %>%
-  mutate(state = rownames(.))
 
-n <- 4
-colstops <- data.frame(
-  q = 0:n/n,
-  c = substring(viridis(n + 1), 0, 7)) %>%
-  list.parse2()
 
-highchart() %>%
-  hc_add_series_map(usgeojson, USArrests, name = "Sales",
-                    value = "Murder", joinBy = c("woename", "state"),
-                    dataLabels = list(enabled = TRUE,
-                                      format = '{point.properties.postalcode}')) %>%
-  hc_colorAxis(stops = colstops) %>%
-  hc_legend(valueDecimals = 0, valueSuffix = "%") %>%
-  hc_mapNavigation(enabled = TRUE) %>%
-  hc_add_theme(thm)
+links=links%>% merge(nodes, by.x="to",by.y="sector") %>% dplyr::rename(tono=no) %>%
+               merge(nodes, by.x="finalcat",by.y="sector") %>% rename(fromno=no) %>% select(-finalcat,-to)
+
+
+links
+
 ```
+
+
+
+
+```{r}
+#test=Energy$nodes
+#test2=Energy$links
+library(gplots)
+color_scale <- data.frame(
+  range = col2hex(c("red","orange","green","black","grey")), 
+  domain = c("COVID core","COVID supporting","clean","dirty","grey"),
+  nodes = nodes,
+  stringsAsFactors = FALSE
+)
+
+```
+
+
+Let's plot the network
+```{r}
+p=sankeyNetwork(Links = links, Nodes = nodes, Source = "fromno",
+             Target = "tono", Value = "flow", NodeID = "sector",
+             units = "$", fontSize = 14, nodeWidth = 30,
+                colourScale = JS(sprintf(
+                         'd3.scaleOrdinal()  
+                          .domain(%s)
+                          .range(%s)
+                          ',
+                          jsonlite::toJSON(color_scale$domain),
+                          jsonlite::toJSON(color_scale$range)
+                      )))
+p
+
+
+
+```
+
+
+
+
+# dygraphs
+
+Even cooler time series
+
+
+```{r}
+
+library(dygraphs)
+library(xts)
+tsf <- xts(x=usbyday$hoaxsh*100, order.by=usbyday$date)
+
+
+dygraph(tsf, main = "Share of Hoaxtweets in %") %>% 
+                  dySeries("V1", label = "US")  %>% 
+                  dyRangeSelector(height = 20) 
+
+
+```
+
 
 
 
