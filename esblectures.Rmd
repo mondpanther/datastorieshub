@@ -1,10 +1,11 @@
 ---
-  title: "Lecture Slides - Data Analytics" 
+  title: "Course Materials - Data Analytics" 
   site: distill::distill_website
 
 ---
 
 
+# Lecture Slides
 
 ```{r ,echo=FALSE, message=FALSE}
 
@@ -30,3 +31,36 @@ for (i in seq(1,length(file))) {
 
 }
 ```
+
+
+
+# R scripts
+
+
+
+```{r ,echo=FALSE, message=FALSE}
+
+fileo=list.files(path="../slides",pattern="Topic")
+filei=list.files(path="../slides",pattern="Farrage")
+
+file=c(filei,fileo)
+
+#path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
+path="https://mondpanther.github.io/datastorieshub/code/"
+full=paste0(path,file[[1]])
+
+
+```
+
+```{r echo = FALSE, results = "asis"}
+
+for (i in seq(1,length(file))) {
+  
+  full=paste0(path,file[[i]])
+  cur=paste("- [", file[[i]],"](",full,") \n")
+  cat(cur)
+
+}
+```
+
+

@@ -195,10 +195,17 @@ A big part of applied data analysis involves combining different bit of data. Fo
 
 ```{r}
 library(dplyr)
+#ff_raw=read.csv("https://www.dropbox.com/s/g1w75gkw7g91zef/foreigners.csv?dl=1")  
+
+
+
 
 ff_more=read.csv("https://www.dropbox.com/s/gwq2wmmxr8s3v7t/foreigners_more.csv?dl=1")  
 
 names(ff_more)
+
+inner=ff_raw %>% inner_join(ff_more,by="area")
+inner=ff_raw %>% full_join(ff_more,by="area")
 
 inner=ff %>% inner_join(ff_more,by="area")
 full=ff %>% full_join(ff_more,by="area")

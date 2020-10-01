@@ -9,17 +9,6 @@ chunk_output_type: inline
 
 
 
-<!--html_preserve-->
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3928947-4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'UA-3928947-4');
-  </script>
-<!--/html_preserve-->
 
 
 Last update:  `r format(Sys.time(), '%B %d , %Y - %H:%M ')`
@@ -77,8 +66,10 @@ stats=stats%>%mutate(   pop=pop/1000,
 
 
 ```{r simple scatter}
-ggplot(stats,aes(x=hoaxsh, y=casesPC))+geom_point()+theme_minimal()
-ggplot(stats,aes(x=hoaxsh, y=casesPC))+geom_point()+theme_minimal()
+
+ggplot(stats,aes(x=hoaxsh, y=deathsPC))+
+  geom_point()+theme_minimal()+xlab("Deaths per capita")+xlab("Hoaxism share in %")+
+  geom_smooth(method="lm")
 
 ```
 
