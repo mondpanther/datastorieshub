@@ -9,8 +9,8 @@
 
 ```{r ,echo=FALSE, message=FALSE}
 
-fileo=list.files(path="../slides",pattern="Topic")
-filei=list.files(path="../slides",pattern="ESB")
+fileo=list.files(path="./slides",pattern="Topic")
+filei=list.files(path="./slides",pattern="ESB")
 
 file=c(filei,fileo)
 
@@ -37,11 +37,10 @@ for (i in seq(1,length(file))) {
 # R scripts
 
 
-
 ```{r ,echo=FALSE, message=FALSE}
 
-fileo=list.files(path="../slides",pattern="Topic")
-filei=list.files(path="../slides",pattern="Farrage")
+fileo=list.files(path="./code",pattern="Topic")
+filei=list.files(path="./code",pattern="Farage")
 
 file=c(filei,fileo)
 
