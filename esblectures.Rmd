@@ -9,7 +9,7 @@
 
 ```{r ,echo=FALSE, message=FALSE}
 
-fileo=list.files(path="./slides",pattern="Topic")
+fileo=list.files(path="./slides",pattern="^Topic")
 filei=list.files(path="./slides",pattern="ESB")
 
 file=c(filei,fileo)
