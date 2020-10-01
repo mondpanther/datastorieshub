@@ -17,14 +17,19 @@ Last update:  `r format(Sys.time(), '%B %d , %Y - %H:%M ')`
 # Introduction
 
 
-This document provides you with a template or (draft) example on how this could look like. You should start with an introduction that motivates what you are working on. What question or issue are you going to address? 
+This document (You find the Rmd file for this document under [this](https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.Rmd) link.) provides you with a template or (draft) example on how this could look like. You should start with an introduction that motivates what you are working on. What question or issue are you going to address? 
 Here we are going to look into COVID Hoaxism; i.e. the phenomenon that people question the reality of the covid pandemic. Specifically we explore the hypothesis that such hoaxism has made the pandemic worse; i.e. there is a causal link from hoaxism to covid cases and/or deaths. A mechanism that would support this is if people don't observe social distancing or face coverings because they don't believe that the pandemic is happening.
 
 
 # Methods and data
-Explain how you are going to provide evidence on your chosen topic. For the case of covid hoaxism we are fitting a model of the following form
+Explain how you are going to provide evidence on your chosen topic; i.e. what kind of model you will try to fit and what kind of data you are going to use. Also briefly describe how you got the data unless it is obvious. Just give a broad brush idea and reserve any intricate details to an appendix. However, focus on aspects of your data that might have an impact on your discussion and key results (e.g. see example below).
+
+
+For the case of covid hoaxism we are fitting a model of the following form
 $$ Y_i=\beta_1 HOAX_i + \beta_2 X_i + \epsilon_i$$ 
-where $Y_i$ are different outcome variables such as COVID cases and deaths per capita, $HOAX_i$
+where $Y_i$ are different outcome variables such as COVID cases and deaths per capita, $HOAX_i$ is the share of hoax tweets (in percent). We are using data for US states for the period from January to September of 2020. Data on covid outcomes comes from an online repository of the New York times^[More details [here](https://github.com/nytimes/covid-19-data)]. To measure the degree of hoaxism we sample tweets using various Twitter APIs.^[Here is a nice discussion how this can be done with R]. Since March 2020 we have regularly been sampling tweets that mention the strings `covid` or `corona`. To measure hoaxism we divide the tweets with a `#covidhoax` or `#coronahoax` hastag by the total number of tweets. 
+Note that in this way we most likely underestimate the amount of actual hoax tweets as not all hoaxers will necessarily hastag their tweets in this way. However, our main point will be to compare our measure between US states. Hence, unless we are concerned that this underestimate varies systematically between states this shouldn't have much effect on our results.
+
 
 
 
@@ -68,7 +73,7 @@ stats=stats%>%mutate(   pop=pop/1000,
 ```{r simple scatter}
 
 ggplot(stats,aes(x=hoaxsh, y=deathsPC))+
-  geom_point()+theme_minimal()+xlab("Deaths per capita")+xlab("Hoaxism share in %")+
+  geom_point()+theme_minimal()+ylab("Deaths per capita")+xlab("Hoaxism share in %")+
   geom_smooth(method="lm")
 
 ```
