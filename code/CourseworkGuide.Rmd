@@ -89,7 +89,7 @@ The plot suggests a positive relationship; i.e. more hoaxism more deaths. We can
 ```{r regressions,echo=FALSE}
 library(dplyr)
 reg1=lm(deathsPC~hoaxsh,stats) 
-reg1%>% summary()
+reg1 %>% summary()
 ```
 
 The regression result would suggests that 1 percentage point increase of the hoaxism intensity of a shate leads to `r round(reg1$coefficients[[2]],3)` more deaths per 1000 people in a state.

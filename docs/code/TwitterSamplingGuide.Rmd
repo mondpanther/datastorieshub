@@ -1,0 +1,36 @@
+---
+title: "Twitter Sampling"
+output: html_document
+author: Ralf Martin
+editor_options: 
+  chunk_output_type: inline
+chunk_output_type: inline
+---
+
+
+
+
+
+Last update:  `r format(Sys.time(), '%B %d , %Y - %H:%M ')`
+
+
+# Introduction
+The `rtweet` package is great for sampling twitter data.
+[Here](https://medium.com/@traffordDataLab/exploring-tweets-in-r-54f6011a193d) is a useful guide for some of the basics.
+Here is an example of a search:
+
+```{r, echo=FALSE,message=FALSE}
+library(rtweet)
+library(httpuv)
+library(tidyverse) 
+library(tidytext)
+```
+
+```{r}
+tweets <- search_tweets(q = "#ClimateEmergency", 
+                        n = 10000,
+                        include_rts = FALSE,
+                        `-filter` = "replies",
+                        lang = "en",retryonratelimit=TRUE)
+```
+
