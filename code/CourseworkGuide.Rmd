@@ -17,7 +17,9 @@ Last update:  `r format(Sys.time(), '%B %d , %Y - %H:%M ')`
 # Introduction
 
 
-This document (you find the Rmd file for this document under [this](https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.Rmd) link) provides you with a template or (draft) example on how your submission could look like. You should start with an introduction that motivates what you are working on. What question or issue are you going to address? 
+This document (you find the Rmd file for this document under [this](https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.Rmd) link) provides you with a template or (draft) example of how your submission could look like. 
+
+You should start with an introduction that motivates what you are working on. What question or issue are you going to address? 
 
 Here we are going to look into COVID Hoaxism i.e. the phenomenon that people question the reality of the covid pandemic. Specifically, we explore the hypothesis that such hoaxism has made the pandemic worse i.e. that there is a causal link from hoaxism to covid cases and/or deaths. A mechanism that would support this is that people don't observe social distancing or use face coverings because they don't believe that the pandemic is happening.
 
@@ -27,9 +29,9 @@ Here we are going to look into COVID Hoaxism i.e. the phenomenon that people que
 Explain how you are going to provide evidence on your chosen topic i.e. what kind of model you will try to fit and what kind of data you are going to use. Also briefly describe how you got the data unless it is obvious. Just give a broad brush idea and reserve any intricate details to an appendix. However, focus on aspects of your data that might have an impact on your discussion and key results (e.g. see example below).
 
 
-For the case of covid hoaxism we are fitting a model of the following form
+For the case of covid hoaxism we are fitting a model of the following form:
 $$ Y_i=\beta_1 HOAX_i + \beta_2 X_i + \epsilon_i$$ 
-where $Y_i$ are different outcome variables such as COVID cases and deaths per capita, $HOAX_i$ is the share of hoax tweets (in percent). $X_i$ are various sets of control variables.  We are using data for US states for the period from January to September of 2020. Data on covid outcomes comes from an online repository of the New York times, more details [here](https://github.com/nytimes/covid-19-data). To measure the degree of hoaxism we sample tweets using various Twitter APIs.[Here](https://medium.com/@traffordDataLab/exploring-tweets-in-r-54f6011a193d) is a nice discussion how this can be done with R. Since March 2020 we have regularly been sampling tweets that mention the strings `covid` or `corona`. To measure hoaxism we divide the tweets with a `#covidhoax` or `#coronahoax` hastag by the total number of tweets. 
+where $Y_i$ are different outcome variables such as COVID cases and deaths per capita, $HOAX_i$ is the share of hoax tweets (in percent). $X_i$ are various sets of control variables.  We are using data for US states for the period from January to September of 2020. Data on covid outcomes comes from an online repository of the New York times, more details [here](https://github.com/nytimes/covid-19-data). To measure the degree of hoaxism we sample tweets using various Twitter APIs. [Here](https://medium.com/@traffordDataLab/exploring-tweets-in-r-54f6011a193d) is a nice discussion how this can be done with R. Since March 2020 we have regularly been sampling tweets that mention the strings `covid` or `corona`. To measure hoaxism we divide the tweets with a `#covidhoax` or `#coronahoax` hastag by the total number of tweets. 
 
 Note that in this way we most likely underestimate the amount of actual hoax tweets as not all hoaxers will necessarily hastag their tweets in this way. However, our main point will be to compare our measure between US states. Hence, unless we are concerned that this underestimate varies systematically between states this shouldn't have much effect on our results.
 
@@ -124,10 +126,11 @@ reg3%>% summary()
 ```
 
 
-We see two things in particular
-1. Tweets per capita do not have a significant influence on deaths.
-2. The hoaxism effect remains virtually unchanged. In other words, it is robust to this small modification in the model, which is re-assuring.
+We see two things in particular:
+1.) Tweets per capita do not have a significant influence on deaths.
+2.) The hoaxism effect remains virtually unchanged. In other words, it is robust to this small modification in the model, which is re-assuring.
 <br>
+
 The fact that the relationship is significant doesn't mean it is necessarily important. To get a sense of the order of magnitude we can work out how much lower covid deaths for the US as a whole would be if our estimate above is true reflection of the causal effect of hoaxism. We can use our model to work out how many lives would have been saved in a given US state $i$ in absence of hoaxism by calculating
 $$ \Delta Deaths^{CF}_i=\hat{\beta_1} \times HOAX_i \times POP_i$$
 where $\Delta Deaths^{CF}_i$ is the (counterfactual) number of deaths avoided and $POP_i$ is a state's population.
