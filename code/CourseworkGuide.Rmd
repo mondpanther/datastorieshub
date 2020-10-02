@@ -27,7 +27,7 @@ Explain how you are going to provide evidence on your chosen topic; i.e. what ki
 
 For the case of covid hoaxism we are fitting a model of the following form
 $$ Y_i=\beta_1 HOAX_i + \beta_2 X_i + \epsilon_i$$ 
-where $Y_i$ are different outcome variables such as COVID cases and deaths per capita, $HOAX_i$ is the share of hoax tweets (in percent). We are using data for US states for the period from January to September of 2020. Data on covid outcomes comes from an online repository of the New York times^[More details [here](https://github.com/nytimes/covid-19-data)]. To measure the degree of hoaxism we sample tweets using various Twitter APIs.^[Here is a nice discussion how this can be done with R]. Since March 2020 we have regularly been sampling tweets that mention the strings `covid` or `corona`. To measure hoaxism we divide the tweets with a `#covidhoax` or `#coronahoax` hastag by the total number of tweets. 
+where $Y_i$ are different outcome variables such as COVID cases and deaths per capita, $HOAX_i$ is the share of hoax tweets (in percent). $X_i$ are various sets of control variables.  We are using data for US states for the period from January to September of 2020. Data on covid outcomes comes from an online repository of the New York times^[More details [here](https://github.com/nytimes/covid-19-data)]. To measure the degree of hoaxism we sample tweets using various Twitter APIs.^[Here is a nice discussion how this can be done with R]. Since March 2020 we have regularly been sampling tweets that mention the strings `covid` or `corona`. To measure hoaxism we divide the tweets with a `#covidhoax` or `#coronahoax` hastag by the total number of tweets. 
 Note that in this way we most likely underestimate the amount of actual hoax tweets as not all hoaxers will necessarily hastag their tweets in this way. However, our main point will be to compare our measure between US states. Hence, unless we are concerned that this underestimate varies systematically between states this shouldn't have much effect on our results.
 
 
@@ -53,8 +53,8 @@ library(gdata)
 
 
 
-```{r load some data}
-
+```{r load some data, include=FALSE, message=FALSE,echo=FALSE}
+# Note that by writing 'include=FALSE' you avoid hat the code is shown in final output
 
 stats=read.csv("https://www.dropbox.com/s/8w4zbg40y84pnqk/statslong.csv?dl=1")
 
@@ -68,32 +68,70 @@ stats=stats%>%mutate(   pop=pop/1000,
 ```
 
 
+# Results
 
+Report and discuss your results; e.g. we start by looking at a scatter plot of deaths per capita on the hoaxism share:
 
-```{r simple scatter}
+```{r simple scatter, echo=FALSE,message=FALSE}
+
 
 ggplot(stats,aes(x=hoaxsh, y=deathsPC))+
   geom_point()+theme_minimal()+ylab("Deaths per capita")+xlab("Hoaxism share in %")+
-  geom_smooth(method="lm")
+  geom_smooth(method="lm")+ggtitle("Covid deaths vs Hoaxism")
+
 
 ```
 
+The plot suggests a positive relationship; i.e. more hoaxism more deaths. We can confirm this with a regression:
 
 
 
-
-```{r regressions}
+```{r regressions,echo=FALSE}
 library(dplyr)
-lm(casesPC~hoaxsh,stats) %>% summary()
-lm(casesPC~density,stats) %>% summary()
-lm(casesPC~hoaxsh+density+tweetsPC,stats) %>% summary()
-lm(casesPC~hoaxsh+hoaxshXdensity+tweetsPCXdensity+density+tweetsPC,stats) %>% summary()
+reg1=lm(deathsPC~hoaxsh,stats) 
+reg1%>% summary()
+```
+
+The regression result would suggests that 1 percentage point increase of the hoaxism intensity of a shate leads to `r round(reg1$coefficients[[2]],3)` more deaths per 1000 people in a state.
+
+This basic result might be subject to a number of confounding factors that might either bias the results upward or downward. For instance, population density could be an important driver of both the spread of covid as well as the hoaxism intensity. For instance, more rural (and less denseley populated areas) could have less educated residents who might be more inclined to adopt hoaxist views. This would introduce a spurious negative relationship between hoaxism and covid implying that our results above would underestimate the strength of the hoaxism-covid relationship. Alternatively, it might be the case that among city dwellers more individuals are socially alienated and get more easily sucked into online cults and conspiracy theories. This would introduce a positive spurious relation between hoaxism and covid leading to an upward bias in our simple analysis above. The figure below illustrates this:
+
+![](covidconfounding.png){width=70%}
 
 
+Hence a good idea is to introduce population density (measured in person per square mile) as control variable. We do this in the following regression
 
-lm(deathsPC~hoaxsh,stats) %>% summary()
-lm(deathsPC~density,stats) %>% summary()
-lm(deathsPC~hoaxsh+density+tweetsPC,stats) %>% summary()
-lm(deathsPC~hoaxsh+hoaxshXdensity+tweetsPCXdensity+density+tweetsPC,stats) %>% summary()
+```{r,echo=FALSE}
+reg2=lm(deathsPC~hoaxsh+density,stats) 
+reg2%>% summary()
 
 ```
+
+We firstly find that there is a significant positive relationship between density and covid deaths as would have been expected. Secondly, we see that the hoaxism covid relationship remains significant and is now quantitatively stronger (i.e. a one percentage point increase in hoaxism is associated with a `r round(reg2$coefficients[[2]],3)` increase of covid deaths per 1000 residents), which would be consistent with the negative bias story (via education) suggested above.
+
+There are clearly further concern one explore. For instance with the data we already have we can include one further control variable: the number of tweets per capita. This could be another control confounding influences such as education for instance, which might only impefectly be captured by population density. On the other hand the amount of tweeting is possibly cloesly related to the amount of computer usage, which in turn is related to the amount of twitter usage. The resulting regression is as follows:
+
+<br>
+
+```{r}
+
+reg3=lm(deathsPC~hoaxsh+density+tweetsPC,stats) 
+reg3%>% summary()
+
+```
+
+
+We see two things in particular
+1. Tweets per capita do not have a significant influence on deaths.
+2. The hoaxism effect remains virtually unchanged. In other words: it is robust to this small modification in the model, which is re-assuring.
+
+# Conclusion
+There are many differnt things one could or even should try. Clearly, there are other useful control variables. One could explore the interaction between hoaxism and density as we did during the visualisation lecture. One could look at time series data for individual states and see if flare ups in infection are somehow related to flare ups in hoaxism.
+However, a basic analysis and discussion as done here would be a good group coursework piece along with a conclusion along the following lines:
+
+Hoaxism and related mis-information are an increasing concern for the functioning of democracy, our well being and economics. In the case of the covid pandemic, mis-information has potentially immediate deadly consequences. 
+
+
+
+
+

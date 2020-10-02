@@ -273,8 +273,8 @@ usbydayofw=usbydayofw %>% inner_join(ord,by="dayofw")
 ggplot(usbydayofw, aes(x=reorder(dayofw,order), y=hoaxsh*100,fill=hoaxsh*100))    + 
       geom_bar(stat = "identity") + 
       xlab("Day of the Week") +
-      ylab("Share of hoax tweets in %") + theme_minimal() +theme(legend.position = "none")
-
+      ylab("Share of hoax tweets in %") + theme_minimal() +theme(legend.position = "none") +
+      theme(axis.text.x=element_text(angle=90,hjust=1)) 
 # Note: with the fill option we can vary how different bars a colored.
       
 
