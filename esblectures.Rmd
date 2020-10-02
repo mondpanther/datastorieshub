@@ -62,4 +62,32 @@ for (i in seq(1,length(file))) {
 }
 ```
 
+# Guides
+
+```{r ,echo=FALSE, message=FALSE}
+
+file=list.files(path="./code",pattern="Guide")
+#filei=list.files(path="./code",pattern="^Farage")
+
+#file=c(filei,fileo)
+
+#path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
+path="https://mondpanther.github.io/datastorieshub/code/"
+full=paste0(path,file[[1]])
+
+
+```
+
+```{r echo = FALSE, results = "asis"}
+
+for (i in seq(1,length(file))) {
+  
+  full=paste0(path,file[[i]])
+  cur=paste("- [", file[[i]],"](",full,") \n")
+  cat(cur)
+
+}
+```
+
+
 

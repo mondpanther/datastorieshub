@@ -109,7 +109,7 @@ reg2%>% summary()
 
 We firstly find that there is a significant positive relationship between density and covid deaths as would have been expected. Secondly, we see that the hoaxism covid relationship remains significant and is now quantitatively stronger (i.e. a one percentage point increase in hoaxism is associated with a `r round(reg2$coefficients[[2]],3)` increase of covid deaths per 1000 residents), which would be consistent with the negative bias story (via education) suggested above.
 
-There are clearly further concern one explore. For instance with the data we already have we can include one further control variable: the number of tweets per capita. This could be another control confounding influences such as education for instance, which might only impefectly be captured by population density. On the other hand the amount of tweeting is possibly cloesly related to the amount of computer usage, which in turn is related to the amount of twitter usage. The resulting regression is as follows:
+There are clearly further concerns to explore. For instance with the data we already have we can easily include a further control variable: the number of tweets per capita. This could be another control for confounding influences such as education for instance, which might only impefectly be captured by population density; e.g. states withmore educted people will have higher internet (and twitter) usage. The resulting regression is as follows:
 
 <br>
 
@@ -126,16 +126,32 @@ We see two things in particular
 2. The hoaxism effect remains virtually unchanged. In other words: it is robust to this small modification in the model, which is re-assuring.
 <br>
 The fact that the relationship is significant doesn't mean it is necessarily important. To get a sense of the order of magnitude we can work out how much lower covid deaths for the US as a whole would be if our estimate above is true reflection of the causal effect of hoaxism. We can use our model to work out how many lifes would have been saved in a given US state $i$ in absence of hoaxism by calculating
-$$ \Delta Deaths^{CF}=\hat{\beta_1} \times HOAX_i \times POP_i$$
-where $\Delta Deaths^{CF}$ is the (counterfactual) number of deaths avoided and $POP_i$ is a state's population.
+$$ \Delta Deaths^{CF}_i=\hat{\beta_1} \times HOAX_i \times POP_i$$
+where $\Delta Deaths^{CF}_i$ is the (counterfactual) number of deaths avoided and $POP_i$ is a state's population.
+Summing over all states we can work out the total number of deaths that could have been avoided in the US.
 
+
+```{r, echo=FALSE}
+# When doing something like this be mindful of the units
+# pop is in 1000s of people
+# deathsPC is deaths per 1000s of people
+# deaths is the number of deaths
+
+
+cf_Ddeaths=as.character(round(sum(stats$hoaxsh * stats$pop) * reg3$coefficients[[2]]))
+sum_deaths=sum(stats$deaths)
+
+
+```
+
+This leads to a value of `r cf_Ddeaths`, which corresponds to `r round(as.numeric(cf_Ddeaths)/sum_deaths*100,1)` % of deaths over the sample period considered here. This is clearly substantial. Of course there are still many possible confounding factors that should be explored but a figure like that is at the very least a strong motivation for further research in this area.
 
 
 # Conclusion
 There are many differnt things one could or even should try. Clearly, there are other useful control variables. One could explore the interaction between hoaxism and density as we did during the visualisation lecture. One could look at time series data for individual states and see if flare ups in infection are somehow related to flare ups in hoaxism.
 However, a basic analysis and discussion as done here would be a good group coursework piece along with a conclusion along the following lines:
 
-Hoaxism and related mis-information are an increasing concern for the functioning of democracy, our well being and economics. In the case of the covid pandemic, mis-information has potentially immediate deadly consequences. Here we explored the link between hoaxsim and covid deaths across US states. We found a robust and significant relationship between hoaxism and covid deaths.
+Hoaxism and related mis-information are an increasing concern for the functioning of democracy, our well being and economics. In the case of the covid pandemic, mis-information has potentially immediate deadly consequences. Here we explored the link between hoaxsim and covid deaths across US states. We found a robust and significant relationship between hoaxism and covid deaths. We also find that the relationship quantitatively meaningful. If we take the numbers at face value they imply that without hoaxism as much as 30% of US COVID deaths could have been avoided. Clearly this figure should be subjected to further scrutiny - e.g. by using more sophisticated empirical models -, but it is clearly a strong motivator to understand the mechanisms behind COVID hoaxism better.
 
 
 
