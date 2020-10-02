@@ -104,7 +104,7 @@ This basic result might be subject to a number of confounding factors that might
 ![](covidconfounding.png){width=70%}
 
 
-Hence a good idea is to introduce population density (measured in person per square mile) as control variable. We do this in the following regression
+Hence a good idea is to introduce population density (measured in person per square mile) as control variable. We do this in the following regression:
 
 ```{r,echo=FALSE}
 reg2=lm(deathsPC~hoaxsh+density,stats) 
