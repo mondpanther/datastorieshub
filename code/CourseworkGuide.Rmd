@@ -124,12 +124,18 @@ reg3%>% summary()
 We see two things in particular
 1. Tweets per capita do not have a significant influence on deaths.
 2. The hoaxism effect remains virtually unchanged. In other words: it is robust to this small modification in the model, which is re-assuring.
+<br>
+The fact that the relationship is significant doesn't mean it is necessarily important. To get a sense of the order of magnitude we can work out how much lower covid deaths for the US as a whole would be if our estimate above is true reflection of the causal effect of hoaxism. We can use our model to work out how many lifes would have been saved in a given US state $i$ in absence of hoaxism by calculating
+$$ \Delta Deaths^{CF}=\hat{\beta_1} \times HOAX_i \times POP_i$$
+where $\Delta Deaths^{CF}$ is the (counterfactual) number of deaths avoided and $POP_i$ is a state's population.
+
+
 
 # Conclusion
 There are many differnt things one could or even should try. Clearly, there are other useful control variables. One could explore the interaction between hoaxism and density as we did during the visualisation lecture. One could look at time series data for individual states and see if flare ups in infection are somehow related to flare ups in hoaxism.
 However, a basic analysis and discussion as done here would be a good group coursework piece along with a conclusion along the following lines:
 
-Hoaxism and related mis-information are an increasing concern for the functioning of democracy, our well being and economics. In the case of the covid pandemic, mis-information has potentially immediate deadly consequences. 
+Hoaxism and related mis-information are an increasing concern for the functioning of democracy, our well being and economics. In the case of the covid pandemic, mis-information has potentially immediate deadly consequences. Here we explored the link between hoaxsim and covid deaths across US states. We found a robust and significant relationship between hoaxism and covid deaths.
 
 
 

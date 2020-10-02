@@ -39,7 +39,7 @@ for (i in seq(1,length(file))) {
 ```{r ,echo=FALSE, message=FALSE}
 
 fileo=list.files(path="./code",pattern="^Topic")
-filei=list.files(path="./code",pattern="Farage")
+filei=list.files(path="./code",pattern="^Farage")
 
 file=c(filei,fileo)
 

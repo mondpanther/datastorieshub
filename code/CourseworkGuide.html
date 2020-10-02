@@ -381,7 +381,7 @@ summary {
 </div>
 
 
-<p>Last update: October 01 , 2020 - 21:22</p>
+<p>Last update: October 02 , 2020 - 08:06</p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>This document (You find the Rmd file for this document under <a href="https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.Rmd">this</a> link.) provides you with a template or (draft) example on how this could look like. You should start with an introduction that motivates what you are working on. What question or issue are you going to address? Here we are going to look into COVID Hoaxism; i.e. the phenomenon that people question the reality of the covid pandemic. Specifically we explore the hypothesis that such hoaxism has made the pandemic worse; i.e. there is a causal link from hoaxism to covid cases and/or deaths. A mechanism that would support this is if people don’t observe social distancing or face coverings because they don’t believe that the pandemic is happening.</p>
@@ -438,9 +438,36 @@ summary {
 ## Multiple R-squared:  0.6279, Adjusted R-squared:  0.6118 
 ## F-statistic: 38.82 on 2 and 46 DF,  p-value: 1.33e-10</code></pre>
 <p>We firstly find that there is a significant positive relationship between density and covid deaths as would have been expected. Secondly, we see that the hoaxism covid relationship remains significant and is now quantitatively stronger (i.e. a one percentage point increase in hoaxism is associated with a 0.463 increase of covid deaths per 1000 residents), which would be consistent with the negative bias story (via education) suggested above.</p>
+<p>There are clearly further concern one explore. For instance with the data we already have we can include one further control variable: the number of tweets per capita. This could be another control confounding influences such as education for instance, which might only impefectly be captured by population density. On the other hand the amount of tweeting is possibly cloesly related to the amount of computer usage, which in turn is related to the amount of twitter usage. The resulting regression is as follows:</p>
+<p><br></p>
+<pre class="r"><code>reg3=lm(deathsPC~hoaxsh+density+tweetsPC,stats) 
+reg3%&gt;% summary()</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = deathsPC ~ hoaxsh + density + tweetsPC, data = stats)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.50969 -0.15371 -0.01062  0.11659  0.69442 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 0.0037378  0.1092657   0.034   0.9729    
+## hoaxsh      0.4342116  0.1749357   2.482   0.0169 *  
+## density     0.0011180  0.0001413   7.914  4.6e-10 ***
+## tweetsPC    0.0081698  0.0090070   0.907   0.3692    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.248 on 45 degrees of freedom
+## Multiple R-squared:  0.6346, Adjusted R-squared:  0.6103 
+## F-statistic: 26.05 on 3 and 45 DF,  p-value: 6.365e-10</code></pre>
+<p>We see two things in particular 1. Tweets per capita do not have a significant influence on deaths. 2. The hoaxism effect remains virtually unchanged. In other words: it is robust to this small modification in the model, which is re-assuring. <br> The fact that the relationship is significant doesn’t mean it is necessarily important. To get a sense of the order of magnitude we can work out how much lower covid deaths for the US as a whole would be if our estimate above is true reflection of the causal effect of hoaxism. We can use our model to work out how many lifes would have been saved in a given US state <span class="math inline">\(i\)</span> in absence of hoaxism by calculating <span class="math display">\[ \Delta Deaths^{CF}=\hat{\beta_1} \times HOAX_i \times POP_i\]</span> where <span class="math inline">\(POP_i\)</span> is a state’s population</p>
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
+<p>There are many differnt things one could or even should try. Clearly, there are other useful control variables. One could explore the interaction between hoaxism and density as we did during the visualisation lecture. One could look at time series data for individual states and see if flare ups in infection are somehow related to flare ups in hoaxism. However, a basic analysis and discussion as done here would be a good group coursework piece along with a conclusion along the following lines:</p>
+<p>Hoaxism and related mis-information are an increasing concern for the functioning of democracy, our well being and economics. In the case of the covid pandemic, mis-information has potentially immediate deadly consequences. Here we explored the link between hoaxsim and covid deaths across US states. We found a robust and significant relationship between hoaxism and covid deaths.</p>
 </div>
 <div class="footnotes">
 <hr />
