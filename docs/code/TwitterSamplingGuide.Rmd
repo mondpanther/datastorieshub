@@ -17,6 +17,8 @@ Last update:  `r format(Sys.time(), '%B %d , %Y - %H:%M ')`
 # Introduction
 The `rtweet` package is great for sampling twitter data.
 [Here](https://medium.com/@traffordDataLab/exploring-tweets-in-r-54f6011a193d) is a useful guide for some of the basics.
+[Here](https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/use-twitter-api-r/) is another good description.
+
 Here is an example of a search:
 
 ```{r, echo=FALSE,message=FALSE}
@@ -32,5 +34,7 @@ tweets <- search_tweets(q = "#ClimateEmergency",
                         include_rts = FALSE,
                         `-filter` = "replies",
                         lang = "en",retryonratelimit=TRUE)
+
+head(tweets)
 ```
 
