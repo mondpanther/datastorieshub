@@ -401,10 +401,10 @@ Let's look at this
 
   
 #< Annother example
-```{r,eval=FALSE}
+```{r,eval=T}
   library(foreign)
   library(haven)
-  eaef <- read_dta("../data/eaef21.dta")
+  eaef <- read.csv("https://www.dropbox.com/s/9n0k7bs20z7qkv9/eaef21.csv?dl=1")
   head(eaef, n=10)  
   library("lattice")
   xyplot(EARNINGS ~ S, data = eaef, type = c("p","r"), col.line = "red")
@@ -425,9 +425,9 @@ Let's look at this
   
   
 # Effect of Experience on Earnings
-```{r,eval=FALSE}
+```{r,eval=T}
   library(foreign)
-  eaef <- read.dta("../data/eaef21.dta")
+  eaef <- read.csv("https://www.dropbox.com/s/9n0k7bs20z7qkv9/eaef21.csv?dl=1")
 
   mod_earn_exp <- lm(EARNINGS ~ EXP , data = eaef)    
   summary(mod_earn_exp) 
@@ -436,7 +436,7 @@ Let's look at this
   
 # More general hypothesis tests
 
-```{r,eval=FALSE}  
+```{r,eval=T}  
   mod_exp_s <- lm(EXP ~ S , data = eaef)
   summary(mod_exp_s)  
   library(data.table)
