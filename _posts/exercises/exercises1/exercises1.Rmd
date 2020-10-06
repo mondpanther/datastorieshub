@@ -135,6 +135,8 @@ Another possibility is that there could be a measurement error. The data comes f
 # Exercise 1.6
 Marriage makes you happy?
 
+
+
 ```{r}
 knitr::include_url("https://www.sciencedirect.com/science/article/abs/pii/S1053535705001745")
 ```
