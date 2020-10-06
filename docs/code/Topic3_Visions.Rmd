@@ -1,0 +1,587 @@
+---
+title: "Visions"
+author: Ralf Martin
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Introduction
+
+This document collects and discusses various examples of how to make figures with R. For more inspiration check out the wonderful [R Graph gallery](https://www.r-graph-gallery.com/).
+
+
+# ggplot
+
+ggplot is an allround package that can make many types of visualisations.
+
+## Scatter plots
+We already have seen ggplot drawing scatterplots. Here we include a new example: data on hoaxism and covid deaths. This is part of an ongoing research project of mine. You can read more about it [here](https://blogs.lse.ac.uk/usappblog/2020/04/24/how-hoax-information-on-social-media-about-covid-19-might-be-worsening-the-pandemic/).
+
+The basic concern is that the believe by some that the COVID pandemic is a hoax, has made things worse; i.e. because people believe it is a hoax they are less cautious and as a consequence help to spread the desease more. One way to explore this is with data for US states. I measure hoaxism for individual states by the share of tweets expressing hoaxist ideas in all tweets related to COVID.
+
+Here are some examples of hoaxists Tweets:
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"> <a href="https://twitter.com/Dexxter____/status/1307626139465244672">Electro magnetic hoaxist</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"> <a href="https://twitter.com/ColleenHuberNMD/status/1310239404523360256">Human Rights Hoaxist</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"> <a href="https://twitter.com/isnt_it_red/status/1309184959853342724">I love Sweden Hoaxist</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+Up to date data on this you can download as follows:
+
+```{r, message=FALSE}
+library(dplyr)
+stats=read.csv("https://www.dropbox.com/s/8w4zbg40y84pnqk/statslong.csv?dl=1")
+
+# Creating some extra variables
+stats=stats%>%mutate(   pop=pop/1000, 
+                        hoaxshXdensity=(hoaxsh)*(density-mean(density)),
+                        tweetsPCXdensity=(tweetsPC)*(density-mean(density))
+                      )
+
+```
+
+
+Here is a scatter plot of deaths per capita on hoax tweet shares across US states. 
+
+```{r, message=FALSE}
+library(ggplot2)
+ggplot(stats,aes(x=hoaxsh, y=deathsPC))+ 
+       geom_point() +
+       theme_minimal()+
+       xlab("Share of Hoax Tweets") + 
+       ylab("Covid Deaths per capita") + 
+       geom_smooth(method = "lm", se = FALSE)+
+       ggtitle("Covid Deaths and Hoxism") 
+```
+
+We examine in our research if the effect of hoaxism is stronger when population density is higher.
+For that we group states into quartiles of population density:
+
+```{r}
+stats=stats %>%mutate(dens_quart=cut(density, 
+                                breaks=quantile(density, probs=seq(0,1, by=0.25), na.rm=TRUE), 
+                                include.lowest=TRUE))
+
+```
+
+Let's look at the average deaths for every density quartile:
+
+```{r}
+
+stats %>% group_by(dens_quart) %>% summarise(mean(deathsPC))
+
+```
+There is clearly a relationship between density and deaths as well.
+Now one thing that is really cool with ggplot is that you can overlay multiple plots for different categories (such as quartiles of density for instance) without having to do much additional coding. Checkout the following
+
+```{r, message=FALSE}
+ggplot(stats,aes(x=hoaxsh, y=deathsPC, color=dens_quart))+ 
+       geom_point() +
+       theme_minimal()+
+       xlab("Share of Hoax Tweets in %") + 
+       ylab("Covid Deaths per capita") + 
+       geom_smooth(method = "lm", se = FALSE)+
+       ggtitle("Covid Deaths and Hoxism by Quartile of population density") +
+       guides(color=guide_legend(title="Quartiles of population density"))
+```
+
+Note that all we needed to add to the simple scatter plot command is the `color=dens_quart` argument as part of the plot aesthetic.
+
+What do we see? What is the story? Our hypothesis that hoax tweets are more closely linked with deaths in more densely populated states is confirmed (although the relationship is not entirely monotone; i.e. in the top quartile the slope is (slightly) flatter than in the 2nd and 3rd quartile).
+
+
+## Time series
+To illustrate how to do time series let's load a daily version of the data above; i.e. deaths by day.
+
+```{r, message=FALSE}
+
+statsbyday=read.csv("https://www.dropbox.com/s/e26qs4vfl4xjy99/statsbydlong.cvs?dl=1")
+
+
+
+```
+
+
+There are a number of stories we might want explore with this kind of data. Firstly, we might ask if hoaxism has died down as the crisis progressed. We might want to start with a look for the US as a whole. Note, that the data above is by state and by day. So we first need to aggrate across states:
+
+```{r,message=FALSE}
+
+usbyday=statsbyday %>% 
+        group_by(date) %>% 
+        summarise_at(vars(hoax, tweets,cases,deaths),sum)  %>%
+        mutate(hoaxsh=hoax/tweets)
+
+
+```
+
+Working with dates and times can be tricky. But luckily R can help you with that. To start with you need to
+let R know which variables capture dates (as opposed to normal numbers or characters)
+
+
+```{r,message=FALSE}
+
+library(lubridate)  # commands to help with dates and times
+
+usbyday=usbyday %>%  mutate(date=as_date(date))
+  
+  
+#  mutate(date=as_datetime(as.character(date)))
+
+
+```
+
+
+```{r, message=FALSE}
+library(scales)
+tsplot= usbyday  %>% ggplot( aes(x = date,y=hoaxsh*100  )  )+geom_line()  + theme_minimal() + 
+     ylab("Share of hoax tweets [%]")  + xlab("Days")  
+tsplot
+
+```
+
+Let's add some more labels to make reading the plot easier. Note you can simply add this 
+to the variable `tsplot` which we used to store the plot above:
+```{r, message=FALSE}
+library(scales)
+tsplot +  scale_x_date(breaks = date_breaks("1 months"),labels = date_format("%m/%y"))
+
+
+
+```
+
+Hence, there was a major hoaxism outbrake around May. However, even in recent months hoaxsim isn't really going away.
+
+More data is not always better. For instance in the time series above outliers at the daily level could distract from the overall trend. Here is how we can aggregate over time. For instance, we might want to see weekly figures (Note that we treat the `hoax` and `tweets` variables differently from the `cases` and `deaths`. This is because `cases` and `deaths` are recorded as cumulative cases and deaths):
+
+```{r, message=FALSE}
+usbyday=usbyday %>% mutate(week=round_date( date,  unit = "week"))
+
+usbyweek= usbyday %>% group_by(week) %>%    
+          summarise(hoax=sum(hoax), 
+                    tweets=sum(tweets),
+                    cases=max(cases),
+                    deaths=max(deaths))  %>%
+          mutate(hoaxsh=hoax/tweets)     %>% 
+          filter(week<max(week)) 
+          # we get rid of the last week because it is not a full week so not comparable with the others
+
+
+# Let's also compute extra cases and deaths per day as opposed to cumulative ones.
+# To implement that we order ther dataframe by week and then take the difference
+# between current and lagged cases and death figures.
+usbyweek = usbyweek %>% arrange(week) %>% 
+           mutate(Dcases=cases-lag(cases,n=1L),
+                 Ddeaths=deaths-lag(deaths,n=1L))
+
+
+
+usbyweek  %>% ggplot( aes(x = week,y=hoaxsh*100  )  )+geom_line()  + theme_minimal() + 
+     ylab("Share of hoax tweets [%]")  + xlab("Days")    +
+     scale_x_date(breaks = date_breaks("1 months"),labels = date_format("%m/%y"))
+
+```
+
+
+How does hoaxim evolve relative to covid deaths per capita? Because deaths are counted in different units we need a second scale for that. Here is how you can do that
+
+```{r}
+library(scales)
+# We need to re-scale one series so that that they are on a comparable scale
+# Here we re-scale Ddeaths
+   scaler=max(usbyweek$hoaxsh*100,na.rm=TRUE)/max(usbyweek$Ddeaths,na.rm=TRUE)
+   usbyweek=usbyweek %>% mutate(test= Ddeaths*scaler)
+   
+
+
+
+    p =  ggplot(usbyweek, aes(x = week)) +
+         geom_line(aes(y = hoaxsh*100, colour  = "Hoaxshare in %") ) +
+         geom_line(aes(y = Ddeaths*scaler, colour = "Weekly deaths"))
+
+# Note: we store the plot in a variable p. This will allow us to make further modifications to the plot
+# below. In order to see the plot we simply write that variable
+# like a command:
+    
+    p
+    
+# Now we can add the second axis. Note with the option  trans=~./(scaler)
+# we are undoing the re-scaling done above so that we can see
+# the series Ddeaths in its original scaling
+    p= p  + scale_y_continuous(sec.axis = sec_axis(label=comma, trans=~./(scaler),
+                                                   name = "Number of deaths"),
+                               labels=comma)
+  
+    p
+    
+    
+# We are doing a couple of further things to make the figure look nice
+    p <- p + scale_colour_manual(values = c("red", "blue"))
+    p <- p + labs(y = "Hoaxshare",
+                  x = "Time",
+                  colour = "Series")
+    p <- p + theme(legend.position = c(0.8, 0.9))+theme_minimal() +
+          scale_x_date(breaks = date_breaks("1 months"),labels = date_format("%m/%y"))
+    p
+
+    
+
+
+```
+
+
+So what is the story here? It is interesting to see that every major wave of deaths was preceeded by a flare up of hoaxism a couple of weeks earlier (e.g. in February we had a flare up of hoaxism followed by a spike in deaths in April. Then in May hoaxism was strong again followed by a death spike in late July. Worryingly in early September we are seeing another spike in hoaxism). Of course, this has to be taken with caution. A different story could be that the death spikes cause hoaxism (Although the first hoaxism spike could not fully be explained by that). This could be due to a phenomenon we also sometimes see with religious believes: if delusional believes (e.g. an apolcalyptic prophecy not being true) are challenged by reality (e.g. by a spike in people actually dying) in some cases the delluded rally even more closely around their dellusional believes because the cost of stopping believing have now increased. For instance in the COVID case you now not only have the embarrasment of having believed something silly but you might have to accept responsibility for behaviour that killed others, maybe even loved ones.
+
+
+
+## Bar chart
+Maybe the most common kind of chart is the bar chart. Here is how you can do one with ggplot. To do that let's explore if hoaxism is more intense on some weekdays compared to others.
+
+```{r }
+# Let's first create a variable that captures the day of the week
+usbyday=usbyday %>% mutate(dayofw=weekdays(date))
+
+
+# Now we can aggregate by day of the week
+usbydayofw=usbyday %>% 
+           group_by(dayofw) %>% 
+           summarise_at(vars(hoax,tweets),sum) %>% 
+           mutate(hoaxsh=hoax/tweets)
+
+# Now let's draw a barchart with this
+ggplot(usbydayofw, aes(x=dayofw, y=hoaxsh*100)) + geom_bar(stat = "identity")
+
+
+# Let's order that better
+ord=data.frame(
+      dayofw=c("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"),
+      order=1:7
+    )
+# join/merge with usbydayofw dataframe
+usbydayofw=usbydayofw %>% inner_join(ord,by="dayofw")
+
+ggplot(usbydayofw, aes(x=reorder(dayofw,order), y=hoaxsh*100,fill=hoaxsh*100))    + 
+      geom_bar(stat = "identity") + 
+      xlab("Day of the Week") +
+      ylab("Share of hoax tweets in %") + theme_minimal() +theme(legend.position = "none") +
+      theme(axis.text.x=element_text(angle=90,hjust=1)) 
+# Note: with the fill option we can vary how different bars a colored.
+      
+
+
+
+```
+
+
+So it seems hoaxists are particularly active on Sundays. 
+<br>
+Instead of computing the values shown in a seperate command, R can also compute certain statistics on the fly (so to speak). Here is an example:
+
+```{r}
+
+usbyday=usbyday %>% inner_join(ord,by="dayofw")
+ggplot(usbyday ,
+       aes(x=reorder(dayofw,order), y=hoaxsh*100  ,fill=order)) + 
+       stat_summary(fun = mean, geom = "bar") +
+       xlab("Day of the Week") +
+       ylab("Share of hoax tweets in %") + theme_minimal() +theme(legend.position = "none")
+
+
+```
+
+Note that the values here are bit different. This is because we are taking simple averages over all weekdays in the dataset. In the earlier results we are implicitly computed a weighted average with weights corresponding to the amount of tweets on a particular day; i.e. particularly tweet heavy days count for more.
+
+
+## Histogram
+A histogram allows us to look at the distribution of a variable across a sample. For instance we can look at the daily hoax shares:
+```{r}
+ggplot(data=usbyday, aes(hoaxsh*100)) + geom_histogram() + ylab("Number of days")+xlab("Hoaxshare in %")
+```
+What's the story? The hoaxshare distribution is quite left skewed: most days it's lower than 1%. However there are some outlier days with sometimes more than 6% of tweets of a hoxist nature.
+<br>
+An alternative way of looking at histograms is in terms of density. If you multiply the density with the width of a histogram bin you get the share of observations (as opposed to the count) that fall into a particular category: 
+
+```{r}
+ggplot(data=usbyday, aes(hoaxsh*100)) + geom_histogram(aes(y=..density.. ,fill=..density..)) + 
+  ylab("Density") +
+  xlab("Hoaxshare in %") +theme_minimal()
+
+```
+
+
+## Density
+An outright density plot is often preferable to a histogram. It's kind of like a density histogram where let the bins become every smaller:
+
+```{r}
+ggplot(data=usbyday, aes(hoaxsh*100)) + geom_histogram(aes(y=..density.. ,fill=..density..)) + 
+  ylab("Density") + 
+  xlab("Hoaxshare in %") +theme_minimal() + geom_density() 
+
+```
+
+Having a density line makes looking at several densities at once easier:
+
+
+```{r}
+ggplot(data=usbyday, aes(hoaxsh*100,color=dayofw)) +  
+  ylab("Density") + 
+  xlab("Hoaxshare in %") +theme_minimal() + geom_density() 
+
+```
+
+Did I say it's easy to look at several densities at once? No, I said it's easier. 7 might be a bit too much, especially if they are fairly similar. Although, the fact that they are similar could be the main story to take away from such a visualisation.
+An alternative but appealing way to look at a bunch of densities is a ridge plot:
+
+
+```{r,message=FALSE}
+library(ggridges)
+library(tidyverse)
+# The following makes dayofwe into a factor variable which helps with ordering
+usbyday=usbyday %>%   mutate(dayofwf = fct_reorder(.f = dayofw, .x = order, .fun = mean)) 
+
+ggplot(usbyday, aes(x = hoaxsh*100, y = dayofwf,fill = dayofwf,color=dayofwf )) + 
+      geom_density_ridges2() +
+      theme_minimal() +theme(legend.position = "none")+ylab("") +xlab("Hoaxshare in %")
+
+```
+
+
+<!--
+## Pie Chart
+-->
+
+
+
+## Maps
+As John Snow showed: some of the best visualisations involve plotting data onto maps. Here is an example of how you can do that with the data we used above.
+
+For starters you need map data. `dplyr` has actually a command for that with some pre-specified maps
+```{r}
+library(dplyr)
+states_map <- map_data("state")
+head(states_map)
+
+```
+Note that this is polygon data for US states: i.e. all the corners of a particular state (in longitude and
+lattitude)
+<br>
+We can simply plot the map:
+```{r, message=FALSE}
+
+ggplot(states_map, aes(long, lat, group = group))+
+  geom_polygon(fill="white",color="black")+theme_void()
+```
+
+To convey data (e.g. the share of hoxism) we can use a heat map:
+```{r, message=FALSE}
+# First we need to add any data we want to put on the map to the 
+# polygon dataframe
+states_mapPdata=states_map %>% left_join(stats %>% mutate(state=tolower(as.character(state))), by = c("region" = "state"))
+#Note the state variable has to be adjusted to match with the region variable in the polygon dataframe
+
+p=ggplot(states_mapPdata,aes(map_id=region))+
+  geom_polygon(aes(long, lat, group = group,fill = hoaxsh),color="white")+theme_void()+
+  scale_fill_viridis_c(option = "C")+labs(fill = "Hoax Share in %") 
+p
+
+
+
+
+
+```
+
+Adding labels 
+
+```{r, fig.width=10}
+
+
+centroid=states_mapPdata %>% group_by(region) %>% 
+         summarise(maxlong=max(long),minlong=min(long),maxlat=max(lat),minlat=min(lat)) %>%
+         mutate(long=(maxlong+minlong)/2,lat=(minlat+maxlat)/2,region=toupper(region)) 
+
+
+
+  library(ggrepel) # helps keeping labels non overlapping
+  p+geom_text_repel(data = centroid, mapping = aes(x=long, y=lat, label=region),size=2) 
+
+
+```
+
+
+
+
+
+
+
+# D3
+
+[D3](https://d3js.org/) is powerful javascript library to make interactive web based figures and visualisations. It's particularly cool for visualising networks.
+The R package [networkD3](https://christophergandrud.github.io/networkD3/) provides a simple interface to make some of the functionality available in R.
+
+E.g. we can create flow diagrams (also known as Sankey Networks)
+
+
+```{r}
+#library(dplyr)
+#library(ggalluvial)
+#library(ggplot2)
+library(networkD3)
+library(htmlwidgets)
+
+
+flows=read.csv("https://www.dropbox.com/s/b79lx9hwuo3rgv8/frdecovidtoall.csv?dl=1") %>% mutate(flow=per*10^6*coun)
+
+
+```
+
+The key ingredient are nodes
+```{r}
+
+nodes=bind_rows(flows %>% select(finalcat) %>% unique() %>% rename(sector=finalcat),
+                flows %>% select(to) %>% unique() %>% rename(sector=to)  ) %>% mutate(no=row_number()-1)
+
+```
+
+
+
+... and links
+
+```{r}
+
+
+links=flows %>% select(finalcat,to,flow)
+
+
+
+links=links%>% merge(nodes, by.x="to",by.y="sector") %>% dplyr::rename(tono=no) %>%
+               merge(nodes, by.x="finalcat",by.y="sector") %>% rename(fromno=no) %>% select(-finalcat,-to)
+
+
+links
+
+```
+
+
+
+
+```{r}
+#test=Energy$nodes
+#test2=Energy$links
+library(gplots)
+color_scale <- data.frame(
+  range = col2hex(c("red","orange","green","black","grey")), 
+  domain = c("COVID core","COVID supporting","clean","dirty","grey"),
+  nodes = nodes,
+  stringsAsFactors = FALSE
+)
+
+```
+
+
+Let's plot the network
+```{r}
+p=sankeyNetwork(Links = links, Nodes = nodes, Source = "fromno",
+             Target = "tono", Value = "flow", NodeID = "sector",
+             units = "$", fontSize = 14, nodeWidth = 30,
+                colourScale = JS(sprintf(
+                         'd3.scaleOrdinal()  
+                          .domain(%s)
+                          .range(%s)
+                          ',
+                          jsonlite::toJSON(color_scale$domain),
+                          jsonlite::toJSON(color_scale$range)
+                      )))
+p
+
+
+
+```
+
+
+
+
+# dygraphs
+
+Even cooler time series
+
+
+```{r}
+
+library(dygraphs)
+library(xts)
+tsf <- xts(x=usbyday$hoaxsh*100, order.by=usbyday$date)
+
+
+dygraph(tsf, main = "Share of Hoaxtweets in %") %>% 
+                  dySeries("V1", label = "US")  %>% 
+                  dyRangeSelector(height = 20) 
+
+
+```
+
+
+
+
+<!--
+```{r,eval=FALSE,echo=FALSE}
+library(r2d3)
+r2d3(data = jsonlite::read_json("us.json"), d3_version = 3, dependencies = "topojson.min.js", script = "cartogram.js")
+
+```
+-->
+
+<!--
+```{r ,eval=FALSE,echo=FALSE,message=FALSE}
+library(ggplot2)
+library(tidyverse)
+library(readxl)
+
+theme_set(theme_minimal())
+
+# Data Import
+Payment <- read_excel("C:/Users/Tarun/Desktop/2nd Sem/Data Viz/Assignment2/Payment.xlsx")
+
+#Creating new variable for net income percentage
+Payment <- mutate(Payment, `Take_Home_Income(as % of gross wage earning)` = (`Wages earning After Taxes`/`Gross wage earnings (US dollars with equal purchasing power)`)*100)
+
+
+Payment$`Take_Home_Income(as % of gross wage earning)` <- round(Payment$`Take_Home_Income(as % of gross wage earning)`, 2)
+
+# Formatting 
+payment2 <- Payment %>% gather(Salary_Breakup , value , 4,5,8)
+payment2$Salary_Breakup<- as.factor(payment2$Salary_Breakup)
+payment2$Country<- as.factor(payment2$Country)
+payment2$value <- as.numeric(payment2$value)
+
+#Plotting Facit
+pp1 <- ggplot(data = payment2, aes(x =Country, y = payment2$value, fill = payment2$Salary_Breakup))
+pp2 <- pp1 + geom_bar(stat = "identity", 
+                      show.legend = FALSE) + 
+  scale_fill_manual(values=c("#d55e00","#cc79a7","#0072b2"))+
+  geom_text(aes(label=paste0(value)), size = 2.5, position =position_stack(vjust = 1.1))+ 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        panel.spacing = unit(1, "lines"),
+        strip.background = element_blank(),
+        strip.placement = "outside",
+        panel.grid.major = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid.major.x = element_blank())+
+  labs( title = "Take Home Pay Comparison Of Workers Around The World",
+        subtitle = "Proportions Of Income Tax, Employees Social Security contributions & Net Income",
+        y = "Percentage", 
+        x = "Countries")+
+  facet_wrap(Salary_Breakup~., scales = "free_y", nrow = 3, strip.position = "top")
+
+
+```
+-->
