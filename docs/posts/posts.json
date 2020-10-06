@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/quickguides/quickguide_visions/",
+    "title": "Quick Guide - Visions",
+    "description": "Various tips and examples around visualistaions",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-10-04",
+    "categories": [
+      "Quickguides"
+    ],
+    "preview": {},
+    "last_modified": "2020-10-04T12:42:15+01:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/exercises/exercises3/",
     "title": "Exercises 3",
     "description": "How to have visualisations",

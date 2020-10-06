@@ -1,0 +1,448 @@
+---
+title: "Testing Times"
+author: Ralf Martin
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Dice
+How likely is it to throw repeated sixes with a fair dice? Let's use a loop to work it out
+
+```{r,  results = "asis"}
+for(i in 1:5){
+  p=as.character(format( round(1/6^i,4),scientific=F))
+    
+  cat(paste0("$$Prob\\{", i,"\\textrm{ sixes in a row}\\}=",p,"$$\n"))
+  # Cat is like print but better suited for use in markdown where mingle
+  # other stuff into the output such as latex
+}
+```
+
+
+# When should we start taking the slope of a line serious?
+```{r}
+library(dplyr)
+library(ggplot2)
+ff=read.csv("https://www.dropbox.com/s/g1w75gkw7g91zef/foreigners.csv?dl=1")  
+ff=ff%>%mutate(crimesPc=crimes11/pop11)%>% filter( crimesPc<10)
+
+ggplot(ff, aes(y=crimesPc,x=b_migr11)) + geom_point()   +   # Make sure + is on this line so R understands the command is not finished
+                   xlab("Share of foreign born in %")   +  
+                   ylab("Number of Crimes per capita")  + 
+                   geom_smooth(method = "lm", se = FALSE) +
+                   theme_minimal()
+
+
+```
+
+
+# Monte Carlo
+
+Let's create the data ourselves so we know what drives it.
+
+```{r}
+  
+  obs <- 100
+  x <- 0.5 + runif(obs)*2.5
+  sig=sqrt(5.5)*2
+  eps <- rnorm(obs,0,sig)
+  y <- 2 + x * 0 + eps
+  
+  df=data.frame(x,y)
+  
+  ggplot(df, aes(x, y))+geom_point(color="blue") +theme_minimal()
+  
+```  
+  
+  
+Now let's run a regression  
+  
+
+```{r}  
+  
+  
+  
+  ggplot(df, aes(x, y))+geom_point(color="blue") +theme_minimal()+geom_smooth(method="lm",se=F)
+  
+  monte1 <- lm(y ~ x , data = df)
+  
+  summary(monte1)
+  
+```  
+  
+
+Now let's repeat that many times   
+```{r}  
+  df=df %>% mutate(round=0)
+  b2<-numeric()
+  
+  sig=sqrt(5.5)
+  
+  for(i in 1:5) {
+    
+    x <- 0.5 + runif(obs)*2.5  
+    
+    eps <- rnorm(obs,0,sig)
+    y <- 2 + x * 0 + eps
+    
+    monte2 <- lm(y ~ x )
+    b2[i]=monte2$coefficients[2]
+    
+    
+    bx   =monte2$coefficients[2] 
+    
+    dfnew=data.frame(x,y,round=i)
+    df=bind_rows(df,dfnew)
+  }
+  
+  
+  ggplot(df, aes(x, y,color=factor(round)))+geom_point() +theme_minimal()+geom_smooth(method="lm",se=F)
+
+```
+
+Really a lot of times..
+```{r}
+  df=df %>% mutate(round=0)
+  b2<-numeric()
+  
+  sig=sqrt(5.5)
+  
+  for(i in 1:1000) {
+    
+    x <- 0.5 + runif(obs)*2.5  
+    
+    eps <- rnorm(obs,0,sig)
+    y <- 2 + x * 0 + eps
+    
+    monte2 <- lm(y ~ x )
+    b2[i]=monte2$coefficients[2]
+    
+    
+    bx   =monte2$coefficients[2] 
+    
+    dfnew=data.frame(x,y,round=i)
+    df=bind_rows(df,dfnew)
+  }  
+  
+#b2[i]=monte2$coefficients[2]  
+bx
+b2  
+
+b2[10000]
+bx
+
+
+mean(b2)
+```
+
+
+
+
+Let's look at the distribution
+
+```{r}
+  library(latex2exp)
+  # Compute the standard errors of the estimates
+   b2_sig         =sqrt(sig^2/(obs* var(x)) )
+
+ 
+  hist(b2,100)
+
+  hist(b2,100,prob=TRUE,main=TeX("Distribution of $\\beta_1$"))
+  db2=density(b2)
+  lines(db2,col="blue")
+  
+  curve(dnorm(x,0,b2_sig),add=TRUE, col="orange")
+
+  
+```
+
+
+
+Now let's look what happens if we have
+- less observations
+- more variation in X
+- more variation in epsilon
+- non normal epsilon
+- non normal epsilon less observations
+
+
+```{r}
+
+  
+  b2_less_obs<-numeric()
+  b2_more_obs<-numeric()
+  b2_more_var_x<-numeric()
+  b2_more_var_eps<-numeric()
+  b2_non_normal_eps<-numeric()
+  b2_non_normal_eps_less<-numeric()
+  b2_non_normal_eps_more<-numeric()
+  
+  
+  less_obs=10
+  
+  more_obs=750
+  
+  
+  
+
+  
+  for(i in 1:1000) {
+
+    x            <- 0.5 + runif(obs)     *2.5
+    x_less_obs   <- 0.5 + runif(less_obs)*2.5
+    x_more_var_x <- 0.5 + runif(obs)     *5
+    x_more_obs   <- 0.5 + runif(more_obs)*2.5
+
+    
+
+
+    eps                = rnorm(obs,0,sig)
+    eps_less_obs       = rnorm(less_obs,0,sig)
+    eps_more_obs       = rnorm(more_obs,0,sig)
+    
+    eps_more_var_eps   = rnorm(obs,0,sig*4)
+    
+    
+    uni=runif(obs)
+    eps_non_normal_eps = -1*(uni<0.5) + 10*(uni>=.95)
+      
+
+    uni=runif(more_obs)
+    eps_non_normal_eps_more = -1*(uni<0.5) + 10*(uni>=.95)
+    
+    
+    beta1=0 
+    
+    y                     = 2 + x            * beta1 + eps
+    y_less_obs            = 2 + x_less_obs   * beta1 + eps_less_obs
+    y_more_obs            = 2 + x_more_obs   * beta1 + eps_more_obs
+    
+    
+    y_more_var_x          = 2 + x_more_var_x * beta1 + eps
+    y_more_var_eps        = 2 + x            * beta1 + eps_more_var_eps
+    
+    y_non_normal_eps      = 2 + x            * beta1 + eps_non_normal_eps
+    
+    
+    y_non_normal_eps_less = 2 + x_less_obs   * beta1 + eps_non_normal_eps[1:less_obs]
+    y_non_normal_eps_more = 2 + x_more_obs   * beta1 + eps_non_normal_eps_more
+    
+    
+    
+    
+    monte2 <- lm(y_less_obs ~ x_less_obs )
+    b2_less_obs[i]=monte2$coefficients[2]
+    
+    monte2 <- lm(y_more_obs ~ x_more_obs )
+    b2_more_obs[i]=monte2$coefficients[2]
+
+        
+    monte2 <- lm(y_more_var_x ~ x_more_var_x )
+    b2_more_var_x[i]=monte2$coefficients[2]
+
+            
+    monte2 <- lm(y_more_var_eps ~ x )
+    b2_more_var_eps[i]=monte2$coefficients[2]
+    
+    
+    monte2 <- lm(y_non_normal_eps ~ x )
+    b2_non_normal_eps[i]=monte2$coefficients[2]
+    
+
+    monte2 <- lm(y_non_normal_eps_less ~ x_less_obs )
+    b2_non_normal_eps_less[i]=monte2$coefficients[2]
+
+
+    monte2 <- lm(y_non_normal_eps_more ~ x_more_obs )
+    b2_non_normal_eps_more[i]=monte2$coefficients[2]
+        
+    
+  }
+
+
+```
+
+
+Let's look at this
+
+
+```{r}
+   
+   # Compute the standard errors of the estimates
+	 b2_sig         =sqrt(sig^2/(obs* var(x)) )
+
+
+   #b2_sig_less_obs=sqrt(sig^2/(less_obs* var(x_less_obs)))
+   #b2_sig_less_obs    =sqrt(sig^2/(more_obs* var(x_more_obs)) )
+   #b2_sig_more_var_eps=sqrt((sig*4)^2/(obs* var(x))) 
+
+
+  # Compute the densities
+  db2=density(b2)
+  db2_less_obs=density(b2_less_obs)
+  db2_more_obs=density(b2_more_obs)
+  
+  db2_more_var_x=density(b2_more_var_x)
+  db2_more_var_eps=density(b2_more_var_eps)
+  db2_non_normal_eps=density(b2_non_normal_eps)
+  db2_non_normal_eps_less=density(b2_non_normal_eps_less)
+  db2_non_normal_eps_more=density(b2_non_normal_eps_more)
+  
+
+  
+  # Baseline
+  plot(db2,xlim=c(-1.5,1.5),ylim=c(0,3.5),main="Baseline",xlab="")
+  curve(dnorm(x,0,b2_sig),add=TRUE, col="blue")
+  
+  legend(2,2,legend=c("Basline density", "Baseline normal distribution"),col=c("black","blue"),lty=1, cex=0.8)
+  
+      
+  # Changing obs
+  plot(db2,xlim=c(-4,4),main="Changing the number of observations",xlab="")
+  lines(db2_less_obs,col="blue")
+  legend(2,.2,legend=c("obs=100", "obs=10"),col=c("black","blue"),lty=1, cex=0.8)
+
+
+  # Changing x variation
+  plot(db2,xlim=c(-1.5,1.5),ylim=c(0,3),main=TeX("Changing x variation - Density of $\\beta$"),xlab="")
+  lines(db2_more_var_x,col="blue")
+  legend(.5,2.5,legend=c("baseline", "higher variation"),col=c("black","blue"),lty=1, cex=0.8)
+  #legend(4,.5,legend=c("baseline", "higher variation"),col=c("black","blue"),lty=1, cex=0.8)
+
+  #summary(x)
+  dx=density(x)
+  dx_more_var_x=density(x_more_var_x)
+  plot(dx,xlim=c(-1,6),ylim=c(0,2),main="Changing x variation - Density of x",xlab="")
+  lines(dx_more_var_x,col="blue")
+  legend(2,2,legend=c("baseline", "higher variation"),col=c("black","blue"),lty=1, cex=0.8)
+  
+  
+
+  
+  # Changing eps variation
+  plot(db2,xlim=c(-4,4),ylim=c(0,2),main=TeX("Changing $\\epsilon$ Variation - Density of $\\beta$"),xlab="")
+  lines(db2_more_var_eps,col="blue")
+  legend(2,2,legend=c("baseline", "higher variation"),col=c("black","blue"),lty=1, cex=0.8)
+  
+
+  # Non normal eps
+  plot(db2,xlim=c(-3,3),ylim=c(0,2),main=TeX("Non normal $\\epsilon$"),xlab="")
+  lines(db2_non_normal_eps,col="blue")
+  legend(2,2,legend=c("normal", "non-normal"),col=c("black","blue"),lty=1, cex=0.8)
+  
+  
+  deps=density(eps)
+  deps_non_normal_eps=density(eps_non_normal_eps)
+
+  
+  plot(deps,xlim=c(-3,3),ylim=c(0,1),main=TeX("Non normal $\\epsilon$ - Distribution of $\\epsilon"),xlab="")
+  lines(deps_non_normal_eps,col="blue")
+  legend(5,.5,legend=c("normal", "non-normal"),col=c("black","blue"),lty=1, cex=0.8)
+  
+  
+  
+  
+  # Non normal eps less
+  plot(db2_less_obs,xlim=c(-3,3),ylim=c(0,2),main=TeX("Non normal $\\epsilon$ less obs"),xlab="")
+  lines(db2_non_normal_eps_less,col="blue")
+  legend(2,2,legend=c("normal", "non-normal"),col=c("black","blue"),lty=1, cex=0.8)
+  
+
+  # Non normal eps more
+  plot(db2_more_obs,xlim=c(-3,3),ylim=c(0,4),main="Non normal eps more",xlab="")
+  lines(db2_non_normal_eps_more,col="blue")
+  legend(2,2,legend=c("normal", "non-normal"),col=c("black","blue"),lty=1, cex=0.8)
+
+  
+```
+
+
+
+
+    
+# Hypothesis Testing in the foreigners and crime example
+```{r}
+ library(haven)   # make sure libraries such as this are installed. If not go to Tools -> Install Packages
+ df=ff
+ 
+ df['crimesPc']=df$crimes11/df$pop11
+ reg1=lm(crimesPc~b_migr11,df)
+ summary(reg1)
+ 
+ library("car")
+ linearHypothesis(reg1, c( "b_migr11= 0.04") )
+ 
+```
+
+ 
+ 
+ 
+# Working out the cut off points 
+ 
+ 
+  qnorm(0.005)  
+  qnorm(0.025)
+  qnorm(0.05)
+  
+  qnorm(0.995)  
+  qnorm(0.975)
+  qnorm(0.95)
+  
+  
+  
+
+
+  
+#< Annother example
+```{r,eval=FALSE}
+  library(foreign)
+  library(haven)
+  eaef <- read_dta("../data/eaef21.dta")
+  head(eaef, n=10)  
+  library("lattice")
+  xyplot(EARNINGS ~ S, data = eaef, type = c("p","r"), col.line = "red")
+  
+  mod_earn <- lm(EARNINGS ~ S , data = eaef)
+  summary(mod_earn)
+```
+
+#>
+  
+# tea time
+```{r}
+
+  qt(0.025, 10  )
+
+```  
+
+  
+  
+# Effect of Experience on Earnings
+```{r,eval=FALSE}
+  library(foreign)
+  eaef <- read.dta("../data/eaef21.dta")
+
+  mod_earn_exp <- lm(EARNINGS ~ EXP , data = eaef)    
+  summary(mod_earn_exp) 
+```
+  
+  
+# More general hypothesis tests
+
+```{r,eval=FALSE}  
+  mod_exp_s <- lm(EXP ~ S , data = eaef)
+  summary(mod_exp_s)  
+  library(data.table)
+  library("car")
+  linearHypothesis(mod_exp_s, c( "S = -1") )
+  
+```
+
+
