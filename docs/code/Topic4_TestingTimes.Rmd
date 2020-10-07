@@ -295,7 +295,8 @@ Let's look at this
   db2_non_normal_eps_less=density(b2_non_normal_eps_less)
   db2_non_normal_eps_more=density(b2_non_normal_eps_more)
   
-
+  df2_eps_more_var_eps=density(eps_more_var_eps)
+  df2_eps=density(eps)
   
   # Baseline
   plot(db2,xlim=c(-1.5,1.5),ylim=c(0,3.5),main="Baseline",xlab="")
@@ -327,10 +328,18 @@ Let's look at this
 
   
   # Changing eps variation
+  
+  
   plot(db2,xlim=c(-4,4),ylim=c(0,2),main=TeX("Changing $\\epsilon$ Variation - Density of $\\beta$"),xlab="")
   lines(db2_more_var_eps,col="blue")
   legend(2,2,legend=c("baseline", "higher variation"),col=c("black","blue"),lty=1, cex=0.8)
   
+  
+  plot(df2_eps)  
+  plot(db2,xlim=c(-4,4),ylim=c(0,2),main=TeX("Changing $\\epsilon$ Variation - Density of $\\beta$"),xlab="") 
+  df2_eps_more_var_eps=density(eps_more_var_eps)
+  df2_eps=density(eps)
+
 
   # Non normal eps
   plot(db2,xlim=c(-3,3),ylim=c(0,2),main=TeX("Non normal $\\epsilon$"),xlab="")

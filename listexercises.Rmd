@@ -5,6 +5,10 @@
     posts: 
       - exercises/exercises1 
       - exercises/exercises2
+      - exercises/exercises3
+      - exercises/exercises4
+      - exercises/exercises5
+      - exercises/exercises6
       
       
 ---
