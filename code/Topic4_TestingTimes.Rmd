@@ -152,7 +152,8 @@ Let's look at the distribution
    b2_sig         =sqrt(sig^2/(obs* var(x)) )
 
  
-  hist(b2,100)
+  hist(b2,30,main=TeX("Distribution of $\\beta_1$"))
+  hist(b2,30,prob=TRUE,main=TeX("Distribution of $\\beta_1$"))
 
   hist(b2,100,prob=TRUE,main=TeX("Distribution of $\\beta_1$"))
   db2=density(b2)
