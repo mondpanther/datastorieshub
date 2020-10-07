@@ -152,7 +152,8 @@ Let's look at the distribution
    b2_sig         =sqrt(sig^2/(obs* var(x)) )
 
  
-  hist(b2,100)
+  hist(b2,30,main=TeX("Distribution of $\\beta_1$"))
+  hist(b2,30,prob=TRUE,main=TeX("Distribution of $\\beta_1$"))
 
   hist(b2,100,prob=TRUE,main=TeX("Distribution of $\\beta_1$"))
   db2=density(b2)
@@ -295,8 +296,8 @@ Let's look at this
   db2_non_normal_eps_less=density(b2_non_normal_eps_less)
   db2_non_normal_eps_more=density(b2_non_normal_eps_more)
   
-  df2_eps_more_var_eps=density(eps_more_var_eps)
-  df2_eps=density(eps)
+  db2_eps_more_var_eps=density(eps_more_var_eps)
+  db2_eps=density(eps)
   
   # Baseline
   plot(db2,xlim=c(-1.5,1.5),ylim=c(0,3.5),main="Baseline",xlab="")
@@ -335,10 +336,11 @@ Let's look at this
   legend(2,2,legend=c("baseline", "higher variation"),col=c("black","blue"),lty=1, cex=0.8)
   
   
-  plot(df2_eps)  
-  plot(db2,xlim=c(-4,4),ylim=c(0,2),main=TeX("Changing $\\epsilon$ Variation - Density of $\\beta$"),xlab="") 
-  df2_eps_more_var_eps=density(eps_more_var_eps)
-  df2_eps=density(eps)
+
+  plot(db2_eps,xlim=c(-30,30),ylim=c(0,.2),
+       main=TeX("Changing $\\epsilon$ Variation - Density of $\\epsilon$"),xlab="") 
+  lines(db2_eps_more_var_eps,col="blue")
+  
 
 
   # Non normal eps
@@ -395,7 +397,13 @@ Let's look at this
  
 # Working out the cut off points 
  
- 
+```{r} 
+
+  pnorm(-1.644854)
+  pnorm(-1.959964)
+  
+```  
+
   qnorm(0.005)  
   qnorm(0.025)
   qnorm(0.05)
@@ -405,7 +413,7 @@ Let's look at this
   qnorm(0.95)
   
   
-  
+
 
 
   
