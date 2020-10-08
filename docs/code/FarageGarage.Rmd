@@ -1,0 +1,279 @@
+---
+title: "Foreigner's and Crime"
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Introduction
+
+An illustration of R Markdown....
+
+<!--- The previous line makes a heading...
+  This here is a comment that won't be displayed on the web page. 
+-->
+
+What's the link between foreigners and crime?
+
+
+## Illustration 
+
+To illustrate your story you can include images (even of [thugs who attack foreigners](https://www.freemovement.org.uk/theresa-mays-immigration-legacy/))
+
+![](https://i.dailymail.co.uk/i/pix/scaled/2013/02/16/article-2279828-027314C900000514-667_308x185.jpg){width=50%}
+
+<br>
+
+
+You can also embedd tweets. To illustrate that, let's hear some remarks from Nigel Farage (The patron saint of the [Farage Garage](https://www.theneweuropean.co.uk/top-stories/faragegarage-trends-on-twitters-over-secret-brexit-lorry-park-1-6743902)):
+
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"> <a href="https://twitter.com/mikegove12/status/1306904285343617025">Farage Garage</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+# OK some more serious work now
+
+Now let's load some data. To do that you can include chunks of are code like this:
+
+
+```{r}
+
+ff=read.csv("https://www.dropbox.com/s/g1w75gkw7g91zef/foreigners.csv?dl=1")  
+
+```
+
+
+This loads the local authority dataset we have seen before. Note that you can include inline are code as well. 
+For instance: the dataset has `r nrow(ff)` observations and contains `r ncol(ff)` variables.
+
+As before we can summarise the data:
+
+```{r}
+summary(ff)
+
+```
+
+
+Note, you might want to see the output of a command in your final document, but you might not want to see the command. Just do it like this:
+
+
+```{r, echo=FALSE}
+summary(ff)
+
+```
+
+
+
+
+```{r, echo=FALSE}
+library(dplyr)  # This is an extension of R that allows a more covenient handling of dataframes
+
+ff= ff %>% mutate(crimesPc=crimes11/pop11)
+
+
+```
+
+
+
+
+```{r, echo=FALSE}
+library(ggplot2)  # This is an extension of R that allows a more covenient handling of dataframes
+
+ggplot(ff, aes(y=crimesPc,x=b_migr11)) + geom_point() 
+
+
+```
+
+
+Let's get rid of outliers...
+
+
+```{r drop outlier, echo=TRUE,message=FALSE}
+
+ff= ff %>% filter(crimesPc<15)
+```
+
+
+...and do some other stuff to make it look nicer..
+
+
+```{r}
+ggplot(ff, aes(y=crimesPc,x=b_migr11)) + geom_point()   +   # Make sure + is on this line so R understands the command is not finished
+                   xlab("Share of foreign born in %")   +  
+                   ylab("Number of Crimes per capita")  + 
+                   geom_smooth(method = "lm", se = FALSE) +
+                   theme_minimal()
+
+
+```
+
+
+
+
+# Running regressions:
+
+- We said that putting in a trend line in a scatter plot is a way of estimating an 
+econometric model that describes the relationship between the dependent (or outcome) variable on the Y axis and an explanatory variable on the x axis.
+
+- If you want a computer to do this for you (rather take out a ruler and a pen) you need a precise algorithm.
+- The most commonly used algorithm for that is called Ordinary Least Squares estimator (OLS).
+
+
+```{r}
+
+r1=lm(crimesPc~b_migr11,ff)  
+# Note we can assign the output of a regression to a variable...
+
+summary(r1)
+# ...and then refer back to this variable in subsequent commands.
+# You can check how the output of the lm command looks like by clicking on r1 in the 
+# variable browser.
+
+
+```
+
+Note this identifies a linear model of the form
+$$ Y_i=\beta_0 + \beta_1 \times X_i +\epsilon_i$$
+where $Y_i$ is *Crimes per capita* and $X_i$ is the share of foreigners in %. This also shows you how you can integrate formulas in a markdown document and how easily format text to make it italic. More on this under [this](https://rmarkdown.rstudio.com/lesson-8.html) link.
+<br>
+Now this of course is the true model. What we get out of the OLS procedure is an estimate of the above model; i.e.
+$$ Y_i=\hat{\beta}_0 + \hat{\beta}_1 \times X_i +\hat{\epsilon}_i$$
+which given the above R results becomes
+```{r,echo=FALSE,message=FALSE}
+
+beta0=round(r1$coefficients[[1]],3)
+beta1=round(r1$coefficients[[2]],3)
+
+```
+
+$$ Y_i=`r beta0` + `r beta1` \times X_i +\hat{\epsilon}_i$$
+
+where we round the results up to 3 digit precision. Check out the code for this in the underlying [Rmd file](https://mondpanther.github.io/datastorieshub/code/FarageGarage.Rmd)  as it also shows how you can refer back to a previously caclulated result within an inline formula; i.e. rather than manually typing the value for $\beta_0$ and $\beta_1$ I let R work it out from the `lm` command.
+
+## Implication of OLS
+
+An important implication of the OLS estimator is that it works out the $\beta$ parameters in a way that sets correlation between $\hat{\epsilon}$ and $X$ equal to 0. To check that this is the case we extract the $\epsilon$ from the `r1` variable and add it to our `ff` dataframe.
+
+```{r}
+
+ff['residuals']=r1$residuals  
+#Note this is an alternative way of assigning a new variable to a dataframe.
+#Alternatively use:
+ff=ff %>% mutate(residualsx1=r1$residuals)
+
+```
+
+Note that the correlation is indeed 0:
+```{r}
+
+  ff %>% select(residuals,b_migr11, pop11)  %>% cor(use="complete.obs")
+
+  10^17
+```
+
+Which we can also see in a scatterplot:
+```{r,echo=FALSE, message=FALSE}
+  ggplot(ff, aes(x = b_migr11, y = residuals)) +
+    geom_smooth(method = "lm", se = FALSE) +
+    geom_point()+theme_minimal()+
+    xlab("% foreign born")+ylab("Regression residuals")
+
+```
+
+
+
+# Merging data
+
+A big part of applied data analysis involves combining different bit of data. For that you need `merge` or `join` commands. Here is an example where we add more area level variables to our foreigners dataset:
+
+```{r}
+library(dplyr)
+#ff_raw=read.csv("https://www.dropbox.com/s/g1w75gkw7g91zef/foreigners.csv?dl=1")  
+
+
+
+
+ff_more=read.csv("https://www.dropbox.com/s/gwq2wmmxr8s3v7t/foreigners_more.csv?dl=1")  
+
+names(ff_more)
+
+inner=ff_raw %>% inner_join(ff_more,by="area")
+inner=ff_raw %>% full_join(ff_more,by="area")
+
+inner=ff %>% inner_join(ff_more,by="area")
+full=ff %>% full_join(ff_more,by="area")
+
+
+
+```
+
+Dataframe `ff` has `r nrow(ff)` observations. Dataframe `ff_more` has `r nrow(ff_more)`.
+The inner join has `r nrow(inner)`, the full join `r nrow(full)`.
+
+# Doing stuff by region and how to use functions
+
+One of the variables we merged earlier includes a region variable. The following command counts the number of observations for every region.
+```{r}
+inner %>% group_by(region) %>% summarise(n())
+```
+
+![](https://www.researchgate.net/profile/Bethany_Toma2/publication/328861101/figure/fig1/AS:691532764045312@1541885667268/Map-of-NUTS-1-regions-in-the-UK-3.ppm)
+
+### Define the function:
+
+```{r}
+
+plotter=function(r){
+  
+  ffx=inner %>% filter(region==r)
+  
+  plot=ggplot(ffx, aes(x = b_migr11, y = crimesPc)) +
+    geom_smooth(method = "lm", se = FALSE) +
+    geom_point()+theme_minimal()+
+    xlab("% foreign born")+ylab("Crimes per capita")+
+    ggtitle(r)
+  
+  
+  reg=(lm(crimesPc~b_migr11,ffx))
+  return(list(plot,reg))
+}
+```
+
+### Call the function:
+```{r calling the function,message=FALSE}
+p=plotter("London") 
+p[[1]];summary(p[[2]])
+
+p=plotter("East")
+p[[1]];summary(p[[2]])
+
+p=plotter("South West")
+p[[1]];summary(p[[2]])
+
+
+```
+
+
+### Or maybe doing it with a loop?
+```{r,message=FALSE}
+regions=inner$region %>% unique()
+
+for(rrr in regions){
+  
+  p=plotter(rrr)
+  print(p[[1]])
+  print(summary(p[[2]]))
+
+}
+```
+
+
+
+```

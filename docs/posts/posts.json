@@ -1,0 +1,236 @@
+[
+  {
+    "path": "posts/exercises/exercises5/",
+    "title": "Exercises 5",
+    "description": "Becoming a Data Detective: Uncovering Racial Bias & more",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-10-08",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-10-08T08:30:50+01:00",
+    "input_file": "exercises5.utf8.md"
+  },
+  {
+    "path": "posts/exercises/exercises4/",
+    "title": "Exercises 4",
+    "description": "Testing your knowledge of testing",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-10-08",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-10-08T08:35:16+01:00",
+    "input_file": "exercises4.utf8.md"
+  },
+  {
+    "path": "posts/exercises/exercises1/",
+    "title": "Exercises 1",
+    "description": "Starting to think like an econometrician.",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-10-06",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-10-06T13:52:53+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/quickguides/quickguide_visions/",
+    "title": "Quick Guide - Visions",
+    "description": "Various tips and examples around visualistaions",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-10-04",
+    "categories": [
+      "Quickguides"
+    ],
+    "preview": {},
+    "last_modified": "2020-10-04T12:42:15+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises3/",
+    "title": "Exercises 3",
+    "description": "How to have visualisations",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-30",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-30T10:18:59+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises6/",
+    "title": "Exercises 6",
+    "description": "Under construction",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-14",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-14T16:06:23+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises10/",
+    "title": "Exercises 10",
+    "description": "Under construction",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-08",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-08T10:21:22+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises7/",
+    "title": "Exercises 7",
+    "description": "Under construction",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-08",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-08T10:19:17+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises8/",
+    "title": "Exercises 8",
+    "description": "Under construction",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-08",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-08T10:18:54+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises9/",
+    "title": "Exercises 9",
+    "description": "Under construction",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-08",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-08T10:19:58+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises2/",
+    "title": "Exercises 2",
+    "description": "Exercises to get familiar with R.",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-02",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-02T17:34:51+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/quickguides/quickguide_ttests/",
+    "title": "Quick Guide - Hypothesis testing",
+    "description": "What is significant?",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-08-31",
+    "categories": [
+      "Quickguides"
+    ],
+    "preview": {},
+    "last_modified": "2020-08-31T08:06:43+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/quickguides/quickguide_Rscripts/",
+    "title": "Quick Guide - R project organisation",
+    "description": "Organizing your R Working with Scripts, Markdown and Project files",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-08-30",
+    "categories": [
+      "Quickguides"
+    ],
+    "preview": {},
+    "last_modified": "2020-08-30T11:53:36+01:00",
+    "input_file": {}
+  }
+]

@@ -1,6 +1,7 @@
 ---
 title: "Exercises 5"
-description: Becoming a Data Detective: Uncovering Racial Bias & more
+description: |
+  Becoming a Data Detective: Uncovering Racial Bias & more
 author:
   - name: Ralf Martin
     url: https://mondpanther.github.io/wwwmondpanther/

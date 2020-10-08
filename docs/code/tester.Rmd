@@ -1,0 +1,105 @@
+---
+title: "Foreigner's and Crime"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Introduction
+
+An illustration of R Markdown....
+
+<!--- The previous line makes a heading...
+  This here is a comment that won't be displayed on the web page. 
+-->
+
+What's the link between foreigners and crime?
+
+
+## Illustration 
+
+To illustrate your story you can include images (even of [thugs who attack foreigners](https://www.freemovement.org.uk/theresa-mays-immigration-legacy/))
+
+![](https://i.dailymail.co.uk/i/pix/scaled/2013/02/16/article-2279828-027314C900000514-667_308x185.jpg){width=50%}
+
+
+
+
+
+
+# OK some more serious work now
+
+Now let's load some data. To do that you can include chunks of are code like this:
+
+
+```{r}
+
+ff=read.csv("https://www.dropbox.com/s/g1w75gkw7g91zef/foreigners.csv?dl=1")  
+
+```
+
+
+This loads the local authority dataset we have seen before. Note that you can include inline are code as well. 
+For instance: the dataset has `r nrow(ff)` observations and contains `r ncol(ff)` variables.
+
+As before we can summarise the data:
+
+```{r}
+summary(ff)
+
+```
+
+
+Note, you might want to see the output of a command in your final document, but you might not want to see the command. Just do it like this:
+
+
+```{r, echo=FALSE}
+summary(ff)
+
+```
+
+
+
+
+```{r, echo=FALSE}
+library(dplyr)  # This is an extension of R that allows a more covenient handling of dataframes
+
+ff= ff %>% mutate(crimesPc=crimes11/pop11)
+
+
+```
+
+
+
+
+```{r, echo=FALSE}
+library(ggplot2)  # This is an extension of R that allows a more covenient handling of dataframes
+
+ggplot(ff, aes(y=crimesPc,x=b_migr11)) + geom_point() 
+
+
+```
+
+
+Let's get rid of outliers...
+...and do some other stuff to make it look nicer..
+
+```{r drop outlier, echo=FALSE}
+
+ff= ff %>% filter(crimesPc<15)
+
+
+ggplot(ff, aes(y=crimesPc,x=b_migr11)) + geom_point()   +   # Make sure + is on this line so R understands the command is not finished
+                   xlab("Share of foreign born in %")   +  
+                   ylab("Number of Crimes per capita")  + 
+                   theme_minimal()
+
+
+```
+
+
+
+
