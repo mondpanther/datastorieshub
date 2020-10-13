@@ -976,11 +976,41 @@ rr%&gt;% summary()</code></pre>
 <p>A joint hypothesis test could also be a good idea</p>
 <pre class="r"><code>library(&quot;car&quot;)
 
-#linearHypothesis(reg_mc,c(&quot;urate2011=0&quot;,&quot;urate2012=0&quot;,&quot;urate2010=0&quot;))</code></pre>
+rr%&gt;% vif()</code></pre>
+<pre><code>##    b_migr11   urate2011       pop11  shxage0t17 shxage18t29 shxage30t44 
+##    4.493034    1.278986    1.346358  471.751245 1556.049097  348.477568 
+## shxage45t64     meanage 
+##  180.462107 2271.595826</code></pre>
 </div>
 </div>
 <div id="joint-hypothesis-tests" class="section level1">
-<h1>joint hypothesis tests</h1>
+<h1>Joint hypothesis tests</h1>
+<p>Testing multiple restrictions at once; e.g. does age really not matter in the regression above?</p>
+<pre class="r"><code>  library(&quot;car&quot;)
+  linearHypothesis(rr,  c(&quot;shxage0t17 =0&quot; ,
+                          &quot;shxage18t29=0&quot;,
+                          &quot;shxage30t44=0&quot;,
+                          &quot;shxage45t64=0&quot;,
+                          &quot;meanage=0&quot;
+                          ) )</code></pre>
+<pre><code>## Linear hypothesis test
+## 
+## Hypothesis:
+## shxage0t17 = 0
+## shxage18t29 = 0
+## shxage30t44 = 0
+## shxage45t64 = 0
+## meanage = 0
+## 
+## Model 1: restricted model
+## Model 2: crimesPc ~ b_migr11 + urate2011 + pop11 + shxage0t17 + shxage18t29 + 
+##     shxage30t44 + shxage45t64 + meanage
+## 
+##   Res.Df    RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1    311 79.228                                  
+## 2    306 66.011  5    13.217 12.254 7.689e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <pre class="r"><code>  wage1 &lt;- read.csv(&quot;https://www.dropbox.com/s/9agc2vmamfztlel/WAGE1.csv?dl=1&quot;)
   wage_educ_exper &lt;- lm(wage ~ educ + exper, wage1)
   

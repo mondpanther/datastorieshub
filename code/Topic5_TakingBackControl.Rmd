@@ -179,6 +179,8 @@ cor(df %>% select(shxage0t17,
 
 ```
 
+
+
 A joint hypothesis test could also be a good idea
 
 
@@ -186,13 +188,27 @@ A joint hypothesis test could also be a good idea
 ```{r}
 library("car")
 
-#linearHypothesis(reg_mc,c("urate2011=0","urate2012=0","urate2010=0"))
-
+rr%>% vif()
 
 ```
 
   
-# joint hypothesis tests
+# Joint hypothesis tests
+
+Testing multiple restrictions at once; e.g. does age really not matter in the regression above?
+
+```{r}
+
+  library("car")
+  linearHypothesis(rr,  c("shxage0t17 =0" ,
+                          "shxage18t29=0",
+                          "shxage30t44=0",
+                          "shxage45t64=0",
+                          "meanage=0"
+                          ) )
+```
+
+
 
 ```{r}
   wage1 <- read.csv("https://www.dropbox.com/s/9agc2vmamfztlel/WAGE1.csv?dl=1")
