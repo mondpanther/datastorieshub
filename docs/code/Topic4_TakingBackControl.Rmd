@@ -1,0 +1,218 @@
+---
+title: "Multivariate Regression"
+output: word_document
+editor_options: 
+chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+# Wage regression
+
+Let's look at a new example: regressions of hourly wages on years of education (note this is US data)
+
+```{r}
+library(haven) 
+getwd()  
+#load dataset 
+data <- read_dta("../data/wage1.dta")
+head(data)
+
+
+summary(data)
+
+
+mod1 <- lm(wage ~ educ, data)
+summary(mod1)
+plot(data$educ, data$wage, col = "blue")
+lines(data$educ, mod1$fitted.values, col = "red")
+
+
+
+
+
+summary(lm(exper ~ educ  , data))
+summary(lm(wage  ~ educ + exper, data))
+summary(lm(educ  ~ female,data))
+summary(lm(wage  ~ educ+female,data))
+summary(lm(wage  ~ educ+exper+female,data))
+
+
+
+
+```
+
+
+
+
+
+
+```{r}
+ library(haven)   # make sure libraries such as this are installed. If not go to Tools -> Install Packages
+ df=read_dta("../data/foreigners.dta")
+ df['crimesPc']=df$crimes11/df$pop11
+ 
+ 
+ library(dplyr)
+ df=df%>%merge(read_dta("../data/foreigners_more.dta"),by="area") # Getting further variables
+ 
+ 
+ 
+ reg1=lm(crimesPc~b_migr11,df)
+ summary(reg1)
+ 
+
+ 
+ 
+ summary(lm(crimesPc~b_migr11+pop11,df))
+ summary(lm(b_migr11~pop11,df))
+ 
+ summary(lm(crimesPc~b_migr11+pop11+urate2011,df))
+ summary(lm(b_migr11~urate2011,df))
+ 
+ 
+ summary(lm(crimesPc~b_migr11+pop11+medianage,df))
+ 
+ 
+ 
+ summary(lm(crimesPc~b_migr11+pop11+urate2011+medianage,df))
+ 
+ 
+``` 
+ 
+ 
+ 
+ 
+ An alternative strategy: Unemployment in 2004 can't be affected by the surge in migration after 2004
+```{r}
+
+ summary(lm(crimesPc~b_migr11+pop11+medianage+urate2004,df))
+ summary(lm(crimesPc~b_migr11+urate2004+medianage,df))
+
+```
+ 
+ 
+ 
+ 
+
+```{r}
+
+
+
+
+
+plot(df$pop11,df$b_migr11)
+plot(df$urate2011,df$b_migr11)
+plot(df$medianage,df$b_migr11)
+#df[df$pop11>600000,"area"]
+ 
+```
+
+
+
+How about differentiating by different groups? Muslims' get a lot of hate by English neo nazis
+```{r}
+
+reg2=lm(crimesPc~b_migr11+mus_sh+pop11+medianage+urate2011,df)
+summary(reg2)
+
+```
+
+
+What about imperfect colinearity?
+
+```{r}
+
+
+reg2=lm(crimesPc~b_migr11+pop11+medianage+urate2011+urate2010+urate2012,df)
+summary(reg2)
+
+
+```
+
+
+
+  
+# Multicolinearity
+
+
+```{r}
+  data["exper_h"] <- data$exper>quantile(data$exper,0.5)  
+  head(data)
+  data["educ_h"] <- data$educ>quantile(data$educ,0.5)  
+  
+  table(data$exper_h, data$educ_h)
+  
+  data2<-subset(data, exper_h==educ_h)
+  table(data2$exper_h, data2$educ_h)
+  
+  summary( lm(wage ~ educ_h + exper_h, data2))
+  # # change variable type
+  # data$ED <- as.factor(data$ED)
+  # 
+  # mod2 <- lm(LWAGE ~ ED, data)
+  # summary(mod2)
+
+```
+
+
+
+What about imperfect colinearity?
+
+```{r}
+
+
+reg_mc=lm(crimesPc~b_migr11+pop11+medianage+urate2011+urate2010+urate2012,df)
+summary(reg_mc)
+
+
+cor(df[,c("urate2011","urate2010","urate2012")],use="complete.obs")
+
+```
+
+A joint hypothesis test could be a good idea
+
+
+
+```{r}
+library("car")
+
+linearHypothesis(reg_mc,c("urate2011=0","urate2012=0","urate2010=0"))
+
+
+```
+
+  
+# joint hypothesis tests
+
+```{r}
+  wage1 <- read_dta("../data/wage1.dta")
+  wage_educ_exper <- lm(wage ~ educ + exper, wage1)
+  
+  
+  #< by transforming model
+  
+     wage1["educPexper"] <- wage1$educ+wage1$exper
+     head(wage1)
+  
+  #>
+  
+  summary( lm(wage ~ educPexper + exper, wage1))
+  
+  
+  library("car")
+  linearHypothesis(wage_educ_exper,  c("educ =0" ,"exper=0") )
+  
+```  
+
+
+
+
+
+
+
