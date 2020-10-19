@@ -1,0 +1,33 @@
+---
+title: "Climate Tweets"
+author: Ralf Martin
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(DBI)
+con <- dbConnect(
+  bigrquery::bigquery(),
+  project = "twitter-291515",
+  dataset = "tweets"
+  
+)
+con 
+```
+
+
+
+
+```{r}
+library(dplyr)
+
+climatetweets <- tbl(con, "climatetweets")
+names(climatetweets)
+
+
+top=climatetweets %>%
+    head(10) %>%
+  collect()
+names(tr)
