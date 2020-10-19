@@ -48,7 +48,7 @@ This is based on the tweet sampling I have been doing on climate hoaxism. Within
 
 
 
-```{r ca,cache=TRUE}
+```{r ca,cache=F}
 library(lubridate)
 library(dplyr)
 
