@@ -90,5 +90,10 @@ for (i in seq(1,length(file))) {
 ```
 
 
+# Past Exam Papers
 
+- [Past Exam 1]("https://www.dropbox.com/s/97tvh8z87wuvujt/CCMF%20Quantitative%20Methods%20ANSWER%20version%20%282%29%20IT%202018%20%28RM%29%28MM%29%20clean.pdf?dl=1")
 
+- [Past Exam 2]("https://www.dropbox.com/s/wmnmqdn64e8vaxb/Quant%20Methods%20Exam%20%2016-17%20with%20solutions.docx?dl=1")
+
+- [Past Exam 3]("https://www.dropbox.com/s/e05obku5roeyu97/Quantitative%20Methods%20Exam%202017%20%28final%20with%20solutions%29.pdf?dl=1")
