@@ -95,3 +95,35 @@ for (i in seq(1,length(file))) {
 - [Graded Assignment 2019](https://www.dropbox.com/s/hvd31mgwgjgxunk/Graded%20Assignment%202019%20-%20With%20Solutions.docx?dl=1)
 
 - [Graded Assignment 2018](https://www.dropbox.com/s/j2p6je4eo98wubi/Graded%20Exercise%20Set%202018%20-%20with%20solutions.docx?dl=1)
+
+
+
+## Datasets for past papers (and more)
+
+
+```{r ,echo=FALSE, message=FALSE}
+
+file=list.files(path="./data")
+
+
+
+#path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
+path="https://mondpanther.github.io/datastorieshub/code/"
+full=paste0(path,file[[1]])
+
+
+```
+
+```{r echo = FALSE, results = "asis"}
+
+for (i in seq(1,length(file))) {
+  
+  full=paste0(path,file[[i]])
+  cur=paste("- [", file[[i]],"](",full,") \n")
+  cat(cur)
+
+}
+```
+
+
+
