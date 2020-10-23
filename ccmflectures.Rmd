@@ -97,3 +97,35 @@ for (i in seq(1,length(file))) {
 - [Past Exam 2](https://www.dropbox.com/s/wmnmqdn64e8vaxb/Quant%20Methods%20Exam%20%2016-17%20with%20solutions.docx?dl=1)
 
 - [Past Exam 3](https://www.dropbox.com/s/e05obku5roeyu97/Quantitative%20Methods%20Exam%202017%20%28final%20with%20solutions%29.pdf?dl=1)
+
+
+
+## Datasets for past papers (and more)
+
+
+```{r ,echo=FALSE, message=FALSE}
+
+file=list.files(path="./data")
+
+
+
+#path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
+path="https://mondpanther.github.io/datastorieshub/code/"
+full=paste0(path,file[[1]])
+
+
+```
+
+```{r echo = FALSE, results = "asis"}
+
+for (i in seq(1,length(file))) {
+  
+  full=paste0(path,file[[i]])
+  cur=paste("- [", file[[i]],"](",full,") \n")
+  cat(cur)
+
+}
+```
+
+
+
