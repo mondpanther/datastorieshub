@@ -1,0 +1,238 @@
+---
+title: "Taking back control"
+author: Ralf Martin
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+
+
+# Wage regression
+
+Let's look at a new example: regressions of hourly wages on years of education (note this is US data)
+
+```{r}
+library(haven) 
+getwd()  
+#load dataset 
+data <- read.csv("https://www.dropbox.com/s/9agc2vmamfztlel/WAGE1.csv?dl=1")
+head(data)
+
+
+summary(data)
+
+
+mod1 <- lm(wage ~ educ, data)
+summary(mod1)
+plot(data$educ, data$wage, col = "blue")
+lines(data$educ, mod1$fitted.values, col = "red")
+
+
+
+
+
+summary(lm(exper ~ educ  , data))
+summary(lm(wage  ~ educ + exper, data))
+summary(lm(educ  ~ female,data))
+summary(lm(wage  ~ educ+female,data))
+summary(lm(wage  ~ educ+exper+female,data))
+
+
+
+
+```
+
+
+
+
+
+
+```{r}
+ library(haven)   # make sure libraries such as this are installed. If not go to Tools -> Install Packages
+ df=read.csv("https://www.dropbox.com/s/g1w75gkw7g91zef/foreigners.csv?dl=1")
+ df['crimesPc']=df$crimes11/df$pop11
+ 
+ 
+ library(dplyr)
+ df=df%>%merge(read.csv("https://www.dropbox.com/s/gwq2wmmxr8s3v7t/foreigners_more.csv?dl=1"),
+               by="area") # Getting further variables
+
+
+ 
+ reg1=lm(crimesPc~b_migr11,df)
+ 
+ 
+ reg1=lm(crimesPc~pop11+b_migr11,df)
+ summary(reg1)
+
+ summary(reg1)
+ 
+
+ 
+ 
+ summary(lm(crimesPc~b_migr11+pop11,df))
+ summary(lm(b_migr11~pop11,df))
+ 
+ summary(lm(crimesPc~b_migr11+pop11+urate2011,df))
+ summary(lm(b_migr11~urate2011,df))
+ 
+ 
+ summary(lm(crimesPc~b_migr11+pop11+medianage,df))
+ 
+ 
+ 
+ summary(lm(crimesPc~b_migr11+pop11+urate2011+medianage,df))
+ 
+ 
+``` 
+ 
+ 
+ 
+ 
+ An alternative strategy: Unemployment in 2004 can't be affected by the surge in migration after 2004
+```{r}
+
+ summary(lm(crimesPc~b_migr11+pop11+medianage+urate2004,df %>% filter(crimesPc<15)))
+
+ summary(lm(crimesPc~b_migr11+urate2011+medianage,df))
+ summary(lm(crimesPc~b_migr11+urate2004+medianage,df))
+
+```
+ 
+ 
+ 
+ 
+
+```{r}
+
+
+
+
+
+plot(df$pop11,df$b_migr11)
+plot(df$urate2011,df$b_migr11)
+plot(df$medianage,df$b_migr11)
+#df[df$pop11>600000,"area"]
+ 
+```
+
+
+
+How about differentiating by different groups? Muslims' get a lot of hate by English neo nazis
+```{r}
+
+reg2=lm(crimesPc~b_migr11+mus_sh+pop11+medianage+urate2011,df)
+summary(reg2)
+
+```
+
+# Multicolinearity
+
+
+
+## Perfect colinearity
+
+```{r}
+library(ggplot2)
+data=data %>% mutate(educ_in_days=educ*365)
+cor(data %>% select(educ,educ_in_days))
+ggplot(data,aes(x=educ,y=educ_in_days))+geom_point()
+
+reg2=lm(wage~female+educ+educ_in_days,data)
+reg2 %>% summary()
+
+
+```
+
+
+
+## What about imperfect colinearity?
+
+
+
+  
+
+
+
+```{r}
+library(car)
+evenmore=read.csv( "https://www.dropbox.com/s/pwotro2ghawkppg/foreign_evenmore.csv?dl=1")
+df=df%>% inner_join(evenmore,by="area")
+
+
+
+rr=lm(crimesPc~b_migr11+urate2011+
+            pop11+
+            shxage0t17+ 
+            shxage18t29+shxage30t44+shxage45t64+meanage,df  %>% filter(crimesPc<150))
+rr%>% summary()
+```
+
+
+```{r}
+cor(df %>% select(shxage0t17, 
+                  shxage18t29,
+                  shxage30t44,
+                  shxage45t64,meanage),use="complete.obs")
+
+```
+
+
+
+A joint hypothesis test could also be a good idea
+
+
+
+```{r}
+library("car")
+
+rr%>% vif()
+
+```
+
+  
+# Joint hypothesis tests
+
+Testing multiple restrictions at once; e.g. does age really not matter in the regression above?
+
+```{r}
+
+  library("car")
+  linearHypothesis(rr,  c("shxage0t17 =0" ,
+                          "shxage18t29=0",
+                          "shxage30t44=0",
+                          "shxage45t64=0",
+                          "meanage=0"
+                          ) )
+```
+
+
+
+```{r}
+  wage1 <- read.csv("https://www.dropbox.com/s/9agc2vmamfztlel/WAGE1.csv?dl=1")
+  wage_educ_exper <- lm(wage ~ educ + exper, wage1)
+  
+  
+  #< by transforming model
+  
+     wage1["educPexper"] <- wage1$educ+wage1$exper
+     head(wage1)
+  
+  #>
+  
+  summary( lm(wage ~ educPexper + exper, wage1))
+  
+  
+  library("car")
+  linearHypothesis(wage_educ_exper,  c("educ =0" ,"exper=0") )
+  
+```  
+
+
+
+
+
+
+

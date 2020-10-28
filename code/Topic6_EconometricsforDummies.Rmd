@@ -193,6 +193,7 @@ ggplot(bm,aes(x=yearsexp,y=call) ) + geom_jitter()+
 
 
 ```{r}
+
   summary(lm(call~yearsexp,bm))
 
   summary(linear2 <- lm(call ~ black, data = bm))
