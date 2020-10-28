@@ -3,7 +3,7 @@ title: "Econometrics for dummies"
 author: Ralf Martin
 output: html_document
 editor_options: 
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 
 
@@ -262,8 +262,20 @@ Note that the linear model is fairly close to the average marginal effect
   wage1["educ2"] =wage1$educ^2 
   summary(lm(wage ~ educ+educ2, wage1))
 ```  
+`
 
-  
+# log linear
+```{r}
+  library(ggplot2)
+  z=seq(-.1,.1,.001)
+  ln1Pz=log(1+z)
+  df=data.frame(z,ln1Pz)
+  ggplot(df,aes(x=z))+geom_line(aes(y=ln1Pz),color="green")+
+            geom_line(aes(y=z),color="red") + theme_minimal() + ylab("ln(1+z)")
+
+```
+
+
 # Heteroskedasticity
 ```{r}
   # load necessary packages for importing the function
