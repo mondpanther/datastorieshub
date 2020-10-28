@@ -1,5 +1,41 @@
 [
   {
+    "path": "posts/exercises/exercises6/",
+    "title": "Exercises 6",
+    "description": "Econometrics for dummies",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-10-28",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-10-28T13:27:43+00:00",
+    "input_file": "exercises6.utf8.md"
+  },
+  {
+    "path": "posts/exercises/exercises7/",
+    "title": "Exercises 7",
+    "description": "Instrumental Variables",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-10-28",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-10-28T13:30:16+00:00",
+    "input_file": "exercises7.utf8.md"
+  },
+  {
     "path": "posts/exercises/exercises4/",
     "title": "Exercises 4",
     "description": "Testing your knowledge of testing",
@@ -90,24 +126,6 @@
     "input_file": {}
   },
   {
-    "path": "posts/exercises/exercises6/",
-    "title": "Exercises 6",
-    "description": "Under construction",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-09-14",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-09-14T15:56:26+01:00",
-    "input_file": {}
-  },
-  {
     "path": "posts/exercises/exercises10/",
     "title": "Exercises 10",
     "description": "Under construction",
@@ -123,24 +141,6 @@
     ],
     "preview": {},
     "last_modified": "2020-09-08T10:21:21+01:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/exercises/exercises7/",
-    "title": "Exercises 7",
-    "description": "Under construction",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-09-08",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-09-08T10:19:17+01:00",
     "input_file": {}
   },
   {
