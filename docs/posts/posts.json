@@ -14,8 +14,8 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-10-28T13:27:43+00:00",
-    "input_file": "exercises6.utf8.md"
+    "last_modified": "2020-10-29T12:58:26+00:00",
+    "input_file": {}
   },
   {
     "path": "posts/exercises/exercises7/",
@@ -32,8 +32,8 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-10-28T13:30:16+00:00",
-    "input_file": "exercises7.utf8.md"
+    "last_modified": "2020-10-29T12:58:26+00:00",
+    "input_file": {}
   },
   {
     "path": "posts/exercises/exercises4/",
@@ -68,7 +68,7 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-10-08T08:30:49+01:00",
+    "last_modified": "2020-10-08T08:30:50+01:00",
     "input_file": {}
   },
   {
@@ -86,7 +86,7 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-10-06T13:52:54+01:00",
+    "last_modified": "2020-10-06T13:52:53+01:00",
     "input_file": {}
   },
   {
@@ -104,7 +104,7 @@
       "Quickguides"
     ],
     "preview": {},
-    "last_modified": "2020-10-04T12:42:14+01:00",
+    "last_modified": "2020-10-04T12:42:15+01:00",
     "input_file": {}
   },
   {
@@ -122,7 +122,7 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-30T10:19:00+01:00",
+    "last_modified": "2020-09-30T10:18:59+01:00",
     "input_file": {}
   },
   {
@@ -140,7 +140,7 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-08T10:21:21+01:00",
+    "last_modified": "2020-09-08T10:21:22+01:00",
     "input_file": {}
   },
   {
@@ -158,7 +158,7 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-08T10:18:52+01:00",
+    "last_modified": "2020-09-08T10:18:54+01:00",
     "input_file": {}
   },
   {
@@ -176,7 +176,7 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-08T10:19:57+01:00",
+    "last_modified": "2020-09-08T10:19:58+01:00",
     "input_file": {}
   },
   {
@@ -193,11 +193,9 @@
     "categories": [
       "Exercises"
     ],
-    "preview": "posts/exercises/exercises2/distill-preview.png",
-    "last_modified": "2020-09-02T17:34:42+01:00",
-    "input_file": {},
-    "preview_width": 838,
-    "preview_height": 643
+    "preview": {},
+    "last_modified": "2020-09-02T17:34:51+01:00",
+    "input_file": {}
   },
   {
     "path": "posts/quickguides/quickguide_ttests/",
