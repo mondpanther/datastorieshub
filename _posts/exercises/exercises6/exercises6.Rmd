@@ -156,7 +156,7 @@ Also, note that the change in the unemployment rate has a high and significant c
 
 # Exercise 6.2
 
-The dataset data/prod.dta contains production data for various companies from 1979 to 1986. 
+The dataset prod.dta contains production data for various companies from 1979 to 1986. 
 
 ```{r }
 library(haven)
@@ -274,6 +274,7 @@ linearHypothesis(mod_fe, c("log(k):sic3dig=0","log(l):sic3dig=0"), vcov=vcovHC)
 It seems that once we allow for fixed effects the interaction coefficients are no longer significant even in a joint significant test.
 
 `r unhide()`
+
 
 
 
