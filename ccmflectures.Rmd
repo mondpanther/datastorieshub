@@ -110,7 +110,7 @@ file=list.files(path="./data")
 
 
 #path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
-path="https://mondpanther.github.io/datastorieshub/code/"
+path="https://mondpanther.github.io/datastorieshub/data/"
 full=paste0(path,file[[1]])
 
 
