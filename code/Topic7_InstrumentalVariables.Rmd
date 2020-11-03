@@ -1,0 +1,35 @@
+---
+title: "Instrumental Variables"
+author: Ralf Martin
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Returns to education
+```{r}
+
+library(AER)
+
+
+
+# load the `CollegeDistance` data set
+data("CollegeDistance")  # retrieve data that is stored as part of the library
+
+
+# get an overview over the data set
+summary(CollegeDistance)
+# or
+str(CollegeDistance)
+# or
+head(CollegeDistance)
+
+# generate a histogram of `distance`
+hist(CollegeDistance$distance, main = "Distance to College", xlab = "Distance in 10 Miles")
+
+
