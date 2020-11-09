@@ -490,7 +490,7 @@ against the alternative
 
 $$H_{1}: \alpha+\beta\neq1$$
 
-Do you reject the null hypothesis at the 5% level? `r mcq(c("Yes", answer = "No"))`
+Do you reject the null hypothesis at the 5% level? `r mcq(c("No", answer = "Yes"))`
 
 What is the p-value of your test (rounded to 3 decimal places)? `r fitb(0.043)`
 
