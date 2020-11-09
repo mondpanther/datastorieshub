@@ -3,7 +3,7 @@ title: "Econometrics for dummies"
 author: Ralf Martin
 output: html_document
 editor_options: 
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 
 
@@ -273,27 +273,6 @@ Note that the linear model is fairly close to the average marginal effect
   df=data.frame(z,ln1Pz)
   ggplot(df,aes(x=z))+geom_line(aes(y=ln1Pz),color="green")+
             geom_line(aes(y=z),color="red") + theme_minimal() + ylab("ln(1+z)")
-
-```
-
-
-# Many dummies as control
-```{r}
-library(dplyr)
-prod=read.csv("https://www.dropbox.com/s/v1j4xzkaado8zlz/prod_balanced.csv?dl=1")
-prod=prod %>% mutate(lnl=log(l),lnva=log(va))
-prod=prod %>% arrange(id,year) %>% select(id,year,va,l,k,lnk,lnl,lnva)
-
-
-reg1<-lm(lnva~lnl+lnk,prod) 
-reg1 %>% summary()
-
-reg2<-lm(lnva~lnl+lnk+factor(year),prod) 
-reg2 %>% summary()
-
-reg2<-lm(lnva~lnl+lnk+factor(year)+factor(id),prod) 
-reg2 %>% summary()
-
 
 ```
 

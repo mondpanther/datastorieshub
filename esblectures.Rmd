@@ -1,7 +1,8 @@
 ---
-  title: "Course Materials - Data Analytics" 
-  site: distill::distill_website
-
+title: "Course Materials - Data Analytics" 
+site: distill::distill_website
+editor_options: 
+  chunk_output_type: inline
 ---
 
 
