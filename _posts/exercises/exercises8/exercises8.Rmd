@@ -32,6 +32,9 @@ The Exercises consist of 2 machine learning competitions
 
 For this exercise you have to work with an online app that you find [here](https://datastorieshub.shinyapps.io/Competition1/)
 
+
+Results will be [here](https://mondpanther.github.io/datastorieshub/code/machinelearning/Instructor/competition_1_result.html). 
+
 # Exercise 8.2 - 
 
 -- still under construction --
