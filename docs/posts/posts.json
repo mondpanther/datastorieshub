@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/exercises/exercises8/",
+    "title": "Exercises 8",
+    "description": "Learning like a machine",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-11-11",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-11-11T08:19:13+00:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/exercises/exercises6/",
     "title": "Exercises 6",
     "description": "Econometrics for dummies",
@@ -15,24 +33,6 @@
     ],
     "preview": {},
     "last_modified": "2020-11-10T16:30:09+00:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/exercises/exercises8/",
-    "title": "Exercises 8",
-    "description": "Learning like a machine",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-11-10",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-11-10T21:48:57+00:00",
     "input_file": {}
   },
   {
