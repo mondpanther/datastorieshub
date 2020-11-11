@@ -154,6 +154,9 @@ The hypothesis is `r mcq(c("Supported", answer = "Rejected"))`
 prod$year=factor(prod$year)
 mod1=lm(log(va)~log(k)+log(l)+year, prod)
 summary(mod1)
+
+library(car)
+library(plm)
 linearHypothesis(mod1,"log(k)+log(l)=1",vcov=vcovHC)
 ```
 
