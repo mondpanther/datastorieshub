@@ -189,7 +189,7 @@ i.e. the test continues to be rejected. Consequently, we don’t find constant r
 
 ### Part (c)
 
-Which of the 17 industries have the largest number of observations?  `r mcq(c("381", "383", answer = "311"))`
+Which of the 17 industries has the largest number of observations?  `r mcq(c("381", "383", answer = "311"))`
 
 Lets pick the first two industries that appear in our table, 311 and 321. For each of the two industries separately, estimate a Cobb-Douglas production function. 
 
@@ -210,7 +210,7 @@ mod321=lm(log(va)~log(k)+log(l)+year, prod, subset=prod$ysic3dig=="321")
 summary(mod321)
 
 ```
-In each case the labor coefficient is larger than the capital coefficient. However, the numbers are not necessarily very close. In the case of sector 311 the capital coefficient is only half of the coefficient for sector 321. Still, to make sure they are statistically different it’s good to do a formal test which is the next question.
+In each case the labor coefficient is larger than the capital coefficient. However, the numbers are not necessarily very close. In the case of sector 321 the capital coefficient is only half of the coefficient for sector 311. Still, to make sure they are statistically different it’s good to do a formal test which is the next question.
 
 `r unhide()`
 
