@@ -1,0 +1,138 @@
+---
+title: "Quick Guide - Glossary of R commands"
+author: Ralf Martin
+output:
+  distill::distill_article:
+    self_contained: false
+    css: ../../webex.css
+    includes:
+      after_body: ../../webex.js
+categories:
+  - Quickguides
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+```{r setup, include = FALSE, message=FALSE}
+library("webex")
+library(ggplot2)
+#library(tutorial)
+#tutorial::go_interactive()
+#go_interactive( greedy = FALSE, height = 200 )
+
+```
+
+
+
+
+<!--html_preserve-->
+<script src="https://cdn.datacamp.com/datacamp-light-latest.min.js"></script>
+
+<style>
+  /* Rearrange console label */
+  .datacamp-exercise ol li, .datacamp-exercise ul li {
+    margin-bottom: 0em !important;
+  }
+  
+  /* Remove bullet marker */
+  .datacamp-exercise ol li::before, .datacamp-exercise ul li::before {
+    content: '' !important;
+  }
+</style>
+<!--/html_preserve-->
+
+
+
+
+## `for()`
+`r hide("More...")`
+Repeating a series of commands several times
+
+#### Example
+<!--html_preserve-->
+<div data-datacamp-exercise data-lang="r" data-height="150">
+  <code data-type="sample-code">
+  for(ii in 1:10){
+     cat("Round")
+     cat(ii)
+     cat("\n")
+  }
+  </code>
+</div>
+<!--/html_preserve-->
+
+[More Information](https://www.datamentor.io/r-programming/for-loop/)
+
+`r unhide()`
+
+
+
+
+## `library()`
+
+`r hide("More...")`
+
+Loads an extension package into memory.
+
+#### Example
+
+```{r,echo=TRUE}
+library(car)
+
+```
+
+Loads the car library that allows you to run the `linearHypothesis()` command (and more).
+
+[More Information](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/library)
+
+`r unhide()`
+
+
+## `lm()`
+
+`r hide("More...")`
+
+Implements the a linear regression model using the least squares algorithm
+
+
+#### Example
+
+
+<!--html_preserve-->
+<div data-datacamp-exercise data-lang="r" data-height="150">
+  <code data-type="sample-code">
+    library(AER)
+    library(dplyr)
+    data("Affairs")  # Loads `Affairs` dataframe into memory (part of AER library)
+    
+    reg=lm(affairs~age+gender,data=Affairs)
+    
+    reg %>% summary()
+  
+  </code>
+</div>
+<!--/html_preserve-->
+`r unhide()`
+
+
+
+## `read.csv()`
+
+`r hide("More...")`
+
+Reads csv files (comma separated value; i.e. a basic table format) from your harddrive or the web into an R dataframe.
+
+
+#### Example
+
+```{r, echo=TRUE}
+df=read.csv("https://www.dropbox.com/s/a2opu10e2hz0dps/brexit.csv?dl=1")
+
+```
+
+Loads the `brexit.csv` dataset
+
+
+`r unhide()`
+

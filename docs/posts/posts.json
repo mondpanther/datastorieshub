@@ -14,7 +14,25 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-11-13T08:14:19+00:00",
+    "last_modified": "2020-11-13T15:42:02+00:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/quickguides/quickguide_Rcommands/",
+    "title": "Quick Guide - Glossary of R commands",
+    "description": {},
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": {}
+      }
+    ],
+    "date": "2020-11-13",
+    "categories": [
+      "Quickguides"
+    ],
+    "preview": {},
+    "last_modified": "2020-11-13T15:49:40+00:00",
     "input_file": {}
   },
   {
