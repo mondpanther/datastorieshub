@@ -1,6 +1,7 @@
 ---
-title: "Competition Results"
+title: "Datastories - Machine Learning Competition 1  Results"
 output: html_document
+runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
@@ -23,8 +24,8 @@ competition_1 <- function(
   # set the seed
   set.seed(seed)
   
-  crime <- read.csv("crime_competition.csv")
-  val <- read.csv("crime_validation.csv")
+  crime <- read.csv("https://www.dropbox.com/s/jbpjrrnqligl8a1/crime_competition.csv?dl=1")
+  val <- read.csv("https://www.dropbox.com/s/lco9i8k0xnlqwqi/crime_validation.csv?dl=1")
   
   crime$larcPerPop <- factor(crime$larcPerPop,levels = c(0,1), labels = c("0","1"))
   val$larcPerPop <- factor(val$larcPerPop,levels = c(0,1), labels = c("0","1"))
@@ -106,6 +107,8 @@ competition_1 <- function(
 print("hello")
 
 library(googlesheets4)
+gs4_deauth()
+
 dat=read_sheet("https://docs.google.com/spreadsheets/d/1UYnZM8Y5qkhSLi5yu_-Q4uIXYxiLlzUiwnEMs61zIVs/edit#gid=1250472961")
 
 library(dplyr)
@@ -116,10 +119,10 @@ performance=competition_1(dat)
 ```
 
 ```{r}
-#library(DT)
-#DT::renderDataTable({performance })
+library(DT)
+DT::renderDataTable({performance })
 
-performance
+#performance
 
 
 ```

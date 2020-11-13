@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
+
 ```{r, include=FALSE}
 competition_1 <- function(
   submissions,
