@@ -177,6 +177,9 @@ The hypothesis is `r mcq(c("Supported", answer = "Rejected"))`
 prod$year=factor(prod$year)
 mod1=lm(log(va)~log(k)+log(l)+year, prod)
 summary(mod1)
+
+library(car)
+library(plm)
 linearHypothesis(mod1,"log(k)+log(l)=1",vcov=vcovHC)
 ```
 
@@ -198,7 +201,7 @@ Re-estimate the production function controlling for industry. Does your assessme
 Typically the residual from a production function estimation is interpreted as productivity. However, it is plausible that more productive firms will want to employ more production factors. This might lead to a correlation between residuals and the explanatory variables which could lead to biases. A big part of that might come from variations between sectors; i.e. some sectors are just more productive and profitable and those will also be the sectors that attract more capital and other production factors.
 
 ```{r }
-prod$ysic3dig=factor(prod$sic3dig)
+prod$sic3dig=factor(prod$sic3dig)
 mod2=lm(log(va)~log(k)+log(l)+year+sic3dig, prod)
 summary(mod2)
 linearHypothesis(mod2, "log(k)+log(l)=1", vcov=vcovHC)
@@ -209,24 +212,28 @@ i.e. the test continues to be rejected. Consequently, we don’t find constant r
 
 ### Part (c)
 
-Which two of the 17 industries have the largest number of observations?  `r mcq(c("311 and 323", "381 and 383", answer = "311 and 321"))`
+Which of the 17 industries has the largest number of observations?  `r mcq(c("381", "383", answer = "311"))`
 
-For each of the two industries separately, estimate a Cobb-Douglas production function. 
+Lets pick the first two industries that appear in our table, 311 and 321. For each of the two industries separately, estimate a Cobb-Douglas production function. 
 
 Would you say the functions are very different in the two industries? `r mcq(c("No", answer = "Yes"))`
 
 `r hide("Answer:")`
 
 ```{r }
-table(prod$ysic3dig)
+table(prod$sic3dig)
 ```
-The table reveals that the two industries with the largest number of observations are 311 and 321. 
+The table reveals that the industry with the largest number of observations is 311. 
 
 ```{r }
 mod311=lm(log(va)~log(k)+log(l)+year, prod, subset=prod$ysic3dig=="311")
 summary(mod311)
+
+mod321=lm(log(va)~log(k)+log(l)+year, prod, subset=prod$ysic3dig=="321")
+summary(mod321)
+
 ```
-In each case the labor coefficient is larger than the capital coefficient. However, the numbers are not necessarily very close. In the case of sector 311 the capital coefficient is only half of the coefficient for sector 321. Still, to make sure they are statistically different it’s good to do a formal test which is the next question.
+In each case the labor coefficient is larger than the capital coefficient. However, the numbers are not necessarily very close. In the case of sector 321 the capital coefficient is only half of the coefficient for sector 311. Still, to make sure they are statistically different it’s good to do a formal test which is the next question.
 
 `r unhide()`
 
@@ -234,7 +241,7 @@ In each case the labor coefficient is larger than the capital coefficient. Howev
 
 Conduct a hypothesis test to compare the two functions formally. Note, that for that you need to estimate both functions using a single regression model.
 
-Are the coefficients statistically diffferent from zero?  `r mcq(c("Yes", answer = "No"))`
+Are the coefficients statistically different from zero?  `r mcq(c("Yes", answer = "No"))`
 
 Could they be jointly significant?  `r mcq(c("No", answer = "Yes"))`
 
@@ -276,6 +283,7 @@ It seems that once we allow for fixed effects the interaction coefficients are n
 `r unhide()`
 
 
+=======
 
 
 
