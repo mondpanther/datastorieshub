@@ -1,7 +1,7 @@
 ---
 title: "Exercises 8"
 description: |
-  Under construction
+  Learning like a machine
 author:
   - name: Ralf Martin
     url: https://mondpanther.github.io/wwwmondpanther/
@@ -23,6 +23,22 @@ editor_options:
 ```{r setup, include = FALSE, message=FALSE}
 library("webex")
 library(ggplot2)
+library(distill)
 knitr::opts_chunk$set(fig.path='../../images/')
 ```
 
+The Exercises consist of 2 machine learning competitions
+
+# Exercise 8.1 - Predicting Crime
+
+For this exercise you have to work with an online app that you find [here](https://datastorieshub.shinyapps.io/Competition1/)
+
+
+Results will be [here](https://datastorieshub.shinyapps.io/competition1_result/). 
+
+# Exercise 8.2 - 
+
+
+Can you find rich areas? Competition 2 is [here]( https://datastorieshub.shinyapps.io/competition2/).
+
+Results will be [here]( https://datastorieshub.shinyapps.io/competition2_result/).

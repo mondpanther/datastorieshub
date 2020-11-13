@@ -1,20 +1,74 @@
 [
   {
-    "path": "posts/exercises/exercises1/",
-    "title": "Exercises 1",
-    "description": "Starting to think like an econometrician.",
+    "path": "posts/exercises/exercises8/",
+    "title": "Exercises 8",
+    "description": "Learning like a machine",
     "author": [
       {
         "name": "Ralf Martin",
         "url": "https://mondpanther.github.io/wwwmondpanther/"
       }
     ],
-    "date": "2020-09-08",
+    "date": "2020-11-13",
     "categories": [
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-08T09:48:42+01:00",
+    "last_modified": "2020-11-13T15:42:02+00:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/quickguides/quickguide_Rcommands/",
+    "title": "Quick Guide - Glossary of R commands",
+    "description": {},
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": {}
+      }
+    ],
+    "date": "2020-11-13",
+    "categories": [
+      "Quickguides"
+    ],
+    "preview": {},
+    "last_modified": "2020-11-13T15:49:40+00:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises6/",
+    "title": "Exercises 6",
+    "description": "Econometrics for dummies",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-11-10",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-11-10T16:30:09+00:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises7/",
+    "title": "Exercises 7",
+    "description": "Instrumental Variables",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-10-28",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-10-28T13:30:16+00:00",
     "input_file": {}
   },
   {
@@ -27,103 +81,85 @@
         "url": "https://mondpanther.github.io/wwwmondpanther/"
       }
     ],
-    "date": "2020-09-08",
+    "date": "2020-10-08",
     "categories": [
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-08T08:37:22+01:00",
+    "last_modified": "2020-10-08T08:35:16+01:00",
     "input_file": {}
   },
   {
     "path": "posts/exercises/exercises5/",
     "title": "Exercises 5",
-    "description": "Under construction",
+    "description": "Becoming a Data Detective: Uncovering Racial Bias & more",
     "author": [
       {
         "name": "Ralf Martin",
         "url": "https://mondpanther.github.io/wwwmondpanther/"
       }
     ],
-    "date": "2020-09-08",
+    "date": "2020-10-08",
     "categories": [
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-08T10:09:31+01:00",
+    "last_modified": "2020-10-08T08:30:49+01:00",
     "input_file": {}
   },
   {
-    "path": "posts/exercises/exercises6/",
-    "title": "Exercises 6",
-    "description": "Under construction",
+    "path": "posts/exercises/exercises1/",
+    "title": "Exercises 1",
+    "description": "Starting to think like an econometrician.",
     "author": [
       {
         "name": "Ralf Martin",
         "url": "https://mondpanther.github.io/wwwmondpanther/"
       }
     ],
-    "date": "2020-09-08",
+    "date": "2020-10-06",
     "categories": [
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-08T10:16:44+01:00",
-    "input_file": "exercises6.utf8.md"
+    "last_modified": "2020-10-06T13:52:54+01:00",
+    "input_file": {}
   },
   {
-    "path": "posts/exercises/exercises8/",
-    "title": "Exercises 8",
-    "description": "Under construction",
+    "path": "posts/quickguides/quickguide_visions/",
+    "title": "Quick Guide - Visions",
+    "description": "Various tips and examples around visualistaions",
     "author": [
       {
         "name": "Ralf Martin",
         "url": "https://mondpanther.github.io/wwwmondpanther/"
       }
     ],
-    "date": "2020-09-08",
+    "date": "2020-10-04",
     "categories": [
-      "Exercises"
+      "Quickguides"
     ],
     "preview": {},
-    "last_modified": "2020-09-08T10:18:54+01:00",
-    "input_file": "exercises8.utf8.md"
+    "last_modified": "2020-10-04T12:42:14+01:00",
+    "input_file": {}
   },
   {
-    "path": "posts/exercises/exercises7/",
-    "title": "Exercises 7",
-    "description": "Under construction",
+    "path": "posts/exercises/exercises3/",
+    "title": "Exercises 3",
+    "description": "How to have visualisations",
     "author": [
       {
         "name": "Ralf Martin",
         "url": "https://mondpanther.github.io/wwwmondpanther/"
       }
     ],
-    "date": "2020-09-08",
+    "date": "2020-09-30",
     "categories": [
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-08T10:19:17+01:00",
-    "input_file": "exercises7.utf8.md"
-  },
-  {
-    "path": "posts/exercises/exercises9/",
-    "title": "Exercises 9",
-    "description": "Under construction",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-09-08",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-09-08T10:19:58+01:00",
-    "input_file": "exercises9.utf8.md"
+    "last_modified": "2020-09-30T10:19:00+01:00",
+    "input_file": {}
   },
   {
     "path": "posts/exercises/exercises10/",
@@ -140,8 +176,26 @@
       "Exercises"
     ],
     "preview": {},
-    "last_modified": "2020-09-08T10:21:22+01:00",
-    "input_file": "exercises10.utf8.md"
+    "last_modified": "2020-09-08T10:21:21+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises9/",
+    "title": "Exercises 9",
+    "description": "Under construction",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-09-08",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-09-08T10:19:57+01:00",
+    "input_file": {}
   },
   {
     "path": "posts/exercises/exercises2/",
@@ -157,27 +211,11 @@
     "categories": [
       "Exercises"
     ],
-    "preview": {},
-    "last_modified": "2020-09-02T17:34:51+01:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/exercises/exercises3/",
-    "title": "Exercises 3",
-    "description": "How to have visualisations",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-09-02",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-09-02T10:10:53+01:00",
-    "input_file": {}
+    "preview": "posts/exercises/exercises2/distill-preview.png",
+    "last_modified": "2020-09-02T17:34:42+01:00",
+    "input_file": {},
+    "preview_width": 838,
+    "preview_height": 643
   },
   {
     "path": "posts/quickguides/quickguide_ttests/",

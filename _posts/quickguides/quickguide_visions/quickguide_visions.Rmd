@@ -1,0 +1,61 @@
+---
+title: "Quick Guide - Visions"
+description: |
+  Various tips and examples around visualistaions
+author:
+  - name: Ralf Martin
+    url: https://mondpanther.github.io/wwwmondpanther/
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    self_contained: true
+    css: ../../webex.css
+    includes:
+      after_body: ../../webex.js
+categories:
+  - Quickguides
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+
+```{r setup, include = FALSE, message=FALSE}
+library("webex")
+library(ggplot2)
+knitr::opts_chunk$set(fig.path='../../images/')
+```
+
+
+# Overlying figures in ggplot
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+
+#Suppose you start with this example dataframe of values v1 and v2 for 20 countries
+df=data.frame(country=LETTERS[seq( from = 1, to = 20 )],wellbeing=runif(20),v2=runif(20))
+head(df) # this shows you the first couple of lines of the dataframe
+
+ 
+
+#Now make a long dataframe based on the wide df frame
+#You can do that manually but the pivot_longer functions helps you
+dflong=df %>%  pivot_longer(!country, names_to = "variable", values_to = "value") %>%
+  ungroup()
+head(dflong)
+
+order=df %>% select(country, wellbeing) %>% rename(order=wellbeing)
+dflong=dflong %>% left_join(order,by="country") 
+
+# now ggplot
+library(ggplot2)
+ggplot(dflong, aes(x=reorder(country,-order),y=value,color=variable))+geom_point()
+ 
+
+
+```
+
+
+
