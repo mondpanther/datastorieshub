@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Ralf Martin" />
+
+
+<title>Quick Guide - Glossary of R commands</title>
+
+<script src="quickguide_Rcommands_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="quickguide_Rcommands_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="quickguide_Rcommands_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="quickguide_Rcommands_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="quickguide_Rcommands_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="quickguide_Rcommands_files/navigation-1.1/tabsets.js"></script>
+<link href="quickguide_Rcommands_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="quickguide_Rcommands_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="..\..\webex.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Quick Guide - Glossary of R commands</h1>
+<h4 class="author">Ralf Martin</h4>
+
+</div>
+
+
+<script src="https://cdn.datacamp.com/datacamp-light-1.0.0.min.js"></script>
+<div data-datacamp-exercise="" data-lang="r">
+<pre><code>&lt;code data-type=&quot;pre-exercise-code&quot;&gt;
+    # This will get executed each time the exercise gets initialized
+    b = 6
+&lt;/code&gt;
+&lt;code data-type=&quot;sample-code&quot;&gt;
+    # Create a variable a, equal to 5
+
+
+    # Print out a
+
+
+&lt;/code&gt;
+&lt;code data-type=&quot;solution&quot;&gt;
+    # Create a variable a, equal to 5
+    a &lt;- 5
+
+    # Print out a
+    print(a)
+&lt;/code&gt;
+&lt;code data-type=&quot;sct&quot;&gt;
+    test_object(&quot;a&quot;)
+    test_function(&quot;print&quot;)
+    success_msg(&quot;Great job!&quot;)
+&lt;/code&gt;
+&lt;div data-type=&quot;hint&quot;&gt;Use the assignment operator (&lt;code&gt;&lt;-&lt;/code&gt;) to create the variable &lt;code&gt;a&lt;/code&gt;.&lt;/div&gt;</code></pre>
+</div>
+<div id="library" class="section level2">
+<h2><code>library()</code></h2>
+<p>Loads an extension package into memory.</p>
+<div id="example" class="section level4">
+<h4>Example</h4>
+<pre class="r"><code>library(car)</code></pre>
+<pre><code>## Loading required package: carData</code></pre>
+<p>Loads the car library that allows you to run the <code>linearHypothesis()</code> command (and more).</p>
+<p><a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/library">More Information</a></p>
+</div>
+</div>
+<div id="lm" class="section level2">
+<h2><code>lm()</code></h2>
+<p>Implements the a linear regression model using the least squares algorithm</p>
+<div id="example-1" class="section level4">
+<h4>Example</h4>
+<pre class="r"><code>library(AER)</code></pre>
+<pre><code>## Loading required package: lmtest</code></pre>
+<pre><code>## Loading required package: zoo</code></pre>
+<pre><code>## 
+## Attaching package: &#39;zoo&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     as.Date, as.Date.numeric</code></pre>
+<pre><code>## Loading required package: sandwich</code></pre>
+<pre><code>## Loading required package: survival</code></pre>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:car&#39;:
+## 
+##     recode</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>data(&quot;Affairs&quot;)
+
+reg=lm(affairs~age+gender,data=Affairs)
+
+reg %&gt;% summary()</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = affairs ~ age + gender, data = Affairs)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.3169 -1.5875 -1.2448 -0.9742 11.0368 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)  0.36338    0.48999   0.742   0.4586  
+## age          0.03427    0.01473   2.327   0.0203 *
+## gendermale  -0.04397    0.27367  -0.161   0.8724  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.289 on 598 degrees of freedom
+## Multiple R-squared:  0.009113,   Adjusted R-squared:  0.005799 
+## F-statistic:  2.75 on 2 and 598 DF,  p-value: 0.06475</code></pre>
+<p>Loads the <code>Affairs</code> dataset from the AER library to run a regression of the number of affairs on <code>age</code> and <code>gender</code></p>
+</div>
+</div>
+<div id="read.csv" class="section level2">
+<h2><code>read.csv()</code></h2>
+<p>Reads csv files (comma separated value; i.e. a basic table format) from your harddrive or the web into an R dataframe.</p>
+<div id="example-2" class="section level4">
+<h4>Example</h4>
+<pre class="r"><code>df=read.csv(&quot;https://www.dropbox.com/s/a2opu10e2hz0dps/brexit.csv?dl=1&quot;)</code></pre>
+<p>Loads the <code>brexit.csv</code> dataset</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
