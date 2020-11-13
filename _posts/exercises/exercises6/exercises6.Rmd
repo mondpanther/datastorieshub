@@ -22,6 +22,7 @@ editor_options:
 
 
 
+
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 if (!requireNamespace("webex")) {
@@ -156,7 +157,7 @@ Also, note that the change in the unemployment rate has a high and significant c
 
 # Exercise 6.2
 
-The dataset prod.dta contains production data for various companies from 1979 to 1986. 
+The dataset data/prod.dta contains production data for various companies from 1979 to 1986. 
 
 ```{r }
 library(haven)
@@ -182,6 +183,12 @@ library(car)
 library(plm)
 linearHypothesis(mod1,"log(k)+log(l)=1",vcov=vcovHC)
 ```
+We turn year into a categorical (factor) variable. Treating year as a categorical variable will calculate effect of each individual year - i.e. what impact on the target variable was on average in a given year.
+
+We then go on to test the hypothesis that the production function has constant returns to scale, formulated as log(k)+log(l)=1. We want to tell R to use robust standard errors and therefore we need to include vcov=vcovHC. We introduce this to deal with heteroskedasticity. 
+
+We need to install and load two packages (package "car", which includes the function linearHypothesis and package "plm", which includes our robust covariance matrix estimators, including vcovHC). 
+
 
 Constant returns are clearly rejected.
 
@@ -253,8 +260,9 @@ mod_inter=lm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, p
 summary(mod_inter)
 coeftest(mod_inter, vcov=vcovHC)
 ```
+We continue to work with a subset of our data. We introduce interaction terms into our model – multiplying our logged labor variable with the sector code and the logged capital variable with the sector code. The t-test on these interaction terms is what we are interested in. Remember interaction terms should be interpreted as “effect modifiers” - we are interested in whether the industry modifies the relationship between labour/capital and value added.
 
-It turns out the coefficients are not statistically different; i.e. the t-tests for the interaction coefficients are not significantly different from zero. However, it could still be the case that they are jointly significant (e.g. there could be a high degree of  collinearity in the interaction variables.)
+As before, we are concerned about heteroskedascity. We therefore perform a coeftest, specifying we want robust standard errors. It turns out the coefficients are not statistically different; i.e. the t-tests for the interaction coefficients are not significantly different from zero. However, it could still be the case that they are jointly significant (e.g. there could be a high degree of  collinearity in the interaction variables.)
 
 We can examine that with the linearHypothesis command:
 
@@ -267,7 +275,7 @@ This suggests that the production function for sector 321 is weakly significantl
 
 ### Part (e)
 
-Re-estimate your extended model from d) by allowing for fixed effects; i.e. a dummy variable for every firm in the dataset.
+Re-estimate your extended model from d) by allowing for fixed effects. 
 
 Does this change your assessment concerning the hypothesis that the production functions are identical in the two industries? `r mcq(c("No", answer = "Yes"))`
 
@@ -278,9 +286,16 @@ mod_fe=plm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, ind
 summary(mod_fe)
 linearHypothesis(mod_fe, c("log(k):sic3dig=0","log(l):sic3dig=0"), vcov=vcovHC)
 ```
-It seems that once we allow for fixed effects the interaction coefficients are no longer significant even in a joint significant test.
+
+We continue to work with the same subset of our data but introduce a different model here. Instead of OLS regression, we use a fixed effects panel regression. This allows us to control for differences between firms that we cannot observe by including firm-specific dummies (that is why it is sometimes called Least Squares Dummy Variable Model). 
+
+As for lm() we have to specify the dependent and independent variables and the data to be used in our call of plm(). We also need to include a vector of names of entity and time ID variables to the argument index. Since the fixed effects estimator is also called the within estimator, we set model = “within”. 
+
+It seems that once we allow for fixed effects the interaction coefficients are no longer significant even in a joint significance test.
 
 `r unhide()`
+
+
 
 
 =======
