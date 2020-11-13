@@ -44,6 +44,13 @@ library(ggplot2)
 
 
 
+## `factor()`
+`r hide("More...")`
+Converts a numeric or string variable into a categorical variable. 
+
+`r unhide()`
+
+
 
 ## `for()`
 `r hide("More...")`
