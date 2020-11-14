@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/quickguides/quickguide_loglinear/",
+    "title": "Quick Guide - Log linear models",
+    "description": {},
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": {}
+      }
+    ],
+    "date": "2020-11-14",
+    "categories": [
+      "Quickguides"
+    ],
+    "preview": {},
+    "last_modified": "2020-11-14T09:21:17+00:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/quickguides/quickguide_Rcommands/",
     "title": "Quick Guide - Glossary of R commands",
     "description": {},

@@ -1,0 +1,30 @@
+---
+title: "Quick Guide - Log linear models"
+author: Ralf Martin
+output:
+  distill::distill_article:
+    self_contained: false
+    css: ../../webex.css
+    includes:
+      after_body: ../../webex.js
+categories:
+  - Quickguides
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+```{r setup, include = FALSE, message=FALSE}
+library("webex")
+library(ggplot2)
+#library(tutorial)
+#tutorial::go_interactive()
+#go_interactive( greedy = FALSE, height = 200 )
+
+```
+
+
+
+```{r}
+knitr::include_url("https://mondpanther.github.io/datastorieshub/docs/posts/quickguides/quickguide_loglinear/quickguide_loglinearold.htm")
+```
