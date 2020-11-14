@@ -24,8 +24,13 @@ editor_options:
 library("webex")
 library(ggplot2)
 library(distill)
-knitr::opts_chunk$set(fig.path='../../images/')
+#knitr::opts_chunk$set(fig.path='../../images/')
 ```
+
+```{r out.extra='style="max-width: 800px"', echo=F}
+knitr::include_graphics("1599px-RMS_Titanic_3.jpg")
+```
+
 
 The Exercises consist of 2 machine learning competitions
 

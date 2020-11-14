@@ -23,6 +23,9 @@ library(ggplot2)
 
 ```
 
+```{r out.extra='style="max-width: 800px"', echo=F}
+knitr::include_graphics("R.png")
+```
 
 
 

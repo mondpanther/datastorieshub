@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/exercises/exercises8/",
+    "title": "Exercises 8",
+    "description": "Learning like a machine",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-11-14",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-11-14T15:28:10+00:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/quickguides/quickguide_loglinear/",
     "title": "Quick Guide - Log linear models",
     "description": {},
@@ -14,8 +32,8 @@
       "Quickguides"
     ],
     "preview": "posts/quickguides/quickguide_loglinear/quickguide_loglinear_files/figure-html5/unnamed-chunk-1-1.png",
-    "last_modified": "2020-11-14T12:25:23+00:00",
-    "input_file": "quickguide_loglinear.utf8.md",
+    "last_modified": "2020-11-14T12:25:24+00:00",
+    "input_file": {},
     "preview_width": 1248,
     "preview_height": 768
   },
@@ -33,27 +51,11 @@
     "categories": [
       "Quickguides"
     ],
-    "preview": {},
-    "last_modified": "2020-11-14T07:33:31+00:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/exercises/exercises8/",
-    "title": "Exercises 8",
-    "description": "Learning like a machine",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-11-13",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-11-13T08:14:18+00:00",
-    "input_file": {}
+    "preview": "posts/quickguides/quickguide_Rcommands/R.png",
+    "last_modified": "2020-11-14T15:21:19+00:00",
+    "input_file": {},
+    "preview_width": 559,
+    "preview_height": 397
   },
   {
     "path": "posts/exercises/exercises6/",
