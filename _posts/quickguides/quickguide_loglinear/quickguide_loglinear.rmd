@@ -23,8 +23,6 @@ library(ggplot2)
 
 ```
 
-
-
 ```{r}
-knitr::include_url("https://mondpanther.github.io/datastorieshub/docs/posts/quickguides/quickguide_loglinear/quickguide_loglinearold.htm")
+knitr::include_url("https://mondpanther.github.io/datastorieshub/posts/quickguides/quickguide_loglinear/quickguide_loglinearold.htm")
 ```
