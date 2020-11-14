@@ -13,9 +13,11 @@
     "categories": [
       "Quickguides"
     ],
-    "preview": {},
-    "last_modified": "2020-11-14T09:25:24+00:00",
-    "input_file": "quickguide_loglinear.utf8.md"
+    "preview": "posts/quickguides/quickguide_loglinear/quickguide_loglinear_files/figure-html5/unnamed-chunk-1-1.png",
+    "last_modified": "2020-11-14T12:25:23+00:00",
+    "input_file": "quickguide_loglinear.utf8.md",
+    "preview_width": 1248,
+    "preview_height": 768
   },
   {
     "path": "posts/quickguides/quickguide_Rcommands/",

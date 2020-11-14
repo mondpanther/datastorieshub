@@ -23,6 +23,86 @@ library(ggplot2)
 
 ```
 
+What is the difference between the linear, log and log-log models? They describe different possible relationships between the dependent and explanatory variable. This affects how we can interpret estimated parameters. There are three cases
+
+- Linear: $y=a+bX$
+- Log:  $\ln{y}=a+bX$
+- Log-log:  $\ln{y}=a+b \ln{X}$
+
+
+We can draw all three in the same y-x diagram by re-writing the equations (and recalling that the exponential function $\exp(\cdot)$ is the inverse of the natural logarithm function $\ln(\cdot)$
+
+
+- Linear: $y=a+bX$
+- Log:  $y=\exp(a+bX)$
+- Log-log:  $y=\exp(a+b\ln{X})$
+
+Plotting this for a=1   and b=0.1 will look as follows:
+
+```{r,echo=FALSE, message=FALSE}
+a=1
+b=0.1
+library(ggplot2)
+p <- ggplot(data = data.frame(x = 0), mapping = aes(x = x))
+fun.1 <- function(x) a+b*x
+fun.2 <- function(x) y=exp(a+b*x)
+fun.3 <- function(x) y=exp(a+b*log(x))
+p+ stat_function(fun = fun.1,n = 1000,aes(color="Linear")) +
+   stat_function(fun = fun.2,n = 1000,aes(color="Log")) +
+   stat_function(fun = fun.3,n = 1000,aes(color="Log-Log")) + 
+   xlim(-1,10)+ylim(0,8) + theme_minimal() +
+   scale_colour_manual("Legend", values = c("red", "blue", "green", "orange"))
+```
+
+
+i.e. log vs log-log are two different types of a non-linear relationship between x and y; e.g. in the log case a given change in x will have an increasingly bigger impact on y. The opposite is true in the log-log case. 
+The interpretation of the parameters also changes in the three cases. To understand the differences consider the derivative (or gradient) in each case:
+
+
+- Linear: $\frac{\partial y}{\partial x} = b$
+- Log: $\frac{\partial y}{\partial x} = \exp(a+b x)b=y\times b$
+- Log-Log: $\frac{\partial y}{\partial x} = \exp(a+b \ln x)b=y\times b \times \frac{1}{x}$
+
+For this we use the following rules for taking derivatives:
+
+- Derivative of $\ln z$ is $\frac{1}{z}$
+- Derivative of $exp(z)$ is $exp(z)$ 
+- Chain rule: $\frac{\partial(f(g(x)))}{\partial x} = \frac{\partial(f(g(x)))}{\partial g(x)} \times \frac{\partial g(x)}{\partial x}$
+
+
+To understand how to interpret the b coefficient, we can re-write the derivative formulas so that we have b on one side of the equation. We can also use the fact that the derivative is approximately the small change in y you get in response to a small change in x; i.e. $\frac{\partial y}{\partial x} \approx \frac{dy}{dx}$
+
+- Linear: $b=\frac{\partial y}{\partial x} \approx \frac{dy}{dx}$
+- Log: $b=\frac{\partial y}{\partial x} \frac{1}{y}\approx \frac{dy}{y} \times \frac{1}{dx}$
+- Log-log: $b=\frac{\partial y}{\partial x} \frac{x}{y}\approx \frac{\frac{dy}{y}}{ \frac{dx}{x}}$
+
+
+Hence, we get the following interpretations (recalling that $dz/z$ is the growth rate of a variable z):
+
+- Linear:	Change in $y$ if we change $x$ by 1 unit
+- Log:	Growth rate of $y$ if we change $x$ by 1 unit (the growth rate in percent will be b times 100)
+- Log-log:	Growth rate of $y$ (in percent) in response to growth of $x$ by 1 percent. Note that if $x$ grows by 1 percent we have that $dx/x=0.01$
+
+### Examples:
+
+Suppose that y is the wage in \$ and  $x$ is the years of experience of an individual
+
+- Linear:	1 year more of experience means b$ more wage
+- Log:	1 year more of experience means b×100 percent more wage
+- Log-log:	If your experience goes up by 1% (e.g. if you current experience is 10 years, 1% is 0.1 years or about 1 months 1 one week) then your wage will go up by b%.
+
+Suppose that y is the number of crimes and is the number of foreigners in an area
+
+- Linear:	1 foreigner more implies b more crimes
+- Log:	1 foreigner more implies $b\times 100$ percent more crimes
+- Log-log:	If the number of foreigners goes up by 1% then the number of crimes goes up by b%.
+
+
+
+
+
+<!--
 ```{r}
 knitr::include_url("https://mondpanther.github.io/datastorieshub/posts/quickguides/quickguide_loglinear/quickguide_loglinearold.htm")
 ```
+-->
