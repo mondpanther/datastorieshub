@@ -47,9 +47,9 @@ library(ggplot2)
 ## `factor()`
 `r hide("More...")`
 Converts a numeric or string variable into a categorical variable. 
-
+This is useful - for instance - to create sets of dummy varaiables based 
+on a categorical variable.
 `r unhide()`
-
 
 
 ## `for()`
@@ -68,9 +68,35 @@ Repeating a series of commands several times
   </code>
 </div>
 <!--/html_preserve-->
-
 [More Information](https://www.datamentor.io/r-programming/for-loop/)
+`r unhide()`
 
+
+## `ggplot()`
+`r hide("More...")`
+General purpose plotting command.
+`r unhide()`
+
+## `group_by()`
+`r hide("More...")`
+Defines groupings within a dataframe based on one or several categorical variables.
+Useful to compute statistics at the level of these groupw
+`r unhide()`
+
+
+
+## `inner_join()`
+`r hide("More...")`
+Combine 2 dataframe on the basis of common key variable. Inner join only keeps observations
+with information in both dataframes. See also `left_join()`, `full_join()`, etc.
+[More information](https://dplyr.tidyverse.org/reference/join.html)
+`r unhide()`
+
+
+
+## `ivreg()`
+`r hide("More...")`
+Instrumental variable 2 stage least squares regression
 `r unhide()`
 
 
@@ -140,6 +166,17 @@ df=read.csv("https://www.dropbox.com/s/a2opu10e2hz0dps/brexit.csv?dl=1")
 
 Loads the `brexit.csv` dataset
 
-
 `r unhide()`
+
+
+## `summarise()`
+`r hide("More...")`
+Compute summary statistics
+`r unhide()`
+
+## `summary()`
+`r hide("More...")`
+General command to provide summary information about an object.
+`r unhide()`
+
 

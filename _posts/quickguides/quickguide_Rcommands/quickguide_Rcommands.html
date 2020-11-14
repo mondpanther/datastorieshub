@@ -24,8 +24,8 @@
   
   
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2020-11-13"/>
-  <meta property="article:created" itemprop="dateCreated" content="2020-11-13"/>
+  <meta property="article:published" itemprop="datePublished" content="2020-11-14"/>
+  <meta property="article:created" itemprop="dateCreated" content="2020-11-14"/>
   <meta name="article:author" content="Ralf Martin"/>
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -41,7 +41,7 @@
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","author","output","categories","editor_options","date"]}},"value":[{"type":"character","attributes":{},"value":["Quick Guide - Glossary of R commands"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Quickguides"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["11-13-2020"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","author","output","categories","editor_options","date"]}},"value":[{"type":"character","attributes":{},"value":["Quick Guide - Glossary of R commands"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Quickguides"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["11-14-2020"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -950,7 +950,7 @@
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Quick Guide - Glossary of R commands","authors":[{"author":"Ralf Martin","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-11-13T00:00:00.000+00:00","citationText":"Martin, 2020"}
+{"title":"Quick Guide - Glossary of R commands","authors":[{"author":"Ralf Martin","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-11-14T00:00:00.000+00:00","citationText":"Martin, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -968,7 +968,7 @@
   
   Ralf Martin
   
-<br/>11-13-2020
+<br/>11-14-2020
 </div>
 
 <div class="d-article">
@@ -987,6 +987,13 @@
   }
 </style>
 
+<h2 id="factor"><code>factor()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>Converts a numeric or string variable into a categorical variable. This is useful - for instance - to create sets of dummy varaiables based on a categorical variable.</p>
+</div>
 <h2 id="for"><code>for()</code></h2>
 <div class="solution">
 <button>
@@ -994,7 +1001,7 @@ More…
 </button>
 <p>Repeating a series of commands several times</p>
 <h4 id="example">Example</h4>
-
+<p>
 <div data-datacamp-exercise data-lang="r" data-height="150">
   <code data-type="sample-code">
   for(ii in 1:10){
@@ -1004,8 +1011,35 @@ More…
   }
   </code>
 </div>
-
-<p><a href="https://www.datamentor.io/r-programming/for-loop/">More Information</a></p>
+ <a href="https://www.datamentor.io/r-programming/for-loop/">More Information</a></p>
+</div>
+<h2 id="ggplot"><code>ggplot()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>General purpose plotting command.</p>
+</div>
+<h2 id="group_by"><code>group_by()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>Defines groupings within a dataframe based on one or several categorical variables. Useful to compute statistics at the level of these groupw</p>
+</div>
+<h2 id="inner_join"><code>inner_join()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>Combine 2 dataframe on the basis of common key variable. Inner join only keeps observations with information in both dataframes. See also <code>left_join()</code>, <code>full_join()</code>, etc. <a href="https://dplyr.tidyverse.org/reference/join.html">More information</a></p>
+</div>
+<h2 id="ivreg"><code>ivreg()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>Instrumental variable 2 stage least squares regression</p>
 </div>
 <h2 id="library"><code>library()</code></h2>
 <div class="solution">
@@ -1055,6 +1089,20 @@ More…
 df=read.csv(&quot;https://www.dropbox.com/s/a2opu10e2hz0dps/brexit.csv?dl=1&quot;)</code></pre>
 </div>
 <p>Loads the <code>brexit.csv</code> dataset</p>
+</div>
+<h2 id="summarise"><code>summarise()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>Compute summary statistics</p>
+</div>
+<h2 id="summary"><code>summary()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>General command to provide summary information about an object.</p>
 </div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
