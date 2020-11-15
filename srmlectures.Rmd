@@ -9,7 +9,7 @@ site: distill::distill_website
 ```{r ,echo=FALSE, message=FALSE}
 
 fileo=list.files(path="./slides",pattern="^Topic")
-filei=list.files(path="./slides",pattern="^SRM")
+filei=list.files(path="./slides",pattern="SRM")
 
 file=c(filei,fileo)
 #file=fileo
