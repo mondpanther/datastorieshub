@@ -9,13 +9,15 @@
         "url": "https://mondpanther.github.io/wwwmondpanther/"
       }
     ],
-    "date": "2020-11-14",
+    "date": "2020-11-15",
     "categories": [
       "Exercises"
     ],
-    "preview": {},
-    "last_modified": "2020-11-14T15:28:10+00:00",
-    "input_file": {}
+    "preview": "posts/exercises/exercises8/titanic_PNG1.png",
+    "last_modified": "2020-11-15T08:15:37+00:00",
+    "input_file": {},
+    "preview_width": 1600,
+    "preview_height": 459
   },
   {
     "path": "posts/quickguides/quickguide_loglinear/",

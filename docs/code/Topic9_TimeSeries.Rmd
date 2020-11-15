@@ -1,0 +1,125 @@
+---
+title: "Time Series"
+author: Ralf Martin
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE,echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r get weekly covid data for us}
+library(dplyr)
+library(lubridate)
+nyt <- read.csv(url("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv"))
+nyt=nyt%>%mutate(date=as.character(date))
+maxt=max(nyt$date)
+nytmax=nyt%>% filter(date==maxt)
+covidus=nyt %>% group_by(date) %>% summarise_at(vars(cases,deaths),sum)
+
+start.date = ymd_hms("2008-01-05 00:00:00")
+end.date   = as_datetime(now()) #ymd_hms("2020-04-02 01:00:00")
+#end.date   = ymd_hms("2020-04-04 01:00:00")
+breaks = seq(start.date, end.date, "1 week")
+
+covidus = covidus %>% mutate(date=as_datetime(date),
+                             week=cut(date, breaks=breaks)) %>% summarise_at(vars(cases,deaths,max))
+
+library(readr)          
+wei=read_csv("https://www.dropbox.com/sh/rqmo1hvij1veff0/AAAnRCRpxRqV7LKu9nzt1SCea?dl=1")
+
+
+```
+
+
+
+
+```{r}
+# Time Series
+
+#< load libraries
+  library(foreign)
+  
+  
+#>
+
+
+#< Set working directory
+  setwd("/Users/ralfmartin/research/Dropbox/teaching/ClimateQuant2016/R")
+#>
+
+#< GDP Japan
+  library(haven)
+  gdpjp <-read_dta("data/gdp_JP_etc.dta")
+  library(zoo)
+  library(DataCombine)
+  library(quantmod)
+  library(tseries)
+  
+  
+  gdpjp["L1lngdp"]=Lag(gdpjp$lngdp,1)
+  
+  
+  gdpjp["L1lngdp"]=Lag(gdpjp$lngdp,1)
+  
+  summary(lm(lngdp~L1lngdp ,gdpjp))
+  summary(arma(gdpjp$lngdp, order = c(1, 0)))
+  
+  summary(arma(gdpjp$lngdp, order = c(2, 0)))
+  
+  
+  
+  summary(lm(lngdp~L1lngdp+time ,gdpjp))
+  
+  gdpjp["Dlngdp"]<-c(NA,diff(gdpjp$lngdp, differences=1))
+#>
+  
+#< Dickey Fuller
+  library(urca)
+  
+  df=ur.df(gdpjp$lngdp,type="trend",lags=0)
+  summary(df)
+ 
+  summary(ur.df(diff(gdpjp$lngdp,1),type="trend",lags=0))
+  
+  summary(ur.df(diff(gdpjp$lngdp,1),type="trend",lags=1))
+  
+  
+  summary(ur.df(gdpjp$lngdp,type="trend",lags=1))
+  summary(ur.df(gdpjp$lngdp,type="trend",lags=5))
+  summary(ur.df(gdpjp$lngdp,type="trend",lags=3))
+  
+  summary(ur.df(diff(gdpjp$lngdp,1),type="trend",lags=3))
+  
+  
+
+#>
+#< Oragne juice
+  
+  oj <-read_dta("data/oj.dta")  
+  oj = na.omit(oj)
+  oj["lnp"]=log(oj$ppioj/oj$pwfsa *100)
+  
+  
+  summary(ur.df(oj$fdd,type="trend",lags=12))
+  
+  summary(ur.df(oj$lnp,type="trend",lags=12))
+  summary(ur.df(diff(oj$lnp,1),type="trend",lags=12))
+
+  
+  summary(lm(diff(oj$lnp,1)~oj$fdd[-1]))
+  
+  
+  
+  ojm=lm(diff(oj$lnp)~oj$fdd[-1])
+  library(sandwich)
+  library(lmtest)
+  coeftest(ojm, vcov. = NeweyWest)
+  
+#>  
+  
+```

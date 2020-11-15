@@ -8,7 +8,7 @@ author:
 date: "`r Sys.Date()`"
 output:
   distill::distill_article:
-    self_contained: true
+    self_contained: false
     css: ../../webex.css
     includes:
       after_body: ../../webex.js
@@ -23,12 +23,13 @@ editor_options:
 ```{r setup, include = FALSE, message=FALSE}
 library("webex")
 library(ggplot2)
-library(distill)
+#library(distill)
 #knitr::opts_chunk$set(fig.path='../../images/')
 ```
 
-```{r out.extra='style="max-width: 800px"', echo=F}
-knitr::include_graphics("1599px-RMS_Titanic_3.jpg")
+
+```{r out.extra='style="max-width: 800px"', echo=F,preview=TRUE}
+knitr::include_graphics("titanic_PNG1.png")
 ```
 
 
