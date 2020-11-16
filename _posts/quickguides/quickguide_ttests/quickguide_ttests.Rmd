@@ -28,4 +28,9 @@ knitr::opts_chunk$set(fig.path='../../images/')
 
 
 
-# Introduction
+```{r}
+knitr::include_url("https://mondpanther.github.io/datastorieshub/posts/quickguides/quickguide_ttests/Testing%20Times%20Cheat%20Sheet.html")
+
+```
+
+[pdf version](Testing Times Cheat Sheet.pdf)

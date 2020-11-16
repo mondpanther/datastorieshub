@@ -37,10 +37,28 @@ wei=read.csv("https://www.dropbox.com/s/d4h50imfkvmo2la/weekly-economic-index_da
     #mutate(week=as.character(as_date(Date)))  
     #mutate(week=gsub("/","-",Date))
 
+
+
+ld=read.csv("https://www.dropbox.com/s/q599zbhc1wfxoju/lockdown_us.csv?dl=1")
+ld=ld %>% group_by(State) %>% filter(Date==min(Date)) %>% distinct(State,Date) %>% rename(state=State)
+
+pp=read.csv("https://www.dropbox.com/s/whsm336mwqzch57/statistic_id183497_population-in-the-states-of-the-us-2019.csv?dl=1")
+
+uspop=sum(pp$popmm)
+
+ldpp=pp %>% left_join(ld,by="state") %>% group_by(Date) %>% 
+     summarise_at(vars(popmm),sum) %>% filter(is.na(Date)==F) %>% 
+     mutate(cumpopmm=cumsum(popmm))
+
+ldppweek=wei %>% mutate( Fweek=lead(week) ) %>% merge(ldpp) %>% filter(Date>week & Date<Fweek) %>% 
+         group_by(week) %>% 
+         summarise(lockshare=max(cumpopmm/uspop)) %>% mutate(week=as_date(week))
+
+
 df=wei %>%  left_join(covidus, by="week") %>%  
    mutate(week=as_date(week),cases=replace(deaths,is.na(cases),0),
-                  deaths=replace(deaths,is.na(deaths),0),lnindex=log(Index)) 
-
+                  deaths=replace(deaths,is.na(deaths),0),lnindex=log(Index)) %>% 
+   left_join(ldppweek,by="week") %>% mutate(lockshare=replace(lockshare,is.na(lockshare),0))
 
 
 
@@ -108,6 +126,14 @@ lm(Index~cases+t,df,year(week)>2018) %>% summary()
   dickey=ur.df(diff(df$lnindex,1))
   summary(dickey)
   
+  
+  
+lm(Dlnindex~Dcases+t,df) %>% summary()  
+
+lm(Dlnindex~Dcases+t+lockshare,df) %>% summary()
+
+lm(Dlnindex~lag(Dlnindex)+Dcases+lag(Dcases)+t+lockshare+lag(lockshare),df) %>% summary()  
+
   
     
 ```

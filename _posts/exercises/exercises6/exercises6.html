@@ -25,8 +25,8 @@
   
   
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2020-11-10" />
-  <meta property="article:created" itemprop="dateCreated" content="2020-11-10" />
+  <meta property="article:published" itemprop="datePublished" content="2020-11-16" />
+  <meta property="article:created" itemprop="dateCreated" content="2020-11-16" />
   <meta name="article:author" content="Ralf Martin" />
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -44,7 +44,7 @@
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 6"]},{"type":"character","attributes":{},"value":["Econometrics for dummies\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2020-11-10"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 6"]},{"type":"character","attributes":{},"value":["Econometrics for dummies\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2020-11-16"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1976,7 +1976,7 @@ border-color: green;
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Exercises 6","description":"Econometrics for dummies","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-11-10T00:00:00.000+00:00","citationText":"Martin, 2020"}
+{"title":"Exercises 6","description":"Econometrics for dummies","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-11-16T00:00:00.000+00:00","citationText":"Martin, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1993,7 +1993,7 @@ border-color: green;
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br />2020-11-10
+<br />2020-11-16
 </div>
 
 <div class="d-article">
@@ -2254,6 +2254,8 @@ Residual standard error: 0.7091 on 1158 degrees of freedom
 Multiple R-squared:  0.7846,    Adjusted R-squared:  0.7829 
 F-statistic: 468.6 on 9 and 1158 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>
+library(car)
+library(plm)
 linearHypothesis(mod1,&quot;log(k)+log(l)=1&quot;,vcov=vcovHC)</code></pre>
 <pre><code>
 Linear hypothesis test
@@ -2285,7 +2287,7 @@ Answer:
 <p>Typically the residual from a production function estimation is interpreted as productivity. However, it is plausible that more productive firms will want to employ more production factors. This might lead to a correlation between residuals and the explanatory variables which could lead to biases. A big part of that might come from variations between sectors; i.e. some sectors are just more productive and profitable and those will also be the sectors that attract more capital and other production factors.</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
-prod$ysic3dig=factor(prod$sic3dig)
+prod$sic3dig=factor(prod$sic3dig)
 mod2=lm(log(va)~log(k)+log(l)+year+sic3dig, prod)
 summary(mod2)</code></pre>
 <pre><code>
@@ -2294,27 +2296,42 @@ lm(formula = log(va) ~ log(k) + log(l) + year + sic3dig, data = prod)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--2.93449 -0.41661  0.01867  0.45730  2.17228 
+-2.88207 -0.40007  0.05372  0.44165  1.92283 
 
 Coefficients:
-              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  1.6788944  0.3071242   5.466 5.62e-08 ***
-log(k)       0.3411037  0.0211153  16.154  &lt; 2e-16 ***
-log(l)       0.9494168  0.0380563  24.948  &lt; 2e-16 ***
-year80       0.0366648  0.0822603   0.446   0.6559    
-year81       0.1415709  0.0822714   1.721   0.0856 .  
-year82       0.0923364  0.0822540   1.123   0.2619    
-year83       0.0060746  0.0822568   0.074   0.9411    
-year84       0.0351597  0.0822657   0.427   0.6692    
-year85      -0.0629129  0.0823992  -0.764   0.4453    
-year86       0.1065478  0.0826003   1.290   0.1973    
-sic3dig      0.0039455  0.0008438   4.676 3.27e-06 ***
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  3.216195   0.134458  23.920  &lt; 2e-16 ***
+log(k)       0.285436   0.022608  12.625  &lt; 2e-16 ***
+log(l)       0.995616   0.038889  25.602  &lt; 2e-16 ***
+year80       0.036104   0.077877   0.464 0.643019    
+year81       0.142005   0.077888   1.823 0.068537 .  
+year82       0.094111   0.077871   1.209 0.227085    
+year83       0.007594   0.077874   0.098 0.922338    
+year84       0.032116   0.077884   0.412 0.680161    
+year85      -0.071111   0.078036  -0.911 0.362352    
+year86       0.093891   0.078264   1.200 0.230517    
+sic3dig321  -0.107406   0.079196  -1.356 0.175304    
+sic3dig322   0.155755   0.079807   1.952 0.051224 .  
+sic3dig323   0.847057   0.239067   3.543 0.000411 ***
+sic3dig324   0.034193   0.124769   0.274 0.784093    
+sic3dig331  -0.175586   0.085783  -2.047 0.040900 *  
+sic3dig332   0.260137   0.085636   3.038 0.002438 ** 
+sic3dig341   0.733683   0.176477   4.157 3.46e-05 ***
+sic3dig342   0.035795   0.095630   0.374 0.708245    
+sic3dig351   1.297901   0.175805   7.383 2.98e-13 ***
+sic3dig352   0.597134   0.102678   5.816 7.84e-09 ***
+sic3dig355   0.509182   0.237587   2.143 0.032313 *  
+sic3dig356   0.195583   0.095147   2.056 0.040050 *  
+sic3dig369  -0.239435   0.101992  -2.348 0.019065 *  
+sic3dig371   0.771417   0.139946   5.512 4.38e-08 ***
+sic3dig381   0.174591   0.071427   2.444 0.014663 *  
+sic3dig383   0.367663   0.140038   2.625 0.008769 ** 
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.7028 on 1157 degrees of freedom
-Multiple R-squared:  0.7886,    Adjusted R-squared:  0.7867 
-F-statistic: 431.5 on 10 and 1157 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.6653 on 1142 degrees of freedom
+Multiple R-squared:  0.813, Adjusted R-squared:  0.8089 
+F-statistic: 198.5 on 25 and 1142 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>
 linearHypothesis(mod2, &quot;log(k)+log(l)=1&quot;, vcov=vcovHC)</code></pre>
 <pre><code>
@@ -2328,17 +2345,17 @@ Model 2: log(va) ~ log(k) + log(l) + year + sic3dig
 
 Note: Coefficient covariance matrix supplied.
 
-  Res.Df Df      F    Pr(&gt;F)    
-1   1158                        
-2   1157  1 145.52 &lt; 2.2e-16 ***
+  Res.Df Df     F    Pr(&gt;F)    
+1   1143                       
+2   1142  1 130.6 &lt; 2.2e-16 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
 <p>i.e. the test continues to be rejected. Consequently, we don’t find constant returns to scale.</p>
 </div>
 <h3 id="part-c-1">Part (c)</h3>
-<p>Which two of the 17 industries have the largest number of observations? <select class="solveme" data-answer="[&quot;311 and 321&quot;]"> <option></option> <option>311 and 323</option> <option>381 and 383</option> <option>311 and 321</option></select></p>
-<p>For each of the two industries separately, estimate a Cobb-Douglas production function.</p>
+<p>Which of the 17 industries has the largest number of observations? <select class="solveme" data-answer="[&quot;311&quot;]"> <option></option> <option>381</option> <option>383</option> <option>311</option></select></p>
+<p>Lets pick the first two industries that appear in our table, 311 and 321. For each of the two industries separately, estimate a Cobb-Douglas production function.</p>
 <p>Would you say the functions are very different in the two industries? <select class="solveme" data-answer="[&quot;Yes&quot;]"> <option></option> <option>No</option> <option>Yes</option></select></p>
 <div class="solution">
 <button>
@@ -2346,20 +2363,21 @@ Answer:
 </button>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
-table(prod$ysic3dig)</code></pre>
+table(prod$sic3dig)</code></pre>
 <pre><code>
 311 321 322 323 324 331 332 341 342 351 352 355 356 369 371 381 383 
 400  88  88   8  32  72  72  16  56  16  48   8  56  48  24 112  24 </code></pre>
 </div>
-<p>The table reveals that the two industries with the largest number of observations are 311 and 321.</p>
+<p>The table reveals that the industry with the largest number of observations is 311.</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
-mod311=lm(log(va)~log(k)+log(l)+year, prod, subset=prod$ysic3dig==&quot;311&quot;)
+library(dplyr)
+mod311=lm(log(va)~log(k)+log(l)+year, prod %&gt;% filter(sic3dig==&quot;311&quot;)) 
 summary(mod311)</code></pre>
 <pre><code>
 Call:
-lm(formula = log(va) ~ log(k) + log(l) + year, data = prod, subset = prod$ysic3dig == 
-    &quot;311&quot;)
+lm(formula = log(va) ~ log(k) + log(l) + year, data = prod %&gt;% 
+    filter(sic3dig == &quot;311&quot;))
 
 Residuals:
      Min       1Q   Median       3Q      Max 
@@ -2383,12 +2401,42 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Residual standard error: 0.6508 on 390 degrees of freedom
 Multiple R-squared:  0.8318,    Adjusted R-squared:  0.8279 
 F-statistic: 214.2 on 9 and 390 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>
+mod321=lm(log(va)~log(k)+log(l)+year, prod%&gt;% filter(sic3dig==&quot;321&quot;))
+summary(mod321)</code></pre>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + year, data = prod %&gt;% 
+    filter(sic3dig == &quot;321&quot;))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.12790 -0.32740  0.02603  0.38229  0.95998 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  3.61053    0.41939   8.609 6.19e-13 ***
+log(k)       0.20105    0.07984   2.518   0.0138 *  
+log(l)       1.04942    0.13980   7.507 8.45e-11 ***
+year80       0.16420    0.22541   0.728   0.4685    
+year81       0.17994    0.22527   0.799   0.4268    
+year82       0.17906    0.22650   0.791   0.4316    
+year83       0.22520    0.22623   0.995   0.3226    
+year84      -0.03102    0.22546  -0.138   0.8909    
+year85      -0.16535    0.22671  -0.729   0.4680    
+year86       0.26596    0.22574   1.178   0.2423    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.5282 on 78 degrees of freedom
+Multiple R-squared:  0.8231,    Adjusted R-squared:  0.8027 
+F-statistic: 40.32 on 9 and 78 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<p>In each case the labor coefficient is larger than the capital coefficient. However, the numbers are not necessarily very close. In the case of sector 311 the capital coefficient is only half of the coefficient for sector 321. Still, to make sure they are statistically different it’s good to do a formal test which is the next question.</p>
+<p>In each case the labor coefficient is larger than the capital coefficient. However, the numbers are not necessarily very close. In the case of sector 321 the capital coefficient is only half of the coefficient for sector 311. Still, to make sure they are statistically different it’s good to do a formal test which is the next question.</p>
 </div>
 <h3 id="part-d-1">Part (d)</h3>
 <p>Conduct a hypothesis test to compare the two functions formally. Note, that for that you need to estimate both functions using a single regression model.</p>
-<p>Are the coefficients statistically diffferent from zero? <select class="solveme" data-answer="[&quot;No&quot;]"> <option></option> <option>Yes</option> <option>No</option></select></p>
+<p>Are the coefficients statistically different from zero? <select class="solveme" data-answer="[&quot;No&quot;]"> <option></option> <option>Yes</option> <option>No</option></select></p>
 <p>Could they be jointly significant? <select class="solveme" data-answer="[&quot;Yes&quot;]"> <option></option> <option>No</option> <option>Yes</option></select></p>
 <div class="solution">
 <button>
@@ -2396,33 +2444,33 @@ Answer:
 </button>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
-mod_inter=lm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, prod,subset=prod$sic3dig==&quot;311&quot;|prod$sic3dig==&quot;321&quot;)
+mod_inter=lm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, prod %&gt;% filter(sic3dig==&quot;311&quot;|sic3dig==&quot;321&quot;))
 summary(mod_inter)</code></pre>
 <pre><code>
 Call:
 lm(formula = log(va) ~ log(k) + log(l) + sic3dig * log(k) + sic3dig * 
-    log(l) + sic3dig + year, data = prod, subset = prod$sic3dig == 
-    &quot;311&quot; | prod$sic3dig == &quot;321&quot;)
+    log(l) + sic3dig + year, data = prod %&gt;% filter(sic3dig == 
+    &quot;311&quot; | sic3dig == &quot;321&quot;))
 
 Residuals:
      Min       1Q   Median       3Q      Max 
 -2.28294 -0.41035  0.05918  0.41383  1.74454 
 
 Coefficients:
-                 Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)    -24.166880  15.358977  -1.573 0.116276    
-log(k)           6.309703   3.124495   2.019 0.044004 *  
-log(l)          -5.635204   5.495529  -1.025 0.305689    
-sic3dig          0.086072   0.049179   1.750 0.080733 .  
-year80           0.100202   0.113938   0.879 0.379609    
-year81           0.252903   0.113923   2.220 0.026894 *  
-year82           0.352021   0.114143   3.084 0.002161 ** 
-year83           0.233218   0.114345   2.040 0.041942 *  
-year84           0.177992   0.114435   1.555 0.120516    
-year85           0.034356   0.115426   0.298 0.766105    
-year86           0.446495   0.115777   3.856 0.000131 ***
-log(k):sic3dig  -0.018972   0.009998  -1.898 0.058355 .  
-log(l):sic3dig   0.020729   0.017579   1.179 0.238910    
+                  Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        2.60151    0.19647  13.242  &lt; 2e-16 ***
+log(k)             0.40941    0.03950  10.364  &lt; 2e-16 ***
+log(l)             0.81146    0.07167  11.322  &lt; 2e-16 ***
+sic3dig321         0.86072    0.49179   1.750 0.080733 .  
+year80             0.10020    0.11394   0.879 0.379609    
+year81             0.25290    0.11392   2.220 0.026894 *  
+year82             0.35202    0.11414   3.084 0.002161 ** 
+year83             0.23322    0.11434   2.040 0.041942 *  
+year84             0.17799    0.11443   1.555 0.120516    
+year85             0.03436    0.11543   0.298 0.766105    
+year86             0.44649    0.11578   3.856 0.000131 ***
+log(k):sic3dig321 -0.18972    0.09998  -1.898 0.058355 .  
+log(l):sic3dig321  0.20729    0.17579   1.179 0.238910    
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
@@ -2434,20 +2482,20 @@ coeftest(mod_inter, vcov=vcovHC)</code></pre>
 <pre><code>
 t test of coefficients:
 
-                  Estimate  Std. Error t value  Pr(&gt;|t|)    
-(Intercept)    -24.1668805  14.2888306 -1.6913 0.0914330 .  
-log(k)           6.3097032   3.0724685  2.0536 0.0405588 *  
-log(l)          -5.6352036   5.5924232 -1.0076 0.3141357    
-sic3dig          0.0860720   0.0456747  1.8845 0.0601137 .  
-year80           0.1002017   0.1080746  0.9272 0.3543179    
-year81           0.2529032   0.1060883  2.3839 0.0175224 *  
-year82           0.3520211   0.1027869  3.4248 0.0006687 ***
-year83           0.2332183   0.1128211  2.0672 0.0392611 *  
-year84           0.1779922   0.1141448  1.5594 0.1195786    
-year85           0.0343561   0.1172765  0.2929 0.7696888    
-year86           0.4464949   0.1092866  4.0855 5.161e-05 ***
-log(k):sic3dig  -0.0189720   0.0098068 -1.9346 0.0536363 .  
-log(l):sic3dig   0.0207288   0.0178478  1.1614 0.2460545    
+                   Estimate Std. Error t value  Pr(&gt;|t|)    
+(Intercept)        2.601515   0.210652 12.3498 &lt; 2.2e-16 ***
+log(k)             0.409406   0.048051  8.5202 &lt; 2.2e-16 ***
+log(l)             0.811456   0.087765  9.2458 &lt; 2.2e-16 ***
+sic3dig321         0.860720   0.456747  1.8845 0.0601137 .  
+year80             0.100202   0.108075  0.9272 0.3543179    
+year81             0.252903   0.106088  2.3839 0.0175224 *  
+year82             0.352021   0.102787  3.4248 0.0006687 ***
+year83             0.233218   0.112821  2.0672 0.0392611 *  
+year84             0.177992   0.114145  1.5594 0.1195786    
+year85             0.034356   0.117276  0.2929 0.7696888    
+year86             0.446495   0.109287  4.0855 5.161e-05 ***
+log(k):sic3dig321 -0.189720   0.098068 -1.9346 0.0536363 .  
+log(l):sic3dig321  0.207288   0.178478  1.1614 0.2460545    
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
@@ -2455,13 +2503,13 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <p>We can examine that with the linearHypothesis command:</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
-linearHypothesis(mod_inter, c(&quot;log(k):sic3dig=0&quot;,&quot;log(l):sic3dig=0&quot;), vcov=vcovHC)</code></pre>
+linearHypothesis(mod_inter, c(&quot;log(k):sic3dig321=0&quot;,&quot;log(l):sic3dig321=0&quot;), vcov=vcovHC)</code></pre>
 <pre><code>
 Linear hypothesis test
 
 Hypothesis:
-log(k):sic3dig = 0
-log(l):sic3dig = 0
+log(k):sic3dig321 = 0
+log(l):sic3dig321 = 0
 
 Model 1: restricted model
 Model 2: log(va) ~ log(k) + log(l) + sic3dig * log(k) + sic3dig * log(l) + 
@@ -2486,15 +2534,15 @@ Answer:
 </button>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
-mod_fe=plm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, index=c(&quot;id&quot;,&quot;year&quot;),data=prod, subset=prod$sic3dig==&quot;311&quot;|prod$sic3dig==&quot;321&quot;, model=&quot;within&quot;)
+mod_fe=plm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, index=c(&quot;id&quot;,&quot;year&quot;),data=prod %&gt;% filter(sic3dig==&quot;311&quot;|sic3dig==&quot;321&quot;), model=&quot;within&quot;)
 summary(mod_fe)</code></pre>
 <pre><code>
 Oneway (individual) effect Within Model
 
 Call:
 plm(formula = log(va) ~ log(k) + log(l) + sic3dig * log(k) + 
-    sic3dig * log(l) + sic3dig + year, data = prod, subset = prod$sic3dig == 
-    &quot;311&quot; | prod$sic3dig == &quot;321&quot;, model = &quot;within&quot;, index = c(&quot;id&quot;, 
+    sic3dig * log(l) + sic3dig + year, data = prod %&gt;% filter(sic3dig == 
+    &quot;311&quot; | sic3dig == &quot;321&quot;), model = &quot;within&quot;, index = c(&quot;id&quot;, 
     &quot;year&quot;))
 
 Balanced Panel: n = 61, T = 8, N = 488
@@ -2504,18 +2552,18 @@ Residuals:
 -1.5714319 -0.2166290  0.0028078  0.2322813  1.3800158 
 
 Coefficients:
-                Estimate Std. Error t-value  Pr(&gt;|t|)    
-log(k)         -7.111061   7.404161 -0.9604  0.337405    
-log(l)         -3.940863   6.432306 -0.6127  0.540431    
-year80          0.102850   0.079814  1.2886  0.198247    
-year81          0.251459   0.079807  3.1508  0.001746 ** 
-year82          0.344801   0.080830  4.2657 2.469e-05 ***
-year83          0.230999   0.082761  2.7911  0.005494 ** 
-year84          0.183991   0.085504  2.1518  0.031985 *  
-year85          0.079124   0.090678  0.8726  0.383396    
-year86          0.477635   0.094902  5.0329 7.204e-07 ***
-log(k):sic3dig  0.023859   0.023623  1.0100  0.313097    
-log(l):sic3dig  0.013829   0.020471  0.6755  0.499719    
+                  Estimate Std. Error t-value  Pr(&gt;|t|)    
+log(k)            0.308997   0.134568  2.2962  0.022160 *  
+log(l)            0.359801   0.118239  3.0430  0.002491 ** 
+year80            0.102850   0.079814  1.2886  0.198247    
+year81            0.251459   0.079807  3.1508  0.001746 ** 
+year82            0.344801   0.080830  4.2657 2.469e-05 ***
+year83            0.230999   0.082761  2.7911  0.005494 ** 
+year84            0.183991   0.085504  2.1518  0.031985 *  
+year85            0.079124   0.090678  0.8726  0.383396    
+year86            0.477635   0.094902  5.0329 7.204e-07 ***
+log(k):sic3dig321 0.238587   0.236232  1.0100  0.313097    
+log(l):sic3dig321 0.138285   0.204708  0.6755  0.499719    
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
@@ -2525,13 +2573,13 @@ R-Squared:      0.1624
 Adj. R-Squared: 0.019445
 F-statistic: 7.33249 on 11 and 416 DF, p-value: 1.6864e-11</code></pre>
 <pre class="r"><code>
-linearHypothesis(mod_fe, c(&quot;log(k):sic3dig=0&quot;,&quot;log(l):sic3dig=0&quot;), vcov=vcovHC)</code></pre>
+linearHypothesis(mod_fe, c(&quot;log(k):sic3dig321=0&quot;,&quot;log(l):sic3dig321=0&quot;), vcov=vcovHC)</code></pre>
 <pre><code>
 Linear hypothesis test
 
 Hypothesis:
-log(k):sic3dig = 0
-log(l):sic3dig = 0
+log(k):sic3dig321 = 0
+log(l):sic3dig321 = 0
 
 Model 1: restricted model
 Model 2: log(va) ~ log(k) + log(l) + sic3dig * log(k) + sic3dig * log(l) + 
@@ -2545,6 +2593,7 @@ Note: Coefficient covariance matrix supplied.
 </div>
 <p>It seems that once we allow for fixed effects the interaction coefficients are no longer significant even in a joint significant test.</p>
 </div>
+<p>=======</p>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

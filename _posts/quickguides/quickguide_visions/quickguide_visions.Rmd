@@ -1,7 +1,7 @@
 ---
 title: "Quick Guide - Visions"
 description: |
-  Various tips and examples around visualistaions
+  -- under construction --
 author:
   - name: Ralf Martin
     url: https://mondpanther.github.io/wwwmondpanther/

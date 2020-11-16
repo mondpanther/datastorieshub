@@ -226,10 +226,11 @@ table(prod$sic3dig)
 The table reveals that the industry with the largest number of observations is 311. 
 
 ```{r }
-mod311=lm(log(va)~log(k)+log(l)+year, prod, subset=prod$ysic3dig=="311")
+library(dplyr)
+mod311=lm(log(va)~log(k)+log(l)+year, prod %>% filter(sic3dig=="311")) 
 summary(mod311)
 
-mod321=lm(log(va)~log(k)+log(l)+year, prod, subset=prod$ysic3dig=="321")
+mod321=lm(log(va)~log(k)+log(l)+year, prod%>% filter(sic3dig=="321"))
 summary(mod321)
 
 ```
@@ -249,7 +250,7 @@ Could they be jointly significant?  `r mcq(c("No", answer = "Yes"))`
 
 
 ```{r }
-mod_inter=lm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, prod,subset=prod$sic3dig=="311"|prod$sic3dig=="321")
+mod_inter=lm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, prod %>% filter(sic3dig=="311"|sic3dig=="321"))
 summary(mod_inter)
 coeftest(mod_inter, vcov=vcovHC)
 ```
@@ -259,7 +260,7 @@ It turns out the coefficients are not statistically different; i.e. the t-tests 
 We can examine that with the linearHypothesis command:
 
 ```{r }
-linearHypothesis(mod_inter, c("log(k):sic3dig=0","log(l):sic3dig=0"), vcov=vcovHC)
+linearHypothesis(mod_inter, c("log(k):sic3dig321=0","log(l):sic3dig321=0"), vcov=vcovHC)
 ```
 This suggests that the production function for sector 321 is weakly significantly different from that in sector 311.
 
@@ -274,9 +275,9 @@ Does this change your assessment concerning the hypothesis that the production f
 `r hide("Answer:")`
 
 ```{r }
-mod_fe=plm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, index=c("id","year"),data=prod, subset=prod$sic3dig=="311"|prod$sic3dig=="321", model="within")
+mod_fe=plm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, index=c("id","year"),data=prod %>% filter(sic3dig=="311"|sic3dig=="321"), model="within")
 summary(mod_fe)
-linearHypothesis(mod_fe, c("log(k):sic3dig=0","log(l):sic3dig=0"), vcov=vcovHC)
+linearHypothesis(mod_fe, c("log(k):sic3dig321=0","log(l):sic3dig321=0"), vcov=vcovHC)
 ```
 It seems that once we allow for fixed effects the interaction coefficients are no longer significant even in a joint significant test.
 
