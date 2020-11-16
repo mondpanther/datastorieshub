@@ -9,6 +9,8 @@
       - exercises/exercises4
       - exercises/exercises5
       - exercises/exercises6
+      - exercises/exercises7
+      - exercises/exercises8
       
       
 ---

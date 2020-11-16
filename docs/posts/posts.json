@@ -18,6 +18,24 @@
     "input_file": {}
   },
   {
+    "path": "posts/quickguides/_quickguide_visions/",
+    "title": "Quick Guide - Visions",
+    "description": "-- under construction --",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-11-16",
+    "categories": [
+      "Quickguides"
+    ],
+    "preview": {},
+    "last_modified": "2020-11-16T10:48:03+00:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/quickguides/quickguide_Rcommands/",
     "title": "Quick Guide - Glossary of R commands",
     "description": {},
@@ -52,25 +70,7 @@
       "Quickguides"
     ],
     "preview": {},
-    "last_modified": "2020-11-16T15:33:32+00:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/quickguides/quickguide_visions/",
-    "title": "Quick Guide - Visions",
-    "description": "-- under construction --",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-11-16",
-    "categories": [
-      "Quickguides"
-    ],
-    "preview": {},
-    "last_modified": "2020-11-16T10:48:03+00:00",
+    "last_modified": "2020-11-16T15:37:00+00:00",
     "input_file": {}
   },
   {
@@ -260,7 +260,7 @@
     "preview_height": 643
   },
   {
-    "path": "posts/quickguides/quickguide_Rscripts/",
+    "path": "posts/quickguides/_quickguide_Rscripts/",
     "title": "Quick Guide - R project organisation",
     "description": "Organizing your R Working with Scripts, Markdown and Project files",
     "author": [

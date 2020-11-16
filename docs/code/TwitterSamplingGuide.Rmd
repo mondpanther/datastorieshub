@@ -52,7 +52,7 @@ This is based on the tweet sampling I have been doing on climate hoaxism. Within
 library(lubridate)
 library(dplyr)
 
-climatetweets=read.csv("https://www.dropbox.com/s/mz6094zvx1ke4r2/climatetweets.csv?dl=1")
+climatetweets=read.csv("https://www.dropbox.com/s/1yy0fed6qt7oerp/climatetweets.csv?dl=1")
 climatetweets=climatetweets %>% mutate(created_at= as_datetime(as.character(created_at)))
 
 ```
