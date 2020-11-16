@@ -53,7 +53,10 @@ library(lubridate)
 library(dplyr)
 
 climatetweets=read.csv("https://www.dropbox.com/s/1yy0fed6qt7oerp/climatetweets.csv?dl=1")
-climatetweets=climatetweets %>% mutate(created_at= as_datetime(as.character(created_at)))
+library(readr)
+#climatetweets=read.csv("../../../corona/data/climatetweets.csv")
+climatetweets=climatetweets %>% mutate(created_at= as_datetime((created_at)))
+#climatetweets=climatetweets %>% mutate(created_at= as_datetime(as.character(created_at)))
 
 ```
 Note this is a really big dataset with information on `r nrow(climatetweets)` tweets so downloading this might take a while and also requires a lot of harddrive and memory space.

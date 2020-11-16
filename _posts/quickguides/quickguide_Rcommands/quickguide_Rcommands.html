@@ -1016,6 +1016,13 @@ More…
 </div>
  <a href="https://www.datamentor.io/r-programming/for-loop/">More Information</a></p>
 </div>
+<h2 id="getwd"><code>getwd()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>Prints current working directory.</p>
+</div>
 <h2 id="ggplot"><code>ggplot()</code></h2>
 <div class="solution">
 <button>
@@ -1030,12 +1037,26 @@ More…
 </button>
 <p>Defines groupings within a dataframe based on one or several categorical variables. Useful to compute statistics at the level of these groupw</p>
 </div>
+<h2 id="help"><code>help()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>This command will fetch a help sheet on the function specified in the brackets, which includes information about usage and syntax.</p>
+</div>
 <h2 id="inner_join"><code>inner_join()</code></h2>
 <div class="solution">
 <button>
 More…
 </button>
 <p>Combine 2 dataframe on the basis of common key variable. Inner join only keeps observations with information in both dataframes. See also <code>left_join()</code>, <code>full_join()</code>, etc. <a href="https://dplyr.tidyverse.org/reference/join.html">More information</a></p>
+</div>
+<h2 id="install.packages"><code>install.packages()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>Will install a programming package. The name of the package in the backets must be in quotation marks.</p>
 </div>
 <h2 id="ivreg"><code>ivreg()</code></h2>
 <div class="solution">
@@ -1057,6 +1078,13 @@ library(car)</code></pre>
 </div>
 <p>Loads the car library that allows you to run the <code>linearHypothesis()</code> command (and more).</p>
 <p><a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/library">More Information</a></p>
+</div>
+<h2 id="linearhypothesis"><code>linearHypothesis()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>Generic function for testing a linear hypothesis. The car package needs to be installed and loaded for it to work.</p>
 </div>
 <h2 id="lm"><code>lm()</code></h2>
 <div class="solution">
@@ -1080,6 +1108,13 @@ More…
 </div>
 
 </div>
+<h2 id="prop.table"><code>prop.table()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>Will generate a table of proportions. prop.table(table(data<span class="math inline">\(var1,data\)</span>var2)) divides each cell by the total of all cells, while the command prop.table(table(data<span class="math inline">\(var1,data\)</span>var2),1) divides each cell by the total of its row and prop.table(table(data<span class="math inline">\(var1,data\)</span>var2),2) by the total of its column.</p>
+</div>
 <h2 id="read.csv"><code>read.csv()</code></h2>
 <div class="solution">
 <button>
@@ -1092,6 +1127,36 @@ More…
 df=read.csv(&quot;https://www.dropbox.com/s/a2opu10e2hz0dps/brexit.csv?dl=1&quot;)</code></pre>
 </div>
 <p>Loads the <code>brexit.csv</code> dataset</p>
+</div>
+<h2 id="read_excel"><code>read_excel()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>This command will load an excel spreadsheet. Needs to be preceded by library(readxl). The data file name inside the brackets must be in quotation marks.</p>
+</div>
+<h2 id="setwd"><code>setwd()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>Will set working directory. E.g. setwd(“c:/folder/folder2”)</p>
+</div>
+<h2 id="str"><code>str()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>Will display the structure of an R object.</p>
+</div>
+<h2 id="subset"><code>subset()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>The subset( ) function is the easiest way to select variables and observations.</p>
+<p>E.g. In the following example, we select all rows that have a value of age greater than or equal to 20 or age less then 10. We keep the ID and Weight columns.</p>
+<p>newdata &lt;- subset(mydata, age &gt;= 20 | age &lt; 10, select=c(ID, Weight))</p>
 </div>
 <h2 id="summarise"><code>summarise()</code></h2>
 <div class="solution">
@@ -1107,6 +1172,14 @@ More…
 </button>
 <p>General command to provide summary information about an object.</p>
 </div>
+<h2 id="table"><code>table()</code></h2>
+<div class="solution">
+<button>
+More…
+</button>
+<p>This command will generate a contingency table. The first variable will show the levels of the categorical variable as rows and the second variable will display the levels of the categorical variable as colums.</p>
+<p>E.g. table(data<span class="math inline">\(call,data\)</span>black) will return a 2x2 table where callback frequency is given by the rows (1=callback) and race frequency is given by the columns (1=black).</p>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -1114,6 +1187,15 @@ More…
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <script>
 
