@@ -75,6 +75,14 @@ Repeating a series of commands several times
 `r unhide()`
 
 
+## `getwd()`
+`r hide("More...")`
+
+Prints current working directory.
+
+`r unhide()`
+
+
 ## `ggplot()`
 `r hide("More...")`
 General purpose plotting command.
@@ -86,7 +94,12 @@ Defines groupings within a dataframe based on one or several categorical variabl
 Useful to compute statistics at the level of these groupw
 `r unhide()`
 
+## `help()`
+`r hide("More...")`
 
+This command will fetch a help sheet on the function specified in the brackets, which includes information about usage and syntax.
+
+`r unhide()`
 
 ## `inner_join()`
 `r hide("More...")`
@@ -95,6 +108,11 @@ with information in both dataframes. See also `left_join()`, `full_join()`, etc.
 [More information](https://dplyr.tidyverse.org/reference/join.html)
 `r unhide()`
 
+
+## `install.packages()`
+`r hide("More...")`
+Will install a programming package. The name of the package in the backets must be in quotation marks.
+`r unhide()`
 
 
 ## `ivreg()`
@@ -125,6 +143,16 @@ Loads the car library that allows you to run the `linearHypothesis()` command (a
 `r unhide()`
 
 
+## `linearHypothesis()`
+
+`r hide("More...")`
+
+Generic function for testing a linear hypothesis. The car package needs to be installed and loaded for it to work.
+
+`r unhide()`
+
+
+
 ## `lm()`
 
 `r hide("More...")`
@@ -151,7 +179,12 @@ Implements the a linear regression model using the least squares algorithm
 <!--/html_preserve-->
 `r unhide()`
 
+## `prop.table()`
+`r hide("More...")`
 
+Will generate a table of proportions. prop.table(table(data$var1,data$var2)) divides each cell by the total of all cells, while the command prop.table(table(data$var1,data$var2),1) divides each cell by the total of its row and prop.table(table(data$var1,data$var2),2) by the total of its column. 
+
+`r unhide()`
 
 ## `read.csv()`
 
@@ -172,6 +205,42 @@ Loads the `brexit.csv` dataset
 `r unhide()`
 
 
+## `read_excel()`
+`r hide("More...")`
+
+This command will load an excel spreadsheet. Needs to be preceded by library(readxl). The data file name inside the brackets must be in quotation marks.
+
+`r unhide()`
+
+## `setwd()`
+`r hide("More...")`
+
+Will set working directory. E.g. setwd(“c:/folder/folder2”)
+
+`r unhide()`
+
+
+
+## `str()`
+`r hide("More...")`
+
+Will display the structure of an R object.
+
+`r unhide()`
+
+
+## `subset()`
+`r hide("More...")`
+
+The subset( ) function is the easiest way to select variables and observations. 
+
+E.g. In the following example, we select all rows that have a value of age greater than or equal to 20 or age less then 10. We keep the ID and Weight columns. 
+
+newdata <- subset(mydata, age >= 20 | age < 10,
+select=c(ID, Weight)) 
+
+`r unhide()`
+
 ## `summarise()`
 `r hide("More...")`
 Compute summary statistics
@@ -182,4 +251,11 @@ Compute summary statistics
 General command to provide summary information about an object.
 `r unhide()`
 
+## `table()`
+`r hide("More...")`
 
+This command will generate a contingency table. The first variable will show the levels of the categorical variable as rows and the second variable will display the levels of the categorical variable as colums.
+
+E.g. table(data$call,data$black) will return a 2x2 table where callback frequency is given by the rows (1=callback) and race frequency is given by the columns (1=black).
+
+`r unhide()`
