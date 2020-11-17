@@ -73,7 +73,7 @@ summary(ff)
 
 
 ```{r, echo=FALSE}
-library(dplyr)  # This is an extension of R that allows a more covenient handling of dataframes
+library(dplyr)  # This is an extension of R that allows a more convenient handling of dataframes
 
 ff= ff %>% mutate(crimesPc=crimes11/pop11)
 
@@ -195,7 +195,7 @@ A big part of applied data analysis involves combining different bit of data. Fo
 
 ```{r}
 library(dplyr)
-#ff_raw=read.csv("https://www.dropbox.com/s/g1w75gkw7g91zef/foreigners.csv?dl=1")  
+ff_raw=read.csv("https://www.dropbox.com/s/g1w75gkw7g91zef/foreigners.csv?dl=1")  
 
 
 

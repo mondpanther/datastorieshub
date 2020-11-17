@@ -94,6 +94,21 @@ Defines groupings within a dataframe based on one or several categorical variabl
 Useful to compute statistics at the level of these groupw
 `r unhide()`
 
+
+##`head()`
+`r hide("More...")`
+Shows the first couple of lines in a dataframe
+
+```{r}
+rdf=data.frame(v1=runif(100),v2=runif(100))
+head(rdf)
+
+```
+
+
+`r unhide()`
+
+
 ## `help()`
 `r hide("More...")`
 
@@ -211,6 +226,21 @@ Loads the `brexit.csv` dataset
 This command will load an excel spreadsheet. Needs to be preceded by library(readxl). The data file name inside the brackets must be in quotation marks.
 
 `r unhide()`
+
+
+## `seq()`
+`r hide("More...")`
+
+Create a sequence of numbers; e.g.
+
+```{r}
+seq(0,20,2)
+
+```
+
+`r unhide()`
+
+
 
 ## `setwd()`
 `r hide("More...")`
