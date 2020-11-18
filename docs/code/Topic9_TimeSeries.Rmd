@@ -242,24 +242,17 @@ ggplot(sdf,aes(x=period))+geom_line(aes(y=y99,color="rho=0.99"))+
 
 ```{r,message=FALSE}
   library(urca)
-  
-  ur.df(df$cases,type="trend",lags=4) %>% summary()
-  ur.df(df$lnindex,type="trend",lags=4) %>% summary()
-  
+  ur.df(df$cases,type="none",lags=1) %>% summary()
+  ur.df(df$lnindex,type="none",lags=1) %>% summary()
+
 ```
 
   
   
 ```{r}  
+  ur.df(diff(df$cases,1),type="none",lags=1) %>% summary()
+  ur.df(diff(df$lnindex,1),type="none",lags=1) %>% summary()
 
-  
-  ur.df(diff(df$cases,1),type="trend",lags=4) %>% summary()
-
-  ur.df(diff(df$lnindex,1),type="trend",lags=4) %>% summary()
-  ur.df(diff(df$lnindex,1),type="none",lags=4) %>% summary()
-  
-  
-  
 ```
   
 

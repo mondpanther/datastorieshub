@@ -1,5 +1,6 @@
 ---
 title: "Foreigner's and Crime"
+author: Me
 output: html_document
 editor_options: 
   chunk_output_type: inline
@@ -7,10 +8,13 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 
 
 # Introduction
+
+## sub heading
 
 An illustration of R Markdown....
 
@@ -24,6 +28,7 @@ What's the link between foreigners and crime?
 ## Illustration 
 
 To illustrate your story you can include images (even of [thugs who attack foreigners](https://www.freemovement.org.uk/theresa-mays-immigration-legacy/))
+
 
 ![](https://i.dailymail.co.uk/i/pix/scaled/2013/02/16/article-2279828-027314C900000514-667_308x185.jpg){width=50%}
 
@@ -75,7 +80,7 @@ summary(ff)
 ```{r, echo=FALSE}
 library(dplyr)  # This is an extension of R that allows a more convenient handling of dataframes
 
-ff= ff %>% mutate(crimesPc=crimes11/pop11)
+ff= ff %>% mutate( crimesPc= crimes11/pop11)
 
 
 ```
@@ -96,6 +101,8 @@ Let's get rid of outliers...
 
 
 ```{r drop outlier, echo=TRUE,message=FALSE}
+
+#ff= filter(ff,crimesPc<15)
 
 ff= ff %>% filter(crimesPc<15)
 ```
