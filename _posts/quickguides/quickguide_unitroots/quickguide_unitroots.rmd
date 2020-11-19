@@ -1,0 +1,138 @@
+---
+title: "Quick Guide - Unit roots"
+author: Ralf Martin
+output:
+  distill::distill_article:
+    self_contained: false
+    css: ../../webex.css
+    includes:
+      after_body: ../../webex.js
+categories:
+  - Quickguides
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+
+
+```{r setup, include = FALSE, message=FALSE}
+library("webex")
+library(ggplot2)
+#library(tutorial)
+#tutorial::go_interactive()
+#go_interactive( greedy = FALSE, height = 200 )
+
+```
+
+<!--html_preserve-->
+<script src="https://cdn.datacamp.com/datacamp-light-latest.min.js"></script>
+
+<style>
+  /* Rearrange console label */
+  .datacamp-exercise ol li, .datacamp-exercise ul li {
+    margin-bottom: 0em !important;
+  }
+  
+  /* Remove bullet marker */
+  .datacamp-exercise ol li::before, .datacamp-exercise ul li::before {
+    content: '' !important;
+  }
+</style>
+<!--/html_preserve-->
+
+
+
+When dealing with time series we have to account for the possibility that the observations in our data are correlated from one observations to the next; e.g. if we see a particularly high value in one period we can also expect a higher value in the next period.
+
+One of the simplest possibilities is a so called autoregressive model with one lag; i.e.
+$$y_t=\beta_0+\beta_1 y_{t-1}+\epsilon_t \tag{1}$$
+Hence, this is like the normal linear regression model except that one of our explanatory variables is the dependent variable in the previous period.
+In principle we can estimate that like any other regression model; i.e. with OLS  using the `lm()` command in R.
+
+
+However, this goes wrong if $\beta_1$ gets too big; i.e. if it is equal or larger than 1 or smaller than -1 (i.e. $|\beta_1|>1$). This is also referred to as the times series having a "unit root".
+
+If this happens, 
+
+- OLS will give us a (downward) biased estimate of $\beta_1$
+- We might find spurious relationships between $y_t$ and other variables that have a unit root
+
+i.e. we might find a strong correlation between two data series even though there is no causal mechanism between them. All that we are picking up is that both series have a unit root.
+
+To check if we are dealing with a unit root in a given data series we can use the so called Dickey-Fuller (DF) test.
+This test is based on a transformed version of the above model where we subtract $y_{t-1}$ from either side of the equation to get:
+
+$$\Delta y_t= y_t - y_{t-1}=  \beta_0+ \delta  y_{t-1}+\epsilon_t \tag{2}$$
+
+
+
+where $\delta = \beta_1-1$. Hence, in Equation 2 a unit root would imply $\delta=0$ and this is the (null) hypothesis the DF test examines.
+
+We can implement this in R with the `ur.df()` command from the `urca` package. Here we do this with a simulated series with unit roots:
+
+
+```{r}
+set.seed(10)
+
+```
+
+```{r,echo=TRUE}
+
+obs=100
+eps=rnorm(obs)
+y100=eps
+for(i in 2:obs){
+  y100[i]= y100[i-1]*1+eps[i]
+}
+sdf=data.frame(y100,eps,period=1:obs) 
+
+```
+
+
+If we plot y100 this will look as follows:
+
+```{r}
+library(ggplot2)
+ggplot(sdf,aes(x=period))  + geom_line(aes(y=y100))+
+           theme_minimal()+ylab("y")
+
+
+```
+
+
+
+We can now implement the DF test:
+
+```{r,echo=TRUE}
+library(urca)
+library(dplyr)
+
+ur.df(sdf$y100,lags=0) %>% summary()
+
+```
+
+The summary of the output of the `ur.df()` provides us with a the regression output we would be getting if we simply implmented equation 2 as an OLS model.
+What is called `z.lag.1` corresponds to $\delta$ in equation 2. HOwever, as we said above: this estimate will be biased and so will be the P-value which we could normally use to decide if a regression coefficient is different from 0. Equally, we CANNOT use the typical critical values we might normally compare the t-value to. Luckily, `ur.df()` reports
+some new critical thresholds that we can use at the bottom of its output (i.e. the `Critical values for test statistics:`). We see critical values for a 1, 5 and 10% significance level.
+What we need to check is if our test statistic is smaller than the values reported there. If that is the case we can reject the hypothesis that $\beta_1$ is equal to 1. Not surprisingly - given that we simulated our series with a $\beta_1=1$ we cannot do that. So we conclude that we have unit root and we see if can get rid of it by differencing the series:
+
+
+```{r,echo=TRUE}
+library(urca)
+library(dplyr)
+
+ur.df(diff(sdf$y100),lags=0) %>% summary()
+
+```
+
+This turns out to be the case. The test statistics is now much smaller than the critical value.
+
+
+
+
+```{r  fig.width=30,echo=F,preview=TRUE,out.width = '80%'}
+knitr::include_graphics("265-2656331_ginseng-root-png.png")
+```
+
+

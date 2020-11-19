@@ -206,28 +206,29 @@ plm(cases~hoaxsh+factor(week)+factor(state),statsbyweek,
 
 ## Unit roots
 ```{r unit root simulation}
-
+library(ggplot2)
+set.seed(12356.2231)
 obs=100
 eps=rnorm(obs)
 y99=eps
 y100=eps
-yM99=eps
+yM100=eps
 
 for(i in 2:obs){
   
   y99[i] = y99[i-1] *.95 +eps[i]
-  yM99[i]=-yM99[i-1]*.99+eps[i]
+  yM100[i]=-yM100[i-1]*1+eps[i]
   y100[i]= y100[i-1]*1+eps[i]
   
 }
 
 
-sdf=data.frame(y99,y100,yM99,eps,period=1:obs) 
+sdf=data.frame(y99,y100,yM100,eps,period=1:obs) 
 
 #library(latex2exp)
 ggplot(sdf,aes(x=period))+geom_line(aes(y=y99,color="rho=0.99"))+
       geom_line(aes(y=y100,color="rho=1"))+
-      geom_line(aes(y=yM99,color="rho=-.99"))+
+      geom_line(aes(y=yM100,color="rho=-1"))+
      theme_minimal()+ylab("y")
 
 
