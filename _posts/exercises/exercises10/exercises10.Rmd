@@ -74,8 +74,8 @@ Women with 10 years:  $E\{log(wage)|Women\}=\beta_0+\delta_0+(\beta_1+\delta_1) 
 <br>
 `r hide("Answer:")`
 The wage differential between a man an women with the same 10 years of education becomes
-$$E\{log(wage)|Man,10years\} - E\{log(wage)|Women,10 years\}=\delta_0+\delta_1\times 10$$
-$$=-0.1-10\times0.01=-.2$$
+$$E\{log(wage)|Man,10years\} - E\{log(wage)|Women,10 years\}=-(\delta_0+\delta_1\times 10)$$
+$$=0.1+10\times0.01=0.2$$
 Thus we would expect the women to have a a 20% lower wage
 `r unhide()`
 
