@@ -189,5 +189,63 @@ lm(lnco2~period+free+period:free,df) %>% summary()
 
 
 
+# Exercise 10.3
 
+
+For this question use the dataset [hals1prep.csv](https://www.dropbox.com/s/1xg2an5qudcahhy/hals1prep.csv?dl=1), containing data from the UK Health and Lifestyle Survey (1984-85). In this survey, several thousand people in the UK were being asked questions about their health and lifestyle.
+
+(a)	The variable bmi records the body mass index (BMI) of the respondents. The BMI uses the weight and height to work out whether a weight is healthy or if someone is overweight. A value between 18.5 and 24.9 indicates a healthy weight. Based on the information below, which region of the UK had – on average – the most overweight population? Run a regression of BMI on regional categories (recorded in the variable region). Use this to figure out in which UK regions are on average outside the healthy BMI range . 
+
+`r hide("Answer:")`
+```{r,echo=TRUE}
+halsx=read.csv("https://mondpanther.github.io/datastorieshub/data/hals1prep.csv")
+table(halsx$ownh)
+
+
+
+```
+...
+`r unhide()`
+
+
+b)	The variable ownh_num records responses to the question “Would you say that for someone of your age your own health in general is…” where users had the following response options:
+•	Excellent (1)
+•	Good (2)
+•	Fair (3)
+•	Poor (4)
+The numbers in brackets indicate how these options were recorded in the ownh_num variable. Run a regression of ownh_num on bmi and provide a discussion of what you find. Is it in line with your expectations on this?   [5 points]
+
+`r hide("Answer:")`
+...
+`r unhide()`
+
+c)	Can you think of at least two reasons why the estimate in b) does not provide a correct representation of the causal relationship between bmi and health?   [5 points]
+
+
+`r hide("Answer:")`
+...
+`r unhide()`
+
+
+d)	The dataset includes several additional control variables.  These include 
+
+•	incomeB a categorical variable representing income brackets where “1” represents the lowest and “12” the highest income group.
+•	agyrs – a variable recording the age of the participant
+
+Include those in the regression of reported health from b) Discuss what the output suggests about the relationships between health and age, and health and income. Are they in line with what you would have expected? In each case can you provide an explanation for the kind of relationship found? 
+
+Also discuss the usefulness of including both the age and income controls for estimating the causal effect of BMI. In each case discuss at least one reason for and one reason against including these controls.  [5 points]
+
+
+`r hide("Answer:")`
+...
+`r unhide()`
+
+
+e)	Consider the R output below. It builds a new dataframe as a transformation the dataframe halsx with the health survey data. ownh_num is defined as in b). Can you provide an interpretation for the coefficients of the linear regression reported at the end of R output? Note that the rbind() command combines dataframes vertically .  [5 points]
+
+
+`r hide("Answer:")`
+...
+`r unhide()`
 
