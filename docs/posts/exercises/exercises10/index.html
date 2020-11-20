@@ -1445,6 +1445,11 @@ Answer:
 Answer:
 </button>
 <div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(dplyr)
+df=read.csv(&quot;https://www.dropbox.com/s/yylc6ygkcrjir39/ets_thres_final.csv?dl=1&quot;)
+df=df %&gt;% mutate(free=factor(free),period=factor(period))
+head(df)</code></pre>
 <pre><code>
   X year COUNTRY_CODE xCOU period    lnco2 free
 1 1 2009           AT    1      1 9.179675    0
@@ -1453,6 +1458,8 @@ Answer:
 4 4 2012           AT    1      1 9.324919    0
 5 5 2013           AT    1      2 9.332470    0
 6 6 2014           AT    1      2 9.424483    0</code></pre>
+<pre class="r"><code>
+lm(lnco2~free,df) %&gt;% summary()</code></pre>
 <pre><code>
 Call:
 lm(formula = lnco2 ~ free, data = df)
@@ -1472,6 +1479,8 @@ Residual standard error: 1.387 on 6827 degrees of freedom
   (443 observations deleted due to missingness)
 Multiple R-squared:  0.03188,   Adjusted R-squared:  0.03174 
 F-statistic: 224.8 on 1 and 6827 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>
+df %&gt;% group_by(year) %&gt;% summarise(n())</code></pre>
 <pre><code>
 # A tibble: 9 x 2
    year `n()`
@@ -1504,6 +1513,8 @@ Answer:
 Answer:
 </button>
 <div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+lm(lnco2~period,df) %&gt;% summary()</code></pre>
 <pre><code>
 Call:
 lm(formula = lnco2 ~ period, data = df)
@@ -1544,6 +1555,10 @@ Answer:
 </button>
 <p>In the dataset as it is there is actually no variable that properly captures the treatment we are interested in. <code>free</code> identifies firms that are eventually treated but it is equal to 1 also in periods when they are not treated. But it is easy to create a dummy variable, which is only equal to one for those firms that treated in periods when they are treated: we simply have to creat a dummy variable that is only true for <code>free</code> firms during period 2. Let’s try that:</p>
 <div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+df=df %&gt;% mutate( period2Xfree= (free==1) &amp; ( as.character(period)==&quot;2&quot; ) )
+
+lm(lnco2~period2Xfree,df) %&gt;% summary()</code></pre>
 <pre><code>
 Call:
 lm(formula = lnco2 ~ period2Xfree, data = df)
@@ -1567,6 +1582,8 @@ F-statistic: 115.7 on 1 and 6827 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>At face value this would suggest that firms receiving free permits leads to 41% more CO2 emissions. However, there are at least 2 potential confounding factors: 1. The fact that firms have not been selected at random to receive permits 2. There might be time effects present. For instance, after 2013 growth might have picked up following the recession of 2008.</p>
 <p>We can control for the first issue by including <code>free</code> as a control variable as (it measures how different the <code>free</code> firms were before they received free permits). The second issue we can address with a period dummy variable. Hence:</p>
 <div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+lm(lnco2~period+free+period2Xfree,df) %&gt;% summary()</code></pre>
 <pre><code>
 Call:
 lm(formula = lnco2 ~ period + free + period2Xfree, data = df)
@@ -1592,6 +1609,8 @@ F-statistic: 76.86 on 3 and 6825 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Hence, this changes the the coefficient for period2Xfree quita bit; i.e. it would suggest that free permit alloction increases emission by 16% only.</p>
 <p>An alternative way of implementing that is via the <code>:</code> operator which interacts (multiplies) variables “on the fly”:</p>
 <div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+lm(lnco2~period+free+period:free,df) %&gt;% summary()</code></pre>
 <pre><code>
 Call:
 lm(formula = lnco2 ~ period + free + period:free, data = df)
@@ -1682,6 +1701,8 @@ F-statistic: 2.392e+04 on 11 and 7260 DF,  p-value: &lt; 2.2e-16</code></pre>
 Answer:
 </button>
 <div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+lm(ownh_num~bmi , halsx) %&gt;% summary()</code></pre>
 <pre><code>
 Call:
 lm(formula = ownh_num ~ bmi, data = halsx)
@@ -1729,6 +1750,8 @@ Answer:
 Answer:
 </button>
 <div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+lm(ownh_num~bmi+agyrs+factor(incomeB) , halsx) %&gt;% summary()</code></pre>
 <pre><code>
 Call:
 lm(formula = ownh_num ~ bmi + agyrs + factor(incomeB), data = halsx)
@@ -1769,11 +1792,31 @@ F-statistic: 20.57 on 11 and 5699 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>Consider the R output below. It builds a new dataframe as a transformation the dataframe halsx with the health survey data. ownh_num is defined as in b). Can you provide an interpretation for the coefficients of the linear regression reported at the end of R output? Note that the rbind() command combines dataframes vertically .</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+labels=c(&quot;excellent&quot;, &quot;good&quot;, &quot;fair&quot;, &quot;poor&quot;)
+
+for(i in 1:4){
+  fr=halsx
+  fr[&#39;dum&#39;]=fr$ownh_num==i
+  fr[&#39;label&#39;]=labels[i]
+  if(i==1){
+     longframe=fr
+  }
+  else {
+    
+    longframe=rbind(longframe,fr)
+  }
+  
+  print(nrow(longframe))
+
+}  </code></pre>
 <pre><code>
 [1] 8971
 [1] 17942
 [1] 26913
 [1] 35884</code></pre>
+<pre class="r"><code>
+summary(lm(dum~label,longframe))</code></pre>
 <pre><code>
 Call:
 lm(formula = dum ~ label, data = longframe)

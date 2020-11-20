@@ -109,7 +109,7 @@ Consider the dataset [ets_thres_final.csv](https://www.dropbox.com/s/yylc6ygkcrj
 
 
 `r hide("Answer:")`
-```{r}
+```{r,echo=TRUE}
 library(dplyr)
 df=read.csv("https://www.dropbox.com/s/yylc6ygkcrjir39/ets_thres_final.csv?dl=1")
 df=df %>% mutate(free=factor(free),period=factor(period))
@@ -136,7 +136,7 @@ The firms that receive free permits pollute 50% more on average over the 2009 to
 `r hide("Answer:")`
 
 
-```{r}
+```{r,echo=TRUE}
 lm(lnco2~period,df) %>% summary()
 
 ```
@@ -160,7 +160,7 @@ free permits.
 
 In the dataset as it is there is actually no variable that properly captures the treatment we are interested in. `free` identifies firms that are eventually treated but it is equal to 1 also in periods when they are not treated. But it is easy to create a dummy variable, which is only equal to one for those firms that treated in periods when they are treated: we simply have to creat a dummy variable that is only true for `free` firms during period 2. Let's try that:
 
-```{r}
+```{r,echo=TRUE}
 df=df %>% mutate( period2Xfree= (free==1) & ( as.character(period)=="2" ) )
 
 lm(lnco2~period2Xfree,df) %>% summary()
@@ -173,7 +173,7 @@ However, there are at least 2 potential confounding factors:
 
 We can control for the first issue by including `free` as a control variable as (it measures how different the `free` firms were before they received free permits). The second issue we can address with a period dummy variable. Hence:
 
-```{r}
+```{r, echo=TRUE}
 lm(lnco2~period+free+period2Xfree,df) %>% summary()
 
 ```
@@ -182,7 +182,7 @@ Hence, this changes the the coefficient for period2Xfree quita bit; i.e. it woul
 An alternative way of implementing that is via the `:` operator which interacts (multiplies) variables "on the fly":
 
 
-```{r}
+```{r , echo=TRUE}
 lm(lnco2~period+free+period:free,df) %>% summary()
 ```
 `r unhide()`
@@ -221,7 +221,7 @@ b)	The variable ownh_num records responses to the question “Would you say that
 The numbers in brackets indicate how these options were recorded in the `ownh_num` variable. Run a regression of `ownh_num` on `bmi` and provide a discussion of what you find. Is it in line with your expectations on this?
 
 `r hide("Answer:")`
-```{r}
+```{r, echo=TRUE}
 lm(ownh_num~bmi , halsx) %>% summary()
 ```
 An increase in the BMI by 1 unit increases the health score 0.014 units. Because a higher value of the score implies worse health this suggests a reduction in health which is line with expectations.
@@ -260,7 +260,7 @@ Also discuss the usefulness of including both the age and income controls for es
 
 
 `r hide("Answer:")`
-```{r}
+```{r, echo=TRUE}
 lm(ownh_num~bmi+agyrs+factor(incomeB) , halsx) %>% summary()
 
 
@@ -282,7 +282,7 @@ harder time in the job market making them poorer. Equally, being overweight migh
 e)	Consider the R output below. It builds a new dataframe as a transformation the dataframe halsx with the health survey data. ownh_num is defined as in b). Can you provide an interpretation for the coefficients of the linear regression reported at the end of R output? Note that the rbind() command combines 
 dataframes vertically .
 
-```{r}
+```{r, echo=TRUE}
 labels=c("excellent", "good", "fair", "poor")
 
 for(i in 1:4){
