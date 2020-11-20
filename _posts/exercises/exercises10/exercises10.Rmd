@@ -201,10 +201,15 @@ For this question use the dataset [hals1prep.csv](https://www.dropbox.com/s/1xg2
 halsx=read.csv("https://mondpanther.github.io/datastorieshub/data/hals1prep.csv")
 table(halsx$ownh)
 
+table(halsx$region)
+#summary(lm(bmi~ region, halsx))
+summary(lm(bmi~0+ region, halsx))
+
 
 
 ```
-...
+
+If we drop the intercept by writing `0+...` the dummies represent the average BMI values. We that Wales has the highest, with both Scotland and Wales above 24.9 and all other regions within the healthy range.
 `r unhide()`
 
 
@@ -213,17 +218,34 @@ b)	The variable ownh_num records responses to the question “Would you say that
 •	Good (2)
 •	Fair (3)
 •	Poor (4)
-The numbers in brackets indicate how these options were recorded in the ownh_num variable. Run a regression of ownh_num on bmi and provide a discussion of what you find. Is it in line with your expectations on this?   [5 points]
+The numbers in brackets indicate how these options were recorded in the `ownh_num` variable. Run a regression of `ownh_num` on `bmi` and provide a discussion of what you find. Is it in line with your expectations on this?
 
 `r hide("Answer:")`
-...
+```{r}
+lm(ownh_num~bmi , halsx) %>% summary()
+```
+An increase in the BMI by 1 unit increases the health score 0.014 units. Because a higher value of the score implies worse health this suggests a reduction in health which is line with expectations.
+
 `r unhide()`
 
-c)	Can you think of at least two reasons why the estimate in b) does not provide a correct representation of the causal relationship between bmi and health?   [5 points]
+c)	Can you think of at least two reasons why the estimate in b) does not provide a correct representation of the causal relationship between bmi and health?   
+
 
 
 `r hide("Answer:")`
-...
+There might be a variety of confounding factors; e.g. richer people might be healthier and less overweight because they can afford higher quality food (making them slimmer) as well as better medical care (making them healthier for reasons unrelated to food intake and weight). Hence, because in this scenario money is negatively correlated with both BMI and the onwnh_num health score this leads to an upward bias; i.e. the coefficient would be lower in reality than what we found.
+
+Education might play a similar role; i.e. better educated people will be healthier for a range of reasons (e.g. knowledge about health and how get the best care) and the same knowledge might also allow them to eat better and gain less weight.
+
+There might also be a direct reverse causality: people who are sicker might find it hard to exercise and/or make the effort of doing high quality cooking which would again lead to an upward bias in our regression.
+
+However, note that one could imagine that this also goes the other way round: many diseases lead to extreme weight loss which would imply a downward bias in our regression.
+
+Age might be an other issue. Most people get a bit fatter as they age (well at least I do). Now the question asks to consider age when answering the question. However, there might be a systematic bias in how people respond to such questions. E.g. suppose older people tend to get more content than younger people so that they are more often just happy with their health. This would mean that age has a negative effect (more healthy) on the dependent variable. At the same time there is a positive effect on BMI. This would mean a negative correlation between errors and omitted variable implying a downward bias.
+
+Again the bias could go the other way round if for instance older people are more likely to become hypochondriacs.
+
+
 `r unhide()`
 
 
@@ -238,14 +260,57 @@ Also discuss the usefulness of including both the age and income controls for es
 
 
 `r hide("Answer:")`
-...
+```{r}
+lm(ownh_num~bmi+agyrs+factor(incomeB) , halsx) %>% summary()
+
+
+```
+The health score for higher income bands is lower suggesting richer people tend to be healthier (or at least report to be healther). This is inline what we would expect: richer people can afford better health care, live in healthier houses, in better neighbourhoods with less pollution etc.
+
+The relation between age and health seems a bit more surprising as it suggests that older people report being healthier. But we have to remind ourselves that the question asked “how is your health given your age”.  Hence, it could mean that older people lower their standards and are more content. 
+
+Another more sinister explanation is the following: suppose each generation has some people that are inherently healthy (e.g. based on their genes) and other that more sickly. Clearly we would expect the healthier to be less likely to die and thereby get older. This would mean that even if people respond in exactly the same to the health question throughout their life the only old people remaining to respond to the survey are the ones that always responded as being in great health.
+
+We would want to include those variables if there is concern regarding some of the biases discussed in part c). For that they do not only need to have an affect on the dependent variable (health score) but also cause some of the variation in the BMI explanatory variable. See part c) for a more elaborate discussion.
+
+An important reason not to include those is if we think the causal chain goes the other way round; e.g. it could be that people who are overweight have
+harder time in the job market making them poorer. Equally, being overweight might affect your chances of survival and thereby your age.
+
 `r unhide()`
 
 
-e)	Consider the R output below. It builds a new dataframe as a transformation the dataframe halsx with the health survey data. ownh_num is defined as in b). Can you provide an interpretation for the coefficients of the linear regression reported at the end of R output? Note that the rbind() command combines dataframes vertically .  [5 points]
+e)	Consider the R output below. It builds a new dataframe as a transformation the dataframe halsx with the health survey data. ownh_num is defined as in b). Can you provide an interpretation for the coefficients of the linear regression reported at the end of R output? Note that the rbind() command combines 
+dataframes vertically .
 
+```{r}
+labels=c("excellent", "good", "fair", "poor")
+
+for(i in 1:4){
+  fr=halsx
+  fr['dum']=fr$ownh_num==i
+  fr['label']=labels[i]
+  if(i==1){
+     longframe=fr
+  }
+  else {
+    
+    longframe=rbind(longframe,fr)
+  }
+  
+  print(nrow(longframe))
+
+}  
+
+summary(lm(dum~label,longframe))
+
+```
 
 `r hide("Answer:")`
-...
+
+The regression reports the share of responses to the health question in the data; i.e. from the intercept we can see that 20.6% of respondents report excellent health. (20.6+2.5)% respond that their health is fair and so on.
+
+
+
+
 `r unhide()`
 

@@ -1213,6 +1213,192 @@ Multiple R-squared:  0.03268,   Adjusted R-squared:  0.03225
 F-statistic: 76.86 on 3 and 6825 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
+<h1 id="exercise-10.3">Exercise 10.3</h1>
+<p>For this question use the dataset <a href="https://www.dropbox.com/s/1xg2an5qudcahhy/hals1prep.csv?dl=1">hals1prep.csv</a>, containing data from the UK Health and Lifestyle Survey (1984-85). In this survey, several thousand people in the UK were being asked questions about their health and lifestyle.</p>
+<ol type="a">
+<li>The variable bmi records the body mass index (BMI) of the respondents. The BMI uses the weight and height to work out whether a weight is healthy or if someone is overweight. A value between 18.5 and 24.9 indicates a healthy weight. Based on the information below, which region of the UK had – on average – the most overweight population? Run a regression of BMI on regional categories (recorded in the variable region). Use this to figure out in which UK regions are on average outside the healthy BMI range .</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+halsx=read.csv(&quot;https://mondpanther.github.io/datastorieshub/data/hals1prep.csv&quot;)
+table(halsx$ownh)</code></pre>
+<pre><code>
+   1    2    3    4 
+1850 4563 2076  482 </code></pre>
+<pre class="r"><code>
+table(halsx$region)</code></pre>
+<pre><code>
+   east anglia  east midlands greater london          north 
+           333            682            943            540 
+    north west       scotland     south east     south west 
+          1092            925           1607            720 
+         wales  west midlands   yorks/humber 
+           498            823            808 </code></pre>
+<pre class="r"><code>
+#summary(lm(bmi~ region, halsx))
+summary(lm(bmi~0+ region, halsx))</code></pre>
+<pre><code>
+Call:
+lm(formula = bmi ~ 0 + region, data = halsx)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-12.3808  -2.8505  -0.5398   2.2378  30.3695 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(&gt;|t|)    
+regioneast anglia     24.5650     0.2417   101.6   &lt;2e-16 ***
+regioneast midlands   24.6908     0.1723   143.3   &lt;2e-16 ***
+regiongreater london  24.0111     0.1506   159.4   &lt;2e-16 ***
+regionnorth           24.6737     0.1943   127.0   &lt;2e-16 ***
+regionnorth west      24.7005     0.1371   180.2   &lt;2e-16 ***
+regionscotland        24.9136     0.1504   165.7   &lt;2e-16 ***
+regionsouth east      24.0898     0.1107   217.6   &lt;2e-16 ***
+regionsouth west      24.7633     0.1694   146.2   &lt;2e-16 ***
+regionwales           25.2405     0.2071   121.9   &lt;2e-16 ***
+regionwest midlands   24.5064     0.1614   151.8   &lt;2e-16 ***
+regionyorks/humber    24.6052     0.1585   155.3   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 4.08 on 7260 degrees of freedom
+  (1700 observations deleted due to missingness)
+Multiple R-squared:  0.9731,    Adjusted R-squared:  0.9731 
+F-statistic: 2.392e+04 on 11 and 7260 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>If we drop the intercept by writing <code>0+...</code> the dummies represent the average BMI values. We that Wales has the highest, with both Scotland and Wales above 24.9 and all other regions within the healthy range.</p>
+</div>
+<ol start="2" type="a">
+<li>The variable ownh_num records responses to the question “Would you say that for someone of your age your own health in general is…” where users had the following response options: • Excellent (1) • Good (2) • Fair (3) • Poor (4) The numbers in brackets indicate how these options were recorded in the <code>ownh_num</code> variable. Run a regression of <code>ownh_num</code> on <code>bmi</code> and provide a discussion of what you find. Is it in line with your expectations on this?</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+Call:
+lm(formula = ownh_num ~ bmi, data = halsx)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.4558 -0.2020 -0.1069  0.8016  2.0259 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 1.777801   0.056678  31.367  &lt; 2e-16 ***
+bmi         0.014155   0.002278   6.213 5.48e-10 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.7948 on 7269 degrees of freedom
+  (1700 observations deleted due to missingness)
+Multiple R-squared:  0.005283,  Adjusted R-squared:  0.005146 
+F-statistic:  38.6 on 1 and 7269 DF,  p-value: 5.481e-10</code></pre>
+</div>
+<p>An increase in the BMI by 1 unit increases the health score 0.014 units. Because a higher value of the score implies worse health this suggests a reduction in health which is line with expectations.</p>
+</div>
+<ol start="3" type="a">
+<li>Can you think of at least two reasons why the estimate in b) does not provide a correct representation of the causal relationship between bmi and health?</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>There might be a variety of confounding factors; e.g. richer people might be healthier and less overweight because they can afford higher quality food (making them slimmer) as well as better medical care (making them healthier for reasons unrelated to food intake and weight). Hence, because in this scenario money is negatively correlated with both BMI and the onwnh_num health score this leads to an upward bias; i.e. the coefficient would be lower in reality than what we found.</p>
+<p>Education might play a similar role; i.e. better educated people will be healthier for a range of reasons (e.g. knowledge about health and how get the best care) and the same knowledge might also allow them to eat better and gain less weight.</p>
+<p>There might also be a direct reverse causality: people who are sicker might find it hard to exercise and/or make the effort of doing high quality cooking which would again lead to an upward bias in our regression.</p>
+<p>However, note that one could imagine that this also goes the other way round: many diseases lead to extreme weight loss which would imply a downward bias in our regression.</p>
+<p>Age might be an other issue. Most people get a bit fatter as they age (well at least I do). Now the question asks to consider age when answering the question. However, there might be a systematic bias in how people respond to such questions. E.g. suppose older people tend to get more content than younger people so that they are more often just happy with their health. This would mean that age has a negative effect (more healthy) on the dependent variable. At the same time there is a positive effect on BMI. This would mean a negative correlation between errors and omitted variable implying a downward bias.</p>
+<p>Again the bias could go the other way round if for instance older people are more likely to become hypochondriacs.</p>
+</div>
+<ol start="4" type="a">
+<li>The dataset includes several additional control variables. These include</li>
+</ol>
+<p>• incomeB a categorical variable representing income brackets where “1” represents the lowest and “12” the highest income group. • agyrs – a variable recording the age of the participant</p>
+<p>Include those in the regression of reported health from b) Discuss what the output suggests about the relationships between health and age, and health and income. Are they in line with what you would have expected? In each case can you provide an explanation for the kind of relationship found?</p>
+<p>Also discuss the usefulness of including both the age and income controls for estimating the causal effect of BMI. In each case discuss at least one reason for and one reason against including these controls. [5 points]</p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+Call:
+lm(formula = ownh_num ~ bmi + agyrs + factor(incomeB), data = halsx)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.64142 -0.34612 -0.08213  0.65138  2.18574 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        1.9586826  0.1242120  15.769  &lt; 2e-16 ***
+bmi                0.0123175  0.0025664   4.800 1.63e-06 ***
+agyrs             -0.0018862  0.0006752  -2.794  0.00523 ** 
+factor(incomeB)2   0.1639262  0.1097212   1.494  0.13522    
+factor(incomeB)3   0.1738317  0.1087402   1.599  0.10997    
+factor(incomeB)4   0.0090082  0.1099935   0.082  0.93473    
+factor(incomeB)5  -0.0846940  0.1069890  -0.792  0.42862    
+factor(incomeB)7  -0.2736317  0.1124488  -2.433  0.01499 *  
+factor(incomeB)8  -0.2231460  0.1126696  -1.981  0.04769 *  
+factor(incomeB)9  -0.1422836  0.1116748  -1.274  0.20268    
+factor(incomeB)10 -0.2764668  0.1221840  -2.263  0.02369 *  
+factor(incomeB)12 -0.3545969  0.1246759  -2.844  0.00447 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.7814 on 5699 degrees of freedom
+  (3260 observations deleted due to missingness)
+Multiple R-squared:  0.03819,   Adjusted R-squared:  0.03633 
+F-statistic: 20.57 on 11 and 5699 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>The health score for higher income bands is lower suggesting richer people tend to be healthier (or at least report to be healther). This is inline what we would expect: richer people can afford better health care, live in healthier houses, in better neighbourhoods with less pollution etc.</p>
+<p>The relation between age and health seems a bit more surprising as it suggests that older people report being healthier. But we have to remind ourselves that the question asked “how is your health given your age”. Hence, it could mean that older people lower their standards and are more content.</p>
+<p>Another more sinister explanation is the following: suppose each generation has some people that are inherently healthy (e.g. based on their genes) and other that more sickly. Clearly we would expect the healthier to be less likely to die and thereby get older. This would mean that even if people respond in exactly the same to the health question throughout their life the only old people remaining to respond to the survey are the ones that always responded as being in great health.</p>
+<p>We would want to include those variables if there is concern regarding some of the biases discussed in part c). For that they do not only need to have an affect on the dependent variable (health score) but also cause some of the variation in the BMI explanatory variable. See part c) for a more elaborate discussion.</p>
+<p>An important reason not to include those is if we think the causal chain goes the other way round; e.g. it could be that people who are overweight have harder time in the job market making them poorer. Equally, being overweight might affect your chances of survival and thereby your age.</p>
+</div>
+<ol start="5" type="a">
+<li>Consider the R output below. It builds a new dataframe as a transformation the dataframe halsx with the health survey data. ownh_num is defined as in b). Can you provide an interpretation for the coefficients of the linear regression reported at the end of R output? Note that the rbind() command combines dataframes vertically .</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+[1] 8971
+[1] 17942
+[1] 26913
+[1] 35884</code></pre>
+<pre><code>
+Call:
+lm(formula = dum ~ label, data = longframe)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.50864 -0.23141 -0.20622  0.08254  0.94627 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.206220   0.004231   48.74  &lt; 2e-16 ***
+labelfair    0.025192   0.005984    4.21 2.56e-05 ***
+labelgood    0.302419   0.005984   50.54  &lt; 2e-16 ***
+labelpoor   -0.152491   0.005984  -25.48  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.4007 on 35880 degrees of freedom
+Multiple R-squared:  0.1436,    Adjusted R-squared:  0.1435 
+F-statistic:  2005 on 3 and 35880 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>The regression reports the share of responses to the health question in the data; i.e. from the intercept we can see that 20.6% of respondents report excellent health. (20.6+2.5)% respond that their health is fair and so on.</p>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
