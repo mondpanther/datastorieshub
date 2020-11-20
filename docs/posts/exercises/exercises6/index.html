@@ -1,0 +1,2108 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+  <!--radix_placeholder_meta_tags-->
+<title>Datastories Hub: Exercises 6</title>
+
+<meta property="description" itemprop="description" content="Econometrics for dummies"/>
+
+<link rel="canonical" href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"/>
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2020-11-19"/>
+<meta property="article:created" itemprop="dateCreated" content="2020-11-19"/>
+<meta name="article:author" content="Ralf Martin"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="Datastories Hub: Exercises 6"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="Econometrics for dummies"/>
+<meta property="og:url" content="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"/>
+<meta property="og:image" content="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/5e91e263d083e200047f064e.png"/>
+<meta property="og:image:width" content="450"/>
+<meta property="og:image:height" content="481"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="Datastories Hub"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:title" content="Datastories Hub: Exercises 6"/>
+<meta property="twitter:description" content="Econometrics for dummies"/>
+<meta property="twitter:url" content="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"/>
+<meta property="twitter:image" content="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/5e91e263d083e200047f064e.png"/>
+<meta property="twitter:image:width" content="450"/>
+<meta property="twitter:image:height" content="481"/>
+
+<!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
+<meta name="citation_title" content="Datastories Hub: Exercises 6"/>
+<meta name="citation_fulltext_html_url" content="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"/>
+<meta name="citation_online_date" content="2020/11/19"/>
+<meta name="citation_publication_date" content="2020/11/19"/>
+<meta name="citation_author" content="Ralf Martin"/>
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 6"]},{"type":"character","attributes":{},"value":["Econometrics for dummies"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2020-11-19"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["5e91e263d083e200047f064e.png","exercises6_files/figure-html5/unnamed-chunk-3-1.png"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #455a64;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative;}
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+</style>
+
+<link href="../../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="../../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="../../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for table of contents */
+
+.d-toc {
+  color: rgba(0,0,0,0.8);
+  font-size: 0.8em;
+  line-height: 1em;
+}
+
+.d-toc-header {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 1.3em;
+}
+
+.d-toc a {
+  border-bottom: none;
+}
+
+.d-toc ul {
+  padding-left: 0;
+}
+
+.d-toc li>ul {
+  padding-top: 0.8em;
+  padding-left: 16px;
+  margin-bottom: 0.6em;
+}
+
+.d-toc ul,
+.d-toc li {
+  list-style-type: none;
+}
+
+.d-toc li {
+  margin-bottom: 0.9em;
+}
+
+.d-toc-separator {
+  margin-top: 20px;
+  margin-bottom: 2em;
+}
+
+.d-article-with-toc {
+  border-top: none;
+  padding-top: 0;
+}
+
+
+
+/* Tweak code blocks (note that this CSS is repeated above in an injection
+   into the d-code shadow dom) */
+
+d-code {
+  overflow-x: auto !important;
+}
+
+pre.d-code code.d-code {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+pre.text-output {
+
+  font-size: 12px;
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+@media(min-width: 768px) {
+
+d-code {
+  overflow-x: visible !important;
+}
+
+pre.d-code code.d-code  {
+    padding-left: 18px;
+    font-size: 14px;
+}
+pre.text-output {
+  font-size: 14px;
+}
+}
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+.sidebar-section.custom {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.custom p {
+  margin-bottom: 0.5em;
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // create d-bibliography
+  var bibliography = $('<d-bibliography></d-bibliography>');
+  $('#distill-bibliography').wrap(bibliography);
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace citations with <d-cite>
+  $('.citation').each(function(i, val) {
+    appendix = true;
+    var cites = $(this).attr('data-cites').split(" ");
+    var dt_cite = $('<d-cite></d-cite>');
+    dt_cite.attr('key', cites.join());
+    $(this).replaceWith(dt_cite);
+  });
+  // remove refs
+  $('#refs').remove();
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-toc a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // replace code blocks with d-code
+  $('pre>code').each(function(i, val) {
+    var code = $(this);
+    var pre = code.parent();
+    var clz = "";
+    var language = pre.attr('class');
+    if (language) {
+      // map unknown languages to "clike" (without this they just dissapear)
+      if ($.inArray(language, ["bash", "clike", "css", "go", "html",
+                               "javascript", "js", "julia", "lua", "markdown",
+                               "markup", "mathml", "python", "svg", "xml"]) == -1)
+        language = "clike";
+      language = ' language="' + language + '"';
+      var dt_code = $('<d-code block' + language + clz + '></d-code>');
+      dt_code.text(code.text());
+      pre.replaceWith(dt_code);
+    } else {
+      code.addClass('text-output').unwrap().changeElementType('pre');
+    }
+  });
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('d-code, pre.text-output, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // table of contents
+    if (have_authors) // adjust border if we are in authors
+      $('.d-toc').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
+    $('d-code').each(function(i, val) {
+      var style = document.createElement('style');
+      style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
+                        '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
+      if (this.shadowRoot)
+        this.shadowRoot.appendChild(style);
+    });
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-toc-header').remove();
+  $('.d-toc').remove();
+  $('.d-toc-separator').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.distill-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<!--/radix_placeholder_distill-->
+  <script src="../../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<style type="text/css">
+#twitter {
+  float: right; 
+  width: 50%;
+}
+#scheduler {
+  float: left; 
+  width: 50%;
+}
+@media screen and (max-width: 600px) {
+  embed {
+    height: 250px;
+  }
+  #twitter, #scheduler { width: 100%; }
+}
+
+/* styles for solveme */
+.solveme { border: 2px dotted red; }
+.solveme.correct { border: 2px solid blue; }
+/* styles for hidden solutions */
+.solution {
+    height: 2em;
+    overflow-y: hidden;
+    padding: 0.5em;
+}
+.solution.open {
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+.solution button {
+    height: 1.5em;
+    margin-bottom: 0.5em;
+}
+.solution pre.sourceCode {
+    border-color: green;
+}
+
+</style>
+<!--/radix_placeholder_site_in_header-->
+
+  <link rel="stylesheet" href="..\..\webex.css" type="text/css"/>
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Exercises 6","description":"Econometrics for dummies","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-11-19T00:00:00.000+00:00","citationText":"Martin, 2020"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="../../../index.html" class="title">Datastories Hub</a>
+</div>
+<div class="nav-right">
+<a href="../../../index.html" aria-label="Home">
+<i class="fa fa-home" aria-hidden="true"></i>
+</a>
+<a href="../../../listexercises.html">Exercises</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Exercises 6</h1>
+<p><p>Econometrics for dummies</p></p>
+</div>
+
+<div class="d-byline">
+  Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
+  
+<br/>2020-11-19
+</div>
+
+<div class="d-article">
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="5e91e263d083e200047f064e.png" width="80%" data-distill-preview=1 /></p>
+</div>
+<h1 id="exercise-6.1">Exercise 6.1</h1>
+<p>Consider the dataset Brexit.dta. It contains data on the outcome of the Brexit vote from June 23 this year by local area along with a range of area characteristics. The variable pct_leave records the percentage of voters in an area that voted for leave.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(haven)
+df=read_dta(&quot;https://www.dropbox.com/sh/rqmo1hvij1veff0/AAC_4UZXJG9kmImypJXTZ9IOa/brexit.dta?dl=1&quot;)
+names(df)</code></pre>
+<pre><code>
+  [1] &quot;oslaua&quot;               &quot;region_code&quot;         
+  [3] &quot;region&quot;               &quot;area&quot;                
+  [5] &quot;pct_turnout&quot;          &quot;pct_leave&quot;           
+  [7] &quot;pct_rejected&quot;         &quot;electorate&quot;          
+  [9] &quot;expectedballots&quot;      &quot;verifiedballotpapers&quot;
+ [11] &quot;votes_cast&quot;           &quot;valid_votes&quot;         
+ [13] &quot;remain&quot;               &quot;leave&quot;               
+ [15] &quot;rejected_ballots&quot;     &quot;no_official_mark&quot;    
+ [17] &quot;writing_or_mark&quot;      &quot;unmarked_or_void&quot;    
+ [19] &quot;pop91&quot;                &quot;pop11&quot;               
+ [21] &quot;sh_young&quot;             &quot;m_migr&quot;              
+ [23] &quot;b_migr&quot;               &quot;b_migr11&quot;            
+ [25] &quot;etn11_W&quot;              &quot;etn11_AI&quot;            
+ [27] &quot;etn11_AP&quot;             &quot;etn11_AB&quot;            
+ [29] &quot;etn11_AC&quot;             &quot;etn11_AO&quot;            
+ [31] &quot;etn11_BCA&quot;            &quot;etn11_BAF&quot;           
+ [33] &quot;etn11_BO&quot;             &quot;etn11_O&quot;             
+ [35] &quot;ni11_sco&quot;             &quot;ni11_bri&quot;            
+ [37] &quot;ni11_eng&quot;             &quot;ni11_oth&quot;            
+ [39] &quot;ni11_oe&quot;              &quot;shni11_sco&quot;          
+ [41] &quot;shni11_bri&quot;           &quot;shni11_eng&quot;          
+ [43] &quot;shni11_oth&quot;           &quot;shni11_oe&quot;           
+ [45] &quot;citshare&quot;             &quot;urate2004&quot;           
+ [47] &quot;urate2005&quot;            &quot;urate2006&quot;           
+ [49] &quot;urate2007&quot;            &quot;urate2008&quot;           
+ [51] &quot;urate2009&quot;            &quot;urate2010&quot;           
+ [53] &quot;urate2011&quot;            &quot;urate2012&quot;           
+ [55] &quot;urate2013&quot;            &quot;urate2014&quot;           
+ [57] &quot;urate2015&quot;            &quot;epop2004&quot;            
+ [59] &quot;epop2005&quot;             &quot;epop2006&quot;            
+ [61] &quot;epop2007&quot;             &quot;epop2008&quot;            
+ [63] &quot;epop2009&quot;             &quot;epop2010&quot;            
+ [65] &quot;epop2011&quot;             &quot;epop2012&quot;            
+ [67] &quot;epop2013&quot;             &quot;epop2014&quot;            
+ [69] &quot;epop2015&quot;             &quot;zage18_24&quot;           
+ [71] &quot;zage45_59&quot;            &quot;zage25_29&quot;           
+ [73] &quot;zage60&quot;               &quot;dlmig&quot;               
+ [75] &quot;zshi61_ACD&quot;           &quot;zshi61_F&quot;            
+ [77] &quot;zshi61_GHI&quot;           &quot;zshi61_JKO&quot;          
+ [79] &quot;zshi61_LMN&quot;           &quot;zshi71_ACD&quot;          
+ [81] &quot;zshi71_F&quot;             &quot;zshi71_GHI&quot;          
+ [83] &quot;zshi71_JKO&quot;           &quot;zshi71_LMN&quot;          
+ [85] &quot;zshi81_ACD&quot;           &quot;zshi81_F&quot;            
+ [87] &quot;zshi81_GHI&quot;           &quot;zshi81_JKO&quot;          
+ [89] &quot;zshi81_LMN&quot;           &quot;zshi91_ACD&quot;          
+ [91] &quot;zshi91_F&quot;             &quot;zshi91_GHI&quot;          
+ [93] &quot;zshi91_JKO&quot;           &quot;zshi91_LMN&quot;          
+ [95] &quot;zshi01_ACD&quot;           &quot;zshi01_F&quot;            
+ [97] &quot;zshi01_GHI&quot;           &quot;zshi01_JKO&quot;          
+ [99] &quot;zshi01_LMN&quot;           &quot;zshi11_ACD&quot;          
+[101] &quot;zshi11_F&quot;             &quot;zshi11_GHI&quot;          
+[103] &quot;zshi11_JKO&quot;           &quot;zshi11_LMN&quot;          
+[105] &quot;dzshi_ACD&quot;            &quot;dzshi_F&quot;             
+[107] &quot;dzshi_GHI&quot;            &quot;dzshi_JKO&quot;           
+[109] &quot;dzshi_LMN&quot;            &quot;zshedu11_noqual&quot;     
+[111] &quot;zshedu11_l1&quot;          &quot;zshedu11_l2&quot;         
+[113] &quot;zshedu11_l3&quot;          &quot;zshedu11_l4&quot;         
+[115] &quot;wrkage&quot;               &quot;age16over&quot;           
+[117] &quot;zsh11_wrk&quot;           </code></pre>
+</div>
+<h3 id="part-a">Part (a)</h3>
+<p>Consider the variable b_migr11. It records the share (in %) of foreign born residents in an area (according to the last census, which was in 2011). There is no shortage of politicians claiming that the vote for Brexit was due to immigration particularly after 2005 when Eastern European countries joined the EU and their residents could freely move to countries like Britain. Hence, we would expect there to be a strong effect from the presence of foreigners in an area to the vote outcome. Explore this using the pct_leave and b_migr11 variables using graphical and regression analysis.</p>
+<p>Which way is the line of best fit sloping on your scatter plot? <select class='solveme' data-answer='["Downwards"]'> <option></option> <option>Upwards</option> <option>Downwards</option></select></p>
+<p>What is the constant (rounded to 3 decimal places)? <input class='solveme nospaces' size='6' data-answer='["58.553"]'/></p>
+<p>What is the slope coefficient (rounded to 3 decimal places)? <input class='solveme nospaces' size='6' data-answer='["-0.504"]'/></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(ggplot2)
+ggplot(df, aes(x=b_migr11, y=pct_leave)) + geom_point() + geom_smooth(method = &quot;lm&quot;, se = FALSE)</code></pre>
+<p><img src="exercises6_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<p>Looking at the scatter plot it seems there is rather a negative relationship between the proportion of foreigners in an area and the support for leave; i.e. exactly the opposite of what one would expect. Regression analysis confirms this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+summary(lm(pct_leave~b_migr11, data=df))</code></pre>
+<pre><code>
+Call:
+lm(formula = pct_leave ~ b_migr11, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-30.4487  -5.3237   0.6445   5.6518  24.9745 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 58.55342    0.68603   85.35   &lt;2e-16 ***
+b_migr11    -0.50359    0.04668  -10.79   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 9.12 on 378 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.2354,    Adjusted R-squared:  0.2334 
+F-statistic: 116.4 on 1 and 378 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>We see that there is a significant negative relationship. 1 percentage point more foreigners in an area leads to 0.5 percentage point loss in support for the vote to leave.</p>
+</div>
+<h3 id="part-b">Part (b)</h3>
+<p>Various commentators have suggested that it might not be so much the level of immigrants as such, but the experience of a change due to more foreigners in an area that was driving the vote. The variable b_migr contains the share of immigrants in 1991.</p>
+<p>Construct a new variable recording the change in the share of immigrants between 2011 and 1992. Explore its impact by extending the regression model from part a).</p>
+<p>What is the coefficient on this new variable (rounded to 3 decimal places)? <input class='solveme nospaces' size='5' data-answer='["0.926"]'/></p>
+<p>Is it statistically significant? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>No</option> <option>Yes</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>We can construct the change in migration shares as:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+df[&quot;Db_migr&quot;] &lt;- df$b_migr11-df$b_migr</code></pre>
+</div>
+<p>We can then regress</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+summary(lm(pct_leave~Db_migr+b_migr11, data=df))</code></pre>
+<pre><code>
+Call:
+lm(formula = pct_leave ~ Db_migr + b_migr11, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-30.2777  -4.4700   0.6883   5.8477  28.5925 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  58.6970     0.6703  87.566  &lt; 2e-16 ***
+Db_migr       0.9259     0.2078   4.454 1.11e-05 ***
+b_migr11     -1.0987     0.1412  -7.783 6.86e-14 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 8.901 on 377 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.2736,    Adjusted R-squared:  0.2698 
+F-statistic:    71 on 2 and 377 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>It seems that indeed the change in the migration share has a strong positive and significant impact on the leave share. Notice also that the share of migrants in 2011 now becomes larger as well. This is because the areas with higher increase in foreigners are also the areas with a higher share of foreigners (e.g. like London). Consequently, in the previous univariate regression the b_migr11 coefficient suffered from an upward bias.</p>
+<p><span class="math display">\[LeaveShare = \beta_{0}+\beta_{1}MShare_{2011}+\beta_{2}(MShare_{2011}-MShare_{1991})+\epsilon\]</span></p>
+</div>
+<h3 id="part-c">Part (c)</h3>
+<p>Work out the change in an area’s leave percentage if the 2011 migrant share would move to back to its level in 1991 in every area.</p>
+<p>According to your model from part (b), what would have happened to the vote if there would not have been any change in the share of migrants between 1991 and 2011? Support for Brexit would <select class='solveme' data-answer='["Increase"]'> <option></option> <option>Decrease</option> <option>Increase</option></select></p>
+<p>In how many areas would the vote flip from a majority support for Brexit to a majority support for Remain? <input class='solveme nospaces' size='1' data-answer='["0"]'/></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>Note that the impact of changing the 2011 migrant share is a combination of the factors found in the previous section i.e. reducing the migrant share by one percentage point leads to a change in the leave share of <span class="math inline">\(-(\beta_{1}+\beta_{2})=-(-1.099+0.926)=0.173\)</span> percentage points. In other words, it would seem that a reversal in migrant presence would tend to lead to an increase in the support for Brexit, rather than an increase in the support for remain. Consequently, in no area would be find a flip in the vote from majority support for Brexit to remain.</p>
+</div>
+<h3 id="part-d">Part (d)</h3>
+<p>Can you think of any reason why the estimates in (b) might not adequately reflect the causal impact of immigration on the vote? What are plausible confounding forces? <select class='solveme' data-answer='["Economic opportunity"]'> <option></option> <option>Aging population (more boomers)</option> <option>Economic opportunity</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>One reason could be as follows: an important factor that drives immigration is economic opportunity. Hence, it is quite likely that immigration is higher in areas of the country where economic growth was higher. This could mean that there is a positive correlation between the errors and immigration which could imply a downward bias in the estimate of the coefficient on immigration. This in turn could in principle be an explanation for why we find a negative coefficient for the immigration variable (i.e. immigration in 2011 has actually a positive effect on support for leave but we fail to detect it because it is conflated by the more substantial negative effect of economic conditions on the leave vote).</p>
+</div>
+<h3 id="part-e">Part (e)</h3>
+<p>The dataset contains a large number of additional characteristics about a local area. Which variable would you add to your model from part b) to test the alternative explanation mentioned in d)? <select class='solveme' data-answer='["Unemployment"]'> <option></option> <option>Number of Scottish people</option> <option>Share of people living in cities</option> <option>Unemployment</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>We can explore the point made in answer d) by using unemployment as an additional control variable. Below we include both the level of the unemployment rate in 2004 and the change in in the rate between 2011 and 2004.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+df[&quot;Durate&quot;] &lt;- df$urate2011-df$urate2004
+summary(lm(pct_leave~Db_migr + b_migr11 + Durate + urate2004, data=df))</code></pre>
+<pre><code>
+Call:
+lm(formula = pct_leave ~ Db_migr + b_migr11 + Durate + urate2004, 
+    data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-27.9548  -4.3850   0.6518   5.1247  19.8195 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  55.7178     1.3368  41.681  &lt; 2e-16 ***
+Db_migr       0.9224     0.2165   4.260 2.60e-05 ***
+b_migr11     -1.0015     0.1453  -6.894 2.42e-11 ***
+Durate        1.0426     0.1781   5.854 1.08e-08 ***
+urate2004    -0.3586     0.2610  -1.374     0.17    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 8.393 on 362 degrees of freedom
+  (14 observations deleted due to missingness)
+Multiple R-squared:  0.3543,    Adjusted R-squared:  0.3471 
+F-statistic: 49.65 on 4 and 362 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>Note that including the unemployment variables does not change the migration variables by much, which suggests that the economic conditions are not conflating the results on immigration. That said, note that the net negative effect of b_migr11 (coefficient for b_migr11+ coefficient for Db_migr) is slightly less negative than in in (b) which would be consistent with a slight conflation of the immigration effect by economic factors.</p>
+<p>Also, note that the change in the unemployment rate has a high and significant coefficient. If the unemployment rate goes up by 1 percentage point the support for leave goes up by about 1 percentage point as well. Hence, it might be more useful to consider economic conditions as a factor that has been driving the vote rather than recent immigration.</p>
+</div>
+<h1 id="exercise-6.2">Exercise 6.2</h1>
+<p>The dataset data/prod.dta contains production data for various companies from 1979 to 1986.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(haven)
+prod=read_dta(&quot;https://www.dropbox.com/sh/rqmo1hvij1veff0/AACD9OHn_yCnKFAX7hbEASVha/prod.dta?dl=1&quot;)
+names(prod)</code></pre>
+<pre><code>
+[1] &quot;year&quot;      &quot;id&quot;        &quot;go&quot;        &quot;m&quot;         &quot;l&quot;        
+[6] &quot;k&quot;         &quot;sic3dig&quot;   &quot;countyear&quot; &quot;va&quot;       </code></pre>
+</div>
+<h3 id="part-a-1">Part (a)</h3>
+<p>Examine the data using a Cobb-Douglas production function in terms of value added; i.e. regress ln value added on ln capital and ln labour (va contains the value added, k the capital stock and l labour all not in logs). On the basis of the regression examine the hypothesis that the production function has constant returns to scale (i.e. the labour and capital coefficients would add ot 1).</p>
+<p>The hypothesis is <select class='solveme' data-answer='["Rejected"]'> <option></option> <option>Supported</option> <option>Rejected</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+prod$year=factor(prod$year)
+mod1=lm(log(va)~log(k)+log(l)+year, prod)
+summary(mod1)</code></pre>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + year, data = prod)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.7397 -0.4336  0.0305  0.4477  2.1339 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.985474   0.128579  23.219   &lt;2e-16 ***
+log(k)       0.346498   0.021273  16.288   &lt;2e-16 ***
+log(l)       0.938894   0.038330  24.495   &lt;2e-16 ***
+year80       0.036981   0.082998   0.446   0.6560    
+year81       0.141971   0.083009   1.710   0.0875 .  
+year82       0.092141   0.082992   1.110   0.2671    
+year83       0.005795   0.082994   0.070   0.9443    
+year84       0.035601   0.083003   0.429   0.6681    
+year85      -0.061518   0.083138  -0.740   0.4595    
+year86       0.108689   0.083340   1.304   0.1924    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.7091 on 1158 degrees of freedom
+Multiple R-squared:  0.7846,    Adjusted R-squared:  0.7829 
+F-statistic: 468.6 on 9 and 1158 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>
+library(car)
+library(plm)
+linearHypothesis(mod1,&quot;log(k)+log(l)=1&quot;,vcov=vcovHC)</code></pre>
+<pre><code>
+Linear hypothesis test
+
+Hypothesis:
+log(k)  + log(l) = 1
+
+Model 1: restricted model
+Model 2: log(va) ~ log(k) + log(l) + year
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F    Pr(&gt;F)    
+1   1159                        
+2   1158  1 136.16 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>We turn year into a categorical (factor) variable. Treating year as a categorical variable will calculate effect of each individual year - i.e. what impact on the target variable was on average in a given year.</p>
+<p>We then go on to test the hypothesis that the production function has constant returns to scale, formulated as log(k)+log(l)=1. We want to tell R to use robust standard errors and therefore we need to include vcov=vcovHC. We introduce this to deal with heteroskedasticity.</p>
+<p>We need to install and load two packages (package “car”, which includes the function linearHypothesis and package “plm”, which includes our robust covariance matrix estimators, including vcovHC).</p>
+<p>Constant returns are clearly rejected.</p>
+</div>
+<h3 id="part-b-1">Part (b)</h3>
+<p>The variable sic3dig contains an industry classifier which groups the firms into 17 industries.</p>
+<p>Why might it be useful to include industry classifiers in order to estimate the production function better? <select class='solveme' data-answer='["It could reduce bias"]'> <option></option> <option>It will increase the R^2 of the model</option> <option>It could reduce bias</option></select></p>
+<p>Re-estimate the production function controlling for industry. Does your assessment about constant returns to scale change based on this new estimate? <select class='solveme' data-answer='["No"]'> <option></option> <option>Yes</option> <option>No</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>Typically the residual from a production function estimation is interpreted as productivity. However, it is plausible that more productive firms will want to employ more production factors. This might lead to a correlation between residuals and the explanatory variables which could lead to biases. A big part of that might come from variations between sectors; i.e. some sectors are just more productive and profitable and those will also be the sectors that attract more capital and other production factors.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+prod$sic3dig=factor(prod$sic3dig)
+mod2=lm(log(va)~log(k)+log(l)+year+sic3dig, prod)
+summary(mod2)</code></pre>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + year + sic3dig, data = prod)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.88207 -0.40007  0.05372  0.44165  1.92283 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  3.216195   0.134458  23.920  &lt; 2e-16 ***
+log(k)       0.285436   0.022608  12.625  &lt; 2e-16 ***
+log(l)       0.995616   0.038889  25.602  &lt; 2e-16 ***
+year80       0.036104   0.077877   0.464 0.643019    
+year81       0.142005   0.077888   1.823 0.068537 .  
+year82       0.094111   0.077871   1.209 0.227085    
+year83       0.007594   0.077874   0.098 0.922338    
+year84       0.032116   0.077884   0.412 0.680161    
+year85      -0.071111   0.078036  -0.911 0.362352    
+year86       0.093891   0.078264   1.200 0.230517    
+sic3dig321  -0.107406   0.079196  -1.356 0.175304    
+sic3dig322   0.155755   0.079807   1.952 0.051224 .  
+sic3dig323   0.847057   0.239067   3.543 0.000411 ***
+sic3dig324   0.034193   0.124769   0.274 0.784093    
+sic3dig331  -0.175586   0.085783  -2.047 0.040900 *  
+sic3dig332   0.260137   0.085636   3.038 0.002438 ** 
+sic3dig341   0.733683   0.176477   4.157 3.46e-05 ***
+sic3dig342   0.035795   0.095630   0.374 0.708245    
+sic3dig351   1.297901   0.175805   7.383 2.98e-13 ***
+sic3dig352   0.597134   0.102678   5.816 7.84e-09 ***
+sic3dig355   0.509182   0.237587   2.143 0.032313 *  
+sic3dig356   0.195583   0.095147   2.056 0.040050 *  
+sic3dig369  -0.239435   0.101992  -2.348 0.019065 *  
+sic3dig371   0.771417   0.139946   5.512 4.38e-08 ***
+sic3dig381   0.174591   0.071427   2.444 0.014663 *  
+sic3dig383   0.367663   0.140038   2.625 0.008769 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.6653 on 1142 degrees of freedom
+Multiple R-squared:  0.813, Adjusted R-squared:  0.8089 
+F-statistic: 198.5 on 25 and 1142 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>
+linearHypothesis(mod2, &quot;log(k)+log(l)=1&quot;, vcov=vcovHC)</code></pre>
+<pre><code>
+Linear hypothesis test
+
+Hypothesis:
+log(k)  + log(l) = 1
+
+Model 1: restricted model
+Model 2: log(va) ~ log(k) + log(l) + year + sic3dig
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df     F    Pr(&gt;F)    
+1   1143                       
+2   1142  1 130.6 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>i.e. the test continues to be rejected. Consequently, we don’t find constant returns to scale.</p>
+</div>
+<h3 id="part-c-1">Part (c)</h3>
+<p>Which of the 17 industries has the largest number of observations? <select class='solveme' data-answer='["311"]'> <option></option> <option>381</option> <option>383</option> <option>311</option></select></p>
+<p>Lets pick the first two industries that appear in our table, 311 and 321. For each of the two industries separately, estimate a Cobb-Douglas production function.</p>
+<p>Would you say the functions are very different in the two industries? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>No</option> <option>Yes</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+table(prod$sic3dig)</code></pre>
+<pre><code>
+311 321 322 323 324 331 332 341 342 351 352 355 356 369 371 381 383 
+400  88  88   8  32  72  72  16  56  16  48   8  56  48  24 112  24 </code></pre>
+</div>
+<p>The table reveals that the industry with the largest number of observations is 311.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(dplyr)
+mod311=lm(log(va)~log(k)+log(l)+year, prod %&gt;% filter(sic3dig==&quot;311&quot;)) 
+summary(mod311)</code></pre>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + year, data = prod %&gt;% 
+    filter(sic3dig == &quot;311&quot;))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.30248 -0.41505  0.07536  0.45801  1.73235 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.56445    0.20804  12.327  &lt; 2e-16 ***
+log(k)       0.41456    0.04113  10.079  &lt; 2e-16 ***
+log(l)       0.80244    0.07461  10.756  &lt; 2e-16 ***
+year80       0.08684    0.13017   0.667 0.505074    
+year81       0.26948    0.13017   2.070 0.039090 *  
+year82       0.39208    0.13033   3.008 0.002798 ** 
+year83       0.23738    0.13065   1.817 0.070003 .  
+year84       0.22519    0.13086   1.721 0.086078 .  
+year85       0.07980    0.13209   0.604 0.546113    
+year86       0.48876    0.13271   3.683 0.000263 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.6508 on 390 degrees of freedom
+Multiple R-squared:  0.8318,    Adjusted R-squared:  0.8279 
+F-statistic: 214.2 on 9 and 390 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>
+mod321=lm(log(va)~log(k)+log(l)+year, prod%&gt;% filter(sic3dig==&quot;321&quot;))
+summary(mod321)</code></pre>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + year, data = prod %&gt;% 
+    filter(sic3dig == &quot;321&quot;))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.12790 -0.32740  0.02603  0.38229  0.95998 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  3.61053    0.41939   8.609 6.19e-13 ***
+log(k)       0.20105    0.07984   2.518   0.0138 *  
+log(l)       1.04942    0.13980   7.507 8.45e-11 ***
+year80       0.16420    0.22541   0.728   0.4685    
+year81       0.17994    0.22527   0.799   0.4268    
+year82       0.17906    0.22650   0.791   0.4316    
+year83       0.22520    0.22623   0.995   0.3226    
+year84      -0.03102    0.22546  -0.138   0.8909    
+year85      -0.16535    0.22671  -0.729   0.4680    
+year86       0.26596    0.22574   1.178   0.2423    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.5282 on 78 degrees of freedom
+Multiple R-squared:  0.8231,    Adjusted R-squared:  0.8027 
+F-statistic: 40.32 on 9 and 78 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>In each case the labor coefficient is larger than the capital coefficient. However, the numbers are not necessarily very close. In the case of sector 321 the capital coefficient is only half of the coefficient for sector 311. Still, to make sure they are statistically different it’s good to do a formal test which is the next question.</p>
+</div>
+<h3 id="part-d-1">Part (d)</h3>
+<p>Conduct a hypothesis test to compare the two functions formally. Note, that for that you need to estimate both functions using a single regression model.</p>
+<p>Are the coefficients statistically different from zero? <select class='solveme' data-answer='["No"]'> <option></option> <option>Yes</option> <option>No</option></select></p>
+<p>Could they be jointly significant? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>No</option> <option>Yes</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+mod_inter=lm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, prod %&gt;% filter(sic3dig==&quot;311&quot;|sic3dig==&quot;321&quot;))
+summary(mod_inter)</code></pre>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + sic3dig * log(k) + sic3dig * 
+    log(l) + sic3dig + year, data = prod %&gt;% filter(sic3dig == 
+    &quot;311&quot; | sic3dig == &quot;321&quot;))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.28294 -0.41035  0.05918  0.41383  1.74454 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        2.60151    0.19647  13.242  &lt; 2e-16 ***
+log(k)             0.40941    0.03950  10.364  &lt; 2e-16 ***
+log(l)             0.81146    0.07167  11.322  &lt; 2e-16 ***
+sic3dig321         0.86072    0.49179   1.750 0.080733 .  
+year80             0.10020    0.11394   0.879 0.379609    
+year81             0.25290    0.11392   2.220 0.026894 *  
+year82             0.35202    0.11414   3.084 0.002161 ** 
+year83             0.23322    0.11434   2.040 0.041942 *  
+year84             0.17799    0.11443   1.555 0.120516    
+year85             0.03436    0.11543   0.298 0.766105    
+year86             0.44649    0.11578   3.856 0.000131 ***
+log(k):sic3dig321 -0.18972    0.09998  -1.898 0.058355 .  
+log(l):sic3dig321  0.20729    0.17579   1.179 0.238910    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.6291 on 475 degrees of freedom
+Multiple R-squared:  0.8316,    Adjusted R-squared:  0.8274 
+F-statistic: 195.5 on 12 and 475 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>
+coeftest(mod_inter, vcov=vcovHC)</code></pre>
+<pre><code>
+t test of coefficients:
+
+                   Estimate Std. Error t value  Pr(&gt;|t|)    
+(Intercept)        2.601515   0.210652 12.3498 &lt; 2.2e-16 ***
+log(k)             0.409406   0.048051  8.5202 &lt; 2.2e-16 ***
+log(l)             0.811456   0.087765  9.2458 &lt; 2.2e-16 ***
+sic3dig321         0.860720   0.456747  1.8845 0.0601137 .  
+year80             0.100202   0.108075  0.9272 0.3543179    
+year81             0.252903   0.106088  2.3839 0.0175224 *  
+year82             0.352021   0.102787  3.4248 0.0006687 ***
+year83             0.233218   0.112821  2.0672 0.0392611 *  
+year84             0.177992   0.114145  1.5594 0.1195786    
+year85             0.034356   0.117276  0.2929 0.7696888    
+year86             0.446495   0.109287  4.0855 5.161e-05 ***
+log(k):sic3dig321 -0.189720   0.098068 -1.9346 0.0536363 .  
+log(l):sic3dig321  0.207288   0.178478  1.1614 0.2460545    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>We continue to work with a subset of our data. We introduce interaction terms into our model – multiplying our logged labor variable with the sector code and the logged capital variable with the sector code. The t-test on these interaction terms is what we are interested in. Remember interaction terms should be interpreted as “effect modifiers” - we are interested in whether the industry modifies the relationship between labour/capital and value added.</p>
+<p>As before, we are concerned about heteroskedascity. We therefore perform a coeftest, specifying we want robust standard errors. It turns out the coefficients are not statistically different; i.e. the t-tests for the interaction coefficients are not significantly different from zero. However, it could still be the case that they are jointly significant (e.g. there could be a high degree of collinearity in the interaction variables.)</p>
+<p>We can examine that with the linearHypothesis command:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+linearHypothesis(mod_inter, c(&quot;log(k):sic3dig321=0&quot;,&quot;log(l):sic3dig321=0&quot;), vcov=vcovHC)</code></pre>
+<pre><code>
+Linear hypothesis test
+
+Hypothesis:
+log(k):sic3dig321 = 0
+log(l):sic3dig321 = 0
+
+Model 1: restricted model
+Model 2: log(va) ~ log(k) + log(l) + sic3dig * log(k) + sic3dig * log(l) + 
+    sic3dig + year
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F Pr(&gt;F)  
+1    477                   
+2    475  2 2.4557 0.0869 .
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>This suggests that the production function for sector 321 is weakly significantly different from that in sector 311.</p>
+</div>
+<h3 id="part-e-1">Part (e)</h3>
+<p>Re-estimate your extended model from d) by allowing for fixed effects.</p>
+<p>Does this change your assessment concerning the hypothesis that the production functions are identical in the two industries? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>No</option> <option>Yes</option></select></p>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+mod_fe=plm(log(va)~log(k)+log(l)+sic3dig*log(k)+sic3dig*log(l)+sic3dig+year, index=c(&quot;id&quot;,&quot;year&quot;),data=prod %&gt;% filter(sic3dig==&quot;311&quot;|sic3dig==&quot;321&quot;), model=&quot;within&quot;)
+summary(mod_fe)</code></pre>
+<pre><code>
+Oneway (individual) effect Within Model
+
+Call:
+plm(formula = log(va) ~ log(k) + log(l) + sic3dig * log(k) + 
+    sic3dig * log(l) + sic3dig + year, data = prod %&gt;% filter(sic3dig == 
+    &quot;311&quot; | sic3dig == &quot;321&quot;), model = &quot;within&quot;, index = c(&quot;id&quot;, 
+    &quot;year&quot;))
+
+Balanced Panel: n = 61, T = 8, N = 488
+
+Residuals:
+      Min.    1st Qu.     Median    3rd Qu.       Max. 
+-1.5714319 -0.2166290  0.0028078  0.2322813  1.3800158 
+
+Coefficients:
+                  Estimate Std. Error t-value  Pr(&gt;|t|)    
+log(k)            0.308997   0.134568  2.2962  0.022160 *  
+log(l)            0.359801   0.118239  3.0430  0.002491 ** 
+year80            0.102850   0.079814  1.2886  0.198247    
+year81            0.251459   0.079807  3.1508  0.001746 ** 
+year82            0.344801   0.080830  4.2657 2.469e-05 ***
+year83            0.230999   0.082761  2.7911  0.005494 ** 
+year84            0.183991   0.085504  2.1518  0.031985 *  
+year85            0.079124   0.090678  0.8726  0.383396    
+year86            0.477635   0.094902  5.0329 7.204e-07 ***
+log(k):sic3dig321 0.238587   0.236232  1.0100  0.313097    
+log(l):sic3dig321 0.138285   0.204708  0.6755  0.499719    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Total Sum of Squares:    96.276
+Residual Sum of Squares: 80.641
+R-Squared:      0.1624
+Adj. R-Squared: 0.019445
+F-statistic: 7.33249 on 11 and 416 DF, p-value: 1.6864e-11</code></pre>
+<pre class="r"><code>
+linearHypothesis(mod_fe, c(&quot;log(k):sic3dig321=0&quot;,&quot;log(l):sic3dig321=0&quot;), vcov=vcovHC)</code></pre>
+<pre><code>
+Linear hypothesis test
+
+Hypothesis:
+log(k):sic3dig321 = 0
+log(l):sic3dig321 = 0
+
+Model 1: restricted model
+Model 2: log(va) ~ log(k) + log(l) + sic3dig * log(k) + sic3dig * log(l) + 
+    sic3dig + year
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df  Chisq Pr(&gt;Chisq)
+1    418                     
+2    416  2 1.5389     0.4633</code></pre>
+</div>
+<p>We continue to work with the same subset of our data but introduce a different model here. Instead of OLS regression, we use a fixed effects panel regression. This allows us to control for differences between firms that we cannot observe by including firm-specific dummies (that is why it is sometimes called Least Squares Dummy Variable Model).</p>
+<p>As for lm() we have to specify the dependent and independent variables and the data to be used in our call of plm(). We also need to include a vector of names of entity and time ID variables to the argument index. Since the fixed effects estimator is also called the within estimator, we set model = “within”.</p>
+<p>It seems that once we allow for fixed effects the interaction coefficients are no longer significant even in a joint significance test.</p>
+</div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<script>
+
+/* update total correct if #total_correct exists */
+update_total_correct = function() {
+  if (t = document.getElementById("total_correct")) {
+    t.innerHTML =
+      document.getElementsByClassName("correct").length + " of " +
+      document.getElementsByClassName("solveme").length + " correct";
+  }
+}
+
+/* solution button toggling function */
+b_func = function() {
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "");
+  }
+  
+  if (my_answer !== "" & real_answers.includes(my_answer)) {
+    cl.add("correct");
+  } else {
+    cl.remove("correct");
+  }
+  update_total_correct();
+}
+
+window.onload = function() {
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+  
+  /* set up solveme inputs */
+  var solveme = document.getElementsByClassName("solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off"); 
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+    
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+    
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  update_total_correct();
+}
+
+</script>
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+  <h3 id="citation">Citation</h3>
+  <p>For attribution, please cite this work as</p>
+  <pre class="citation-appendix short">Martin (2020, Nov. 19). Datastories Hub: Exercises 6. Retrieved from https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/</pre>
+  <p>BibTeX citation</p>
+  <pre class="citation-appendix long">@misc{martin2020exercises,
+  author = {Martin, Ralf},
+  title = {Datastories Hub: Exercises 6},
+  url = {https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/},
+  year = {2020}
+}</pre>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
