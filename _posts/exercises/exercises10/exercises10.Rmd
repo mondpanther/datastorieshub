@@ -1,14 +1,14 @@
 ---
 title: "Exercises 10"
 description: |
-  Under construction
+  More exercises to help you become an econometrics superstar
 author:
   - name: Ralf Martin
     url: https://mondpanther.github.io/wwwmondpanther/
 date: "`r Sys.Date()`"
 output:
   distill::distill_article:
-    self_contained: true
+    self_contained: false
     css: ../../webex.css
     includes:
       after_body: ../../webex.js
@@ -25,4 +25,169 @@ library("webex")
 library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../images/')
 ```
+
+
+
+```{r  fig.width=30,echo=F,preview=TRUE,out.width = '80%'}
+knitr::include_graphics("adidas-superstar-EG4958.jpg")
+```
+
+
+
+# Exercise 10.1
+
+
+(a) Suppose you estimate the gender difference in returns to education using the following mode:
+
+$$log(wage)=(\beta_0+\delta_0 female)+(\beta_1+\delta_1 female) \times educ + u$$
+where wage is the hourly wage, female is a gender dummy, which is equal 1 
+if the individual is female, and educ is the number of years of education. 
+Provide an interpretation if $δ_0<0$ and $δ_1<0$.
+
+
+`r hide("Answer:")`
+
+This is a linear model where the intercept men is $\beta_0$ and for women is $\beta_0+\delta_0 female$. The change in log wages for men is $\beta_1$ whereas for women it is $\beta_1+\delta_1 female$. Also note that because we have log wage as dependent variable, these coefficients can be interpreted as percentage changes in wage.
+If $δ_0<0$ and $δ_1<0$, this means that women earn less for a given level of education and also that the change in wage for a given change in education (i.e. the returns to education) are lower for women.
+
+
+`r unhide()`
+
+
+(b) Someone asserts that expected wages are the same for men and women who have the same level of education. Referring to the model in part (a), what would be your null hypothesis to test this? How you would test it. 
+
+
+`r hide("Answer:")`
+This would require the joint hypothesis: $δ_0=0$ & $δ_1=0$. This can be implemented via a joint (F-) test; e.g. in R this can be done with the linearHypothesis Command.
+`r unhide()`
+
+
+(c) Suppose your estimation returns the following values for the model from part (a):  
+$\hat{δ}_0=-0.1$,  $\hat{δ}_1=-0.01$. Based on this, what is the expected wage differential between a man and a woman with 10 years of schooling? 
+
+
+`r hide("Hint:")`
+Man with 10 years: $E\{log(wage)|Man\}=\beta_0+\beta_1 \times educ$ 
+
+Women with 10 years:  $E\{log(wage)|Women\}=\beta_0+\delta_0+(\beta_1+\delta_1) \times educ$
+`r unhide()`
+<br>
+`r hide("Answer:")`
+The wage differential between a man an women with the same 10 years of education becomes
+$$E\{log(wage)|Man,10years\} - E\{log(wage)|Women,10 years\}=\delta_0+\delta_1\times 10$$
+$$=-0.1-10\times0.01=-.2$$
+Thus we would expect the women to have a a 20% lower wage
+`r unhide()`
+
+
+(d) Suppose you find in addition that $β_1=0.01$. What does it imply about the effect of 5 years more of education on the expected wage of a woman? 
+
+`r hide("Answer:")`
+Consequently the effect of education on women's wages would become $β_1+\delta_1=0.01-0.01=0$. This would mean that education has no effect on women's wages.
+`r unhide()`
+
+
+(e)	Suppose we have estimated the following wage equation
+$$W =10+10AGE-0.1AGE^2+ϵ$$
+Based on this, at what age would we expect the highest wage?
+
+
+`r hide("Answer:")`
+The equation describes a hump shaped relationship between wages and age (since the squared term is negative). It therefore makes sense to find the top of the hump which will have an age gradient of 0. The gradient can be found by differentiating with respect to age: 
+$$\frac{\partial W}{\partial AGE}=10-0.1\times 2 \times AGE$$
+Thus setting $\frac{\partial W}{\partial AGE}$ equal to zero leads to 
+$$AGE^{max.wage}=\frac{10}{0.1\times 2}=50$$
+`r unhide()`
+
+
+# Exercise 10.2
+
+
+Consider the dataset [ets_thres_final.csv](https://www.dropbox.com/s/yylc6ygkcrjir39/ets_thres_final.csv?dl=1). It contains emission figures (lnco2=log of CO2 emissions) for a sample of firms regulated by the European Emissions Trading System (EUETS) for the years from 2005 to 2017 although the firm identifiers have gone missing from the dataset. Note that an Emissions Trading System requires firms to buy permits for every unit of CO2 they emit. By restricting the total number of permits that are issued governments can control the total amount of emissions while allowing firms to trade permits freely so that they can be used with those businesses that find it hardest to reduce emissions. In the early days of the EU ETS (which started in 2005) permits where freely given to firms. This changed from 2013 onwards when permits where only given to certain firms and sectors that were deemed at risk from foreign competition. The variable free indicates those firms in the dataset. According to economic theory the method of permits allocation should have no effect on the eventual emissions by firms (Independence hypothesis). Firms that have been given free permits will have an incentive to reduce emissions as that frees up permits to sell within the permit market. 
+
+(a)	Examine this hypothesis by running a regression of lnco2 on the free variable. Report what you find. 
+
+
+`r hide("Answer:")`
+```{r}
+library(dplyr)
+df=read.csv("https://www.dropbox.com/s/yylc6ygkcrjir39/ets_thres_final.csv?dl=1")
+df=df %>% mutate(free=factor(free),period=factor(period))
+head(df)
+
+lm(lnco2~free,df) %>% summary()
+df %>% group_by(year) %>% summarise(n())
+
+
+```
+`r unhide()`
+
+
+(b)	Provide an interpretation of the regression coefficient along with a discussion of the implications of your result. 
+
+`r hide("Answer:")`
+The firms that receive free permits pollute 50% more on average over the 2009 to 2017 period.
+`r unhide()`
+
+
+
+(c)	The variable period is a categorical variable equal to 1 for observations from before 2013 and equal to 2 for observations from year 2013 onward. Convert it into a factor variable and run a regression of lnco2 on period. Provide an interpretation of the estimated coefficients.
+
+`r hide("Answer:")`
+
+
+```{r}
+lm(lnco2~period,df) %>% summary()
+
+```
+
+
+This shows that on average emission after 2012 are .16 percent lower than before 2013, a value that is not significantly different from zero.
+`r unhide()`
+
+
+(d)	Would you say your results in part (a) provide a causal estimate of the effect of free permits?
+
+`r hide("Answer:")`
+The results in part a) confound the treatment effect with any - pre-existing - firm characteristics that might have influenced the allocation of permits. For instance it might well be that the most energy (and therefore pollution) intensive firms were given
+free permits.
+`r unhide()`
+
+(e)	With the data at hand can you propose and implement an alternative regression approach that might address any concerns raised in (d)? If yes, implement this regression and discuss its results. What does the result tell you about the Independence hypothesis discussed in the introduction? 
+
+
+`r hide("Answer:")`
+
+In the dataset as it is there is actually no variable that properly captures the treatment we are interested in. `free` identifies firms that are eventually treated but it is equal to 1 also in periods when they are not treated. But it is easy to create a dummy variable, which is only equal to one for those firms that treated in periods when they are treated: we simply have to creat a dummy variable that is only true for `free` firms during period 2. Let's try that:
+
+```{r}
+df=df %>% mutate( period2Xfree= (free==1) & ( as.character(period)=="2" ) )
+
+lm(lnco2~period2Xfree,df) %>% summary()
+
+```
+At face value this would suggest that firms receiving free permits leads to 41% more CO2 emissions.
+However, there are at least 2 potential confounding factors:
+1. The fact that firms have not been selected at random to receive permits
+2. There might be time effects present. For instance, after 2013 growth might have picked up following the recession of 2008.
+
+We can control for the first issue by including `free` as a control variable as (it measures how different the `free` firms were before they received free permits). The second issue we can address with a period dummy variable. Hence:
+
+```{r}
+lm(lnco2~period+free+period2Xfree,df) %>% summary()
+
+```
+Hence, this changes the the coefficient for period2Xfree quita bit; i.e. it would suggest that free permit alloction increases emission by 16% only.
+
+An alternative way of implementing that is via the `:` operator which interacts (multiplies) variables "on the fly":
+
+
+```{r}
+lm(lnco2~period+free+period:free,df) %>% summary()
+```
+`r unhide()`
+
+
+
+
 

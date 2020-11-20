@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/exercises/exercises10/",
+    "title": "Exercises 10",
+    "description": "More exercises to help you become an econometrics superstar",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-11-20",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": "posts/exercises/exercises10/adidas-superstar-EG4958.jpg",
+    "last_modified": "2020-11-20T07:42:53+00:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/exercises/exercises6/",
     "title": "Exercises 6",
     "description": "Econometrics for dummies",
@@ -205,24 +223,6 @@
     ],
     "preview": {},
     "last_modified": "2020-09-30T10:18:59+01:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/exercises/exercises10/",
-    "title": "Exercises 10",
-    "description": "Under construction",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-09-08",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-09-08T10:21:22+01:00",
     "input_file": {}
   },
   {
