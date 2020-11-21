@@ -34,7 +34,8 @@ library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../images/')
 ```
 
-```{r  fig.width=30,echo=F,preview=TRUE,out.width = '80%'}
+
+```{r  fig.width=30,echo=F,preview=TRUE,out.width = '75%'}
 knitr::include_graphics("Mente.png")
 ```
 
