@@ -79,9 +79,7 @@ summary(ff)
 
 ```{r, echo=FALSE}
 library(dplyr)  # This is an extension of R that allows a more convenient handling of dataframes
-
 ff= ff %>% mutate( crimesPc= crimes11/pop11)
-
 
 ```
 

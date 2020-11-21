@@ -51,6 +51,10 @@ This is a linear model where the intercept men is $\beta_0$ and for women is $\b
 If $δ_0<0$ and $δ_1<0$, this means that women earn less for a given level of education and also that the change in wage for a given change in education (i.e. the returns to education) are lower for women.
 
 
+The figure below illustrates this model:
+![](womenmen.png){width=100%}
+Note that $\beta_1$ represents the slope of the line for men whereas $\delta_1$ reperesents how much less the line for women is sloped compared to men.
+
 `r unhide()`
 
 
@@ -306,11 +310,59 @@ summary(lm(dum~label,longframe))
 ```
 
 `r hide("Answer:")`
-
 The regression reports the share of responses to the health question in the data; i.e. from the intercept we can see that 20.6% of respondents report excellent health. (20.6+2.5)% respond that their health is fair and so on.
+`r unhide()`
 
+
+
+
+# Exercise 10.4
+
+Air pollution has been shown to have a variety of adverse health effects. Recently, researchers have also started to investigate other negative effects. Below we report regression tables from a study that investigates a link between air pollution and car accidents.
+
+(a)	Can you suggest a causal mechanism that might explain why air pollution could have an effect on car accidents?
+
+`r hide("Answer:")`
+Air pollution affects the respiratory system. If people cannot breathe so well that might eventually affect their brain. Drivers might consequently be less able to focus and therefore are more likely to cause accidents. Pollution could also cause poorer visibility that leads to accidents.
+`r unhide()`
+
+(b)	Table 3 below, extracted from an academic paper, reports various regressions of the log number of accidents per day across geographic grid cells for the UK over a period from 2009 to 2014. Column 6 provides a simple OLS regression of accidents on pollution concentration (measured as micro grams per cubic meter of PM). Can you think of reasons why this might not be a valid estimate of the causal impact?
+
+![](tab3.png){width=100%}
+
+`r hide("Answer:")`
+There are a number of potentially confounding factors for instance traffic:  more traffic will cause more pollution but also makes accidents more likely. Similarly: weather factors such as heat or clouds induce more pollution but could also lead to more (or less accidents).
+Weather could also work the other way round: rain could reduce pollution, while increasing accidents; i.e. because pollution is negatively correlated with rain and rain positively with accidents we have a downward bias.
+
+Moreover, there could be a direct reverse causality: accidents cause traffic jams which increases pollution.
 
 
 
 `r unhide()`
+ 
+(c)	Column 7 of Table 3 in sub-question (b) repeats the same regression including various variables measuring weather conditions as well as region interacted with year, month and day of the week fixed effects/dummies. Would you say this provides a better estimate of the causal effect of pollution? Could it also lead to a worse estimate?
 
+`r hide("Answer:")`
+Air pollution affects the respiratory system. If people cannot breathe so well that might eventually affect their brain. Drivers might consequently be less able to focus and therefore are more likely to cause accidents. Pollution could also cause poorer visibility that leads to accidents.
+`r unhide()`
+
+(d)	The study proposes an instrument for pollution derived from a weather phenomenon known as temperature inversion. Temperature inversion occurs from time to time when a layer of warmer air sits on top of colder air nearer to the ground. As consequence pollution is trapped near the ground and cannot easily escape. Thus, all else equal, pollution will be more severe near the ground when this happens. Meteorological studies suggest that the phenomenon is driven by wider movements in the atmosphere and crucially is not itself driven by local pollution. Table 2 reports regressions of the pollution variable from Table 3 on a binary variable that is equal to 1 if a temperature inversion is occurring in a particular area at a particular time. Discuss what this table is telling us. 
+
+`r hide("Answer:")`
+Air pollution affects the respiratory system. If people cannot breathe so well that might eventually affect their brain. Drivers might consequently be less able to focus and therefore are more likely to cause accidents. Pollution could also cause poorer visibility that leads to accidents.
+`r unhide()`
+![](tab2.png){width=80%}
+ 
+(e)	Columns 1 to 3 of Table 3 in sub-question (b) report 2 stage least squares regressions using the temperature inversion as instrument. Discuss if this provides a better estimate of the causal effect of pollution on accidents. Can you comment on the relative size of the coefficients comparing columns 1 and 6? Are they in line with what you would expect? 
+
+`r hide("Answer:")`
+Air pollution affects the respiratory system. If people cannot breathe so well that might eventually affect their brain. Drivers might consequently be less able to focus and therefore are more likely to cause accidents. Pollution could also cause poorer visibility that leads to accidents.
+
+The picture below summarises the various issues we discussed in this question:
+
+![](tempinv.png){width=100%}
+Firstly, our goal is to identify the causal effect of pollution on accidents. This comprises of direct effect (e.g. via bad visibility) represented by arrow a. This could also include more indirect effects via weather shown as arrows b and c. Simple OLS estimates of accidents on pollution will be biased because of confounding factors such as effects from traffic or weather on both pollution and accidents. Indeed accidents themselves could affect traffic which in turn could affect pollution (arrow i). Controlling for counfounding factors such as traffic or weather can be helpful in finding a non-biased estimate. However, it also could mean that we ignore part of the causal effect we hope to find; e.g. in the figure we would miss out the path shown via arrow b and c if we control for weather.
+An instrument such as temperature inversion is helpful as it drives pollution and is likely not affected by any endogenous factors (i.e. that ensures criterion 1 and 2 of IV estimation). However, there could be an issue with criterion 3 in an IV regression without further controls because Temperature Inversion is not only having an effect on pollution but it might also cause a range of other weather phenomena. If we include weather as an additional control as in column 3 we will avoid this issue. However, we also might again shut down channel b-c. The good news in Table 3 is that with or without weather variables we find the same effect from pollution which would suggest that channel b-c might not be so relevant.
+
+
+`r unhide()`
