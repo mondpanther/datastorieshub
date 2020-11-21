@@ -46,7 +46,7 @@ Provide an interpretation if $δ_0<0$ and $δ_1<0$.
 
 
 `r hide("Answer:")`
-
+<br>
 This is a linear model where the intercept men is $\beta_0$ and for women is $\beta_0+\delta_0 female$. The change in log wages for men is $\beta_1$ whereas for women it is $\beta_1+\delta_1 female$. Also note that because we have log wage as dependent variable, these coefficients can be interpreted as percentage changes in wage.
 If $δ_0<0$ and $δ_1<0$, this means that women earn less for a given level of education and also that the change in wage for a given change in education (i.e. the returns to education) are lower for women.
 

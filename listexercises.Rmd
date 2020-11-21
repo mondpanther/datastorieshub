@@ -11,6 +11,7 @@
       - exercises/exercises6
       - exercises/exercises7
       - exercises/exercises8
+      - exercises/exercises10
       
       
 ---

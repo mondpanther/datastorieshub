@@ -8,7 +8,7 @@ author:
 date: "`r Sys.Date()`"
 output:
   distill::distill_article:
-    self_contained: true
+    self_contained: false
     css: ../../webex.css
     includes:
       after_body: ../../webex.js
@@ -34,6 +34,9 @@ library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../images/')
 ```
 
+```{r  fig.width=30,echo=F,preview=TRUE,out.width = '80%'}
+knitr::include_graphics("Mente.png")
+```
 
 
 In the lecture we discussed the notion of causality. We contrasted the causality mechanism that you might be most interested in (your story) with the causality mechanism(s) that might be driving your data (the data story). For good data-analysis you need to be aware of both: Have a clear idea of what you want to analyse or explore as well as of all the things that could be going on in your data. To practice this I ask you to go through a couple of examples.

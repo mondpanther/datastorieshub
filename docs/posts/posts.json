@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/exercises/exercises1/",
+    "title": "Exercises 1",
+    "description": "Starting to think like an econometrician.",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-11-21",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": {},
+    "last_modified": "2020-11-21T10:13:18+00:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/exercises/exercises10/",
     "title": "Exercises 10",
     "description": "More exercises to help you become an econometrics superstar",
@@ -14,7 +32,7 @@
       "Exercises"
     ],
     "preview": "posts/exercises/exercises10/adidas-superstar-EG4958.jpg",
-    "last_modified": "2020-11-21T09:51:06+00:00",
+    "last_modified": "2020-11-21T10:04:23+00:00",
     "input_file": {}
   },
   {
@@ -187,24 +205,6 @@
     ],
     "preview": {},
     "last_modified": "2020-10-08T08:30:50+01:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/exercises/exercises1/",
-    "title": "Exercises 1",
-    "description": "Starting to think like an econometrician.",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-10-06",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-10-06T13:52:53+01:00",
     "input_file": {}
   },
   {
