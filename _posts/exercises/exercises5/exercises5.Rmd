@@ -8,7 +8,7 @@ author:
 date: "`r Sys.Date()`"
 output:
   distill::distill_article:
-    self_contained: true
+    self_contained: false
     css: ../../webex.css
     includes:
       after_body: ../../webex.js
@@ -18,6 +18,9 @@ editor_options:
   chunk_output_type: inline
 ---
 
+```{r  fig.width=30,echo=F,preview=TRUE,out.width = '80%'}
+knitr::include_graphics("p03dq1gg.jpg")
+```
 
 
 ```{r setup, include = FALSE, message=FALSE}
@@ -490,7 +493,7 @@ against the alternative
 
 $$H_{1}: \alpha+\beta\neq1$$
 
-Do you reject the null hypothesis at the 5% level? `r mcq(c("No", answer = "Yes"))`
+Do you reject the null hypothesis at the 5% level? `r mcq(c( "No",answer = "Yes" ))`
 
 What is the p-value of your test (rounded to 3 decimal places)? `r fitb(0.043)`
 
