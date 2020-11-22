@@ -343,21 +343,25 @@ Moreover, there could be a direct reverse causality: accidents cause traffic jam
 (c)	Column 7 of Table 3 in sub-question (b) repeats the same regression including various variables measuring weather conditions as well as region interacted with year, month and day of the week fixed effects/dummies. Would you say this provides a better estimate of the causal effect of pollution? Could it also lead to a worse estimate?
 
 `r hide("Answer:")`
-Air pollution affects the respiratory system. If people cannot breathe so well that might eventually affect their brain. Drivers might consequently be less able to focus and therefore are more likely to cause accidents. Pollution could also cause poorer visibility that leads to accidents.
+By including a range of weather controls we address some of the points raised in (b) which should be an improvement.
+However, a concern with weather variables as controls is that while on the one hand weather can cause pollution and accidents, pollution could also cause the weather (e.g. clouds forming because of particulate pollution) which in turn could affect accidents. The estimate in column 7 would not account for this causal effect. 
 `r unhide()`
 
 (d)	The study proposes an instrument for pollution derived from a weather phenomenon known as temperature inversion. Temperature inversion occurs from time to time when a layer of warmer air sits on top of colder air nearer to the ground. As consequence pollution is trapped near the ground and cannot easily escape. Thus, all else equal, pollution will be more severe near the ground when this happens. Meteorological studies suggest that the phenomenon is driven by wider movements in the atmosphere and crucially is not itself driven by local pollution. Table 2 reports regressions of the pollution variable from Table 3 on a binary variable that is equal to 1 if a temperature inversion is occurring in a particular area at a particular time. Discuss what this table is telling us. 
 
 `r hide("Answer:")`
-Air pollution affects the respiratory system. If people cannot breathe so well that might eventually affect their brain. Drivers might consequently be less able to focus and therefore are more likely to cause accidents. Pollution could also cause poorer visibility that leads to accidents.
+Table 2 reports first stage regressions for this instrument. This allows us to check one of the three criteria for a valid instrument, namely if it is a strong driver of the relevant endogenous variable. This seems to be the case here: not only is the inversion variable significant, the F-statistic is also rather high (larger than 10).
 `r unhide()`
 ![](tab2.png){width=80%}
  
 (e)	Columns 1 to 3 of Table 3 in sub-question (b) report 2 stage least squares regressions using the temperature inversion as instrument. Discuss if this provides a better estimate of the causal effect of pollution on accidents. Can you comment on the relative size of the coefficients comparing columns 1 and 6? Are they in line with what you would expect? 
 
 `r hide("Answer:")`
-Air pollution affects the respiratory system. If people cannot breathe so well that might eventually affect their brain. Drivers might consequently be less able to focus and therefore are more likely to cause accidents. Pollution could also cause poorer visibility that leads to accidents.
+<br>
+Given that Temperature inversions are likely not driven by pollution this could get round issues such as the traffic-> pollution nexus. However, it is also likely that inversions drive other potentially pollution causing weather events (e.g. clouds, rain). However, we can deal with that by including weather variables (as done in column 3). Of course, the same disclaimer applies as in par c); i.e. we might miss out on parts of the causal effect by doing that.
+Note that the effect of pollution becomes actually stronger when using the instrument (e.g. compare column 1 and 6, but also 3 vs 7). This suggest that it addresses an endogeneity arising from a negative correlation between un-observed heterogeneity and the endogenous variable in 6; e.g. it could be the case that there are less accidents when traffic goes up (and therefore pollution goes up) because traffic is moving more slower.
 
+<br>
 The picture below summarises the various issues we discussed in this question:
 
 ![](tempinv.png){width=100%}
