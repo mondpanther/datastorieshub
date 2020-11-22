@@ -370,3 +370,89 @@ An instrument such as temperature inversion is helpful as it drives pollution an
 
 
 `r unhide()`
+
+
+
+
+# Exercise 10.5
+
+Consider the dataset [back2country_set.dta](https://www.dropbox.com/s/oksq88o336w161j/back2country_set.dta?dl=1). It contains data on 71 countries for various 5 year periods from 1992 to 2012 (i.e. the period 2012 refers to the period from 2008 to 2012)
+Among other variables the dataset contains the following
+•	en_cleanOdirtyPclean is the share of clean as a fraction of clean and dirty innovations (as measured from patent data).
+•	social_ht is the share of people in the country that report to favour higher taxes for environmental reasons
+•	ln_oil_PPP is the log of the country level oil price (inclusive of taxes)
+•	period is a categorical variable referring to the different 5 year periods.
+•	ccode contains country codes
+
+
+Note the dataset for this exercise is in `dta` (i.e. STATA format). You can load that into R as follows:
+```{r, echo=TRUE}
+library(haven)  # this contains the read_dta() to load dta (i.e. STATA) files
+b2c=read_dta("https://www.dropbox.com/s/oksq88o336w161j/back2country_set.dta?dl=1")
+
+```
+
+
+
+(a)	Run an OLS regression of the clean innovation share on the Zsocial and oil price variables controlling for period effects. Report your regression in your answer. (A copy of your STATA output is sufficient)
+Based on the regression, what do you expect happens to the share of clean innovations in response to a 5 percentage point increase in in the share of the population supporting higher environmental taxes? 
+
+
+`r hide("Answer:")`
+
+```{r, echo=TRUE}
+lm(en_cleanOdirtyPclean~social_ht+ln_oil_PPP+factor(period),b2c) %>% summary()
+
+summary(b2c$social_ht)
+```
+i.e. The regression  suggest a positive (put not significant) coefficient for social attitudes (social_ht) of 0.027. Hence, a 5 percentage point increase in the share of people supporting higher environmental taxes would imply a 0.027 x 5  percentage points= `r 0.027*5` percentage point increase in the share of clean innovation. 
+
+`r unhide()`
+
+
+
+(b)	Can you suggest at least one mechanism that would motivate a causal effect from the share of support for environmental taxes to the share of clean innovation? 
+
+`r hide("Answer:")`
+Firms cater to their markets. If a country has more pro environmental voters it will have more pro environmental customers. Firms will respond to that by conducting innovation into products that can be marketed to those customers as pro – environmental.
+`r unhide()`
+
+(c)	Discuss why or why not the estimate reported above provides a causal estimate of the impact of pro-environmental attitudes. 
+
+`r hide("Answer:")`
+<br>
+There are many possible omitted variable or reverse causality stories to be told here; e.g. pro environmental attitudes and stronger focus on clean innovation could be jointly driven by the level of income and development of a country.
+Success in a particular technology – e.g. clean technologies – might also by itself cause pro environmental attitudes.
+
+Also higher oil price might be one of the channels via which pro environmental attitudes might affect innovation; e.g. pro environmental attitudes lead to policies such as energy taxes. Hence, including this variable might underestimate the full causal effect from attitudes. Having said that, one question we might have in this research is if attitudes have an impact on the direction of innovation, irrespective of taxes for fuel prices. In that case it would be appropriate to include this control.
+This shows, nicely that which controls you might want to include depends in part on the what exactly your analysis is trying to do.
+
+`r unhide()`
+
+
+(d)	Examine the same relationship as in (a) while including country fixed effects in your regression. What does this regression suggest is the impact of a 10 percentage point change in the support share for environmental taxes?
+
+`r hide("Answer:")`
+
+```{r,echo=TRUE}
+
+lm(en_cleanOdirtyPclean~social_ht+ln_oil_PPP+factor(period)+factor(ccode),b2c) %>% summary()
+
+```
+
+Note that the coefficient on social_ht is now 0.114. Hence a 10 percentage point increase would lead to a 0.114 x 10 pcp=1.14 pcp increase in the clean innovation share. Note that this is not only larger but also significant. 
+`r unhide()`
+
+
+(e)	Discuss whether this last regression is better or worse in terms of capturing the causal effect of pro environmental attitudes on clean innovation. 
+
+
+`r hide("Answer:")`
+<br>
+Including country fixed effects will deal with confounding factors that are operating at the country level and are fixed over time.
+ e.g. if the relationship found previously is in part driven by income and relative country incomes haven't changed that much (while attitudes have) then this last regression might lead to a better – i.e. less biased estimate.
+
+`r unhide()`
+
+
+

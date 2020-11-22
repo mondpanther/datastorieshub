@@ -14,8 +14,28 @@
       "Exercises"
     ],
     "preview": "posts/exercises/exercises10/adidas-superstar-EG4958.jpg",
-    "last_modified": "2020-11-22T08:05:10+00:00",
+    "last_modified": "2020-11-22T19:41:35+00:00",
     "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises4/",
+    "title": "Exercises 4",
+    "description": "Testing your knowledge of testing",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-11-22",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": "posts/exercises/exercises4/distill-preview.png",
+    "last_modified": "2020-11-22T10:34:01+00:00",
+    "input_file": {},
+    "preview_width": 1248,
+    "preview_height": 768
   },
   {
     "path": "posts/exercises/exercises5/",
@@ -32,8 +52,8 @@
       "Exercises"
     ],
     "preview": "posts/exercises/exercises5/p03dq1gg.jpg",
-    "last_modified": "2020-11-22T10:30:29+00:00",
-    "input_file": "exercises5.utf8.md"
+    "last_modified": "2020-11-22T10:30:30+00:00",
+    "input_file": {}
   },
   {
     "path": "posts/exercises/exercises6/",
@@ -51,7 +71,7 @@
     ],
     "preview": "posts/exercises/exercises6/5e91e263d083e200047f064e.png",
     "last_modified": "2020-11-22T10:30:00+00:00",
-    "input_file": "exercises6.utf8.md",
+    "input_file": {},
     "preview_width": 450,
     "preview_height": 481
   },
@@ -189,24 +209,6 @@
     ],
     "preview": {},
     "last_modified": "2020-10-29T12:58:26+00:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/exercises/exercises4/",
-    "title": "Exercises 4",
-    "description": "Testing your knowledge of testing",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-10-08",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-10-08T08:35:16+01:00",
     "input_file": {}
   },
   {

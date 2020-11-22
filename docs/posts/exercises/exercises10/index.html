@@ -1897,6 +1897,164 @@ Answer:
 <p><br> The picture below summarises the various issues we discussed in this question:</p>
 <p><img src="tempinv.png" style="width:100.0%" /> Firstly, our goal is to identify the causal effect of pollution on accidents. This comprises of direct effect (e.g. via bad visibility) represented by arrow a. This could also include more indirect effects via weather shown as arrows b and c. Simple OLS estimates of accidents on pollution will be biased because of confounding factors such as effects from traffic or weather on both pollution and accidents. Indeed accidents themselves could affect traffic which in turn could affect pollution (arrow i). Controlling for counfounding factors such as traffic or weather can be helpful in finding a non-biased estimate. However, it also could mean that we ignore part of the causal effect we hope to find; e.g. in the figure we would miss out the path shown via arrow b and c if we control for weather. An instrument such as temperature inversion is helpful as it drives pollution and is likely not affected by any endogenous factors (i.e. that ensures criterion 1 and 2 of IV estimation). However, there could be an issue with criterion 3 in an IV regression without further controls because Temperature Inversion is not only having an effect on pollution but it might also cause a range of other weather phenomena. If we include weather as an additional control as in column 3 we will avoid this issue. However, we also might again shut down channel b-c. The good news in Table 3 is that with or without weather variables we find the same effect from pollution which would suggest that channel b-c might not be so relevant.</p>
 </div>
+<h1 id="exercise-10.5">Exercise 10.5</h1>
+<p>Consider the dataset <a href="https://www.dropbox.com/s/oksq88o336w161j/back2country_set.dta?dl=1">back2country_set.dta</a>. It contains data on 71 countries for various 5 year periods from 1992 to 2012 (i.e. the period 2012 refers to the period from 2008 to 2012) Among other variables the dataset contains the following • en_cleanOdirtyPclean is the share of clean as a fraction of clean and dirty innovations (as measured from patent data). • social_ht is the share of people in the country that report to favour higher taxes for environmental reasons • ln_oil_PPP is the log of the country level oil price (inclusive of taxes) • period is a categorical variable referring to the different 5 year periods. • ccode contains country codes</p>
+Note the dataset for this exercise is in <code>dta</code> (i.e. STATA format). You can load that into R as follows:
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(haven)  # this contains the read_dta() to load dta (i.e. STATA) files
+b2c=read_dta(&quot;https://www.dropbox.com/s/oksq88o336w161j/back2country_set.dta?dl=1&quot;)</code></pre>
+</div>
+<ol type="a">
+<li>Run an OLS regression of the clean innovation share on the Zsocial and oil price variables controlling for period effects. Report your regression in your answer. (A copy of your STATA output is sufficient) Based on the regression, what do you expect happens to the share of clean innovations in response to a 5 percentage point increase in in the share of the population supporting higher environmental taxes?</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+lm(en_cleanOdirtyPclean~social_ht+ln_oil_PPP+factor(period),b2c) %&gt;% summary()</code></pre>
+<pre><code>
+Call:
+lm(formula = en_cleanOdirtyPclean ~ social_ht + ln_oil_PPP + 
+    factor(period), data = b2c)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.45419 -0.12094  0.01522  0.13474  0.45992 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        -0.49010    0.22027  -2.225   0.0277 *  
+social_ht           0.02709    0.04747   0.571   0.5691    
+ln_oil_PPP          0.18331    0.03137   5.843 3.48e-08 ***
+factor(period)1997  0.06825    0.05097   1.339   0.1828    
+factor(period)2002  0.08802    0.05209   1.690   0.0934 .  
+factor(period)2007  0.03250    0.05658   0.574   0.5666    
+factor(period)2012  0.11138    0.07342   1.517   0.1315    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.1872 on 139 degrees of freedom
+  (591 observations deleted due to missingness)
+Multiple R-squared:  0.3138,    Adjusted R-squared:  0.2842 
+F-statistic: 10.59 on 6 and 139 DF,  p-value: 1.135e-09</code></pre>
+<pre class="r"><code>
+summary(b2c$social_ht)</code></pre>
+<pre><code>
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+  1.871   2.766   3.054   3.041   3.362   4.045     504 </code></pre>
+</div>
+<p>i.e. The regression suggest a positive (put not significant) coefficient for social attitudes (social_ht) of 0.027. Hence, a 5 percentage point increase in the share of people supporting higher environmental taxes would imply a 0.027 x 5 percentage points= 0.135 percentage point increase in the share of clean innovation.</p>
+</div>
+<ol start="2" type="a">
+<li>Can you suggest at least one mechanism that would motivate a causal effect from the share of support for environmental taxes to the share of clean innovation?</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>Firms cater to their markets. If a country has more pro environmental voters it will have more pro environmental customers. Firms will respond to that by conducting innovation into products that can be marketed to those customers as pro – environmental.</p>
+</div>
+<ol start="3" type="a">
+<li>Discuss why or why not the estimate reported above provides a causal estimate of the impact of pro-environmental attitudes.</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p><br> There are many possible omitted variable or reverse causality stories to be told here; e.g. pro environmental attitudes and stronger focus on clean innovation could be jointly driven by the level of income and development of a country. Success in a particular technology – e.g. clean technologies – might also by itself cause pro environmental attitudes.</p>
+<p>Also higher oil price might be one of the channels via which pro environmental attitudes might affect innovation; e.g. pro environmental attitudes lead to policies such as energy taxes. Hence, including this variable might underestimate the full causal effect from attitudes. Having said that, one question we might have in this research is if attitudes have an impact on the direction of innovation, irrespective of taxes for fuel prices. In that case it would be appropriate to include this control. This shows, nicely that which controls you might want to include depends in part on the what exactly your analysis is trying to do.</p>
+</div>
+<ol start="4" type="a">
+<li>Examine the same relationship as in (a) while including country fixed effects in your regression. What does this regression suggest is the impact of a 10 percentage point change in the support share for environmental taxes?</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+lm(en_cleanOdirtyPclean~social_ht+ln_oil_PPP+factor(period)+factor(ccode),b2c) %&gt;% summary()</code></pre>
+<pre><code>
+Call:
+lm(formula = en_cleanOdirtyPclean ~ social_ht + ln_oil_PPP + 
+    factor(period) + factor(ccode), data = b2c)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.23354 -0.04737  0.00000  0.05087  0.20513 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        -0.565119   0.277232  -2.038 0.044200 *  
+social_ht           0.114364   0.035509   3.221 0.001736 ** 
+ln_oil_PPP          0.121696   0.049067   2.480 0.014835 *  
+factor(period)1997  0.097519   0.027820   3.505 0.000689 ***
+factor(period)2002  0.145598   0.030457   4.780 6.16e-06 ***
+factor(period)2007  0.137128   0.040795   3.361 0.001107 ** 
+factor(period)2012  0.241725   0.061112   3.955 0.000145 ***
+factor(ccode)AU     0.178088   0.088830   2.005 0.047742 *  
+factor(ccode)BE     0.077369   0.075707   1.022 0.309323    
+factor(ccode)BG     0.280554   0.086384   3.248 0.001593 ** 
+factor(ccode)BR     0.274031   0.102835   2.665 0.009010 ** 
+factor(ccode)CA    -0.013153   0.069869  -0.188 0.851072    
+factor(ccode)CH    -0.140932   0.073520  -1.917 0.058160 .  
+factor(ccode)CN     0.225245   0.092335   2.439 0.016508 *  
+factor(ccode)CY    -0.135501   0.114910  -1.179 0.241175    
+factor(ccode)CZ     0.331754   0.080399   4.126 7.74e-05 ***
+factor(ccode)DE     0.068754   0.068500   1.004 0.317994    
+factor(ccode)DK     0.080852   0.079580   1.016 0.312136    
+factor(ccode)ES     0.270450   0.071852   3.764 0.000285 ***
+factor(ccode)FI    -0.142047   0.069755  -2.036 0.044410 *  
+factor(ccode)FR     0.013279   0.075705   0.175 0.861120    
+factor(ccode)GB     0.118911   0.071604   1.661 0.099977 .  
+factor(ccode)GR     0.287559   0.117060   2.457 0.015788 *  
+factor(ccode)HR     0.320115   0.080641   3.970 0.000137 ***
+factor(ccode)HU     0.306553   0.084108   3.645 0.000430 ***
+factor(ccode)ID     0.186398   0.133107   1.400 0.164562    
+factor(ccode)IE     0.174563   0.079000   2.210 0.029457 *  
+factor(ccode)IN     0.042168   0.108593   0.388 0.698629    
+factor(ccode)IT    -0.217889   0.075439  -2.888 0.004768 ** 
+factor(ccode)JP     0.301983   0.069631   4.337 3.51e-05 ***
+factor(ccode)KR     0.034720   0.079368   0.437 0.662740    
+factor(ccode)LT     0.206439   0.115510   1.787 0.076998 .  
+factor(ccode)LU    -0.161064   0.110599  -1.456 0.148508    
+factor(ccode)LV     0.478426   0.071231   6.717 1.23e-09 ***
+factor(ccode)MX     0.198181   0.070821   2.798 0.006185 ** 
+factor(ccode)NL    -0.070671   0.080835  -0.874 0.384108    
+factor(ccode)NO     0.159818   0.082045   1.948 0.054284 .  
+factor(ccode)NZ     0.220711   0.075119   2.938 0.004116 ** 
+factor(ccode)PL     0.317474   0.078613   4.038 0.000107 ***
+factor(ccode)PT     0.340365   0.096022   3.545 0.000604 ***
+factor(ccode)RO     0.267879   0.100362   2.669 0.008902 ** 
+factor(ccode)RU     0.252490   0.109050   2.315 0.022678 *  
+factor(ccode)SE    -0.203249   0.085854  -2.367 0.019878 *  
+factor(ccode)SK     0.307865   0.088092   3.495 0.000714 ***
+factor(ccode)TH    -0.009082   0.137805  -0.066 0.947586    
+factor(ccode)TR     0.164923   0.096589   1.707 0.090900 .  
+factor(ccode)US    -0.013032   0.069369  -0.188 0.851369    
+factor(ccode)ZA     0.014158   0.083461   0.170 0.865650    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.0926 on 98 degrees of freedom
+  (591 observations deleted due to missingness)
+Multiple R-squared:  0.8817,    Adjusted R-squared:  0.8249 
+F-statistic: 15.53 on 47 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>Note that the coefficient on social_ht is now 0.114. Hence a 10 percentage point increase would lead to a 0.114 x 10 pcp=1.14 pcp increase in the clean innovation share. Note that this is not only larger but also significant.</p>
+</div>
+<ol start="5" type="a">
+<li>Discuss whether this last regression is better or worse in terms of capturing the causal effect of pro environmental attitudes on clean innovation.</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p><br> Including country fixed effects will deal with confounding factors that are operating at the country level and are fixed over time. e.g. if the relationship found previously is in part driven by income and relative country incomes haven’t changed that much (while attitudes have) then this last regression might lead to a better – i.e. less biased estimate.</p>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
