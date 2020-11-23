@@ -379,14 +379,20 @@ An instrument such as temperature inversion is helpful as it drives pollution an
 
 Consider the dataset [back2country_set.dta](https://www.dropbox.com/s/oksq88o336w161j/back2country_set.dta?dl=1). It contains data on 71 countries for various 5 year periods from 1992 to 2012 (i.e. the period 2012 refers to the period from 2008 to 2012)
 Among other variables the dataset contains the following
+
 •	en_cleanOdirtyPclean is the share of clean as a fraction of clean and dirty innovations (as measured from patent data).
+
 •	social_ht is the share of people in the country that report to favour higher taxes for environmental reasons
+
 •	ln_oil_PPP is the log of the country level oil price (inclusive of taxes)
+
 •	period is a categorical variable referring to the different 5 year periods.
+
 •	ccode contains country codes
 
 
 Note the dataset for this exercise is in `dta` (i.e. STATA format). You can load that into R as follows:
+
 ```{r, echo=TRUE}
 library(haven)  # this contains the read_dta() to load dta (i.e. STATA) files
 b2c=read_dta("https://www.dropbox.com/s/oksq88o336w161j/back2country_set.dta?dl=1")
@@ -530,3 +536,33 @@ lm(lngrsswk~foreign*edu+factor(year)+factor(quarter),lfs) %>% summary()
 ```
 
 `r unhide()`
+
+
+
+
+# Exercise 10.7 
+
+Consider the dataset [unempprep.csv]("https://www.dropbox.com/s/9mi7mcjnfn5nk3o/unempprep.csv?dl=1"). It contains data for various regions (wards) of the UK. There are over 10,000 wards. For a long time the UK government has been supporting businesses that invest in disadvantaged areas by covering up to 35% of an investment the business undertakes if this promises to create or safeguard jobs in areas that are deemed disadvantaged by the government. In 2000 there was a review that changed which areas were considered disadvantaged and which not. In some, cases there was also a change in the intensity of support; i.e. some areas businesses received up to 35% support whereas in others the support would only amount to a maximum of 10%.  In the relation to that the unempprep.dta dataset contains (among others) the following variables
+
+•	DDDln1Punemp : the change in the (log) number of unemployed people in a ward between 2002 and 1997; (log) of the number of unemployed people in a ward in 2002 minus the (log) number of unemployed people in 1997.
+
+•	DDDNGE : The change in support level between 2002 and 1997; i.e. support level in 2002 minus support level in 1997; e.g. if the support level was 10 in 2002 and 35% in 1997 DDDNGE would be equal to -0.25
+
+
+(a)	Run a regression of the change in (log) unemployed on change in support. What do you find? How can you interpret the regression? [5 points]
+
+
+
+```{r}
+
+up=read.csv("https://www.dropbox.com/s/9mi7mcjnfn5nk3o/unempprep.csv?dl=1")
+names(up)
+
+table(up$year)
+summary(up$DDDNGE)
+
+
+
+```
+
+

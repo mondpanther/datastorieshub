@@ -1496,8 +1496,13 @@ Answer:
 <p><img src="tempinv.png" style="width:100.0%" /> Firstly, our goal is to identify the causal effect of pollution on accidents. This comprises of direct effect (e.g. via bad visibility) represented by arrow a. This could also include more indirect effects via weather shown as arrows b and c. Simple OLS estimates of accidents on pollution will be biased because of confounding factors such as effects from traffic or weather on both pollution and accidents. Indeed accidents themselves could affect traffic which in turn could affect pollution (arrow i). Controlling for counfounding factors such as traffic or weather can be helpful in finding a non-biased estimate. However, it also could mean that we ignore part of the causal effect we hope to find; e.g. in the figure we would miss out the path shown via arrow b and c if we control for weather. An instrument such as temperature inversion is helpful as it drives pollution and is likely not affected by any endogenous factors (i.e. that ensures criterion 1 and 2 of IV estimation). However, there could be an issue with criterion 3 in an IV regression without further controls because Temperature Inversion is not only having an effect on pollution but it might also cause a range of other weather phenomena. If we include weather as an additional control as in column 3 we will avoid this issue. However, we also might again shut down channel b-c. The good news in Table 3 is that with or without weather variables we find the same effect from pollution which would suggest that channel b-c might not be so relevant.</p>
 </div>
 <h1 id="exercise-10.5">Exercise 10.5</h1>
-<p>Consider the dataset <a href="https://www.dropbox.com/s/oksq88o336w161j/back2country_set.dta?dl=1">back2country_set.dta</a>. It contains data on 71 countries for various 5 year periods from 1992 to 2012 (i.e. the period 2012 refers to the period from 2008 to 2012) Among other variables the dataset contains the following • en_cleanOdirtyPclean is the share of clean as a fraction of clean and dirty innovations (as measured from patent data). • social_ht is the share of people in the country that report to favour higher taxes for environmental reasons • ln_oil_PPP is the log of the country level oil price (inclusive of taxes) • period is a categorical variable referring to the different 5 year periods. • ccode contains country codes</p>
-Note the dataset for this exercise is in <code>dta</code> (i.e. STATA format). You can load that into R as follows:
+<p>Consider the dataset <a href="https://www.dropbox.com/s/oksq88o336w161j/back2country_set.dta?dl=1">back2country_set.dta</a>. It contains data on 71 countries for various 5 year periods from 1992 to 2012 (i.e. the period 2012 refers to the period from 2008 to 2012) Among other variables the dataset contains the following</p>
+<p>• en_cleanOdirtyPclean is the share of clean as a fraction of clean and dirty innovations (as measured from patent data).</p>
+<p>• social_ht is the share of people in the country that report to favour higher taxes for environmental reasons</p>
+<p>• ln_oil_PPP is the log of the country level oil price (inclusive of taxes)</p>
+<p>• period is a categorical variable referring to the different 5 year periods.</p>
+<p>• ccode contains country codes</p>
+<p>Note the dataset for this exercise is in <code>dta</code> (i.e. STATA format). You can load that into R as follows:</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 library(haven)  # this contains the read_dta() to load dta (i.e. STATA) files
@@ -1832,6 +1837,52 @@ Residual standard error: 0.7487 on 360914 degrees of freedom
 Multiple R-squared:  0.08755,   Adjusted R-squared:  0.08751 
 F-statistic:  2473 on 14 and 360914 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
+</div>
+<h1 id="exercise-10.7">Exercise 10.7</h1>
+<p>Consider the dataset <a href="%22https://www.dropbox.com/s/9mi7mcjnfn5nk3o/unempprep.csv?dl=1%22">unempprep.csv</a>. It contains data for various regions (wards) of the UK. There are over 10,000 wards. For a long time the UK government has been supporting businesses that invest in disadvantaged areas by covering up to 35% of an investment the business undertakes if this promises to create or safeguard jobs in areas that are deemed disadvantaged by the government. In 2000 there was a review that changed which areas were considered disadvantaged and which not. In some, cases there was also a change in the intensity of support; i.e. some areas businesses received up to 35% support whereas in others the support would only amount to a maximum of 10%. In the relation to that the unempprep.dta dataset contains (among others) the following variables</p>
+<p>• DDDln1Punemp : the change in the (log) number of unemployed people in a ward between 2002 and 1997; (log) of the number of unemployed people in a ward in 2002 minus the (log) number of unemployed people in 1997.</p>
+<p>• DDDNGE : The change in support level between 2002 and 1997; i.e. support level in 2002 minus support level in 1997; e.g. if the support level was 10 in 2002 and 35% in 1997 DDDNGE would be equal to -0.25</p>
+<ol type="a">
+<li>Run a regression of the change in (log) unemployed on change in support. What do you find? How can you interpret the regression? [5 points]</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+ [1] &quot;X&quot;                     &quot;wardcode&quot;             
+ [3] &quot;year&quot;                  &quot;NGE&quot;                  
+ [5] &quot;ttwacode_1984&quot;         &quot;unemp&quot;                
+ [7] &quot;actrate_1998&quot;          &quot;resid_emp_rate92&quot;     
+ [9] &quot;resid_unemp_rate92&quot;    &quot;rate_2000&quot;            
+[11] &quot;rate_1993&quot;             &quot;actrate_1991&quot;         
+[13] &quot;LRunemp_1991&quot;          &quot;manufshare_1991&quot;      
+[15] &quot;occupation_1991&quot;       &quot;popdens_1981&quot;         
+[17] &quot;gdp91&quot;                 &quot;gdp94to96&quot;            
+[19] &quot;popdens_1991&quot;          &quot;current_unemprate1991&quot;
+[21] &quot;current_unemprate1998&quot; &quot;strunemp8690&quot;         
+[23] &quot;strunemp9397&quot;          &quot;vatgrowth8791&quot;        
+[25] &quot;vatgrowth9598&quot;         &quot;resid_emp_rate9698&quot;   
+[27] &quot;resid_unemp_rate9698&quot;  &quot;manufshare_9698&quot;      
+[29] &quot;districtcode&quot;          &quot;ELI00&quot;                
+[31] &quot;ELI93&quot;                 &quot;grate_00&quot;             
+[33] &quot;X_est_r00&quot;             &quot;p00_p0&quot;               
+[35] &quot;p00_p1&quot;                &quot;p00_p15&quot;              
+[37] &quot;p00_p2&quot;                &quot;p00_p3&quot;               
+[39] &quot;p00_p35&quot;               &quot;iv00&quot;                 
+[41] &quot;grate_93&quot;              &quot;X_est_r93&quot;            
+[43] &quot;p93_p0&quot;                &quot;p93_p2&quot;               
+[45] &quot;p93_p3&quot;                &quot;iv93&quot;                 
+[47] &quot;X_merge&quot;               &quot;xnivav&quot;               
+[49] &quot;ln1Punemp&quot;             &quot;lnunemp&quot;              
+[51] &quot;wardx&quot;                 &quot;lnunemp_1997&quot;         
+[53] &quot;DDDlnunemp&quot;            &quot;ln1Punemp_1997&quot;       
+[55] &quot;DDDln1Punemp&quot;          &quot;xnivav_1997&quot;          
+[57] &quot;DDDxnivav&quot;             &quot;NGE_1997&quot;             
+[59] &quot;DDDNGE&quot;               </code></pre>
+<pre><code>
+ 2002 
+10764 </code></pre>
+<pre><code>
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-0.30000  0.00000  0.00000 -0.01505  0.00000  0.35000 </code></pre>
 </div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

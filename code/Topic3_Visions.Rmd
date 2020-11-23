@@ -3,7 +3,7 @@ title: "Visions"
 author: Ralf Martin
 output: html_document
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 ```{r setup, include=FALSE}
@@ -307,7 +307,7 @@ A histogram allows us to look at the distribution of a variable across a sample.
 ```{r}
 ggplot(data=usbyday, aes(hoaxsh*100)) + geom_histogram() + ylab("Number of days")+xlab("Hoaxshare in %")
 ```
-What's the story? The hoaxshare distribution is quite left skewed: most days it's lower than 1%. However there are some outlier days with sometimes more than 6% of tweets of a hoxist nature.
+What's the story? The hoaxshare distribution is quite left skewed: most days it's lower than 1%. However there are some outlier days with sometimes more than 6% of tweets of a hoaxist nature.
 <br>
 An alternative way of looking at histograms is in terms of density. If you multiply the density with the width of a histogram bin you get the share of observations (as opposed to the count) that fall into a particular category: 
 
