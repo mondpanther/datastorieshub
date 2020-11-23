@@ -165,6 +165,7 @@ free permits.
 In the dataset as it is there is actually no variable that properly captures the treatment we are interested in. `free` identifies firms that are eventually treated but it is equal to 1 also in periods when they are not treated. But it is easy to create a dummy variable, which is only equal to one for those firms that treated in periods when they are treated: we simply have to creat a dummy variable that is only true for `free` firms during period 2. Let's try that:
 
 ```{r,echo=TRUE}
+
 df=df %>% mutate( period2Xfree= (free==1) & ( as.character(period)=="2" ) )
 
 lm(lnco2~period2Xfree,df) %>% summary()
@@ -451,8 +452,81 @@ Note that the coefficient on social_ht is now 0.114. Hence a 10 percentage point
 <br>
 Including country fixed effects will deal with confounding factors that are operating at the country level and are fixed over time.
  e.g. if the relationship found previously is in part driven by income and relative country incomes haven't changed that much (while attitudes have) then this last regression might lead to a better – i.e. less biased estimate.
-
 `r unhide()`
 
 
 
+# Exercise 10.6
+
+Over recent years the UK has increasingly become more xenophobic. An important question explored by many commentators is the economic damage that this xenophobia will cause. One way to examine this is by looking at the wages of foreign-born workers compared to UK born ones. If wages of foreigners tend to be higher, it is likely that reducing the number of foreigners by terrorising them with hostile immigration procedures – one of Theresa May’s flagship policies - will have negative economic consequences for the native population as well.
+The dataset [lfsclean].dta(https://www.dropbox.com/s/0mvyckpzsssi5k2/lfsclean.dta?dl=1) contains data from the quarterly labour force survey for the years from 2010 to 2018.
+
+Among other variables it includes the following
+•	lngrsswk: log of the average weekly gross wage
+•	edu: years in education
+•	foreign: a dummy variable indicating that a person was born abraod
+•	quarter
+•	year
+
+(a)	Run a regression of (log) wages on the “foreign” variable. Discuss your findings.
+
+`r hide("Answer:")`
+
+```{r, echo=TRUE}
+library(haven)
+lfs=read_dta("https://www.dropbox.com/s/0mvyckpzsssi5k2/lfsclean.dta?dl=1")
+
+lm(lngrsswk~foreign,lfs) %>% summary()
+
+```
+
+The regression suggests that foreign workers earn (on average) 3.6% more than natives.
+
+`r unhide()`
+
+
+(b)	Explain why we might want to include controls for both year and quarter in this regression? What happens and why if you do?
+
+`r hide("Answer:")`
+It could be the case that there in the regression above the foreign variable is partially endogenous. For instance, it could be the case that foreigners come in time periods when the economy is doing better (both over the years but also within a given year  - e.g. for seasonal work)  and thus wages in general tend to be higher. Note that this would introduce a positive correlation between “foreign” and shocks to wages which might bias our coefficient upward. By including year and quarter dummies we can account for that. The regression below does that finding a slightly lower (but still significant) of 0.3. 
+
+
+```{r,echo=TRUE}
+
+lm(lngrsswk~foreign+factor(year)+factor(quarter),lfs) %>% summary()
+
+
+```
+`r unhide()`
+
+
+(c)	Include education (edu) as additional control variable. Discuss what you find.
+
+`r hide("Answer:")`
+When including education the foreign coefficient becomes significantly negative (see below). Also note that the education coefficient is positive and significant (1 year more of eduction implies 8% higher wages). Hence it would seem that an important reason why foreigners earn more is because they tend to be more highly educated than the native population. Or put differently: foreigners with similar education levels seem to earn less than natives.
+
+
+```{r,echo=TRUE}
+lm(lngrsswk~foreign+edu+factor(year)+factor(quarter),lfs) %>% summary()
+```
+`r unhide()`
+
+
+(d)	In terms of discussing the contribution of foreign workers to the economy, would you say that the regression from part (a) or from part (c) is more appropriate? 
+
+`r hide("Answer:")`
+The regression in a would be more appropriate. As in most cases the foreign workers bring their education with them (and therefore the UK public doesn’t have to pay for that) and increase in “foreign” also tends to “cause” an increase in education. The combined effect of that is the contribution of a foreign relative to a native worker.
+`r unhide()`
+
+
+(e)	Examine if foreigners are rewarded differently for more education from natives. 
+
+`r hide("Answer:")`
+We can examine this by allowing for a different education effect for foreigners. The regression below suggests a negative (and significant) interaction effect (foreign X edu). The coefficient suggest that the increase in wages for an additional year in education is 1.5 percentage points less for foreigners.
+
+```{r}
+lm(lngrsswk~foreign*edu+factor(year)+factor(quarter),lfs) %>% summary()
+
+```
+
+`r unhide()`

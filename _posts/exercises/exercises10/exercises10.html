@@ -25,8 +25,8 @@
   
   
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2020-11-22"/>
-  <meta property="article:created" itemprop="dateCreated" content="2020-11-22"/>
+  <meta property="article:published" itemprop="datePublished" content="2020-11-23"/>
+  <meta property="article:created" itemprop="dateCreated" content="2020-11-23"/>
   <meta name="article:author" content="Ralf Martin"/>
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -44,7 +44,7 @@
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 10"]},{"type":"character","attributes":{},"value":["More exercises to help you become an econometrics superstar\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2020-11-22"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 10"]},{"type":"character","attributes":{},"value":["More exercises to help you become an econometrics superstar\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2020-11-23"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -953,7 +953,7 @@
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Exercises 10","description":"More exercises to help you become an econometrics superstar","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-11-22T00:00:00.000+00:00","citationText":"Martin, 2020"}
+{"title":"Exercises 10","description":"More exercises to help you become an econometrics superstar","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-11-23T00:00:00.000+00:00","citationText":"Martin, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -970,7 +970,7 @@
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br/>2020-11-22
+<br/>2020-11-23
 </div>
 
 <div class="d-article">
@@ -1652,6 +1652,186 @@ F-statistic: 15.53 on 47 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 Answer:
 </button>
 <p><br> Including country fixed effects will deal with confounding factors that are operating at the country level and are fixed over time. e.g. if the relationship found previously is in part driven by income and relative country incomes haven’t changed that much (while attitudes have) then this last regression might lead to a better – i.e. less biased estimate.</p>
+</div>
+<h1 id="exercise-10.6">Exercise 10.6</h1>
+<p>Over recent years the UK has increasingly become more xenophobic. An important question explored by many commentators is the economic damage that this xenophobia will cause. One way to examine this is by looking at the wages of foreign-born workers compared to UK born ones. If wages of foreigners tend to be higher, it is likely that reducing the number of foreigners by terrorising them with hostile immigration procedures – one of Theresa May’s flagship policies - will have negative economic consequences for the native population as well. The dataset [lfsclean].dta(<a href="https://www.dropbox.com/s/0mvyckpzsssi5k2/lfsclean.dta?dl=1" class="uri">https://www.dropbox.com/s/0mvyckpzsssi5k2/lfsclean.dta?dl=1</a>) contains data from the quarterly labour force survey for the years from 2010 to 2018.</p>
+<p>Among other variables it includes the following • lngrsswk: log of the average weekly gross wage • edu: years in education • foreign: a dummy variable indicating that a person was born abraod • quarter • year</p>
+<ol type="a">
+<li>Run a regression of (log) wages on the “foreign” variable. Discuss your findings.</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(haven)
+lfs=read_dta(&quot;https://www.dropbox.com/s/0mvyckpzsssi5k2/lfsclean.dta?dl=1&quot;)
+
+lm(lngrsswk~foreign,lfs) %&gt;% summary()</code></pre>
+<pre><code>
+Call:
+lm(formula = lngrsswk ~ foreign, data = lfs)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.9138 -0.4349  0.0939  0.5443  5.4612 
+
+Coefficients:
+            Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept) 5.877326   0.001468 4003.762   &lt;2e-16 ***
+foreign     0.036460   0.003996    9.124   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.8338 on 372925 degrees of freedom
+  (2937143 observations deleted due to missingness)
+Multiple R-squared:  0.0002232, Adjusted R-squared:  0.0002205 
+F-statistic: 83.24 on 1 and 372925 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>The regression suggests that foreign workers earn (on average) 3.6% more than natives.</p>
+</div>
+<ol start="2" type="a">
+<li>Explain why we might want to include controls for both year and quarter in this regression? What happens and why if you do?</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>It could be the case that there in the regression above the foreign variable is partially endogenous. For instance, it could be the case that foreigners come in time periods when the economy is doing better (both over the years but also within a given year - e.g. for seasonal work) and thus wages in general tend to be higher. Note that this would introduce a positive correlation between “foreign” and shocks to wages which might bias our coefficient upward. By including year and quarter dummies we can account for that. The regression below does that finding a slightly lower (but still significant) of 0.3.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+lm(lngrsswk~foreign+factor(year)+factor(quarter),lfs) %&gt;% summary()</code></pre>
+<pre><code>
+Call:
+lm(formula = lngrsswk ~ foreign + factor(year) + factor(quarter), 
+    data = lfs)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.9979 -0.4271  0.0920  0.5535  5.4262 
+
+Coefficients:
+                 Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept)      5.789088   0.004442 1303.316  &lt; 2e-16 ***
+foreign          0.029855   0.003990    7.482 7.31e-14 ***
+factor(year)2011 0.014416   0.005428    2.656 0.007916 ** 
+factor(year)2012 0.042441   0.005441    7.800 6.20e-15 ***
+factor(year)2013 0.064254   0.005465   11.756  &lt; 2e-16 ***
+factor(year)2014 0.083115   0.005456   15.233  &lt; 2e-16 ***
+factor(year)2015 0.104964   0.005480   19.153  &lt; 2e-16 ***
+factor(year)2016 0.123267   0.005583   22.080  &lt; 2e-16 ***
+factor(year)2017 0.165312   0.005551   29.781  &lt; 2e-16 ***
+factor(year)2018 0.193901   0.007096   27.326  &lt; 2e-16 ***
+factor(quarter)2 0.009685   0.003751    2.582 0.009819 ** 
+factor(quarter)3 0.013639   0.003909    3.489 0.000485 ***
+factor(quarter)4 0.019056   0.003905    4.880 1.06e-06 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.8318 on 372914 degrees of freedom
+  (2937143 observations deleted due to missingness)
+Multiple R-squared:  0.005003,  Adjusted R-squared:  0.004971 
+F-statistic: 156.3 on 12 and 372914 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li>Include education (edu) as additional control variable. Discuss what you find.</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>When including education the foreign coefficient becomes significantly negative (see below). Also note that the education coefficient is positive and significant (1 year more of eduction implies 8% higher wages). Hence it would seem that an important reason why foreigners earn more is because they tend to be more highly educated than the native population. Or put differently: foreigners with similar education levels seem to earn less than natives.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+lm(lngrsswk~foreign+edu+factor(year)+factor(quarter),lfs) %&gt;% summary()</code></pre>
+<pre><code>
+Call:
+lm(formula = lngrsswk ~ foreign + edu + factor(year) + factor(quarter), 
+    data = lfs)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.3227 -0.3982  0.0795  0.4893  5.2480 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       4.7309376  0.0074174 637.815  &lt; 2e-16 ***
+foreign          -0.1588243  0.0037825 -41.989  &lt; 2e-16 ***
+edu               0.0808206  0.0004485 180.206  &lt; 2e-16 ***
+factor(year)2011  0.0036654  0.0049737   0.737 0.461153    
+factor(year)2012  0.0229880  0.0049866   4.610 4.03e-06 ***
+factor(year)2013  0.0383417  0.0050063   7.659 1.88e-14 ***
+factor(year)2014  0.0561895  0.0049999  11.238  &lt; 2e-16 ***
+factor(year)2015  0.0752652  0.0050251  14.978  &lt; 2e-16 ***
+factor(year)2016  0.0850140  0.0051215  16.600  &lt; 2e-16 ***
+factor(year)2017  0.1172969  0.0050895  23.047  &lt; 2e-16 ***
+factor(year)2018  0.1433484  0.0064992  22.056  &lt; 2e-16 ***
+factor(quarter)2  0.0080568  0.0034338   2.346 0.018961 *  
+factor(quarter)3  0.0049519  0.0035772   1.384 0.166270    
+factor(quarter)4  0.0125272  0.0035737   3.505 0.000456 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.7489 on 360915 degrees of freedom
+  (2949141 observations deleted due to missingness)
+Multiple R-squared:  0.0871,    Adjusted R-squared:  0.08707 
+F-statistic:  2649 on 13 and 360915 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<ol start="4" type="a">
+<li>In terms of discussing the contribution of foreign workers to the economy, would you say that the regression from part (a) or from part (c) is more appropriate?</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>The regression in a would be more appropriate. As in most cases the foreign workers bring their education with them (and therefore the UK public doesn’t have to pay for that) and increase in “foreign” also tends to “cause” an increase in education. The combined effect of that is the contribution of a foreign relative to a native worker.</p>
+</div>
+<ol start="5" type="a">
+<li>Examine if foreigners are rewarded differently for more education from natives.</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>We can examine this by allowing for a different education effect for foreigners. The regression below suggests a negative (and significant) interaction effect (foreign X edu). The coefficient suggest that the increase in wages for an additional year in education is 1.5 percentage points less for foreigners.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+Call:
+lm(formula = lngrsswk ~ foreign * edu + factor(year) + factor(quarter), 
+    data = lfs)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.3371 -0.3978  0.0791  0.4891  5.2570 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       4.6901890  0.0080247 584.470  &lt; 2e-16 ***
+foreign           0.0782408  0.0182375   4.290 1.79e-05 ***
+edu               0.0837327  0.0004991 167.776  &lt; 2e-16 ***
+factor(year)2011  0.0038495  0.0049725   0.774  0.43884    
+factor(year)2012  0.0230811  0.0049854   4.630 3.66e-06 ***
+factor(year)2013  0.0382001  0.0050051   7.632 2.31e-14 ***
+factor(year)2014  0.0559443  0.0049988  11.192  &lt; 2e-16 ***
+factor(year)2015  0.0750334  0.0050239  14.935  &lt; 2e-16 ***
+factor(year)2016  0.0848432  0.0051202  16.570  &lt; 2e-16 ***
+factor(year)2017  0.1170249  0.0050883  22.999  &lt; 2e-16 ***
+factor(year)2018  0.1428669  0.0064978  21.987  &lt; 2e-16 ***
+factor(quarter)2  0.0080281  0.0034330   2.338  0.01936 *  
+factor(quarter)3  0.0047887  0.0035763   1.339  0.18057    
+factor(quarter)4  0.0124753  0.0035729   3.492  0.00048 ***
+foreign:edu      -0.0150768  0.0011347 -13.288  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.7487 on 360914 degrees of freedom
+  (2949141 observations deleted due to missingness)
+Multiple R-squared:  0.08755,   Adjusted R-squared:  0.08751 
+F-statistic:  2473 on 14 and 360914 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
 </div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
