@@ -742,19 +742,29 @@ We get a slope coefficient of 0.133.
 
 The number in (a) will not have much meaning to anyone who doesn’t know anything about the data. 
 
-Is the effect of beauty on course_eval big or small? `r mcq(c("Big", answer = "Small"))` How would you go about assessing this?
+Is the effect of beauty on course_eval big or small? How would you go about assessing this?
 
 `r hide("Answer:")`
 
-Going from the 25th to the 75th percentile on the beauty scale corresponds to a change of 1.2 “beauty”.
-That implies a change of 0.16 teaching scores. Hence, you should not despair as a teacher when you are ugly (phew). It’s not a enough to move a below average teacher (e.g. at 25th percentile) to above average.
+To understand if something is big or small we need to have some sort of benchmark to compare it to. If you lack other obvious benchmarks, we can always what happends in response to a reasonable change in the explanatory variable to a reasonable change in the dependent variable. For instance we could see what happens if we change the `beauty` variable by 1 standard deviation (sd(data$beauty= `r round( sd(data$beauty),3) `)) (of the beauty variable). 
+The coefficient above suggest that this would lead to a change of `r round(mod1$coefficients[[2]],3)` $\times$ `r round( sd(data$beauty),3)` = `r round(mod1$coefficients[[2]]*sd(data$beauty),3)`.
 
+Is this big? Well depends in part on how much the dependent variable usually changes; e.g. we can look at the change of standard deviation of the dependent variable as well,
+which is `r round(sd(data$course_eval),3)`. Hence, the beauty effect would amount of `r round(mod1$coefficients[[2]]*sd(data$beauty)/sd(data$course_eval) *100,3)`% of the evaluation standard deviation. Seems quite a lot for something that seems to not exactly relevant to learning. But of course that depends a bit on the eye of the beholder. Of course we could understand very well if some of you only came to university to enjoy the physical beauty of your lecturers.
+
+As an alternative we can look at the change in the inter-quartile (i.e. the difference between the 75th and 25th percentile) range in beauty and see how that compares to the inter-quartile range in course scores:
 
 ```{r}
-  mod1$coefficients[[2]]*sd(data$beauty)/sd(data$course_eval)
-  mod1$coefficients[[2]]*(quantile(data$beauty,0.75)[[1]]-quantile(data$beauty,0.25)[[1]])
 
+
+  a=mod1$coefficients[[2]]*(quantile(data$beauty,0.75)[[1]]-quantile(data$beauty,0.25)[[1]])
+  b=(quantile(data$course_eval,0.75)[[1]]-quantile(data$course_eval,0.25)[[1]])
+  
+  a/b
+
+  
 ```
+i.e. gives us a very similar answer.
 
 `r unhide()`
 

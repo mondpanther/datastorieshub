@@ -14,8 +14,26 @@
       "Exercises"
     ],
     "preview": "posts/exercises/exercises10/adidas-superstar-EG4958.jpg",
-    "last_modified": "2020-11-23T17:54:14+00:00",
-    "input_file": "exercises10.utf8.md"
+    "last_modified": "2020-11-23T17:54:15+00:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/exercises/exercises5/",
+    "title": "Exercises 5",
+    "description": "Becoming a Data Detective: Uncovering Racial Bias & more",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-11-23",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": "posts/exercises/exercises5/p03dq1gg.jpg",
+    "last_modified": "2020-11-23T18:33:22+00:00",
+    "input_file": {}
   },
   {
     "path": "posts/exercises/exercises6/",
@@ -56,24 +74,6 @@
     "input_file": {},
     "preview_width": 1248,
     "preview_height": 768
-  },
-  {
-    "path": "posts/exercises/exercises5/",
-    "title": "Exercises 5",
-    "description": "Becoming a Data Detective: Uncovering Racial Bias & more",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-11-22",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": "posts/exercises/exercises5/p03dq1gg.jpg",
-    "last_modified": "2020-11-22T10:30:30+00:00",
-    "input_file": {}
   },
   {
     "path": "posts/exercises/exercises1/",
