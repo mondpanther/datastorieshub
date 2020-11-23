@@ -219,10 +219,15 @@ If we drop the intercept by writing `0+...` the dummies represent the average BM
 
 
 b)	The variable ownh_num records responses to the question “Would you say that for someone of your age your own health in general is…” where users had the following response options:
+
 •	Excellent (1)
+
 •	Good (2)
+
 •	Fair (3)
+
 •	Poor (4)
+
 The numbers in brackets indicate how these options were recorded in the `ownh_num` variable. Run a regression of `ownh_num` on `bmi` and provide a discussion of what you find. Is it in line with your expectations on this?
 
 `r hide("Answer:")`
@@ -380,15 +385,15 @@ An instrument such as temperature inversion is helpful as it drives pollution an
 Consider the dataset [back2country_set.dta](https://www.dropbox.com/s/oksq88o336w161j/back2country_set.dta?dl=1). It contains data on 71 countries for various 5 year periods from 1992 to 2012 (i.e. the period 2012 refers to the period from 2008 to 2012)
 Among other variables the dataset contains the following
 
-•	en_cleanOdirtyPclean is the share of clean as a fraction of clean and dirty innovations (as measured from patent data).
+•	`en_cleanOdirtyPclean` is the share of clean as a fraction of clean and dirty innovations (as measured from patent data).
 
-•	social_ht is the share of people in the country that report to favour higher taxes for environmental reasons
+•	`social_ht` is the share of people in the country that report to favour higher taxes for environmental reasons
 
-•	ln_oil_PPP is the log of the country level oil price (inclusive of taxes)
+•	`ln_oil_PPP` is the log of the country level oil price (inclusive of taxes)
 
-•	period is a categorical variable referring to the different 5 year periods.
+•	`period` is a categorical variable referring to the different 5 year periods.
 
-•	ccode contains country codes
+•	`ccode` contains country codes
 
 
 Note the dataset for this exercise is in `dta` (i.e. STATA format). You can load that into R as follows:
@@ -401,7 +406,7 @@ b2c=read_dta("https://www.dropbox.com/s/oksq88o336w161j/back2country_set.dta?dl=
 
 
 
-(a)	Run an OLS regression of the clean innovation share on the Zsocial and oil price variables controlling for period effects. Report your regression in your answer. (A copy of your STATA output is sufficient)
+(a)	Run an OLS regression of the clean innovation share on the `social_ht` and oil price variables controlling for period effects. Report your regression in your answer. (A copy of your STATA output is sufficient)
 Based on the regression, what do you expect happens to the share of clean innovations in response to a 5 percentage point increase in in the share of the population supporting higher environmental taxes? 
 
 
@@ -549,8 +554,13 @@ Consider the dataset [unempprep.csv]("https://www.dropbox.com/s/9mi7mcjnfn5nk3o/
 •	DDDNGE : The change in support level between 2002 and 1997; i.e. support level in 2002 minus support level in 1997; e.g. if the support level was 10 in 2002 and 35% in 1997 DDDNGE would be equal to -0.25
 
 
-(a)	Run a regression of the change in (log) unemployed on change in support. What do you find? How can you interpret the regression? [5 points]
+(a)	Run a regression of the change in (log) unemployed on change in support. What do you find? How can you interpret the regression? 
 
+
+
+`r hide()`
+See regression below. We find a statistically significant coefficient for `DDDNGE`. Note that NGE - the support rate for investment project by the government 
+- is recorded in decimals (i.e. a 20% support rate would be recorded as 0.2). Hence, the value implies that a 10 percentage point change (i.e. DDDNGE=0.1) would lead to a $10\times 0.221=2.21% reduction in unemployment.
 
 
 ```{r}
@@ -560,9 +570,11 @@ names(up)
 
 table(up$year)
 summary(up$DDDNGE)
-
-
+summary(up$year)
+lm(DDDln1Punemp~DDDNGE ,data=up) %>% summary()
+#library(AER)
+#ivreg(DDDln1Punemp~DDDNGE | DDDxnivav,data=up) %>% summary()
 
 ```
 
-
+`unhide()`
