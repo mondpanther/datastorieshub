@@ -129,6 +129,87 @@ ur.df(diff(sdf$y100),lags=0) %>% summary()
 This turns out to be the case. The test statistics is now much smaller than the critical value.
 
 
+# Unit roots and causal inference
+
+A problem with unit roots is that they create spurious correlations. Let's explore this by creating another time series with unit root:
+
+```{r,echo=TRUE}
+epsx=rnorm(obs)
+x100=eps
+for(i in 2:obs){
+  x100[i]= x100[i-1]*1+epsx[i]
+}
+sdf=bind_cols(sdf,data.frame(x100,epsx)) 
+
+
+```
+Let's plot the time series
+```{r}
+library(ggplot2)
+ggplot(sdf,aes(x=period))  + geom_line(aes(y=y100,color="Y"))+
+           theme_minimal() +geom_line(aes(y=x100,color="X"))+ylab("")+ labs(color = "")
+
+
+
+```
+
+Let's also run a regression of the Y on X:
+
+```{r,echo=TRUE}
+lm(y100~x100,sdf) %>% summary()
+lm(y100~x100+period,sdf) %>% summary()
+
+```
+
+
+Hence, despite X and Y being absolutely un-related to each other we find a strong correlation. The matter cannot be addressed by including a linear time trend.
+Let's see what happens if we difference both series:
+
+
+```{r echo=TRUE}
+
+lm(diff(y100)~diff(x100),sdf) %>% summary()
+
+```
+
+i.e. we cannot find a significant relationship (as we should not).
+
+
+Let's also see what happens if we have a Y variable that is actually driven by X:
+
+
+```{r,echo=TRUE}
+epsyyy=rnorm(obs)
+yyy=eps+ 0.5 * x100[1]
+for(i in 2:obs){
+  yyy[i]= yyy[i-1]*1+epsyyy[i] + 0.5 * x100[i]
+}
+sdf=bind_cols(sdf,data.frame(yyy,epsyyy)) 
+```
+
+
+Again we can plot:
+```{r}
+
+library(ggplot2)
+ggplot(sdf,aes(x=period))  + geom_line(aes(y=y100,color="Y"))+ 
+            geom_line(aes(y=yyy,color="Y(x)"))+
+           theme_minimal() +geom_line(aes(y=x100,color="X"))+ylab("")+ labs(color = "")
+
+
+```
+
+And regress:
+
+```{r,echo=TRUE}
+lm(yyy~x100,sdf) %>% summary()
+
+
+
+lm(diff(yyy)~diff(x100),sdf) %>% summary()
+
+```
+If just run a regression of `yyy` on `x100` we get a wildly off estimate. If do it in first differences we get something fairly close to the true value.
 
 
 ```{r  fig.width=30,echo=F,preview=TRUE,out.width = '80%'}
