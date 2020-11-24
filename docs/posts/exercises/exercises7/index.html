@@ -61,7 +61,7 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["20131205_Istanbul_321_cropped.jpg","exercises7_files/bowser-1.9.3/bowser.min.js","exercises7_files/distill-2.2.21/template.v2.js","exercises7_files/jquery-1.11.3/jquery.min.js","exercises7_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["20131205_Istanbul_321_cropped.jpg","demandsupply.png","exercises7_files/bowser-1.9.3/bowser.min.js","exercises7_files/distill-2.2.21/template.v2.js","exercises7_files/jquery-1.11.3/jquery.min.js","exercises7_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 
@@ -1436,10 +1436,9 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <button>
 Answer:
 </button>
-<p>Exogenous? Having a cartel is clearly a supply side factor that will by and large depend on the number of firms in the market and their respective manager to strike a deal, all factors un-related to demand. However, the incentive to form a cartel is also driven the amount of money to be made from having a cartel which is a demand side factor. Having said that, it is more likely that long term structural aspects of of demand are relevant for this rather than the weekly changes over a relatively short time period (6 years). Hence, it is plausible that we can use cartel as an IV.</p>
+<p>Exogenous? Having a cartel is clearly a supply side factor that will by and large depend on the number of firms in the market and their respective manager’s ability to strike a deal, all factors un-related to demand. However, the incentive to form a cartel is also driven the amount of money to be made from having a cartel which is a demand side factor. Having said that, it is more likely that long term structural aspects of of demand are relevant for this rather than the weekly changes over a relatively short time period (6 years). Hence, it is plausible that we can use cartel as an IV.</p>
 <p>Driving explanatory variable? It is almost the definition of a cartel that it has a positive impact on price. At any rate this is something we can check via a first stage regression.</p>
 <p>Exclusion? It is fairly plausible that the main effect of cartel on demand is via price. However, we can also imagine scenarios where the exclusion restriction might not hold in such a setting: imagine that the mere fact that the industry forms a cartel leads to some kind of negative press and consumer backlash perhaps with a boycott. Having said that, this is probably more of a concern with consumer goods rather than railway cargo transport.</p>
-<p>Note: What I discussed here is not the only possible way to answer this. In particular how to answer requirements 1 and 3 is somewhat down to subjective judgement. As long as students make a good case and mention and discuss all relevant requirements it’s ok to get full points.</p>
 </div>
 <h3 id="part-c">Part (c)</h3>
 <p>Estimate the first stage and reduced form equations.</p>
@@ -1569,7 +1568,8 @@ Answer:
 <p>The estimated elasticity is -0.8 in the IV result and thus larger than -1 and therefore non-elastic. That said, we know that even if the demand is actually ealstic (i.e. &lt;=-1) we might still end up with an in-elastic estimate when estimating the elasticity from a sample of data. More formally we might want to test the hypothesis that the demand curve is equal to -1 (i.e. the highest value that would still allow to claim it is elastic) againts the alternative that it is in-elastic; i.e.</p>
 <p>Hence we are tesing <span class="math inline">\(H0: \beta(lnprice)=1 \textrm{ vs } H1: \beta(lnprice)&gt;-1\)</span>. Note that this is a one sided test, implying that we are only worried about being wrong if the value is larger. This only affects which critical threshold we require. For a 5% significance level we don’t need to divid 5% by 2 to find the threshold. Rather, the threshold becomes: qnorm(0.95)=1.6448536. Hence, we would reject that our demand is in-elastic if we find that our t-value is larger than this threshold. We can calculate our t-value here as:</p>
 <p><span class="math display">\[t-stat=(-0.8666+1)/0.131= 1.0204783\]</span></p>
-<p>which is not bigger than 1.6448536 , so we cannot rejec the hypothesis that we are actually dealing with an in-elastic demand curve.</p>
+<p>which is not bigger than 1.6448536 , so we cannot reject the hypothesis that we are actually dealing with an in-elastic demand curve.</p>
+<p>As further illustration for this exercise consider also the following diagram: <img src="demandsupply.png" style="width:80.0%" /> Note that we can work out the shape of a demand curve if we know that the demand curve stays fixed and prices vary for reasons other than shifts in demand (such as a shifts in marginal costs or price increases due to monopoly/cartel power). However, in practice we don’t know what exactly moved prices and demand from one datapoint to the next. We can make progress by controlling for (some) of the stuff that clearly will shift demand (e.g. ice preventing alternative forms of transport). In addition we can focus exclusively on price movements that are brought about by supply side price movements if we have variables (such as the existence of a Cartel) that we can assume to be exclusively driving the supply side.</p>
 </div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
