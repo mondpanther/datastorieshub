@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/exercises/exercises7/",
+    "title": "Exercises 7",
+    "description": "Instrumental Variables",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-11-24",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": "posts/exercises/exercises7/20131205_Istanbul_321_cropped.jpg",
+    "last_modified": "2020-11-24T08:27:55+00:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/exercises/exercises10/",
     "title": "Exercises 10",
     "description": "More exercises to help you become an econometrics superstar",
@@ -192,24 +210,6 @@
     "input_file": {},
     "preview_width": 1248,
     "preview_height": 768
-  },
-  {
-    "path": "posts/exercises/exercises7/",
-    "title": "Exercises 7",
-    "description": "Instrumental Variables",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-10-28",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": {},
-    "last_modified": "2020-10-29T12:58:26+00:00",
-    "input_file": {}
   },
   {
     "path": "posts/exercises/exercises3/",

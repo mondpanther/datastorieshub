@@ -8,7 +8,7 @@ author:
 date: "`r Sys.Date()`"
 output:
   distill::distill_article:
-    self_contained: true
+    self_contained: false
     css: ../../webex.css
     includes:
       after_body: ../../webex.js
@@ -19,6 +19,10 @@ editor_options:
 ---
 
 
+
+```{r  fig.width=30,echo=F,preview=TRUE,out.width = '80%'}
+knitr::include_graphics("20131205_Istanbul_321_cropped.jpg")
+```
 
 
 
@@ -144,29 +148,21 @@ robust.se(iv)
 
 ### Part (e)
 
-Microeconomic theory suggests that a monopolist (like the cartel) should operate in a region of the demand curve where demand is elastic (i.e. the elasticity is < -1). 
+Microeconomic theory suggests that a monopolist (like the cartel) should operate in a region of the demand curve where demand is elastic (i.e. the elasticity is <= -1). The estimate in c) is clearly larger than -1. Can we therefore conclude in a statistically significant way that the demand curve is in-elastic and therefore at odds with economic theory?
 
-Is this the case for your estimated demand elasticity? `r mcq(c("No", answer = "Yes"))`
+`r mcq(c(answer="No",  "Yes"))`
 
 `r hide("Answer:")`
+The estimated elasticity is -0.8 in the IV result and thus larger than -1 and therefore non-elastic. That said, we know that even if the demand is actually ealstic (i.e. <=-1) we might still end up with an in-elastic estimate when estimating the 
+elasticity from a sample of data. More formally we might want to test the hypothesis that the demand curve is equal to -1 (i.e. the highest value that would still allow to claim it is elastic) againts the alternative that it is in-elastic; i.e.
 
-Hence we are tesing $H0: \beta(lnprice)=1  vs H1: \beta(lnprice)>-1$; (i.e. a one sided test)
+Hence we are tesing $H0: \beta(lnprice)=1 \textrm{ vs } H1: \beta(lnprice)>-1$. Note that this is  a one sided test, implying that we are only worried about being wrong if the value is larger. This only affects which critical threshold we require. For a 5% significance level we don't need to divid 5% by 2 to find the threshold. Rather, the threshold becomes: qnorm(0.95)=`r qnorm(0.95)`.
+Hence, we would reject that our demand is in-elastic if we find that our t-value is larger than this threshold. We can calculate our t-value here as:
 
-```{r }
-```
+$$t-stat=(-0.8666+1)/0.131= 1.0204783$$
 
-i.e. even if $\beta(lnprice)$ is smaller than -1 as in our regressions it is possible to estimate a value that is larger than -1. There comes a point when the value is too large, however, which we can figure out by looking at the threshold that would lead to a stage 1 error of 5%
 
-t-stat=(-0.8666+1)/0.131= 1.0204783
-
-For critical value:
-
-```{r }
-qnorm(0.95)
-``` 
-
-Hence, we do not reject the null hypothesis; i.e. we cannot conclude that basic mircoeconomics is violated here.
-
+which is not bigger than `r qnorm(0.95)` , so we cannot rejec the hypothesis that we are actually dealing with an in-elastic demand curve.
 
 `r unhide()`
 
