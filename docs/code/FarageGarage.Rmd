@@ -270,8 +270,10 @@ p[[1]];summary(p[[2]])
 ```{r,message=FALSE}
 regions=inner$region %>% unique()
 
+
+
 for(rrr in regions){
-  
+
   p=plotter(rrr)
   print(p[[1]])
   print(summary(p[[2]]))

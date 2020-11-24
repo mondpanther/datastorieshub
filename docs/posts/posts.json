@@ -18,6 +18,26 @@
     "input_file": {}
   },
   {
+    "path": "posts/quickguides/quickguide_unitroots/",
+    "title": "Quick Guide - Unit roots",
+    "description": {},
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": {}
+      }
+    ],
+    "date": "2020-11-24",
+    "categories": [
+      "Quickguides"
+    ],
+    "preview": "posts/quickguides/quickguide_unitroots/265-2656331_ginseng-root-png.png",
+    "last_modified": "2020-11-24T13:09:05+00:00",
+    "input_file": {},
+    "preview_width": 525,
+    "preview_height": 469
+  },
+  {
     "path": "posts/exercises/exercises10/",
     "title": "Exercises 10",
     "description": "More exercises to help you become an econometrics superstar",
@@ -112,26 +132,6 @@
     "input_file": {},
     "preview_width": 2795,
     "preview_height": 3207
-  },
-  {
-    "path": "posts/quickguides/quickguide_unitroots/",
-    "title": "Quick Guide - Unit roots",
-    "description": {},
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": {}
-      }
-    ],
-    "date": "2020-11-20",
-    "categories": [
-      "Quickguides"
-    ],
-    "preview": "posts/quickguides/quickguide_unitroots/265-2656331_ginseng-root-png.png",
-    "last_modified": "2020-11-20T15:43:20+00:00",
-    "input_file": {},
-    "preview_width": 525,
-    "preview_height": 469
   },
   {
     "path": "posts/quickguides/quickguide_Rcommands/",
