@@ -25,8 +25,8 @@
   
   
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2020-11-24"/>
-  <meta property="article:created" itemprop="dateCreated" content="2020-11-24"/>
+  <meta property="article:published" itemprop="datePublished" content="2020-11-25"/>
+  <meta property="article:created" itemprop="dateCreated" content="2020-11-25"/>
   <meta name="article:author" content="Ralf Martin"/>
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -44,7 +44,7 @@
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 7"]},{"type":"character","attributes":{},"value":["Instrumental Variables\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2020-11-24"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 7"]},{"type":"character","attributes":{},"value":["Instrumental Variables\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2020-11-25"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -953,7 +953,7 @@
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Exercises 7","description":"Instrumental Variables","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-11-24T00:00:00.000+00:00","citationText":"Martin, 2020"}
+{"title":"Exercises 7","description":"Instrumental Variables","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-11-25T00:00:00.000+00:00","citationText":"Martin, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -970,7 +970,7 @@
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br/>2020-11-24
+<br/>2020-11-25
 </div>
 
 <div class="d-article">
@@ -1041,7 +1041,7 @@ Answer:
 <h3 id="part-c">Part (c)</h3>
 <p>Estimate the first stage and reduced form equations.</p>
 <p>What is the effect of cartel on price in the first stage? <select class='solveme' data-answer='["Significant"]'> <option></option> <option>Not significant</option> <option>Significant</option></select></p>
-<p>What is the effect of cartel on price in the reduced form? <select class='solveme' data-answer='["Negative"]'> <option></option> <option>Positive</option> <option>Negative</option></select></p>
+<p>What is the effect of cartel on quantity in the reduced form? <select class='solveme' data-answer='["Negative"]'> <option></option> <option>Positive</option> <option>Negative</option></select></p>
 <div class="solution">
 <button>
 Answer:
@@ -1090,7 +1090,7 @@ Model 2: log(price) ~ cartel + ice + seas1 + seas2 + seas3 + seas4 + seas5 +
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
-<p>Reduced form shows strong negative effect of cartel on price as would be expected.</p>
+<p>Reduced form shows strong negative effect of cartel on quantity as would be expected.</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 rf=lm(log(quantity)~cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
@@ -1164,7 +1164,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Answer:
 </button>
 <p>The estimated elasticity is -0.8 in the IV result and thus larger than -1 and therefore non-elastic. That said, we know that even if the demand is actually ealstic (i.e. &lt;=-1) we might still end up with an in-elastic estimate when estimating the elasticity from a sample of data. More formally we might want to test the hypothesis that the demand curve is equal to -1 (i.e. the highest value that would still allow to claim it is elastic) againts the alternative that it is in-elastic; i.e.</p>
-<p>Hence we are tesing <span class="math inline">\(H0: \beta(lnprice)=1 \textrm{ vs } H1: \beta(lnprice)&gt;-1\)</span>. Note that this is a one sided test, implying that we are only worried about being wrong if the value is larger. This only affects which critical threshold we require. For a 5% significance level we don’t need to divid 5% by 2 to find the threshold. Rather, the threshold becomes: qnorm(0.95)=1.6448536. Hence, we would reject that our demand is in-elastic if we find that our t-value is larger than this threshold. We can calculate our t-value here as:</p>
+<p>Hence we are tesing <span class="math inline">\(H0: \beta(lnprice)=-1 \textrm{ vs } H1: \beta(lnprice)&gt;-1\)</span>. Note that this is a one sided test, implying that we are only worried about being wrong if the value is larger. This only affects which critical threshold we require. For a 5% significance level we don’t need to divid 5% by 2 to find the threshold. Rather, the threshold becomes: qnorm(0.95)=1.6448536. Hence, we would reject that our demand is in-elastic if we find that our t-value is larger than this threshold. We can calculate our t-value here as:</p>
 <p><span class="math display">\[t-stat=(-0.8666+1)/0.131= 1.0204783\]</span></p>
 <p>which is not bigger than 1.6448536 , so we cannot reject the hypothesis that we are actually dealing with an in-elastic demand curve.</p>
 <p>As further illustration for this exercise consider also the following diagram: <img src="demandsupply.png" style="width:80.0%" /> Note that we can work out the shape of a demand curve if we know that the demand curve stays fixed and prices vary for reasons other than shifts in demand (such as a shifts in marginal costs or price increases due to monopoly/cartel power). However, in practice we don’t know what exactly moved prices and demand from one datapoint to the next. We can make progress by controlling for (some) of the stuff that clearly will shift demand (e.g. ice preventing alternative forms of transport). In addition we can focus exclusively on price movements that are brought about by supply side price movements if we have variables (such as the existence of a Cartel) that we can assume to be exclusively driving the supply side.</p>

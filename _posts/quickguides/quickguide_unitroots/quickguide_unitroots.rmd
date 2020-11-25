@@ -73,7 +73,7 @@ We can implement this in R with the `ur.df()` command from the `urca` package. H
 
 
 ```{r}
-set.seed(10)
+set.seed(2.22112)
 
 ```
 
@@ -147,7 +147,7 @@ Let's plot the time series
 ```{r}
 library(ggplot2)
 ggplot(sdf,aes(x=period))  + geom_line(aes(y=y100,color="Y"))+
-           theme_minimal() +geom_line(aes(y=x100,color="X"))+ylab("")+ labs(color = "")
+           theme_minimal() + geom_line(aes(y=x100,color="X"))+ylab("")+ labs(color = "")
 
 
 
@@ -162,13 +162,13 @@ lm(y100~x100+period,sdf) %>% summary()
 ```
 
 
-Hence, despite X and Y being absolutely un-related to each other we find a strong correlation. The matter cannot be addressed by including a linear time trend.
-Let's see what happens if we difference both series:
+Hence, despite X and Y being absolutely un-related to each other we find a strong correlation. The matter cannot in general be addressed by including a linear time trend. Let's see what happens if we difference both series:
 
 
 ```{r echo=TRUE}
 
-lm(diff(y100)~diff(x100),sdf) %>% summary()
+sdf=sdf %>% mutate(Dy100=y100-dplyr::lag(y100))
+lm(Dy100~x100,sdf %>% filter(period>1)) %>% summary()
 
 ```
 
@@ -204,12 +204,25 @@ And regress:
 ```{r,echo=TRUE}
 lm(yyy~x100,sdf) %>% summary()
 
+sdf=sdf %>%  mutate(Dyyy=yyy-dplyr::lag(yyy),Dx100=x100-dplyr::lag(x100))
 
-lm(diff(yyy)~diff(x100),sdf) %>% summary()
+
+lm(Dyyy~x100,sdf ) %>% summary()
 
 ```
-If we run a regression of `yyy` on `x100` we get a wildly biased estimate. If we run a regression in first differences we get something fairly close to the true value.
+<br>
+Note that if we run a regression of `yyy` on `x100` we get an estimate that is wildly off the true on estimate. If we run a regression in first differences we get something fairly close to the true value of 0.5.
 
+
+Also good practice to check that `yyy` is really stationary now:
+
+```{r,echo=TRUE}
+
+ur.df(diff(sdf$yyy),lags=0) %>% summary()
+
+```
+
+Indeed, we can reject $\delta=0$ on the differenced series (at least at 5%).
 
 # Extensions
 Above we explore the simplest autoregressive model. More complex autoregressive models could include more lags, a (nonzero) constant or a time trend. We can accomodate these cases with the `ur.df()` command. For instance
@@ -231,17 +244,17 @@ Firstly, on the lags. It turns out that the standard errors for the coefficients
 ur.df((sdf$y100),lags=1, type="trend") %>% summary()
 ```
 
-Turns out the `z.diff.lag1` is not signficiant either. So maybe back to `lags=0`?
+Turns out the `z.diff.lag1` is not significiant either. So maybe back to `lags=0`?
 
 ```{r}
-ur.df((sdf$y100),lags=1, type="trend") %>% summary()
+ur.df((sdf$y100),lags=0, type="trend") %>% summary()
 ```
 
 But what about the time trend? Note that compared to our simple case above we now have more values being reported as test statistics and we also have more rows in our critical values table above. These are test statistics along with critical values.
 What they can refer to can be a bit confusing at first, but hopefully it will become clear. Again, you might want to think of this as going from a more general to a more specific model.
-So Let's first look a the third value in the `Value of test-statistic is:`  line above which is `2.2751`. That refers to the test statistic of a joint hypothesis test with 
+So Let's first look a the third value in the `Value of test-statistic is:`  line above which is `4.3396`. That refers to the test statistic of a joint hypothesis test with 
 $$H0: \delta = 1, \rho=0, \beta_0=0$$
-Given that $2.2<8.73$ we cannot reject all of these restrictions, conseqeuntly we have to proceed on the basis, that there is a unit root but there are no time trends or intercepts. Note that if we have a situation where the first test statistic is larger than tau3 and the third test statistic is larger than phi3 we can conclude that we have a unit root and a time trend.
+Given that $4.3396 < 5.47$ we cannot reject all of these restrictions jointly. Consequently, we have to proceed on the basis, that there is a unit root but there are no time trends or intercepts. Note that if we have a situation where the first test statistic is larger than tau3 and the third test statistic is larger than phi3 we can conclude that we have a unit root and a time trend.
 The second test statistic (i.e. 2.0237) examines the hypothesis that we have a unit root but no constant term (i.e. $H0: \delta = 1, \beta_0=0$). 
 
 
