@@ -73,13 +73,13 @@ We can implement this in R with the `ur.df()` command from the `urca` package. H
 
 
 ```{r}
-set.seed(10003)
+set.seed(2.2112)
 
 ```
 
 ```{r,echo=TRUE}
 
-obs=500
+obs=100
 eps=rnorm(obs)
 y100=eps
 for(i in 2:obs){
@@ -147,7 +147,7 @@ Let's plot the time series
 ```{r}
 library(ggplot2)
 ggplot(sdf,aes(x=period))  + geom_line(aes(y=y100,color="Y"))+
-           theme_minimal() +geom_line(aes(y=x100,color="X"))+ylab("")+ labs(color = "")
+           theme_minimal() + geom_line(aes(y=x100,color="X"))+ylab("")+ labs(color = "")
 
 
 
@@ -162,13 +162,13 @@ lm(y100~x100+period,sdf) %>% summary()
 ```
 
 
-Hence, despite X and Y being absolutely un-related to each other we find a strong correlation. The matter cannot be addressed by including a linear time trend.
-Let's see what happens if we difference both series:
+Hence, despite X and Y being absolutely un-related to each other we find a strong correlation. The matter cannot in general be addressed by including a linear time trend. Let's see what happens if we difference both series:
 
 
 ```{r echo=TRUE}
 
-lm(diff(y100)~diff(x100),sdf) %>% summary()
+sdf=sdf %>% mutate(Dy100=y100-dplyr::lag(y100))
+lm(Dy100~x100,sdf %>% filter(period>1)) %>% summary()
 
 ```
 
@@ -179,7 +179,7 @@ Let's also see what happens if we have a Y variable that is actually driven by X
 
 
 ```{r,echo=TRUE}
-epsyyy=rnorm(obs,0)
+epsyyy=rnorm(obs)
 yyy=eps+ 0.5 * x100[1]
 for(i in 2:obs){
   yyy[i]= yyy[i-1]*1+epsyyy[i] + 0.5 * x100[i]
@@ -206,11 +206,22 @@ lm(yyy~x100,sdf) %>% summary()
 
 sdf=sdf %>%  mutate(Dyyy=yyy-dplyr::lag(yyy),Dx100=x100-dplyr::lag(x100))
 
-lm(Dyyy~Dx100,sdf ) %>% summary()
+
+lm(Dyyy~x100,sdf ) %>% summary()
 
 ```
 If we run a regression of `yyy` on `x100` we get a wildly biased estimate. If we run a regression in first differences we get something fairly close to the true value.
 
+
+Also good practice to check that `yyy` is really stationary now:
+
+```{r,echo=TRUE}
+
+ur.df(diff(sdf$yyy),lags=0) %>% summary()
+
+```
+
+Indeed, we can reject $\delta=0$ on the differenced series.
 
 # Extensions
 Above we explore the simplest autoregressive model. More complex autoregressive models could include more lags, a (nonzero) constant or a time trend. We can accomodate these cases with the `ur.df()` command. For instance
