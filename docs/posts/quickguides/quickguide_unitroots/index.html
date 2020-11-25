@@ -25,8 +25,8 @@
 <link rel="canonical" href="https://mondpanther.github.io/datastorieshub/posts/quickguides/quickguide_unitroots/"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2020-11-24"/>
-<meta property="article:created" itemprop="dateCreated" content="2020-11-24"/>
+<meta property="article:published" itemprop="datePublished" content="2020-11-25"/>
+<meta property="article:created" itemprop="dateCreated" content="2020-11-25"/>
 <meta name="article:author" content="Ralf Martin"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -50,14 +50,14 @@
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
 <meta name="citation_title" content="Datastories Hub: Quick Guide - Unit roots"/>
 <meta name="citation_fulltext_html_url" content="https://mondpanther.github.io/datastorieshub/posts/quickguides/quickguide_unitroots/"/>
-<meta name="citation_online_date" content="2020/11/24"/>
-<meta name="citation_publication_date" content="2020/11/24"/>
+<meta name="citation_online_date" content="2020/11/25"/>
+<meta name="citation_publication_date" content="2020/11/25"/>
 <meta name="citation_author" content="Ralf Martin"/>
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","author","output","categories","editor_options","date","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Quick Guide - Unit roots"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Quickguides"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["11-24-2020"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/quickguides/quickguide_unitroots/"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/quickguides/quickguide_unitroots/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","author","output","categories","editor_options","date","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Quick Guide - Unit roots"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Quickguides"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["11-25-2020"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/quickguides/quickguide_unitroots/"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/quickguides/quickguide_unitroots/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1342,7 +1342,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Quick Guide - Unit roots","authors":[{"author":"Ralf Martin","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-11-24T00:00:00.000+00:00","citationText":"Martin, 2020"}
+{"title":"Quick Guide - Unit roots","authors":[{"author":"Ralf Martin","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-11-25T00:00:00.000+00:00","citationText":"Martin, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1374,7 +1374,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   Ralf Martin
   
-<br/>11-24-2020
+<br/>11-25-2020
 </div>
 
 <div class="d-article">
@@ -1411,7 +1411,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
-obs=100
+obs=500
 eps=rnorm(obs)
 y100=eps
 for(i in 2:obs){
@@ -1443,22 +1443,24 @@ lm(formula = z.diff ~ z.lag.1 - 1)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--2.1801 -0.7846 -0.1726  0.6391  2.2636 
+-3.5773 -0.6568  0.0344  0.6971  3.1464 
 
 Coefficients:
-        Estimate Std. Error t value Pr(&gt;|t|)
-z.lag.1 0.002856   0.007335   0.389    0.698
+         Estimate Std. Error t value Pr(&gt;|t|)  
+z.lag.1 -0.017496   0.009109  -1.921   0.0553 .
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.9553 on 98 degrees of freedom
-Multiple R-squared:  0.001545,  Adjusted R-squared:  -0.008644 
-F-statistic: 0.1516 on 1 and 98 DF,  p-value: 0.6978
+Residual standard error: 1.015 on 498 degrees of freedom
+Multiple R-squared:  0.007353,  Adjusted R-squared:  0.00536 
+F-statistic: 3.689 on 1 and 498 DF,  p-value: 0.05534
 
 
-Value of test-statistic is: 0.3894 
+Value of test-statistic is: -1.9207 
 
 Critical values for test statistics: 
-     1pct  5pct 10pct
-tau1 -2.6 -1.95 -1.61</code></pre>
+      1pct  5pct 10pct
+tau1 -2.58 -1.95 -1.62</code></pre>
 </div>
 <p>The summary of the output of the <code>ur.df()</code> provides us with a the regression output we would be getting if we simply implmented equation 2 as an OLS model. What is called <code>z.lag.1</code> corresponds to <span class="math inline">\(\delta\)</span> in equation 2. HOwever, as we said above: this estimate will be biased and so will be the P-value which we could normally use to decide if a regression coefficient is different from 0. Equally, we CANNOT use the typical critical values we might normally compare the t-value to. Luckily, <code>ur.df()</code> reports some new critical thresholds that we can use at the bottom of its output (i.e. the <code>Critical values for test statistics:</code>). We see critical values for a 1, 5 and 10% significance level. What we need to check is if our test statistic is smaller than the values reported there. If that is the case we can reject the hypothesis that <span class="math inline">\(\beta_1\)</span> is equal to 1. Not surprisingly - given that we simulated our series with a <span class="math inline">\(\beta_1=1\)</span> we cannot do that. So we conclude that we have unit root and we see if can get rid of it by differencing the series:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1479,25 +1481,25 @@ Call:
 lm(formula = z.diff ~ z.lag.1 - 1)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--2.09662 -0.76807 -0.05789  0.58785  2.12242 
+    Min      1Q  Median      3Q     Max 
+-3.8196 -0.6901  0.0167  0.6558  3.0179 
 
 Coefficients:
         Estimate Std. Error t value Pr(&gt;|t|)    
-z.lag.1  -0.8513     0.1013  -8.407 3.63e-13 ***
+z.lag.1 -1.08246    0.04494  -24.09   &lt;2e-16 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.9503 on 97 degrees of freedom
-Multiple R-squared:  0.4215,    Adjusted R-squared:  0.4156 
-F-statistic: 70.68 on 1 and 97 DF,  p-value: 3.633e-13
+Residual standard error: 1.016 on 497 degrees of freedom
+Multiple R-squared:  0.5386,    Adjusted R-squared:  0.5377 
+F-statistic: 580.2 on 1 and 497 DF,  p-value: &lt; 2.2e-16
 
 
-Value of test-statistic is: -8.4072 
+Value of test-statistic is: -24.0878 
 
 Critical values for test statistics: 
-     1pct  5pct 10pct
-tau1 -2.6 -1.95 -1.61</code></pre>
+      1pct  5pct 10pct
+tau1 -2.58 -1.95 -1.62</code></pre>
 </div>
 <p>This turns out to be the case. The test statistics is now much smaller than the critical value.</p>
 <h1 id="unit-roots-and-causal-inference">Unit roots and causal inference</h1>
@@ -1524,19 +1526,19 @@ Call:
 lm(formula = y100 ~ x100, data = sdf)
 
 Residuals:
-   Min     1Q Median     3Q    Max 
--8.518 -3.287 -1.232  2.366 11.009 
+     Min       1Q   Median       3Q      Max 
+-12.3235  -2.9259   0.1401   2.9924   8.9765 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) -11.0077     0.5018 -21.937  &lt; 2e-16 ***
-x100          0.9524     0.1560   6.104 2.08e-08 ***
+(Intercept) -0.26290    0.24949  -1.054    0.293    
+x100        -0.28626    0.02405 -11.902   &lt;2e-16 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 4.836 on 98 degrees of freedom
-Multiple R-squared:  0.2754,    Adjusted R-squared:  0.268 
-F-statistic: 37.25 on 1 and 98 DF,  p-value: 2.081e-08</code></pre>
+Residual standard error: 4.151 on 498 degrees of freedom
+Multiple R-squared:  0.2215,    Adjusted R-squared:  0.2199 
+F-statistic: 141.7 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>
 lm(y100~x100+period,sdf) %&gt;% summary()</code></pre>
 <pre><code>
@@ -1544,20 +1546,20 @@ Call:
 lm(formula = y100 ~ x100 + period, data = sdf)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--6.2973 -2.4549 -0.2934  3.0087  6.1964 
+     Min       1Q   Median       3Q      Max 
+-12.5679  -2.7263  -0.1826   3.2260   8.8352 
 
 Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) -3.93761    0.84946  -4.635 1.11e-05 ***
-x100        -0.06177    0.15860  -0.389    0.698    
-period      -0.15724    0.01703  -9.234 6.04e-15 ***
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -1.116694   0.497407  -2.245   0.0252 *  
+x100        -0.308237   0.026420 -11.667   &lt;2e-16 ***
+period       0.002800   0.001413   1.982   0.0480 *  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 3.546 on 97 degrees of freedom
-Multiple R-squared:  0.6144,    Adjusted R-squared:  0.6065 
-F-statistic: 77.28 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 4.138 on 497 degrees of freedom
+Multiple R-squared:  0.2276,    Adjusted R-squared:  0.2245 
+F-statistic: 73.21 on 2 and 497 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>Hence, despite X and Y being absolutely un-related to each other we find a strong correlation. The matter cannot be addressed by including a linear time trend. Let’s see what happens if we difference both series:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1568,23 +1570,23 @@ Call:
 lm(formula = diff(y100) ~ diff(x100), data = sdf)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--2.04239 -0.70591 -0.01656  0.74959  2.37914 
+    Min      1Q  Median      3Q     Max 
+-3.6739 -0.6731 -0.0086  0.6710  3.0831 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept) -0.14301    0.09580  -1.493    0.139
-diff(x100)  -0.05549    0.09864  -0.563    0.575
+(Intercept) -0.01648    0.04563  -0.361    0.718
+diff(x100)   0.02992    0.04642   0.645    0.520
 
-Residual standard error: 0.9492 on 97 degrees of freedom
-Multiple R-squared:  0.003252,  Adjusted R-squared:  -0.007024 
-F-statistic: 0.3164 on 1 and 97 DF,  p-value: 0.5751</code></pre>
+Residual standard error: 1.019 on 497 degrees of freedom
+Multiple R-squared:  0.0008352, Adjusted R-squared:  -0.001175 
+F-statistic: 0.4154 on 1 and 497 DF,  p-value: 0.5195</code></pre>
 </div>
 <p>i.e. we cannot find a significant relationship (as we should not).</p>
 <p>Let’s also see what happens if we have a Y variable that is actually driven by X:</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
-epsyyy=rnorm(obs)
+epsyyy=rnorm(obs,0)
 yyy=eps+ 0.5 * x100[1]
 for(i in 2:obs){
   yyy[i]= yyy[i-1]*1+epsyyy[i] + 0.5 * x100[i]
@@ -1604,39 +1606,42 @@ Call:
 lm(formula = yyy ~ x100, data = sdf)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--36.267 -14.914  -0.679  17.858  28.724 
+   Min     1Q Median     3Q    Max 
+-961.2 -623.2 -206.1  572.1 1305.2 
 
 Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  10.3252     1.9749   5.228 9.68e-07 ***
-x100          3.2890     0.6141   5.356 5.64e-07 ***
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -1298.848     41.231 -31.502  &lt; 2e-16 ***
+x100          -27.389      3.975  -6.891 1.68e-11 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 19.03 on 98 degrees of freedom
-Multiple R-squared:  0.2264,    Adjusted R-squared:  0.2185 
-F-statistic: 28.68 on 1 and 98 DF,  p-value: 5.637e-07</code></pre>
+Residual standard error: 685.9 on 498 degrees of freedom
+Multiple R-squared:  0.08705,   Adjusted R-squared:  0.08521 
+F-statistic: 47.48 on 1 and 498 DF,  p-value: 1.684e-11</code></pre>
 <pre class="r"><code>
-lm(diff(yyy)~diff(x100),sdf) %&gt;% summary()</code></pre>
+sdf=sdf %&gt;%  mutate(Dyyy=yyy-dplyr::lag(yyy),Dx100=x100-dplyr::lag(x100))
+
+lm(Dyyy~Dx100,sdf ) %&gt;% summary()</code></pre>
 <pre><code>
 Call:
-lm(formula = diff(yyy) ~ diff(x100), data = sdf)
+lm(formula = Dyyy ~ Dx100, data = sdf)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--3.7595 -0.9617 -0.0639  1.0927  3.6522 
+-6.8724 -2.8419 -0.8606  2.2394  9.8726 
 
 Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept)  -0.3912     0.1729  -2.262   0.0259 *
-diff(x100)    0.2888     0.1781   1.622   0.1081  
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -3.5246     0.1747  -20.18   &lt;2e-16 ***
+Dx100         0.3128     0.1777    1.76    0.079 .  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 1.714 on 97 degrees of freedom
-Multiple R-squared:  0.0264,    Adjusted R-squared:  0.01636 
-F-statistic:  2.63 on 1 and 97 DF,  p-value: 0.1081</code></pre>
+Residual standard error: 3.902 on 497 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.006193,  Adjusted R-squared:  0.004193 
+F-statistic: 3.097 on 1 and 497 DF,  p-value: 0.07905</code></pre>
 </div>
 <p>If we run a regression of <code>yyy</code> on <code>x100</code> we get a wildly biased estimate. If we run a regression in first differences we get something fairly close to the true value.</p>
 <h1 id="extensions">Extensions</h1>
@@ -1656,31 +1661,31 @@ Call:
 lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--1.71579 -0.70213  0.03693  0.61034  2.14553 
+    Min      1Q  Median      3Q     Max 
+-3.6854 -0.6848  0.0457  0.6743  3.1415 
 
 Coefficients:
               Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept) -0.4895087  0.2349490  -2.083    0.040 *
-z.lag.1     -0.0351376  0.0283039  -1.241    0.218  
-tt          -0.0005897  0.0056410  -0.105    0.917  
-z.diff.lag1  0.1127036  0.1041683   1.082    0.282  
-z.diff.lag2  0.0747685  0.1046128   0.715    0.477  
+(Intercept)  0.1269722  0.0954955   1.330   0.1843  
+z.lag.1     -0.0204366  0.0099119  -2.062   0.0397 *
+tt          -0.0004239  0.0003194  -1.327   0.1850  
+z.diff.lag1 -0.0664056  0.0453692  -1.464   0.1439  
+z.diff.lag2  0.0826674  0.0452905   1.825   0.0686 .
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.9392 on 92 degrees of freedom
-Multiple R-squared:  0.05802,   Adjusted R-squared:  0.01707 
-F-statistic: 1.417 on 4 and 92 DF,  p-value: 0.2347
+Residual standard error: 1.013 on 492 degrees of freedom
+Multiple R-squared:  0.02304,   Adjusted R-squared:  0.01509 
+F-statistic:   2.9 on 4 and 492 DF,  p-value: 0.02158
 
 
-Value of test-statistic is: -1.2414 1.4891 1.7584 
+Value of test-statistic is: -2.0618 1.8542 2.7233 
 
 Critical values for test statistics: 
       1pct  5pct 10pct
-tau3 -4.04 -3.45 -3.15
-phi2  6.50  4.88  4.16
-phi3  8.73  6.49  5.47</code></pre>
+tau3 -3.98 -3.42 -3.13
+phi2  6.15  4.71  4.05
+phi3  8.34  6.30  5.36</code></pre>
 </div>
 <p>examines a model with 3 lags and a time trend. How do we know if that is necessary? Note that it says <code>lags=2</code> because that refers to lags beyond lag one. How do we know if such a more general model is needed? We can go from more general to more specific; i.e. this would look as follows:</p>
 <p><span class="math display">\[\Delta y_t=\beta_0 +\rho \times t+ \delta y_{t-1}+ \beta_2 \Delta y_{t-1} + \beta_3 \Delta y_{t-2}+\varepsilon_t\]</span></p>
@@ -1698,32 +1703,32 @@ Call:
 lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--1.73543 -0.70567  0.06924  0.65085  2.14072 
+    Min      1Q  Median      3Q     Max 
+-3.6344 -0.6745  0.0590  0.6660  3.1239 
 
 Coefficients:
               Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept) -0.5543152  0.2263647  -2.449   0.0162 *
-z.lag.1     -0.0350988  0.0276297  -1.270   0.2071  
-tt           0.0003156  0.0054920   0.057   0.9543  
-z.diff.lag   0.1177274  0.1034509   1.138   0.2580  
+(Intercept)  0.1218104  0.0952034   1.279   0.2013  
+z.lag.1     -0.0182894  0.0098626  -1.854   0.0643 .
+tt          -0.0004261  0.0003187  -1.337   0.1818  
+z.diff.lag  -0.0746963  0.0452106  -1.652   0.0991 .
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.9356 on 94 degrees of freedom
-Multiple R-squared:  0.06163,   Adjusted R-squared:  0.03169 
-F-statistic: 2.058 on 3 and 94 DF,  p-value: 0.1111
+Residual standard error: 1.014 on 494 degrees of freedom
+Multiple R-squared:  0.01613,   Adjusted R-squared:  0.01016 
+F-statistic:   2.7 on 3 and 494 DF,  p-value: 0.04512
 
 
-Value of test-statistic is: -1.2703 2.0237 2.2751 
+Value of test-statistic is: -1.8544 1.6153 2.353 
 
 Critical values for test statistics: 
       1pct  5pct 10pct
-tau3 -4.04 -3.45 -3.15
-phi2  6.50  4.88  4.16
-phi3  8.73  6.49  5.47</code></pre>
+tau3 -3.98 -3.42 -3.13
+phi2  6.15  4.71  4.05
+phi3  8.34  6.30  5.36</code></pre>
 </div>
-<p>Turns out the <code>z.diff.lag1</code> is not signficiant either. So maybe back to <code>lags=0</code>?</p>
+<p>Turns out the <code>z.diff.lag1</code> is not significiant either. So maybe back to <code>lags=0</code>?</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre><code>
 ############################################### 
@@ -1734,33 +1739,32 @@ Test regression trend
 
 
 Call:
-lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+lm(formula = z.diff ~ z.lag.1 + 1 + tt)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--1.73543 -0.70567  0.06924  0.65085  2.14072 
+    Min      1Q  Median      3Q     Max 
+-3.5534 -0.6747  0.0176  0.6693  3.1553 
 
 Coefficients:
               Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept) -0.5543152  0.2263647  -2.449   0.0162 *
-z.lag.1     -0.0350988  0.0276297  -1.270   0.2071  
-tt           0.0003156  0.0054920   0.057   0.9543  
-z.diff.lag   0.1177274  0.1034509   1.138   0.2580  
+(Intercept)  0.1206483  0.0948371   1.272   0.2039  
+z.lag.1     -0.0201351  0.0097945  -2.056   0.0403 *
+tt          -0.0004071  0.0003178  -1.281   0.2008  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.9356 on 94 degrees of freedom
-Multiple R-squared:  0.06163,   Adjusted R-squared:  0.03169 
-F-statistic: 2.058 on 3 and 94 DF,  p-value: 0.1111
+Residual standard error: 1.015 on 496 degrees of freedom
+Multiple R-squared:  0.0106,    Adjusted R-squared:  0.006609 
+F-statistic: 2.657 on 2 and 496 DF,  p-value: 0.07119
 
 
-Value of test-statistic is: -1.2703 2.0237 2.2751 
+Value of test-statistic is: -2.0558 1.8135 2.6566 
 
 Critical values for test statistics: 
       1pct  5pct 10pct
-tau3 -4.04 -3.45 -3.15
-phi2  6.50  4.88  4.16
-phi3  8.73  6.49  5.47</code></pre>
+tau3 -3.98 -3.42 -3.13
+phi2  6.15  4.71  4.05
+phi3  8.34  6.30  5.36</code></pre>
 </div>
 <p>But what about the time trend? Note that compared to our simple case above we now have more values being reported as test statistics and we also have more rows in our critical values table above. These are test statistics along with critical values. What they can refer to can be a bit confusing at first, but hopefully it will become clear. Again, you might want to think of this as going from a more general to a more specific model. So Let’s first look a the third value in the <code>Value of test-statistic is:</code> line above which is <code>2.2751</code>. That refers to the test statistic of a joint hypothesis test with <span class="math display">\[H0: \delta = 1, \rho=0, \beta_0=0\]</span> Given that <span class="math inline">\(2.2&lt;8.73\)</span> we cannot reject all of these restrictions, conseqeuntly we have to proceed on the basis, that there is a unit root but there are no time trends or intercepts. Note that if we have a situation where the first test statistic is larger than tau3 and the third test statistic is larger than phi3 we can conclude that we have a unit root and a time trend. The second test statistic (i.e. 2.0237) examines the hypothesis that we have a unit root but no constant term (i.e. <span class="math inline">\(H0: \delta = 1, \beta_0=0\)</span>).</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1871,7 +1875,7 @@ window.onload = function() {
 <div class="appendix-bottom">
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Martin (2020, Nov. 24). Datastories Hub: Quick Guide - Unit roots. Retrieved from https://mondpanther.github.io/datastorieshub/posts/quickguides/quickguide_unitroots/</pre>
+  <pre class="citation-appendix short">Martin (2020, Nov. 25). Datastories Hub: Quick Guide - Unit roots. Retrieved from https://mondpanther.github.io/datastorieshub/posts/quickguides/quickguide_unitroots/</pre>
   <p>BibTeX citation</p>
   <pre class="citation-appendix long">@misc{martin2020quick,
   author = {Martin, Ralf},

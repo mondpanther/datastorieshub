@@ -73,13 +73,13 @@ We can implement this in R with the `ur.df()` command from the `urca` package. H
 
 
 ```{r}
-set.seed(10)
+set.seed(10003)
 
 ```
 
 ```{r,echo=TRUE}
 
-obs=100
+obs=500
 eps=rnorm(obs)
 y100=eps
 for(i in 2:obs){
@@ -179,7 +179,7 @@ Let's also see what happens if we have a Y variable that is actually driven by X
 
 
 ```{r,echo=TRUE}
-epsyyy=rnorm(obs)
+epsyyy=rnorm(obs,0)
 yyy=eps+ 0.5 * x100[1]
 for(i in 2:obs){
   yyy[i]= yyy[i-1]*1+epsyyy[i] + 0.5 * x100[i]
@@ -204,8 +204,9 @@ And regress:
 ```{r,echo=TRUE}
 lm(yyy~x100,sdf) %>% summary()
 
+sdf=sdf %>%  mutate(Dyyy=yyy-dplyr::lag(yyy),Dx100=x100-dplyr::lag(x100))
 
-lm(diff(yyy)~diff(x100),sdf) %>% summary()
+lm(Dyyy~Dx100,sdf ) %>% summary()
 
 ```
 If we run a regression of `yyy` on `x100` we get a wildly biased estimate. If we run a regression in first differences we get something fairly close to the true value.
@@ -231,10 +232,10 @@ Firstly, on the lags. It turns out that the standard errors for the coefficients
 ur.df((sdf$y100),lags=1, type="trend") %>% summary()
 ```
 
-Turns out the `z.diff.lag1` is not signficiant either. So maybe back to `lags=0`?
+Turns out the `z.diff.lag1` is not significiant either. So maybe back to `lags=0`?
 
 ```{r}
-ur.df((sdf$y100),lags=1, type="trend") %>% summary()
+ur.df((sdf$y100),lags=0, type="trend") %>% summary()
 ```
 
 But what about the time trend? Note that compared to our simple case above we now have more values being reported as test statistics and we also have more rows in our critical values table above. These are test statistics along with critical values.
