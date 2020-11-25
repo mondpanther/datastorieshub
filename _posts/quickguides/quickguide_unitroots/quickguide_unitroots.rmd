@@ -254,7 +254,7 @@ But what about the time trend? Note that compared to our simple case above we no
 What they can refer to can be a bit confusing at first, but hopefully it will become clear. Again, you might want to think of this as going from a more general to a more specific model.
 So Let's first look a the third value in the `Value of test-statistic is:`  line above which is `4.3396`. That refers to the test statistic of a joint hypothesis test with 
 $$H0: \delta = 1, \rho=0, \beta_0=0$$
-Given that $4.3396<8.73$ we cannot reject all of these restrictions, conseqeuntly we have to proceed on the basis, that there is a unit root but there are no time trends or intercepts. Note that if we have a situation where the first test statistic is larger than tau3 and the third test statistic is larger than phi3 we can conclude that we have a unit root and a time trend.
+Given that $4.3396 < 5.47$ we cannot reject all of these restrictions jointly. Consequently, we have to proceed on the basis, that there is a unit root but there are no time trends or intercepts. Note that if we have a situation where the first test statistic is larger than tau3 and the third test statistic is larger than phi3 we can conclude that we have a unit root and a time trend.
 The second test statistic (i.e. 2.0237) examines the hypothesis that we have a unit root but no constant term (i.e. $H0: \delta = 1, \beta_0=0$). 
 
 
