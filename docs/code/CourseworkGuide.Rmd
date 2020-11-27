@@ -17,7 +17,10 @@ Last update:  `r format(Sys.time(), '%B %d , %Y - %H:%M ')`
 # Introduction
 
 
-This document (you find the Rmd file for this document under [this](https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.Rmd) link) provides you with a template or (draft) example of how your submission could look like. 
+This document (you find the Rmd file for this document under [this](https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.Rmd) link) provides you with a template or (draft) example of how your submission could look like.
+
+In terms of length and format: Think of this as something snappy that could be turned into a blog post or similar. Try to keep it below 2500. If you have a lot more to say try to work out the most important points that can be put within that limit and put anything else in an appendix.
+Please submit a final document as well as any underlying code (i.e. the RMD or R file(s)). Also submit the dataset(s) you are using or provide links if the data is stored online.
 
 You should start with an introduction that motivates what you are working on. What question or issue are you going to address? 
 
