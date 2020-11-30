@@ -8,7 +8,7 @@ author:
 date: "`r Sys.Date()`"
 output:
   distill::distill_article:
-    self_contained: true
+    self_contained: false
     css: ../../webex.css
     includes:
       after_body: ../../webex.js
@@ -17,6 +17,14 @@ categories:
 editor_options: 
   chunk_output_type: inline
 ---
+
+
+
+```{r  fig.width=30,echo=F,preview=TRUE,out.width = '80%'}
+knitr::include_graphics("selfservicetest.png")
+```
+
+
 
 
 ```{r setup, include = FALSE, message=FALSE}
@@ -92,12 +100,17 @@ Can she reject H0 at at the 1% significance level? `r mcq(c("No", answer = "Yes"
 Recall that the rejection threshold c for the normal distribution are `r abs(qnorm(0.025))` and `r abs(qnorm(0.005))` for a 5% and 1% significance level.
 For the t distribution the same values are `r abs(qt(0.025,58))` and `r abs(qt(0.005,58))` (Note that we have 58 degrees of freedom).
 
-We can also work out p-values
+We can also work out p-values. Remember that the p-value is the probability - assuming the H0 is correct - to have a value more extreme (further away from 0) than the one estimated. We can use the `pt()` command for that,
+which gives us the cumulative density function of the t-distribution; e.g. `pt(0,58)` gives us the probability to have a value smaller than 0. Because the t-distribution is symmetric that will always be equal to 0.5
+Note that we have 58 degrees of freedom here as we 60 observations and we need to estimate 2 parameters ($\beta_0$ and $\beta_1$). To work out the p-value call the `pt()` function with the t-value for a given 
+estimate; e.g. for part a)
 ```{r}
-  pt(abs(-0.2)/0.07,58)
-  pt(abs(-0.12)/0.07,58)
-  pt(0.06/0.07,58)
-  pt(0.20/0.07,58)
+pt(-.2/0.07,58)
+```
+i.e. the probability of having an estimate lower than -.2 is `r pt(-.2/0.07,58)`. Note, because the our test considers the possibility of being to low and too high (and because the distribution is symmetric) we need to double this to get the actual p-value which becomes `r 2*pt(-.2/0.07,58)`. However, this is still below 1% so we can safely reject the hypothesis that the true parameter is 0.
+Note, if we estimate a positive value we still need to use the same value but in negative terms. So, more generally we could write that we need compute `2*pt(-abs(t),58)`; i.e. the negative of the absolute value 
+of the t-value. Because `pt()` (like any cumulative density) sums to 1 and is symmetric and alterive formula with the same result would be `2*(1-pt(-abs(t),58))`  
+
 ```
 `r unhide()`
 

@@ -23,7 +23,7 @@ In terms of length and format: Think of this as something snappy that could be t
 Please submit a final document as well as any underlying code (i.e. the RMD or R file(s)). Also submit the dataset(s) you are using or provide links if the data is stored online.
 
 You should start with an introduction that motivates what you are working on. What question or issue are you going to address? 
-
+0
 Here we are going to look into COVID Hoaxism i.e. the phenomenon that people question the reality of the covid pandemic. Specifically, we explore the hypothesis that such hoaxism has made the pandemic worse i.e. that there is a causal link from hoaxism to covid cases and/or deaths. A mechanism that would support this is that people don't observe social distancing or use face coverings because they don't believe that the pandemic is happening.
 
 
