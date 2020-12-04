@@ -24,8 +24,8 @@
   
   
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2020-11-25"/>
-  <meta property="article:created" itemprop="dateCreated" content="2020-11-25"/>
+  <meta property="article:published" itemprop="datePublished" content="2020-12-03"/>
+  <meta property="article:created" itemprop="dateCreated" content="2020-12-03"/>
   <meta name="article:author" content="Ralf Martin"/>
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -41,7 +41,7 @@
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","author","output","categories","editor_options","date"]}},"value":[{"type":"character","attributes":{},"value":["Quick Guide - Unit roots"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Quickguides"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["11-25-2020"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","author","output","categories","editor_options","date"]}},"value":[{"type":"character","attributes":{},"value":["Quick Guide - Unit roots"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Quickguides"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["12-03-2020"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -950,7 +950,7 @@
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Quick Guide - Unit roots","authors":[{"author":"Ralf Martin","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-11-25T00:00:00.000+00:00","citationText":"Martin, 2020"}
+{"title":"Quick Guide - Unit roots","authors":[{"author":"Ralf Martin","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-12-03T00:00:00.000+00:00","citationText":"Martin, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -968,7 +968,7 @@
   
   Ralf Martin
   
-<br/>11-25-2020
+<br/>12-03-2020
 </div>
 
 <div class="d-article">
@@ -1105,7 +1105,7 @@ for(i in 2:obs){
 }
 sdf=bind_cols(sdf,data.frame(x100,epsx)) </code></pre>
 </div>
-Let’s plot the time series
+<p><br> Let’s plot the time series</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="quickguide_unitroots_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
 </div>
@@ -1176,7 +1176,8 @@ Multiple R-squared:  3.974e-08, Adjusted R-squared:  -0.01031
 F-statistic: 3.854e-06 on 1 and 97 DF,  p-value: 0.9984</code></pre>
 </div>
 <p>i.e. we cannot find a significant relationship (as we should not).</p>
-<p>Let’s also see what happens if we have a Y variable that is actually driven by X:</p>
+<p>Let’s also see what happens if we have a Y variable that is actually driven by X. We using the following true model:</p>
+<p><span class="math display">\[ y_t=\beta_0 +  y_{t-1}+ 0.5  x_{t} +\varepsilon_t\]</span> <br> Let’s head for Monte Carlo and simulate data from this model:</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 epsyyy=rnorm(obs)
@@ -1186,7 +1187,7 @@ for(i in 2:obs){
 }
 sdf=bind_cols(sdf,data.frame(yyy,epsyyy)) </code></pre>
 </div>
-Again we can plot:
+<p><br> Once more we can plot:</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="quickguide_unitroots_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
 </div>

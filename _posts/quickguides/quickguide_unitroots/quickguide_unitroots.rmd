@@ -143,7 +143,9 @@ sdf=bind_cols(sdf,data.frame(x100,epsx))
 
 
 ```
+<br>
 Let's plot the time series
+
 ```{r}
 library(ggplot2)
 ggplot(sdf,aes(x=period))  + geom_line(aes(y=y100,color="Y"))+
@@ -175,7 +177,12 @@ lm(Dy100~x100,sdf %>% filter(period>1)) %>% summary()
 i.e. we cannot find a significant relationship (as we should not).
 
 
-Let's also see what happens if we have a Y variable that is actually driven by X:
+Let's also see what happens if we have a Y variable that is actually driven by X. We using the following true model:
+
+
+$$ y_t=\beta_0 +  y_{t-1}+ 0.5  x_{t} +\varepsilon_t$$
+<br>
+Let's head for Monte Carlo and simulate data from this model:
 
 
 ```{r,echo=TRUE}
@@ -187,8 +194,9 @@ for(i in 2:obs){
 sdf=bind_cols(sdf,data.frame(yyy,epsyyy)) 
 ```
 
+<br>
+Once more we can plot:
 
-Again we can plot:
 ```{r}
 
 library(ggplot2)
