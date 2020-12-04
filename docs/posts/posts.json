@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/exercises/exercises10/",
+    "title": "Exercises 10",
+    "description": "More exercises to help you become an econometrics superstar",
+    "author": [
+      {
+        "name": "Ralf Martin",
+        "url": "https://mondpanther.github.io/wwwmondpanther/"
+      }
+    ],
+    "date": "2020-12-04",
+    "categories": [
+      "Exercises"
+    ],
+    "preview": "posts/exercises/exercises10/adidas-superstar-EG4958.jpg",
+    "last_modified": "2020-12-04T09:29:18+00:00",
+    "input_file": "exercises10.utf8.md"
+  },
+  {
     "path": "posts/quickguides/quickguide_unitroots/",
     "title": "Quick Guide - Unit roots",
     "description": {},
@@ -55,24 +73,6 @@
     ],
     "preview": "posts/exercises/exercises7/20131205_Istanbul_321_cropped.jpg",
     "last_modified": "2020-11-25T15:17:47+00:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/exercises/exercises10/",
-    "title": "Exercises 10",
-    "description": "More exercises to help you become an econometrics superstar",
-    "author": [
-      {
-        "name": "Ralf Martin",
-        "url": "https://mondpanther.github.io/wwwmondpanther/"
-      }
-    ],
-    "date": "2020-11-23",
-    "categories": [
-      "Exercises"
-    ],
-    "preview": "posts/exercises/exercises10/adidas-superstar-EG4958.jpg",
-    "last_modified": "2020-11-23T17:48:20+00:00",
     "input_file": {}
   },
   {

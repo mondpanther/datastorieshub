@@ -317,6 +317,16 @@ summary(lm(dum~label,longframe))
 
 `r hide("Answer:")`
 The regression reports the share of responses to the health question in the data; i.e. from the intercept we can see that 20.6% of respondents report excellent health. (20.6+2.5)% respond that their health is fair and so on.
+
+
+Why is this the case?
+
+Firstly, note that the `for` loop creates a new dataframe (called `longframe`) that is basically 5 copies (one for each possible health status answer category) of the original dataframe `fr` glued together (that's what the command `rbind()` does; i.e. combining dataframes vertically).
+The only thing that is different between the 5 dataframe copies is the newly created variable `dum`. It is equal to 1 if a respondent responds to the health survey in the way that corresponds to the answer category.
+With that in mind you need to remember what we learned about dummy variables as dependent and explanatory variables. For instance we said that constant represents the average dependent variable for the reference group. So here this is the observations that are in the dataframe that was created for an response of "excellent" to the health question.
+So we get the average for the dependent variable which is equal to one for those people who respondent "excellent". So that is the number of people responding "excellent" dividid by the number of people responding; i.e. the the share that have respondent excellent.
+For the other groups the coefficient tells us how much higher (or lower) that share is.
+
 `r unhide()`
 
 
