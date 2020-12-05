@@ -2,6 +2,7 @@
 title: "Exercises 9"
 description: |
   Time for Series
+base_url: https://mondpanther.github.io/datastorieshub  
 author:
   - name: Ralf Martin
     url: https://mondpanther.github.io/wwwmondpanther/
@@ -26,6 +27,12 @@ library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../images/')
 ```
 
+
+```{r  fig.width=30,echo=F,preview=TRUE,out.width = '60%'}
+knitr::include_graphics("8.jpg")
+```
+
+
 # Exercise 9.1
 
 The [`oj.csv`](https://www.dropbox.com/s/o76do0oyoxhhy6p/oj.csv?dl=1) dataset contains monthly data
@@ -35,11 +42,13 @@ The `fdd` contains the number of freezing degree days in a month.
 
 
 
-```{r}
+```{r,echo=TRUE}
 library(dplyr)
 oj=read.csv("https://www.dropbox.com/s/o76do0oyoxhhy6p/oj.csv?dl=1")
 
+```
 
+```{r}
 ##########
   oj = na.omit(oj)
   oj["lnp"]=log(oj$ppioj/oj$pwfsa *100)
@@ -65,14 +74,14 @@ library(lubridate)
 
 To create a lagged version of the `fdd` variable we can use the `dplyr::lag()` function:
 
-```{r}
+```{r,echo=TRUE}
 library(dplyr)
 oj=oj %>% mutate(L1fdd=dplyr::lag(fdd))
 ```
 
 Now run a regression of the price on freezing degree days: 
 
-```{r}
+```{r,echo=TRUE}
 lm(lnp~L1fdd,oj) %>% summary()
 
 ```
@@ -93,11 +102,10 @@ Freezing is likely to be exogenous. So we don't have to worry about the usual co
 However, we are dealing with time series. One issue could be that the price series has a unit root. Plotting the series is 
 a good start to examine this:
 
-```{r}
+```{r,echo=TRUE}
+p=ggplot(oj,aes(x=date,y=lnp))+geom_line(color="green")+theme_minimal()+xlab("Monthly data")
 
-ggplot(oj,aes(x=date,y=lnp))+geom_line(color="green")+theme_minimal()+xlab("Monthly data")
-
-
+plot(p)
 ```
 
 
@@ -108,7 +116,7 @@ ggplot(oj,aes(x=date,y=lnp))+geom_line(color="green")+theme_minimal()+xlab("Mont
 `r hide("Answer:")`
 We can use the Dickey-Fuller test:
 
-```{r}  
+```{r,echo=TRUE}  
 
 library(urca)
 summary(ur.df(oj$lnp))
@@ -129,18 +137,19 @@ We need to difference the series to get rid of the unit root. Note that for the 
 reject the unit root:
 
 
-```{r}
+```{r,echo=TRUE}
 
 ur.df(diff(oj$lnp)) %>% summary()
 
 ```
-```{r}
+```{r,echo=TRUE}
 oj=oj %>% mutate(Dlnp=lnp-dplyr::lag(lnp))
 lm( Dlnp~L1fdd,oj) %>% summary()
 
 ```
 
-We now find a smaller effect than before (i.e. we previously had an upward bias). However, the result is now significant.
+We now find a smaller effect than before: 1 extra freezing day leads to 0.149% higher orange juice prices (i.e. we previously had an upward bias). However, the result is now significant.
+
 
 `r unhide()`
 
