@@ -1,7 +1,7 @@
 ---
 title: "Exercises 9"
 description: |
-  Under construction
+  Time for Series
 author:
   - name: Ralf Martin
     url: https://mondpanther.github.io/wwwmondpanther/
@@ -25,5 +25,127 @@ library("webex")
 library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../images/')
 ```
+
+# Exercise 9.1
+
+The [`oj.csv`](https://www.dropbox.com/s/o76do0oyoxhhy6p/oj.csv?dl=1) dataset contains monthly data
+on the log price of (frozen) orange juice concentrate (for the US) as the variable `lnp`. A large part of the orange production in the US originates from Florida. Hence, the weather in Florida is potentially an important factor in the orange price.
+Frost is rare in Florida. But when it happens it is particularly detrimental for the orange harvest. 
+The `fdd` contains the number of freezing degree days in a month.
+
+
+
+```{r}
+library(dplyr)
+oj=read.csv("https://www.dropbox.com/s/o76do0oyoxhhy6p/oj.csv?dl=1")
+
+
+##########
+  oj = na.omit(oj)
+  oj["lnp"]=log(oj$ppioj/oj$pwfsa *100)
+  
+  library(lubridate)
+  oj=oj %>% mutate(date=as_date(paste0(as.character(year),"-",as.character(month),"-01")))
+  
+##########################  
+
+write.csv(oj,"../../../../data/oj.csv")    
+  
+library(ggplot2)
+library(lubridate)
+#ggplot(oj,aes(x=date,y=lnp))+geom_line(color="green")+theme_minimal()+xlab("Monthly data")
+#ggplot(oj,aes(x=date,y=lnp))+geom_line()+theme_minimal()+xlab("Monthly data")  
+```  
+
+
+(a) Run a regression of the (log) orange juice price on freezing degree days in the previous month and interpret the regression.
+
+
+`r hide("Answer:")`
+
+To create a lagged version of the `fdd` variable we can use the `dplyr::lag()` function:
+
+```{r}
+library(dplyr)
+oj=oj %>% mutate(L1fdd=dplyr::lag(fdd))
+```
+
+Now run a regression of the price on freezing degree days: 
+
+```{r}
+lm(lnp~L1fdd,oj) %>% summary()
+
+```
+
+This suggest that freezing degree days have a positive impact on the price (as we would expect: freezing means there are less oranges around so the price goes up). One day more of freezing would imply an increase
+in the price by 0.2%. However, this result is not significant.
+
+
+`r unhide()`
+
+
+(b) Can you suggest reasons why the result in (a) might not be an unbiased estimate of the effect of 
+freezing on orange juice prices?
+
+
+`r hide("Answer:")`
+Freezing is likely to be exogenous. So we don't have to worry about the usual confounding factors.
+However, we are dealing with time series. One issue could be that the price series has a unit root. Plotting the series is 
+a good start to examine this:
+
+```{r}
+
+ggplot(oj,aes(x=date,y=lnp))+geom_line(color="green")+theme_minimal()+xlab("Monthly data")
+
+
+```
+
+
+`r unhide()`
+
+(c) Can you check if the price series has a unit root?
+
+`r hide("Answer:")`
+We can use the Dickey-Fuller test:
+
+```{r}  
+
+library(urca)
+summary(ur.df(oj$lnp))
+  
+```
+The test statistic is larger than the even the 10pct cut-off. Hence we cannot reject the 
+hypothesis that there is a unit root.
+
+
+`r unhide()`
+
+
+(d) Can you suggest an alternative (unbiased) approach to estimating the effect of freezing on price?
+
+`r hide("Answer:")`
+
+We need to difference the series to get rid of the unit root. Note that for the differenced series we clearly
+reject the unit root:
+
+
+```{r}
+
+ur.df(diff(oj$lnp)) %>% summary()
+
+```
+```{r}
+oj=oj %>% mutate(Dlnp=lnp-dplyr::lag(lnp))
+lm( Dlnp~L1fdd,oj) %>% summary()
+
+```
+
+We now find a smaller effect than before (i.e. we previously had an upward bias). However, the result is now significant.
+
+`r unhide()`
+
+
+
+
 
 

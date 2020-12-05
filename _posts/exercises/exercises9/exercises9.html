@@ -21,30 +21,30 @@
   <!--radix_placeholder_meta_tags-->
   <title>Exercises 9</title>
   
-  <meta property="description" itemprop="description" content="Under construction" />
+  <meta property="description" itemprop="description" content="Time for Series" />
   
   
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2020-09-08" />
-  <meta property="article:created" itemprop="dateCreated" content="2020-09-08" />
+  <meta property="article:published" itemprop="datePublished" content="2020-12-05" />
+  <meta property="article:created" itemprop="dateCreated" content="2020-12-05" />
   <meta name="article:author" content="Ralf Martin" />
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Exercises 9" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="Under construction" />
+  <meta property="og:description" content="Time for Series" />
   <meta property="og:locale" content="en_US" />
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary" />
   <meta property="twitter:title" content="Exercises 9" />
-  <meta property="twitter:description" content="Under construction" />
+  <meta property="twitter:description" content="Time for Series" />
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 9"]},{"type":"character","attributes":{},"value":["Under construction\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2020-09-08"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 9"]},{"type":"character","attributes":{},"value":["Time for Series\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2020-12-05"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["../../webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["../../webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1953,7 +1953,7 @@ height: 250px;
 .solution {
 height: 2em;
 overflow-y: hidden;
-padding: 0.5em;
+padding: 0.2em;
 }
 .solution.open {
 height: auto;
@@ -1976,7 +1976,7 @@ border-color: green;
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Exercises 9","description":"Under construction","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-09-08T00:00:00.000+01:00","citationText":"Martin, 2020"}
+{"title":"Exercises 9","description":"Time for Series","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-12-05T00:00:00.000+00:00","citationText":"Martin, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1987,17 +1987,177 @@ border-color: green;
 
 <div class="d-title">
 <h1>Exercises 9</h1>
-<p><p>Under construction</p></p>
+<p><p>Time for Series</p></p>
 </div>
 
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br />2020-09-08
+<br />2020-12-05
 </div>
 
 <div class="d-article">
+<h1 id="exercise-9.1">Exercise 9.1</h1>
+<p>The <a href="https://www.dropbox.com/s/o76do0oyoxhhy6p/oj.csv?dl=1"><code>oj.csv</code></a> dataset contains monthly data on the log price of (frozen) orange juice concentrate (for the US) as the variable <code>lnp</code>. A large part of the orange production in the US originates from Florida. Hence, the weather in Florida is potentially an important factor in the orange price. Frost is rare in Florida. But when it happens it is particularly detrimental for the orange harvest. The <code>fdd</code> contains the number of freezing degree days in a month.</p>
+<div class="layout-chunk" data-layout="l-body">
 
+</div>
+<ol type="a">
+<li>Run a regression of the (log) orange juice price on freezing degree days in the previous month and interpret the regression.</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>To create a lagged version of the <code>fdd</code> variable we can use the <code>dplyr::lag()</code> function:</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>Now run a regression of the price on freezing degree days:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+Call:
+lm(formula = lnp ~ L1fdd, data = oj)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.45826 -0.17130 -0.00483  0.12521  0.60393 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 4.674738   0.009079 514.916   &lt;2e-16 ***
+L1fdd       0.002637   0.002708   0.974    0.331    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.2257 on 638 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.001484,  Adjusted R-squared:  -8.083e-05 
+F-statistic: 0.9484 on 1 and 638 DF,  p-value: 0.3305</code></pre>
+</div>
+<p>This suggest that freezing degree days have a positive impact on the price (as we would expect: freezing means there are less oranges around so the price goes up). One day more of freezing would imply an increase in the price by 0.2%. However, this result is not significant.</p>
+</div>
+<ol start="2" type="a">
+<li>Can you suggest reasons why the result in (a) might not be an unbiased estimate of the effect of freezing on orange juice prices?</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>Freezing is likely to be exogenous. So we don’t have to worry about the usual confounding factors. However, we are dealing with time series. One issue could be that the price series has a unit root. Plotting the series is a good start to examine this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="data:image/png;base64,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" width="624" /></p>
+</div>
+</div>
+<ol start="3" type="a">
+<li>Can you check if the price series has a unit root?</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>We can use the Dickey-Fuller test:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.28240 -0.01007 -0.00124  0.00659  0.41180 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)   
+z.lag.1    -0.0002675  0.0004203  -0.636  0.52480   
+z.diff.lag  0.1284067  0.0392853   3.269  0.00114 **
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.04975 on 637 degrees of freedom
+Multiple R-squared:  0.01722,   Adjusted R-squared:  0.01413 
+F-statistic:  5.58 on 2 and 637 DF,  p-value: 0.003957
+
+
+Value of test-statistic is: -0.6363 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.58 -1.95 -1.62</code></pre>
+</div>
+<p>The test statistic is larger than the even the 10pct cut-off. Hence we cannot reject the hypothesis that there is a unit root.</p>
+</div>
+<ol start="4" type="a">
+<li>Can you suggest an alternative (unbiased) approach to estimating the effect of freezing on price?</li>
+</ol>
+<div class="solution">
+<button>
+Answer:
+</button>
+<p>We need to difference the series to get rid of the unit root. Note that for the differenced series we clearly reject the unit root:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.28373 -0.01140 -0.00246  0.00605  0.41061 
+
+Coefficients:
+           Estimate Std. Error t value Pr(&gt;|t|)    
+z.lag.1    -0.85301    0.05233 -16.300   &lt;2e-16 ***
+z.diff.lag -0.02086    0.03965  -0.526    0.599    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.04979 on 636 degrees of freedom
+Multiple R-squared:  0.4358,    Adjusted R-squared:  0.434 
+F-statistic: 245.7 on 2 and 636 DF,  p-value: &lt; 2.2e-16
+
+
+Value of test-statistic is: -16.3003 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.58 -1.95 -1.62</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+Call:
+lm(formula = Dlnp ~ L1fdd, data = oj)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.28200 -0.01001 -0.00095  0.00560  0.41224 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept) -0.0020334  0.0020063  -1.014    0.311  
+L1fdd        0.0014905  0.0005984   2.491    0.013 *
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.04989 on 638 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.009629,  Adjusted R-squared:  0.008077 
+F-statistic: 6.203 on 1 and 638 DF,  p-value: 0.01301</code></pre>
+</div>
+<p>We now find a smaller effect than before (i.e. we previously had an upward bias). However, the result is now significant.</p>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
