@@ -65,6 +65,8 @@ for (i in seq(1,length(file))) {
 
 # Guides
 
+- [Exam Question guidelines/examples](https://mondpanther.github.io/datastorieshub/srmexamnotes.html)
+
 ```{r ,echo=FALSE, message=FALSE}
 
 file=list.files(path="./code",pattern="Guide")
