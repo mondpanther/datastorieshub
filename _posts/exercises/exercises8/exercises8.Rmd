@@ -45,7 +45,8 @@ Results will be [here](https://datastorieshub.shinyapps.io/competition1_result/)
 
 # Exercise 8.2 - Learning about Antivaxxers
 
-
+For this exercise you have to work with an online app that you find 
+[here](https://datastorieshub.shinyapps.io/competition_antivaxx/)
 
 
 # Exercise 8.3 - 
