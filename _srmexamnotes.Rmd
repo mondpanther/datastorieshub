@@ -27,3 +27,66 @@ knitr::opts_chunk$set(fig.path='../../images/')
 ```
 
 
+
+
+
+# Exam
+
+## Exam Format:
+
+	- 2 Open (Essay style) Answer Questions: select 1 ,  20 Marks
+	- 32 Multiple Choice Questions: 4 answer options, 2.5 Marks each, 0.5 Marks deduction for wrong answer.
+
+### Examples for open questions
+- see [this]() Question from Exercise sheet 10
+
+
+Multiple Choice Question Examples
+
+Question 1
+Suppose you have estimated the following regression model on a representative sample of the UK population
+log⁡(Weight_i )=β_0+β_1 Female_i+β_2 AGE_i+β_3 AGE_i^2+ϵ_i
+where Weight_i is weight of a person in 100s of kilograms
+Suppose you find that β ̂_1=-0.10 Which of the following is a correct interpretation?
+	The average weight for women is 10kgs
+	Women – on average - weigh 10 kgs less than men
+	Women – on average – weigh 10% less than men
+	None of the above.
+
+Question 2
+For the model from Question 1: suppose you find that β ̂_2=0.01 and β ̂_3=-0.0001 .
+What does it tell you about the age at which we expect people to be heaviest?
+	At 25 years
+	At 75 years 
+	At 40 years
+	None of the above
+
+Question 3
+Using a univariate model you obtain a parameter estimate β ̂=2.1 with a standard error of 0.1 obtained using a sample size of 1000 observations. Should you reject the hypothesis that β=1 at the 5% level?
+
+	Yes
+	No
+	It depends on the variance of the residuals
+	It depends on the variance of the explanatory variable
+
+
+Question 4
+The demand for a new drug is known to be linear and downward sloping; i.e. a higher price means a lower demand. A researcher provided an estimate of this demand curve but suspects that a confounding factor led to a downward bias. This means that the estimated curve is
+
+	Flatter than it should be
+	Steeper than it should be
+	Upward sloping
+	None of the above
+
+
+Question 5
+The probability that a standardised normal variable takes a value of zero or more is: 
+
+	Equal to zero.
+	50%
+	95% for a significance level of 0.1
+	I need more information on the variance and probability distribution to answer this question. 
+
+
+
+

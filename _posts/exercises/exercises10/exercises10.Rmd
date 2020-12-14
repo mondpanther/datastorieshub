@@ -107,19 +107,28 @@ $$AGE^{max.wage}=\frac{10}{0.1\times 2}=50$$
 # Exercise 10.2
 
 
-Consider the dataset [ets_thres_final.csv](https://www.dropbox.com/s/yylc6ygkcrjir39/ets_thres_final.csv?dl=1). It contains emission figures (lnco2=log of CO2 emissions) for a sample of firms regulated by the European Emissions Trading System (EUETS) for the years from 2005 to 2017 although the firm identifiers have gone missing from the dataset. Note that an Emissions Trading System requires firms to buy permits for every unit of CO2 they emit. By restricting the total number of permits that are issued governments can control the total amount of emissions while allowing firms to trade permits freely so that they can be used with those businesses that find it hardest to reduce emissions. In the early days of the EU ETS (which started in 2005) permits where freely given to firms. This changed from 2013 onwards when permits where only given to certain firms and sectors that were deemed at risk from foreign competition. The variable free indicates those firms in the dataset. According to economic theory the method of permits allocation should have no effect on the eventual emissions by firms (Independence hypothesis). Firms that have been given free permits will have an incentive to reduce emissions as that frees up permits to sell within the permit market. 
+Consider the dataset [ets_thres_final.csv](https://www.dropbox.com/sh/rqmo1hvij1veff0/AAAnRCRpxRqV7LKu9nzt1SCea?dl=1). It contains emission figures (lnco2=log of CO2 emissions) for a sample of firms regulated by the European Emissions Trading System (EUETS) for the years from 2005 to 2017 although the firm identifiers have gone missing from the dataset. Note that an Emissions Trading System requires firms to buy permits for every unit of CO2 they emit. By restricting the total number of permits that are issued governments can control the total amount of emissions while allowing firms to trade permits freely so that they can be used with those businesses that find it hardest to reduce emissions. In the early days of the EU ETS (which started in 2005) permits where freely given to firms. This changed from 2013 onwards when permits where only given to certain firms and sectors that were deemed at risk from foreign competition. The variable `nonfree` indicates those firms in the dataset. According to economic theory the method of permits allocation should have no effect on the eventual emissions by firms (Independence hypothesis). Firms that have been given free permits will have an incentive to reduce emissions as that frees up permits to sell within the permit market. 
 
-(a)	Examine this hypothesis by running a regression of lnco2 on the free variable. Report what you find. 
+(a)	Examine this hypothesis by running a regression of lnco2 on the `nonfree` variable. Report what you find. 
 
 
 `r hide("Answer:")`
-```{r,echo=TRUE}
+
+```{r,include=FALSE,eval=FALSE}
+library(magrittr)
 library(dplyr)
 df=read.csv("https://www.dropbox.com/s/yylc6ygkcrjir39/ets_thres_final.csv?dl=1")
-df=df %>% mutate(free=factor(free),period=factor(period))
+df%<>%mutate(nonfree=(1-free)) #%>% select(-free)
+write.csv(df,"../../../../data/ets_thres_final.csv")
+```
+
+```{r,echo=TRUE}
+library(dplyr)
+df=read.csv("https://www.dropbox.com/s/urro3ty46kr4f7z/ets_thres_final.csv?dl=1")
+df=df %>% mutate(free=factor(nonfree),period=factor(period))
 head(df)
 
-lm(lnco2~free,df) %>% summary()
+lm(lnco2~nonfree,df) %>% summary()
 df %>% group_by(year) %>% summarise(n())
 
 
@@ -130,7 +139,7 @@ df %>% group_by(year) %>% summarise(n())
 (b)	Provide an interpretation of the regression coefficient along with a discussion of the implications of your result. 
 
 `r hide("Answer:")`
-The firms that receive free permits pollute 50% more on average over the 2009 to 2017 period.
+The firms that stop receiving free permits in 2013 pollute 50% less on average over the 2009 to 2017 period.
 `r unhide()`
 
 
@@ -150,11 +159,11 @@ This shows that on average emission after 2012 are .16 percent lower than before
 `r unhide()`
 
 
-(d)	Would you say your results in part (a) provide a causal estimate of the effect of free permits?
+(d)	Would you say your results in part (a) provide a causal estimate of the effect of not giving free permits?
 
 `r hide("Answer:")`
-The results in part a) confound the treatment effect with any - pre-existing - firm characteristics that might have influenced the allocation of permits. For instance it might well be that the most energy (and therefore pollution) intensive firms were given
-free permits.
+The results in part a) confound the treatment effect with any - pre-existing - firm characteristics that might have influenced the allocation of permits. For instance it might well be that the most energy (and therefore pollution) intensive firms were given given an excemption from having to buy all their permits.
+
 `r unhide()`
 
 (e)	With the data at hand can you propose and implement an alternative regression approach that might address any concerns raised in (d)? If yes, implement this regression and discuss its results. What does the result tell you about the Independence hypothesis discussed in the introduction? 
@@ -162,13 +171,13 @@ free permits.
 
 `r hide("Answer:")`
 
-In the dataset as it is there is actually no variable that properly captures the treatment we are interested in. `free` identifies firms that are eventually treated but it is equal to 1 also in periods when they are not treated. But it is easy to create a dummy variable, which is only equal to one for those firms that treated in periods when they are treated: we simply have to creat a dummy variable that is only true for `free` firms during period 2. Let's try that:
+In the dataset as it is there is actually no variable that properly captures the treatment we are interested in. `nonfree` identifies firms that are eventually treated (the treatment being the bitter pill of having to pay for all their permits) but it is equal to 1 also in periods when they are not treated. But it is easy to create a dummy variable, which is only equal to one for those firms that treated in periods when they are treated: we simply have to create a dummy variable that is only true for `nonfree` firms during period 2. Let's try that:
 
 ```{r,echo=TRUE}
 
-df=df %>% mutate( period2Xfree= (free==1) & ( as.character(period)=="2" ) )
+df=df %>% mutate( period2Xnonfree= (free==1) & ( as.character(period)=="2" ) )
 
-lm(lnco2~period2Xfree,df) %>% summary()
+lm(lnco2~period2Xnonfree,df) %>% summary()
 
 ```
 At face value this would suggest that firms receiving free permits leads to 41% more CO2 emissions.
@@ -176,10 +185,10 @@ However, there are at least 2 potential confounding factors:
 1. The fact that firms have not been selected at random to receive permits
 2. There might be time effects present. For instance, after 2013 growth might have picked up following the recession of 2008.
 
-We can control for the first issue by including `free` as a control variable as (it measures how different the `free` firms were before they received free permits). The second issue we can address with a period dummy variable. Hence:
+We can control for the first issue by including `nonfree` as a control variable as (it measures how different the `nonfree` firms were before they received free permits). The second issue we can address with a period dummy variable. Hence:
 
 ```{r, echo=TRUE}
-lm(lnco2~period+free+period2Xfree,df) %>% summary()
+lm(lnco2~period+nonfree+period2Xnonfree,df) %>% summary()
 
 ```
 Hence, this changes the the coefficient for period2Xfree quita bit; i.e. it would suggest that free permit alloction increases emission by 16% only.
@@ -188,7 +197,7 @@ An alternative way of implementing that is via the `:` operator which interacts 
 
 
 ```{r , echo=TRUE}
-lm(lnco2~period+free+period:free,df) %>% summary()
+lm(lnco2~period+free+period:nonfree,df) %>% summary()
 ```
 `r unhide()`
 
@@ -332,7 +341,7 @@ For the other groups the coefficient tells us how much higher (or lower) that sh
 
 
 
-# Exercise 10.4
+# Exercise 10.4 {#pollution}
 
 Air pollution has been shown to have a variety of adverse health effects. Recently, researchers have also started to investigate other negative effects. Below we report regression tables from a study that investigates a link between air pollution and car accidents.
 
