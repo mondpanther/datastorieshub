@@ -1,0 +1,60 @@
+---
+title: "Learning like a machine"
+author: Ralf Martin
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE,echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Titanic
+
+```{r load data}
+library(dplyr)
+library(readr)
+titanic=read_csv("https://gist.githubusercontent.com/michhar/2dfd2de0d4f8727f873422c5d959fff5/raw/fa71405126017e6a37bea592440b4bee94bf7b9e/titanic.csv")
+
+library(magrittr)
+
+titanic %<>% mutate( Survived=factor(Survived, levels = c(0,1), labels = c("No", "Yes") ))
+```
+
+```{r}
+
+# Fare
+logistic.mod1 <- glm(Survived ~ Fare, data = titanic, # estimate a generalized linear model 
+                     family = binomial(logit))
+logistic.mod1 %>% summary()
+
+
+fitted.results <- predict(logistic.mod1, newdata = titanic, type = "response")
+fitted.results <- ifelse(fitted.results > 0.5, 1, 0) # convert to binary
+fitted.results <- factor(fitted.results, levels = c(0,1), labels = c("No", "Yes"))
+
+length(fitted.results)
+
+library(caret)
+cc=caret::confusionMatrix(fitted.results, titanic$Survived)
+cc$table
+caret::confusionMatrix(fitted.results, titanic[,"Survived"][[1]])$overall[1]
+titanic$Survived==titanic[,"Survived"][[1]]
+
+
+#Fare + Sex
+logistic.mod2 <- glm(Survived ~ Fare+Sex, data = titanic, # estimate a generalized linear model 
+                 family = binomial(logit))
+logistic.mod2 %>% summary()
+fitted.results <- predict(logistic.mod2, newdata = titanic, type = "response")
+fitted.results <- ifelse(fitted.results > 0.5, 1, 0) # convert to binary
+fitted.results <- factor(fitted.results, levels = c(0,1), labels = c("No", "Yes"))
+
+caret::confusionMatrix(fitted.results, titanic$Survived)$overall[1]
+
+
+
+
+```
