@@ -162,7 +162,7 @@ This shows that on average emission after 2012 are .16 percent lower than before
 (d)	Would you say your results in part (a) provide a causal estimate of the effect of not giving free permits?
 
 `r hide("Answer:")`
-The results in part a) confound the treatment effect with any - pre-existing - firm characteristics that might have influenced the allocation of permits. For instance it might well be that the most energy (and therefore pollution) intensive firms were given given an excemption from having to buy all their permits.
+The results in part a) confound the treatment effect with any - pre-existing - firm characteristics that might have influenced the allocation of permits. For instance it might well be that the most energy (and therefore pollution) intensive firms were given given an exemption from having to buy all their permits. Hence, firms who have to buy permits (`nonfree` firms) are those with lower CO2 consumption to begin with.
 
 `r unhide()`
 
@@ -180,18 +180,18 @@ df=df %>% mutate( period2Xnonfree= (free==1) & ( as.character(period)=="2" ) )
 lm(lnco2~period2Xnonfree,df) %>% summary()
 
 ```
-At face value this would suggest that firms receiving free permits leads to 41% more CO2 emissions.
+At face value this would suggest that firms not receiving free permits leads to 41% less CO2 emissions.
 However, there are at least 2 potential confounding factors:
-1. The fact that firms have not been selected at random to receive permits
+1. The fact that firms still getting free permits have not been selected at random
 2. There might be time effects present. For instance, after 2013 growth might have picked up following the recession of 2008.
 
-We can control for the first issue by including `nonfree` as a control variable as (it measures how different the `nonfree` firms were before they received free permits). The second issue we can address with a period dummy variable. Hence:
+We can control for the first issue by including `nonfree` as a control variable as (it measures how different the `nonfree` firms were before they were made to buy all permits). The second issue we can address with a period dummy variable. Hence:
 
 ```{r, echo=TRUE}
 lm(lnco2~period+nonfree+period2Xnonfree,df) %>% summary()
 
 ```
-Hence, this changes the the coefficient for period2Xfree quita bit; i.e. it would suggest that free permit alloction increases emission by 16% only.
+Hence, this changes the the coefficient for period2Xfree quite a bit; i.e. it would suggest that nonfree permit allocation reduces emissions by 16% only.
 
 An alternative way of implementing that is via the `:` operator which interacts (multiplies) variables "on the fly":
 

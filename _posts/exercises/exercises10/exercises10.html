@@ -1143,7 +1143,7 @@ F-statistic: 0.002216 on 1 and 6827 DF,  p-value: 0.9625</code></pre>
 <button>
 Answer:
 </button>
-<p>The results in part a) confound the treatment effect with any - pre-existing - firm characteristics that might have influenced the allocation of permits. For instance it might well be that the most energy (and therefore pollution) intensive firms were given given an excemption from having to buy all their permits.</p>
+<p>The results in part a) confound the treatment effect with any - pre-existing - firm characteristics that might have influenced the allocation of permits. For instance it might well be that the most energy (and therefore pollution) intensive firms were given given an exemption from having to buy all their permits. Hence, firms who have to buy permits (<code>nonfree</code> firms) are those with lower CO2 consumption to begin with.</p>
 </div>
 <ol start="5" type="a">
 <li>With the data at hand can you propose and implement an alternative regression approach that might address any concerns raised in (d)? If yes, implement this regression and discuss its results. What does the result tell you about the Independence hypothesis discussed in the introduction?</li>
@@ -1178,8 +1178,8 @@ Residual standard error: 1.399 on 6827 degrees of freedom
 Multiple R-squared:  0.01592,   Adjusted R-squared:  0.01578 
 F-statistic: 110.5 on 1 and 6827 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<p>At face value this would suggest that firms receiving free permits leads to 41% more CO2 emissions. However, there are at least 2 potential confounding factors: 1. The fact that firms have not been selected at random to receive permits 2. There might be time effects present. For instance, after 2013 growth might have picked up following the recession of 2008.</p>
-<p>We can control for the first issue by including <code>nonfree</code> as a control variable as (it measures how different the <code>nonfree</code> firms were before they received free permits). The second issue we can address with a period dummy variable. Hence:</p>
+<p>At face value this would suggest that firms not receiving free permits leads to 41% less CO2 emissions. However, there are at least 2 potential confounding factors: 1. The fact that firms still getting free permits have not been selected at random 2. There might be time effects present. For instance, after 2013 growth might have picked up following the recession of 2008.</p>
+<p>We can control for the first issue by including <code>nonfree</code> as a control variable as (it measures how different the <code>nonfree</code> firms were before they were made to buy all permits). The second issue we can address with a period dummy variable. Hence:</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 lm(lnco2~period+nonfree+period2Xnonfree,df) %&gt;% summary()</code></pre>
@@ -1205,7 +1205,7 @@ Residual standard error: 1.387 on 6825 degrees of freedom
 Multiple R-squared:  0.03268,   Adjusted R-squared:  0.03225 
 F-statistic: 76.86 on 3 and 6825 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<p>Hence, this changes the the coefficient for period2Xfree quita bit; i.e. it would suggest that free permit alloction increases emission by 16% only.</p>
+<p>Hence, this changes the the coefficient for period2Xfree quite a bit; i.e. it would suggest that nonfree permit allocation reduces emissions by 16% only.</p>
 <p>An alternative way of implementing that is via the <code>:</code> operator which interacts (multiplies) variables “on the fly”:</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
