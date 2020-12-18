@@ -1,0 +1,12 @@
+"0","#library(\"doMC\")
+library(doParallel)
+library(randomForest)
+#data(iris)
+
+cores <- 5
+cl <- makePSOCKcluster(cores)
+registerDoParallel(cl)
+darkAndScaryForest <- foreach(y=seq(10), .combine=combine ) %dopar% {
+   set.seed(y) # not really needed
+   rf <- randomForest(avaxhoaxid ~ ., data=wide_narrow, ntree=10, norm.votes=FALSE)
+}"

@@ -1,0 +1,6 @@
+"0","```r
+wide%<>% replace_na(0)
+
+```"
+"1","Error in replace_na.data.frame(., 0) : is_list(replace) is not TRUE
+"

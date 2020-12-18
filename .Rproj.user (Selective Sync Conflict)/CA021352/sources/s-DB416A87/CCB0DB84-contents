@@ -1,0 +1,161 @@
+---
+title: "Antivaxxer competition: can you find Antivaxxers based on their celebrity interactions?"
+author: "Ralf Martin"
+output: html_document
+runtime: shiny
+---
+
+
+
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r, include=FALSE}
+
+#install.packages('e1071', dependencies=TRUE)
+library('e1071')
+library(dplyr)
+library(magrittr)
+#crime <- read.csv("https://www.dropbox.com/s/mf5lorptdvsuroy/crime_competition.csv?dl=1")
+
+library(readr)
+wide_narrow=read_csv("https://www.dropbox.com/s/asnc2hgczz89p54/wide_narrow.csv?dl=1")
+
+#wide_narrow=read_csv("wide_narrow.csv")
+crime=wide_narrow
+
+crime %>% group_by(avaxhoaxid) %>% summarise(n())
+
+crime= crime %>%   mutate_at(vars(starts_with("AT_")),factor)
+
+vars=data.frame(Variable.Name=names(wide_narrow),Description="Celebrity Dummy") %>% filter(Variable.Name!="train" & Variable.Name!="avaxhoaxid")
+
+vars%<>%mutate(Description=ifelse(Variable.Name=="atnumLT4",
+                                  "Dummy variable: user mentions more than 4 celebrities",
+                                  Description))
+#vars%<>%mutate(Description=ifelse(Variable.Name=="atnumLT4","Dummy variable: user mentions more than 4 celebrities"))
+
+#vars= read.csv("https://www.dropbox.com/s/ny0yrb0kynj726l/List%20of%20variables.csv?dl=1")
+
+
+train_1 <- function(
+  formula,
+  group = LETTERS[1:12],
+  seed = 100,          # seed for random generation (default = 100)
+  warns = -1
+) {
+  
+  #require(caret)
+  library(caret)
+  options(warn=warns)
+  # set the seed
+  set.seed(seed)
+  
+  
+  crime%<>% mutate(avaxhoaxid = factor(avaxhoaxid,levels = c(FALSE,TRUE), labels = c("0","1")))
+  
+  #source(paste0("template_1_",group[1],".R"))
+  #formula="avaxhoaxid ~ AT_realDonaldTrump+AT_YouTube+AT_BillGates+AT_Oprah"
+  #AT_realDonaldTrump*AT_YouTube*atnumLT4*AT_BillGates*AT_BarackObama*AT_CNN
+  logit.mod <- glm(formula(formula), data = crime, 
+                   family = binomial(logit)) 
+  
+  #logit.mod %>% summary()
+  fitted.results = predict(logit.mod, newdata=crime, type="response") # predict probabilities
+  fitted.results = ifelse(fitted.results > 0.5,1,0) # convert to binary
+  fitted.results = factor(fitted.results,levels = c(0,1), labels = c("0","1"))
+  performance <- confusionMatrix(fitted.results,
+                                 crime$avaxhoaxid)
+  
+  
+  #print(logit.mod %>% summary())
+  #cat('Confusion Matrix: \n')
+  
+  #DT::dataTableOutput("mytable2")
+  
+  #knitr::kable(performance$table,
+  #             row.names=c("Prediction=0","Prediction=1"),
+  #             col.names=c("Actual=0","Actual=1"))
+  
+  cat(paste0("Share of Antivaxxers correctly classified: ",performance$table[2,2]/sum(performance$table[,2]) ))
+  cat(paste0("\n Share of others correctly classified: ",performance$table[1,1]/sum(performance$table[,1]) ))
+  cat("\n \n")
+  #library(DT)
+  #DT::renderDataTable({performacne$table })
+
+  
+  cat(paste0("Formula: ", formula))
+  cat(paste(
+    '\n',
+    sprintf('\nAccuracy: %0.4f', performance$overall[1]),  # 1 for Accuracy
+    sprintf('\nPrecision: %0.4f', performance$byClass[4]), # 4 for Neg Pred Value (survived) # use this
+    sprintf('\nRecall: %0.4f', performance$byClass[2]),    # 2 for Specificity (survived) # use this one
+    '\n'
+  ))
+  print(logit.mod %>% summary())
+  
+}
+
+
+#train_1(formula="larcPerPop ~ householdsize")
+
+```
+
+In this exercise we explore a dataset with information on nearly 300k twitter users. This is a random sample of users who at some point over 
+the last year tweeted the term `corona`, `covid` or `vaccines`.
+The variable `avaxhoaxid` is a dummy variable equal to 1 if a used a series of hashtags related to believe in covid hoaxism or believe in anti vaccination conspiracy theories, which aplies to about 14k users (Antivaxxers) (The dataset is available [here](https://www.dropbox.com/s/asnc2hgczz89p54/wide_narrow.csv?dl=1).
+
+
+Here we try to predict/identify an Antivaxxer on the basis of celebrities they interact with (based on [this](https://gist.github.com/mbejda/9c3353780270e7298763) list).
+
+There are at least 2 motivations for this: Firstly, this could help us to understand better what kind of people antivaxxers are.
+Secondly, the UK government has recently suggested to enlist celebrities to convince people to get vaccinated. An interesting question therefore becomes which celebrities might be usefule in this endeavour.
+
+
+You can try different models by entering their formula in the field below. Below you also see a table with the available variables. They mostly consist of dummy variable equal to 1 if a particular twitter use has ever at a particular celebrity (i.e. used the celebrities twitter handle in a tweet)
+
+Our competition app will assess your model. Once you think you found your preferred model, you can submit you entry to the competition using [this](https://forms.gle/rq748mLTEpaCBfkSA) form.  
+
+```{r eruptions, echo=FALSE}
+#inputPanel
+fluidPage(
+  textInput("text", label = h3("Enter your Formula"), 
+            value = "avaxhoaxid ~ AT_BillGates+AT_CNN+AT_YouTube",
+            width = "2000px")
+  #,
+  #tags$head(tags$style(type="text/css", "#text {width: 1550px}"))
+
+)
+
+
+
+renderPrint({ 
+       train_1(formula=input$text)
+})
+
+
+```
+
+
+
+When you are happy with the performance of your model please submit it using [this](https://forms.gle/BmaEdrKro3SQzyrd7) form.
+
+
+
+# Available Variables:
+
+```{r,echo=FALSE, message=FALSE}
+library(DT)
+DT::renderDataTable({vars })
+
+```
+
+
+
+

@@ -1,0 +1,599 @@
+---
+title: "Exercises 10"
+description: |
+  More exercises to help you become an econometrics superstar
+author:
+  - name: Ralf Martin
+    url: https://mondpanther.github.io/wwwmondpanther/
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    self_contained: false
+    css: ../../webex.css
+    includes:
+      after_body: ../../webex.js
+categories:
+  - Exercises
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+
+```{r setup, include = FALSE, message=FALSE}
+library("webex")
+library(ggplot2)
+knitr::opts_chunk$set(fig.path='../../images/')
+```
+
+
+
+```{r  fig.width=30,echo=F,preview=TRUE,out.width = '80%'}
+knitr::include_graphics("adidas-superstar-EG4958.jpg")
+```
+
+
+
+# Exercise 10.1
+
+
+(a) Suppose you estimate the gender difference in returns to education using the following mode:
+
+$$log(wage)=(\beta_0+\delta_0 female)+(\beta_1+\delta_1 female) \times educ + u$$
+where wage is the hourly wage, female is a gender dummy, which is equal 1 
+if the individual is female, and educ is the number of years of education. 
+Provide an interpretation if $δ_0<0$ and $δ_1<0$.
+
+
+`r hide("Answer:")`
+<br>
+This is a linear model where the intercept men is $\beta_0$ and for women is $\beta_0+\delta_0 female$. The change in log wages for men is $\beta_1$ whereas for women it is $\beta_1+\delta_1 female$. Also note that because we have log wage as dependent variable, these coefficients can be interpreted as percentage changes in wage.
+If $δ_0<0$ and $δ_1<0$, this means that women earn less for a given level of education and also that the change in wage for a given change in education (i.e. the returns to education) are lower for women.
+
+
+The figure below illustrates this model:
+![](womenmen.png){width=100%}
+Note that $\beta_1$ represents the slope of the line for men whereas $\delta_1$ reperesents how much less the line for women is sloped compared to men.
+
+`r unhide()`
+
+
+(b) Someone asserts that expected wages are the same for men and women who have the same level of education. Referring to the model in part (a), what would be your null hypothesis to test this? How you would test it. 
+
+
+`r hide("Answer:")`
+This would require the joint hypothesis: $δ_0=0$ & $δ_1=0$. This can be implemented via a joint (F-) test; e.g. in R this can be done with the linearHypothesis Command.
+`r unhide()`
+
+
+(c) Suppose your estimation returns the following values for the model from part (a):  
+$\hat{δ}_0=-0.1$,  $\hat{δ}_1=-0.01$. Based on this, what is the expected wage differential between a man and a woman with 10 years of schooling? 
+
+
+`r hide("Hint:")`
+Man with 10 years: $E\{log(wage)|Man\}=\beta_0+\beta_1 \times educ$ 
+
+Women with 10 years:  $E\{log(wage)|Women\}=\beta_0+\delta_0+(\beta_1+\delta_1) \times educ$
+`r unhide()`
+<br>
+`r hide("Answer:")`
+The wage differential between a man an women with the same 10 years of education becomes
+$$E\{log(wage)|Man,10years\} - E\{log(wage)|Women,10 years\}=-(\delta_0+\delta_1\times 10)$$
+$$=0.1+10\times0.01=0.2$$
+Thus we would expect the women to have a a 20% lower wage
+`r unhide()`
+
+
+(d) Suppose you find in addition that $β_1=0.01$. What does it imply about the effect of 5 years more of education on the expected wage of a woman? 
+
+`r hide("Answer:")`
+Consequently the effect of education on women's wages would become $β_1+\delta_1=0.01-0.01=0$. This would mean that education has no effect on women's wages.
+`r unhide()`
+
+
+(e)	Suppose we have estimated the following wage equation
+$$W =10+10AGE-0.1AGE^2+ϵ$$
+Based on this, at what age would we expect the highest wage?
+
+
+`r hide("Answer:")`
+The equation describes a hump shaped relationship between wages and age (since the squared term is negative). It therefore makes sense to find the top of the hump which will have an age gradient of 0. The gradient can be found by differentiating with respect to age: 
+$$\frac{\partial W}{\partial AGE}=10-0.1\times 2 \times AGE$$
+Thus setting $\frac{\partial W}{\partial AGE}$ equal to zero leads to 
+$$AGE^{max.wage}=\frac{10}{0.1\times 2}=50$$
+`r unhide()`
+
+
+# Exercise 10.2
+
+
+Consider the dataset [ets_thres_final.csv](https://www.dropbox.com/sh/rqmo1hvij1veff0/AAAnRCRpxRqV7LKu9nzt1SCea?dl=1). It contains emission figures (lnco2=log of CO2 emissions) for a sample of firms regulated by the European Emissions Trading System (EUETS) for the years from 2005 to 2017 although the firm identifiers have gone missing from the dataset. Note that an Emissions Trading System requires firms to buy permits for every unit of CO2 they emit. By restricting the total number of permits that are issued governments can control the total amount of emissions while allowing firms to trade permits freely so that they can be used with those businesses that find it hardest to reduce emissions. In the early days of the EU ETS (which started in 2005) permits where freely given to firms. This changed from 2013 onwards when permits where only given to certain firms and sectors that were deemed at risk from foreign competition. The variable `nonfree` indicates those firms in the dataset. According to economic theory the method of permits allocation should have no effect on the eventual emissions by firms (Independence hypothesis). Firms that have been given free permits will have an incentive to reduce emissions as that frees up permits to sell within the permit market. 
+
+(a)	Examine this hypothesis by running a regression of lnco2 on the `nonfree` variable. Report what you find. 
+
+
+`r hide("Answer:")`
+
+```{r,include=FALSE,eval=FALSE}
+library(magrittr)
+library(dplyr)
+df=read.csv("https://www.dropbox.com/s/yylc6ygkcrjir39/ets_thres_final.csv?dl=1")
+df%<>%mutate(nonfree=(1-free)) #%>% select(-free)
+write.csv(df,"../../../../data/ets_thres_final.csv")
+```
+
+```{r,echo=TRUE}
+library(dplyr)
+df=read.csv("https://www.dropbox.com/s/urro3ty46kr4f7z/ets_thres_final.csv?dl=1")
+df=df %>% mutate(free=factor(nonfree),period=factor(period))
+head(df)
+
+lm(lnco2~nonfree,df) %>% summary()
+df %>% group_by(year) %>% summarise(n())
+
+
+```
+`r unhide()`
+
+
+(b)	Provide an interpretation of the regression coefficient along with a discussion of the implications of your result. 
+
+`r hide("Answer:")`
+The firms that stop receiving free permits in 2013 pollute 50% less on average over the 2009 to 2017 period.
+`r unhide()`
+
+
+
+(c)	The variable period is a categorical variable equal to 1 for observations from before 2013 and equal to 2 for observations from year 2013 onward. Convert it into a factor variable and run a regression of lnco2 on period. Provide an interpretation of the estimated coefficients.
+
+`r hide("Answer:")`
+
+
+```{r,echo=TRUE}
+lm(lnco2~period,df) %>% summary()
+
+```
+
+
+This shows that on average emission after 2012 are .16 percent lower than before 2013, a value that is not significantly different from zero.
+`r unhide()`
+
+
+(d)	Would you say your results in part (a) provide a causal estimate of the effect of not giving free permits?
+
+`r hide("Answer:")`
+The results in part a) confound the treatment effect with any - pre-existing - firm characteristics that might have influenced the allocation of permits. For instance it might well be that the most energy (and therefore pollution) intensive firms were given given an excemption from having to buy all their permits.
+
+`r unhide()`
+
+(e)	With the data at hand can you propose and implement an alternative regression approach that might address any concerns raised in (d)? If yes, implement this regression and discuss its results. What does the result tell you about the Independence hypothesis discussed in the introduction? 
+
+
+`r hide("Answer:")`
+
+In the dataset as it is there is actually no variable that properly captures the treatment we are interested in. `nonfree` identifies firms that are eventually treated (the treatment being the bitter pill of having to pay for all their permits) but it is equal to 1 also in periods when they are not treated. But it is easy to create a dummy variable, which is only equal to one for those firms that treated in periods when they are treated: we simply have to create a dummy variable that is only true for `nonfree` firms during period 2. Let's try that:
+
+```{r,echo=TRUE}
+
+df=df %>% mutate( period2Xnonfree= (free==1) & ( as.character(period)=="2" ) )
+
+lm(lnco2~period2Xnonfree,df) %>% summary()
+
+```
+At face value this would suggest that firms receiving free permits leads to 41% more CO2 emissions.
+However, there are at least 2 potential confounding factors:
+1. The fact that firms have not been selected at random to receive permits
+2. There might be time effects present. For instance, after 2013 growth might have picked up following the recession of 2008.
+
+We can control for the first issue by including `nonfree` as a control variable as (it measures how different the `nonfree` firms were before they received free permits). The second issue we can address with a period dummy variable. Hence:
+
+```{r, echo=TRUE}
+lm(lnco2~period+nonfree+period2Xnonfree,df) %>% summary()
+
+```
+Hence, this changes the the coefficient for period2Xfree quita bit; i.e. it would suggest that free permit alloction increases emission by 16% only.
+
+An alternative way of implementing that is via the `:` operator which interacts (multiplies) variables "on the fly":
+
+
+```{r , echo=TRUE}
+lm(lnco2~period+free+period:nonfree,df) %>% summary()
+```
+`r unhide()`
+
+
+
+# Exercise 10.3
+
+
+For this question use the dataset [hals1prep.csv](https://www.dropbox.com/s/1xg2an5qudcahhy/hals1prep.csv?dl=1), containing data from the UK Health and Lifestyle Survey (1984-85). In this survey, several thousand people in the UK were being asked questions about their health and lifestyle.
+
+(a)	The variable bmi records the body mass index (BMI) of the respondents. The BMI uses the weight and height to work out whether a weight is healthy or if someone is overweight. A value between 18.5 and 24.9 indicates a healthy weight. Based on the information below, which region of the UK had – on average – the most overweight population? Run a regression of BMI on regional categories (recorded in the variable region). Use this to figure out in which UK regions are on average outside the healthy BMI range . 
+
+`r hide("Answer:")`
+```{r,echo=TRUE}
+halsx=read.csv("https://mondpanther.github.io/datastorieshub/data/hals1prep.csv")
+table(halsx$ownh)
+
+table(halsx$region)
+#summary(lm(bmi~ region, halsx))
+summary(lm(bmi~0+ region, halsx))
+
+
+
+```
+
+If we drop the intercept by writing `0+...` the dummies represent the average BMI values. We that Wales has the highest, with both Scotland and Wales above 24.9 and all other regions within the healthy range.
+`r unhide()`
+
+
+b)	The variable ownh_num records responses to the question “Would you say that for someone of your age your own health in general is…” where users had the following response options:
+
+•	Excellent (1)
+
+•	Good (2)
+
+•	Fair (3)
+
+•	Poor (4)
+
+The numbers in brackets indicate how these options were recorded in the `ownh_num` variable. Run a regression of `ownh_num` on `bmi` and provide a discussion of what you find. Is it in line with your expectations on this?
+
+`r hide("Answer:")`
+```{r, echo=TRUE}
+lm(ownh_num~bmi , halsx) %>% summary()
+```
+An increase in the BMI by 1 unit increases the health score 0.014 units. Because a higher value of the score implies worse health this suggests a reduction in health which is line with expectations.
+
+`r unhide()`
+
+c)	Can you think of at least two reasons why the estimate in b) does not provide a correct representation of the causal relationship between bmi and health?   
+
+
+
+`r hide("Answer:")`
+There might be a variety of confounding factors; e.g. richer people might be healthier and less overweight because they can afford higher quality food (making them slimmer) as well as better medical care (making them healthier for reasons unrelated to food intake and weight). Hence, because in this scenario money is negatively correlated with both BMI and the onwnh_num health score this leads to an upward bias; i.e. the coefficient would be lower in reality than what we found.
+
+Education might play a similar role; i.e. better educated people will be healthier for a range of reasons (e.g. knowledge about health and how get the best care) and the same knowledge might also allow them to eat better and gain less weight.
+
+There might also be a direct reverse causality: people who are sicker might find it hard to exercise and/or make the effort of doing high quality cooking which would again lead to an upward bias in our regression.
+
+However, note that one could imagine that this also goes the other way round: many diseases lead to extreme weight loss which would imply a downward bias in our regression.
+
+Age might be an other issue. Most people get a bit fatter as they age (well at least I do). Now the question asks to consider age when answering the question. However, there might be a systematic bias in how people respond to such questions. E.g. suppose older people tend to get more content than younger people so that they are more often just happy with their health. This would mean that age has a negative effect (more healthy) on the dependent variable. At the same time there is a positive effect on BMI. This would mean a negative correlation between errors and omitted variable implying a downward bias.
+
+Again the bias could go the other way round if for instance older people are more likely to become hypochondriacs.
+
+
+`r unhide()`
+
+
+d)	The dataset includes several additional control variables.  These include 
+
+•	incomeB a categorical variable representing income brackets where “1” represents the lowest and “12” the highest income group.
+•	agyrs – a variable recording the age of the participant
+
+Include those in the regression of reported health from b) Discuss what the output suggests about the relationships between health and age, and health and income. Are they in line with what you would have expected? In each case can you provide an explanation for the kind of relationship found? 
+
+Also discuss the usefulness of including both the age and income controls for estimating the causal effect of BMI. In each case discuss at least one reason for and one reason against including these controls.  [5 points]
+
+
+`r hide("Answer:")`
+```{r, echo=TRUE}
+lm(ownh_num~bmi+agyrs+factor(incomeB) , halsx) %>% summary()
+
+
+```
+The health score for higher income bands is lower suggesting richer people tend to be healthier (or at least report to be healther). This is inline what we would expect: richer people can afford better health care, live in healthier houses, in better neighbourhoods with less pollution etc.
+
+The relation between age and health seems a bit more surprising as it suggests that older people report being healthier. But we have to remind ourselves that the question asked “how is your health given your age”.  Hence, it could mean that older people lower their standards and are more content. 
+
+Another more sinister explanation is the following: suppose each generation has some people that are inherently healthy (e.g. based on their genes) and other that more sickly. Clearly we would expect the healthier to be less likely to die and thereby get older. This would mean that even if people respond in exactly the same to the health question throughout their life the only old people remaining to respond to the survey are the ones that always responded as being in great health.
+
+We would want to include those variables if there is concern regarding some of the biases discussed in part c). For that they do not only need to have an affect on the dependent variable (health score) but also cause some of the variation in the BMI explanatory variable. See part c) for a more elaborate discussion.
+
+An important reason not to include those is if we think the causal chain goes the other way round; e.g. it could be that people who are overweight have
+harder time in the job market making them poorer. Equally, being overweight might affect your chances of survival and thereby your age.
+
+`r unhide()`
+
+
+e)	Consider the R output below. It builds a new dataframe as a transformation the dataframe halsx with the health survey data. ownh_num is defined as in b). Can you provide an interpretation for the coefficients of the linear regression reported at the end of R output? Note that the rbind() command combines 
+dataframes vertically .
+
+```{r, echo=TRUE}
+labels=c("excellent", "good", "fair", "poor")
+
+for(i in 1:4){
+  fr=halsx
+  fr['dum']=fr$ownh_num==i
+  fr['label']=labels[i]
+  if(i==1){
+     longframe=fr
+  }
+  else {
+    
+    longframe=rbind(longframe,fr)
+  }
+  
+  print(nrow(longframe))
+
+}  
+
+summary(lm(dum~label,longframe))
+
+```
+
+`r hide("Answer:")`
+The regression reports the share of responses to the health question in the data; i.e. from the intercept we can see that 20.6% of respondents report excellent health. (20.6+2.5)% respond that their health is fair and so on.
+
+
+Why is this the case?
+
+Firstly, note that the `for` loop creates a new dataframe (called `longframe`) that is basically 5 copies (one for each possible health status answer category) of the original dataframe `fr` glued together (that's what the command `rbind()` does; i.e. combining dataframes vertically).
+The only thing that is different between the 5 dataframe copies is the newly created variable `dum`. It is equal to 1 if a respondent responds to the health survey in the way that corresponds to the answer category.
+With that in mind you need to remember what we learned about dummy variables as dependent and explanatory variables. For instance we said that constant represents the average dependent variable for the reference group. So here this is the observations that are in the dataframe that was created for an response of "excellent" to the health question.
+So we get the average for the dependent variable which is equal to one for those people who respondent "excellent". So that is the number of people responding "excellent" dividid by the number of people responding; i.e. the the share that have respondent excellent.
+For the other groups the coefficient tells us how much higher (or lower) that share is.
+
+`r unhide()`
+
+
+
+
+# Exercise 10.4 {#pollution}
+
+Air pollution has been shown to have a variety of adverse health effects. Recently, researchers have also started to investigate other negative effects. Below we report regression tables from a study that investigates a link between air pollution and car accidents.
+
+(a)	Can you suggest a causal mechanism that might explain why air pollution could have an effect on car accidents?
+
+`r hide("Answer:")`
+Air pollution affects the respiratory system. If people cannot breathe so well that might eventually affect their brain. Drivers might consequently be less able to focus and therefore are more likely to cause accidents. Pollution could also cause poorer visibility that leads to accidents.
+`r unhide()`
+
+(b)	Table 3 below, extracted from an academic paper, reports various regressions of the log number of accidents per day across geographic grid cells for the UK over a period from 2009 to 2014. Column 6 provides a simple OLS regression of accidents on pollution concentration (measured as micro grams per cubic meter of PM). Can you think of reasons why this might not be a valid estimate of the causal impact?
+
+![](tab3.png){width=100%}
+
+`r hide("Answer:")`
+There are a number of potentially confounding factors for instance traffic:  more traffic will cause more pollution but also makes accidents more likely. Similarly: weather factors such as heat or clouds induce more pollution but could also lead to more (or less accidents).
+Weather could also work the other way round: rain could reduce pollution, while increasing accidents; i.e. because pollution is negatively correlated with rain and rain positively with accidents we have a downward bias.
+
+Moreover, there could be a direct reverse causality: accidents cause traffic jams which increases pollution.
+
+
+
+`r unhide()`
+ 
+(c)	Column 7 of Table 3 in sub-question (b) repeats the same regression including various variables measuring weather conditions as well as region interacted with year, month and day of the week fixed effects/dummies. Would you say this provides a better estimate of the causal effect of pollution? Could it also lead to a worse estimate?
+
+`r hide("Answer:")`
+By including a range of weather controls we address some of the points raised in (b) which should be an improvement.
+However, a concern with weather variables as controls is that while on the one hand weather can cause pollution and accidents, pollution could also cause the weather (e.g. clouds forming because of particulate pollution) which in turn could affect accidents. The estimate in column 7 would not account for this causal effect. 
+`r unhide()`
+
+(d)	The study proposes an instrument for pollution derived from a weather phenomenon known as temperature inversion. Temperature inversion occurs from time to time when a layer of warmer air sits on top of colder air nearer to the ground. As consequence pollution is trapped near the ground and cannot easily escape. Thus, all else equal, pollution will be more severe near the ground when this happens. Meteorological studies suggest that the phenomenon is driven by wider movements in the atmosphere and crucially is not itself driven by local pollution. Table 2 reports regressions of the pollution variable from Table 3 on a binary variable that is equal to 1 if a temperature inversion is occurring in a particular area at a particular time. Discuss what this table is telling us. 
+
+`r hide("Answer:")`
+Table 2 reports first stage regressions for this instrument. This allows us to check one of the three criteria for a valid instrument, namely if it is a strong driver of the relevant endogenous variable. This seems to be the case here: not only is the inversion variable significant, the F-statistic is also rather high (larger than 10).
+`r unhide()`
+![](tab2.png){width=80%}
+ 
+(e)	Columns 1 to 3 of Table 3 in sub-question (b) report 2 stage least squares regressions using the temperature inversion as instrument. Discuss if this provides a better estimate of the causal effect of pollution on accidents. Can you comment on the relative size of the coefficients comparing columns 1 and 6? Are they in line with what you would expect? 
+
+`r hide("Answer:")`
+<br>
+Given that Temperature inversions are likely not driven by pollution this could get round issues such as the traffic-> pollution nexus. However, it is also likely that inversions drive other potentially pollution causing weather events (e.g. clouds, rain). However, we can deal with that by including weather variables (as done in column 3). Of course, the same disclaimer applies as in par c); i.e. we might miss out on parts of the causal effect by doing that.
+Note that the effect of pollution becomes actually stronger when using the instrument (e.g. compare column 1 and 6, but also 3 vs 7). This suggest that it addresses an endogeneity arising from a negative correlation between un-observed heterogeneity and the endogenous variable in 6; e.g. it could be the case that there are less accidents when traffic goes up (and therefore pollution goes up) because traffic is moving more slower.
+
+<br>
+The picture below summarises the various issues we discussed in this question:
+
+![](tempinv.png){width=100%}
+Firstly, our goal is to identify the causal effect of pollution on accidents. This comprises of direct effect (e.g. via bad visibility) represented by arrow a. This could also include more indirect effects via weather shown as arrows b and c. Simple OLS estimates of accidents on pollution will be biased because of confounding factors such as effects from traffic or weather on both pollution and accidents. Indeed accidents themselves could affect traffic which in turn could affect pollution (arrow i). Controlling for counfounding factors such as traffic or weather can be helpful in finding a non-biased estimate. However, it also could mean that we ignore part of the causal effect we hope to find; e.g. in the figure we would miss out the path shown via arrow b and c if we control for weather.
+An instrument such as temperature inversion is helpful as it drives pollution and is likely not affected by any endogenous factors (i.e. that ensures criterion 1 and 2 of IV estimation). However, there could be an issue with criterion 3 in an IV regression without further controls because Temperature Inversion is not only having an effect on pollution but it might also cause a range of other weather phenomena. If we include weather as an additional control as in column 3 we will avoid this issue. However, we also might again shut down channel b-c. The good news in Table 3 is that with or without weather variables we find the same effect from pollution which would suggest that channel b-c might not be so relevant.
+
+
+`r unhide()`
+
+
+
+
+# Exercise 10.5
+
+Consider the dataset [back2country_set.dta](https://www.dropbox.com/s/oksq88o336w161j/back2country_set.dta?dl=1). It contains data on 71 countries for various 5 year periods from 1992 to 2012 (i.e. the period 2012 refers to the period from 2008 to 2012)
+Among other variables the dataset contains the following
+
+•	`en_cleanOdirtyPclean` is the share of clean as a fraction of clean and dirty innovations (as measured from patent data).
+
+•	`social_ht` is the share of people in the country that report to favour higher taxes for environmental reasons
+
+•	`ln_oil_PPP` is the log of the country level oil price (inclusive of taxes)
+
+•	`period` is a categorical variable referring to the different 5 year periods.
+
+•	`ccode` contains country codes
+
+
+Note the dataset for this exercise is in `dta` (i.e. STATA format). You can load that into R as follows:
+
+```{r, echo=TRUE}
+library(haven)  # this contains the read_dta() to load dta (i.e. STATA) files
+b2c=read_dta("https://www.dropbox.com/s/oksq88o336w161j/back2country_set.dta?dl=1")
+
+```
+
+
+
+(a)	Run an OLS regression of the clean innovation share on the `social_ht` and oil price variables controlling for period effects. Report your regression in your answer. (A copy of your STATA output is sufficient)
+Based on the regression, what do you expect happens to the share of clean innovations in response to a 5 percentage point increase in in the share of the population supporting higher environmental taxes? 
+
+
+`r hide("Answer:")`
+
+```{r, echo=TRUE}
+lm(en_cleanOdirtyPclean~social_ht+ln_oil_PPP+factor(period),b2c) %>% summary()
+
+summary(b2c$social_ht)
+```
+i.e. The regression  suggest a positive (put not significant) coefficient for social attitudes (social_ht) of 0.027. Hence, a 5 percentage point increase in the share of people supporting higher environmental taxes would imply a 0.027 x 5  percentage points= `r 0.027*5` percentage point increase in the share of clean innovation. 
+
+`r unhide()`
+
+
+
+(b)	Can you suggest at least one mechanism that would motivate a causal effect from the share of support for environmental taxes to the share of clean innovation? 
+
+`r hide("Answer:")`
+Firms cater to their markets. If a country has more pro environmental voters it will have more pro environmental customers. Firms will respond to that by conducting innovation into products that can be marketed to those customers as pro – environmental.
+`r unhide()`
+
+(c)	Discuss why or why not the estimate reported above provides a causal estimate of the impact of pro-environmental attitudes. 
+
+`r hide("Answer:")`
+<br>
+There are many possible omitted variable or reverse causality stories to be told here; e.g. pro environmental attitudes and stronger focus on clean innovation could be jointly driven by the level of income and development of a country.
+Success in a particular technology – e.g. clean technologies – might also by itself cause pro environmental attitudes.
+
+Also higher oil price might be one of the channels via which pro environmental attitudes might affect innovation; e.g. pro environmental attitudes lead to policies such as energy taxes. Hence, including this variable might underestimate the full causal effect from attitudes. Having said that, one question we might have in this research is if attitudes have an impact on the direction of innovation, irrespective of taxes for fuel prices. In that case it would be appropriate to include this control.
+This shows, nicely that which controls you might want to include depends in part on the what exactly your analysis is trying to do.
+
+`r unhide()`
+
+
+(d)	Examine the same relationship as in (a) while including country fixed effects in your regression. What does this regression suggest is the impact of a 10 percentage point change in the support share for environmental taxes?
+
+`r hide("Answer:")`
+
+```{r,echo=TRUE}
+
+lm(en_cleanOdirtyPclean~social_ht+ln_oil_PPP+factor(period)+factor(ccode),b2c) %>% summary()
+
+```
+
+Note that the coefficient on social_ht is now 0.114. Hence a 10 percentage point increase would lead to a 0.114 x 10 pcp=1.14 pcp increase in the clean innovation share. Note that this is not only larger but also significant. 
+`r unhide()`
+
+
+(e)	Discuss whether this last regression is better or worse in terms of capturing the causal effect of pro environmental attitudes on clean innovation. 
+
+
+`r hide("Answer:")`
+<br>
+Including country fixed effects will deal with confounding factors that are operating at the country level and are fixed over time.
+ e.g. if the relationship found previously is in part driven by income and relative country incomes haven't changed that much (while attitudes have) then this last regression might lead to a better – i.e. less biased estimate.
+`r unhide()`
+
+
+
+# Exercise 10.6
+
+Over recent years the UK has increasingly become more xenophobic. An important question explored by many commentators is the economic damage that this xenophobia will cause. One way to examine this is by looking at the wages of foreign-born workers compared to UK born ones. If wages of foreigners tend to be higher, it is likely that reducing the number of foreigners by terrorising them with hostile immigration procedures – one of Theresa May’s flagship policies - will have negative economic consequences for the native population as well.
+The dataset [lfsclean].dta(https://www.dropbox.com/s/0mvyckpzsssi5k2/lfsclean.dta?dl=1) contains data from the quarterly labour force survey for the years from 2010 to 2018.
+
+Among other variables it includes the following
+•	lngrsswk: log of the average weekly gross wage
+•	edu: years in education
+•	foreign: a dummy variable indicating that a person was born abraod
+•	quarter
+•	year
+
+(a)	Run a regression of (log) wages on the “foreign” variable. Discuss your findings.
+
+`r hide("Answer:")`
+
+```{r, echo=TRUE}
+library(haven)
+lfs=read_dta("https://www.dropbox.com/s/0mvyckpzsssi5k2/lfsclean.dta?dl=1")
+
+lm(lngrsswk~foreign,lfs) %>% summary()
+
+```
+
+The regression suggests that foreign workers earn (on average) 3.6% more than natives.
+
+`r unhide()`
+
+
+(b)	Explain why we might want to include controls for both year and quarter in this regression? What happens and why if you do?
+
+`r hide("Answer:")`
+It could be the case that there in the regression above the foreign variable is partially endogenous. For instance, it could be the case that foreigners come in time periods when the economy is doing better (both over the years but also within a given year  - e.g. for seasonal work)  and thus wages in general tend to be higher. Note that this would introduce a positive correlation between “foreign” and shocks to wages which might bias our coefficient upward. By including year and quarter dummies we can account for that. The regression below does that finding a slightly lower (but still significant) of 0.3. 
+
+
+```{r,echo=TRUE}
+
+lm(lngrsswk~foreign+factor(year)+factor(quarter),lfs) %>% summary()
+
+
+```
+`r unhide()`
+
+
+(c)	Include education (edu) as additional control variable. Discuss what you find.
+
+`r hide("Answer:")`
+When including education the foreign coefficient becomes significantly negative (see below). Also note that the education coefficient is positive and significant (1 year more of eduction implies 8% higher wages). Hence it would seem that an important reason why foreigners earn more is because they tend to be more highly educated than the native population. Or put differently: foreigners with similar education levels seem to earn less than natives.
+
+
+```{r,echo=TRUE}
+lm(lngrsswk~foreign+edu+factor(year)+factor(quarter),lfs) %>% summary()
+```
+`r unhide()`
+
+
+(d)	In terms of discussing the contribution of foreign workers to the economy, would you say that the regression from part (a) or from part (c) is more appropriate? 
+
+`r hide("Answer:")`
+The regression in a would be more appropriate. As in most cases the foreign workers bring their education with them (and therefore the UK public doesn’t have to pay for that) and increase in “foreign” also tends to “cause” an increase in education. The combined effect of that is the contribution of a foreign relative to a native worker.
+`r unhide()`
+
+
+(e)	Examine if foreigners are rewarded differently for more education from natives. 
+
+`r hide("Answer:")`
+We can examine this by allowing for a different education effect for foreigners. The regression below suggests a negative (and significant) interaction effect (foreign X edu). The coefficient suggest that the increase in wages for an additional year in education is 1.5 percentage points less for foreigners.
+
+```{r}
+lm(lngrsswk~foreign*edu+factor(year)+factor(quarter),lfs) %>% summary()
+
+```
+
+`r unhide()`
+
+
+
+
+# Exercise 10.7 
+
+Consider the dataset [unempprep.csv]("https://www.dropbox.com/s/9mi7mcjnfn5nk3o/unempprep.csv?dl=1"). It contains data for various regions (wards) of the UK. There are over 10,000 wards. For a long time the UK government has been supporting businesses that invest in disadvantaged areas by covering up to 35% of an investment the business undertakes if this promises to create or safeguard jobs in areas that are deemed disadvantaged by the government. In 2000 there was a review that changed which areas were considered disadvantaged and which not. In some, cases there was also a change in the intensity of support; i.e. some areas businesses received up to 35% support whereas in others the support would only amount to a maximum of 10%.  In the relation to that the unempprep.dta dataset contains (among others) the following variables
+
+•	DDDln1Punemp : the change in the (log) number of unemployed people in a ward between 2002 and 1997; (log) of the number of unemployed people in a ward in 2002 minus the (log) number of unemployed people in 1997.
+
+•	DDDNGE : The change in support level between 2002 and 1997; i.e. support level in 2002 minus support level in 1997; e.g. if the support level was 10 in 2002 and 35% in 1997 DDDNGE would be equal to -0.25
+
+
+(a)	Run a regression of the change in (log) unemployed on change in support. What do you find? How can you interpret the regression? 
+
+
+
+`r hide()`
+See regression below. We find a statistically significant coefficient for `DDDNGE`. Note that NGE - the support rate for investment project by the government 
+- is recorded in decimals (i.e. a 20% support rate would be recorded as 0.2). Hence, the value implies that a 10 percentage point change (i.e. DDDNGE=0.1) would lead to a $10\times 0.221=2.21% reduction in unemployment.
+
+
+```{r}
+
+up=read.csv("https://www.dropbox.com/s/9mi7mcjnfn5nk3o/unempprep.csv?dl=1")
+names(up)
+
+table(up$year)
+summary(up$DDDNGE)
+summary(up$year)
+lm(DDDln1Punemp~DDDNGE ,data=up) %>% summary()
+#library(AER)
+#ivreg(DDDln1Punemp~DDDNGE | DDDxnivav,data=up) %>% summary()
+
+```
+
+`unhide()`

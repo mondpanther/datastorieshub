@@ -58,3 +58,35 @@ caret::confusionMatrix(fitted.results, titanic$Survived)$overall[1]
 
 
 ```
+
+### Gini
+
+$1-\left(\frac{302}{498}\right)^2-\left(\frac{196}{498}\right)^2=$ `r 1-(302/498)^2-(196/498)^2`
+
+
+
+### Gini extreme example: suppose all women would have survived and all men would have died:
+
+#### Gini for men:
+$1-\left(\frac{14}{316}\right)^2-\left(\frac{302}{316}\right)^2=$ `r 1-(14/316)^2-(302/316)^2` 
+
+#### Gini for women:
+$1-\left(\frac{0}{182}\right)^2-\left(\frac{182}{182}\right)^2=0$ 
+
+Hence weighted average Gini (after classifying by sex) is 
+$(1-(14/316)^2-(302/316)^2)*316/498=$
+`r (1-(14/316)^2-(302/316)^2)*316/498`: an almost perfectly ordered world
+
+
+```{r splitting}
+1-(302/498)^2-(196/498)^2
+
+#titanic %>% group_by(Sex,Survived) %>% summarise(n())
+#titanic %>% group_by(Sex) %>% summarise(n())
+#titanic %>% group_by(Survived) %>% summarise(n())
+```
+
+
+
+avaxhoaxid ~ AT_realDonaldTrump + AT_elonmusk + AT_KendallJenner + AT_kobebryant + AT_piersmorgan + atnumLT4
+

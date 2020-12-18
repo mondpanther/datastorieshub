@@ -1,0 +1,26 @@
+"0","library(partykit)
+t=ctree(avaxhoaxid ~ AT_Alyssa_Milano+
+                     #AT_FLOTUS+
+                     #AT_amyschumer+
+                     AT_BarackObama+
+                     AT_MichelleObama+
+                     AT_CNN+
+                     AT_nytimes+
+                     #AT_Oprah+
+                     AT_YouTube+
+                     #AT_piersmorgan+
+                     #AT_elonmusk+
+                     AT_BillGates+
+                     factor(atnumLT4)+
+                     #AT_aplusk+
+                     #AT_ArianaGrande +
+                     AT_realDonaldTrump
+                    
+                          , data = wide)
+
+plot(t)
+t
+mean(predict(t) == wide$avaxhoaxid, na.rm = TRUE)
+
+wide_res = wide %>% mutate(ok=predict(t) == wide$avaxhoaxid)
+wide_res %>% group_by(avaxhoaxid) %>% summarise(mean(ok, na.rm = TRUE))"

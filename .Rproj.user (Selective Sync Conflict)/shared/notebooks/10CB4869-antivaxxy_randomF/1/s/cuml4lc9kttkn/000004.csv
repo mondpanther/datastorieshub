@@ -1,0 +1,8 @@
+"0","jjfriends=read_csv(""../data/jjfriends.csv"",col_types = ""cc"")
+
+nrow(jjfriends %>% distinct(user))
+"
+"1","[1]"
+"1"," 3362"
+"1","
+"

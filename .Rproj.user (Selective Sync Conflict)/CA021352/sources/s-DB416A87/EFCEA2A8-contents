@@ -1,0 +1,286 @@
+---
+title: "Who are antivaxers tweeting @?"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+
+```{r Load user data with celebrity, cache=TRUE}
+library(readr)
+library(tidyverse)
+library(caret)
+library(magrittr)
+
+set.seed(10)
+
+jj=read_csv("https://www.dropbox.com/s/yr0c1zkgsivo2tq/jj.csv?dl=1",col_types = cols(.default = "c")) 
+
+jj%<>% group_by(user_id) %>% mutate(train=mean(runif(n()))<.2)
+
+#jj%<>%group_by(user_id) %>% filter(mean(runif(n()))<.6)
+
+jj=jj %>% group_by(user_id) %>% mutate(atnum=n()) %>% ungroup()
+jj=jj %>%  mutate(handles=gsub("@","AT_",handles),one=1)
+
+l0=jj%>%group_by(handles) %>% 
+  filter( sum(avaxhoaxid=="TRUE")<=5 | is.na(avaxhoaxid)==T) %>% distinct(handles) %>% mutate(del=1)
+
+
+wide = jj  %>% 
+       left_join(l0) %>% 
+       replace_na(list(del=0)) %>% 
+       filter(del!=1) %>%  select(-del) %>%  spread(handles,one)
+wide%<>% mutate_if(is.numeric,list(~replace_na(.,0)))
+  
+
+#wide =wide %>%  as_tibble() 
+#wide = wide %>% select(-l0$handles)
+#wide[is.na(wide)]=0
+
+library(magrittr)
+wide %<>% mutate(atnumLT4=atnum>4) %>% select(-atnum)
+
+wide= wide %>%   mutate_if(is.character,factor)
+#wide= wide %>%   mutate_a(vars(avaxhoaxid, BarackObama,realDonaldTrump),factor)
+
+wide_narrow=wide %>% filter(train==1) %>% select(-user_id,-antivaxid,-covidhoaxid,-'<NA>')
+write_csv(wide_narrow,"../data/wide_narrow.csv")
+
+wide_narrow_vali=wide %>% filter(train==0) %>% select(-user_id,-antivaxid,-covidhoaxid,-'<NA>')
+write_csv(wide_narrow_vali,"../data/wide_narrow_vali.csv")
+
+```
+
+```{r}
+#celebpop=read_csv("../data/celebpop.csv")
+
+celeb =jj%>%group_by(handles,avaxhoaxid) %>% summarise(n=n())
+celeb_wide = celeb  %>%  mutate(avaxhoaxid=factor(avaxhoaxid)) %>% 
+    pivot_wider(id_cols=handles, names_from= avaxhoaxid,values_from=n,values_fill=0) %>%
+    rename(avaxx="TRUE",noavaxx="FALSE") %>% ungroup() %>% 
+     mutate(shavaxx=avaxx/sum(avaxx),shnoavaxx=noavaxx/sum(noavaxx),order=shavaxx) %>% 
+     arrange(-shavaxx) %>% mutate(order=row_number()) 
+
+
+celeb = celeb_wide %>%  mutate(handles=gsub("AT_","@",handles)) %>% 
+        pivot_longer(cols = starts_with("sh"), names_to= "avaxhoaxid",names_prefix="sh" ,values_to="sh")
+                                    
+
+library(ggplot2)
+p=celeb %>%  filter(order<=30 & !is.na(handles)) %>%  ggplot( aes(fill=factor(avaxhoaxid,labels=c("Antivaxxers","Others")), 
+                 y=sh*100,    x=reorder(handles,-order))) +
+  geom_bar(position="dodge", stat="identity")+
+  theme_minimal()+coord_flip() + labs(fill= "")+xlab("Celebrities")+
+  ylab("Share of users tweeting about in %")
+p
+  
+  
+
+```
+
+```{r checking on friends, include=FALSE,eval=FALSE}
+jjfriends_old=read_csv("../data/jjfriends_old.csv",col_types = "cc")
+jjfriends_old%<>%distinct()
+nrow(jjfriends_old %>% distinct(user))
+
+jjfriends=read_csv("../data/jjfriends.csv",col_types = "cc")
+
+nrow(jjfriends %>% distinct(user))
+nrow(jjfriends %>% distinct(user_id))
+
+jjfriends%<>%bind_rows(jjfriends_old)
+jjfriends%<>%distinct()
+nrow(jjfriends %>% distinct(user))
+
+
+write_csv(jjfriends,"../data/jjfriends.csv")
+
+```
+
+
+```{r random forest, cache=TRUE}
+
+library(ranger)
+#set.seed()
+
+res=ranger(avaxhoaxid ~ ., data=wide_narrow,importance='impurity')
+
+```
+
+
+```{r display importance}
+iii=as.data.frame(res$variable.importance)       %>% 
+    rename(importance='res$variable.importance') %>%
+    arrange(-importance) %>% 
+    filter(row_number()  <30) %>% rownames_to_column() %>% 
+    mutate(rowname=gsub("AT_","@",rowname),rowname = fct_reorder(rowname, desc(-importance)))  
+    
+
+
+ggplot(iii,aes(x=rowname,y=importance))+
+       geom_bar(stat='identity')+
+       coord_flip()+theme_minimal() +ylab("Celebrity Twitter Handle") + xlab("Importance Index")
+
+#library(reprtree)
+
+
+```
+
+
+
+
+```{r}
+
+#install.packages("rpart")
+#install.packages("rpart.plot")
+
+library(rpart)
+library(rpart.plot)# Create a decision tree model
+tree <- rpart(avaxhoaxid ~ AT_BillGates+
+                           AT_YouTube+
+                           AT_CNN+
+                AT_Alyssa_Milano+
+                     AT_FLOTUS+
+                     #AT_amyschumer+
+                     AT_BarackObama+
+                     #AT_MichelleObama+
+                     AT_CNN+
+                     #AT_nytimes+
+                     AT_Oprah+
+                     AT_YouTube+
+                     #AT_piersmorgan+
+                     #AT_elonmusk+
+                     AT_BillGates+
+                     factor(atnumLT4)+
+                     #AT_aplusk+
+                     #AT_ArianaGrande +
+                     AT_realDonaldTrump
+                          , data = wide,cp=0.001)# Visualize the decision tree with rpart.plot
+
+
+rpart.plot(tree, box.palette="RdBu", shadow.col="gray",nn=TRUE, type=5,
+           fallen.leaves=T,clip.facs=F)
+
+#wide_res = wide %>% mutate(ok=predict(t) == wide$avaxhoaxid)
+#wide_res %>% group_by(avaxhoaxid) %>% summarise(mean(ok, na.rm = TRUE))
+
+
+```
+
+
+
+
+```{r,eval=FALSE}
+library(partykit)
+t=ctree(avaxhoaxid ~ AT_Alyssa_Milano+
+                     #AT_FLOTUS+
+                     #AT_amyschumer+
+                     AT_BarackObama+
+                     AT_MichelleObama+
+                     AT_CNN+
+                     AT_nytimes+
+                     #AT_Oprah+
+                     AT_YouTube+
+                     #AT_piersmorgan+
+                     #AT_elonmusk+
+                     AT_BillGates+
+                     factor(atnumLT4)+
+                     #AT_aplusk+
+                     #AT_ArianaGrande +
+                     AT_realDonaldTrump
+                    
+                          , data = wide)
+
+plot(t)
+t
+mean(predict(t) == wide$avaxhoaxid, na.rm = TRUE)
+
+wide_res = wide %>% mutate(ok=predict(t) == wide$avaxhoaxid)
+wide_res %>% group_by(avaxhoaxid) %>% summarise(mean(ok, na.rm = TRUE))
+
+```
+
+
+
+```{r simple RF,eval=FALSE}
+rf=train(avaxhoaxid ~.,data = wide_narrow,
+                    method = "rf",
+                    ntree =5,
+                    trControl = trainControl(method = "oob"))
+
+
+
+
+
+summary(rf)
+#rf$confusion
+randomForest::varImpPlot(rf$finalModel,n.var=10)
+
+knitr::kable(rf$finalModel$confusion)
+
+randomForest::getTree(rf$finalModel, labelVar = TRUE)
+
+
+#library(reprtree)
+
+```
+
+
+```{r parallel,eval=FALSE}
+
+#library("doMC")
+library(doParallel)
+library(randomForest)
+#data(iris)
+
+cores <- 5
+cl <- makePSOCKcluster(cores)
+registerDoParallel(cl)
+darkAndScaryForest <- foreach(y=seq(10), .combine=combine ) %dopar% {
+   set.seed(y) # not really needed
+   rf <- randomForest(avaxhoaxid ~ ., data=wide_narrow, ntree=10, norm.votes=FALSE)
+}
+
+```
+
+
+```{r,eval=FALSE}
+library(caret)
+library(randomForest)
+library(doParallel)
+
+
+cores <- 5
+cl <- makePSOCKcluster(cores)
+registerDoParallel(cl)
+
+
+# 3 times cross validation.
+my_control <- trainControl(method = "oob", number = cores )
+
+my_forest  <- train(avaxhoaxid ~.,data = wide_narrow,  importance=T,
+                               method = "parRF",
+                                ntree = 5,
+                            trControl = my_control)
+
+
+# don't forget to stop the cluster
+stopCluster(cl)
+
+
+randomForest::varImpPlot(my_forest$finalModel,n.var=10)
+
+
+#knitr::kable(my_forest$finalModel$confusion)
+
+ok=my_forest$finalModel$predicted
+
+wide_res=wide_narrow %>% mutate( ok=my_forest$finalModel$predicted == wide_narrow$avaxhoaxid)
+
+
+wide_res %>% filter(avaxhoaxid==TRUE) %>% summarise(mean(ok, na.rm = TRUE))
+
+
+```

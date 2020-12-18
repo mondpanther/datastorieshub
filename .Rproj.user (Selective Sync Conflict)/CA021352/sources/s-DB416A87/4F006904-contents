@@ -1,0 +1,134 @@
+---
+title: "Assessment for SRM"
+description: |
+  More details on your assessment
+author:
+  - name: Ralf Martin
+    url: https://mondpanther.github.io/wwwmondpanther/
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    self_contained: false
+    css: webex.css
+    includes:
+      after_body: webex.js
+categories:
+  - Exercises
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+
+```{r setup, include = FALSE, message=FALSE}
+library("webex")
+library(ggplot2)
+knitr::opts_chunk$set(fig.path='../../images/')
+```
+
+
+
+
+
+# Exam
+
+
+- 2 Open (Essay style) Answer Questions: select 1 ,  20 Marks
+
+- 32 Multiple Choice Questions: 4 answer options, 2.5 Marks each, with no deduction for a wrong answer.
+
+### Example for open questions
+
+- see [Question 10.4](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises10/#pollution) Question from Exercise sheet 10
+
+
+
+### Multiple Choice Question Examples
+
+#### Question 1
+Suppose you have estimated the following regression model on a representative sample of the UK population
+$$\log(Weight_i)=\beta_0+\beta_1 Female_i+\beta_2 AGE_i +\beta_3+AGE_i^2+\epsilon_i$$
+
+where Weight_i is weight of a person in 100s of kilograms
+Suppose you find that $\hat\beta_1=-0.10$ Which of the following is a correct interpretation?
+
+(a) The average weight for women is 10kg
+(b) Women – on average - weigh 10 kg less than men
+(c) Women – on average – weigh 10% less than men
+(d) None of the above.
+	
+Correct answer `r mcq(c("a","b",answer="c","d"))`
+
+<br>
+
+#### Question 2
+
+For the model from Question 1: suppose you find that $\hat\beta_2=0.01$ and $\hat\beta_3=-0.0001$ .
+What does it tell you about the age at which we expect people to be heaviest?
+
+(a) At 25 years
+(b) At 75 years 
+(c) At 40 years
+(d) None of the above
+
+Correct answer `r mcq(c("a","b","c",answer="d"))`
+
+`r hide("Hint")`
+Because $\beta_3$ is negative the weight-age relationship is hump shaped. We can find the
+maximum of the hump by setting the gradient equal to 0 implying
+
+$$0.01-2\times 0.0001\times AGE=0$$
+Consequently:
+
+$$AGE=\frac{0.01}{2\times 0.0001}=50$$
+
+
+`r unhide()`
+
+<br>
+
+#### Question 3
+
+Using a univariate model you obtain a parameter estimate $\hat\beta=2.1$ with a standard error of 0.1 obtained using a sample size of 1000 observations. Should you reject the hypothesis that β=1 at the 5% level?
+
+(a)	Yes
+(b)	No
+(c)	It depends on the variance of the residuals
+(d)	It depends on the variance of the explanatory variable
+
+`r mcq(c(answer="a","b","c","d"))`
+
+`r hide("Hint")`
+The t value becomes $t=\frac{2.1}{0.1}=$`r 2.1/.1` , which is larger than 1.96, the 5% critical threshold
+with a standard normal distribution. Note that 1000 observations we can ignore that the t-statistic is only approximately normally distributed.
+
+`r unhide()`
+
+
+<br>
+
+#### Question 4
+
+The demand for a new drug is known to be linear and downward sloping; i.e. a higher price means a lower demand. A researcher provided an estimate of this demand curve but suspects that a confounding factor led to a downward bias. This means that the estimated curve is
+
+(a) Flatter than it should be
+(b)	Steeper than it should be
+(c)	Upward sloping
+(d)	None of the above
+
+`r mcq(c("a",answer="b","c","d"))` 
+
+<br>
+
+#### Question 5
+
+The probability that a standardised normal variable takes a value of zero or more is: 
+
+(a)	Equal to zero.
+(b)	50%
+(c)	95% for a significance level of 0.1
+(d)	I need more information on the variance and probability distribution to answer this question. 
+
+`r mcq(c("a",answer="b","c","d"))` 
+
+

@@ -1,0 +1,280 @@
+---
+title:  "Datastories: The Machine Learning Competition Result"
+author: "Yves Alexandre de Montjoye & Ralf Martin"
+output: html_document
+runtime: shiny
+---
+
+
+
+## How well are you doing in catching criminal areas?   
+
+
+
+```{r setup, include=FALSE}
+library(DT)
+knitr::opts_chunk$set(echo = TRUE)
+
+  library(readr)
+  wide_narrow=read_csv("https://www.dropbox.com/s/asnc2hgczz89p54/wide_narrow.csv?dl=1")
+  val=read.csv("https://www.dropbox.com/s/06uht448xt0pyh1/wide_narrow_vali.csv?dl=1")
+
+
+
+```
+
+
+
+
+
+
+```{r, include=FALSE,message=FALSE,echo=FALSE}
+competition_1 <- function(
+  submissions,
+  seed = 100,          # seed for random generation (default = 100)
+  test = FALSE
+) {
+  
+  
+  
+  library('e1071')
+  library(caret)
+  
+  ngroups=nrow(submissions)
+  
+  # set the seed
+  set.seed(seed)
+  
+  #library(readr)
+  #wide_narrow=read_csv("https://www.dropbox.com/s/asnc2hgczz89p54/wide_narrow.csv?dl=1")
+
+  #wide_narrow=read_csv("wide_narrow.csv")
+  crime=wide_narrow
+
+  
+  
+  #crime <- read.csv("https://www.dropbox.com/s/jbpjrrnqligl8a1/crime_competition.csv?dl=1")
+  #val=read.csv("https://www.dropbox.com/s/06uht448xt0pyh1/wide_narrow_vali.csv?dl=1")
+  
+  #val <- read.csv("https://www.dropbox.com/s/lco9i8k0xnlqwqi/crime_validation.csv?dl=1")
+  
+  crime$avaxhoaxid <- factor(crime$avaxhoaxid,levels = c(FALSE,TRUE), labels = c("0","1"))
+  val$avaxhoaxid <- factor(val$avaxhoaxid,levels = c(FALSE,TRUE), labels = c("0","1"))
+  
+  performance <- data.frame(group = rep(NA, ngroups),
+                            course= rep(NA,ngroups),
+                            a1 = rep(NA, ngroups),
+                            #p1 = rep(NA, ngroups),
+                            #r1 = rep(NA, ngroups),
+                            a2 = rep(NA, ngroups),
+                            #p2 = rep(NA, ngroups),
+                            #r2 = rep(NA, ngroups),
+                            p = rep(NA, ngroups),
+                            formula = rep(NA, ngroups))
+  
+  
+  
+  for(i in 1:ngroups){
+    
+    #source(paste0("template_1_",LETTERS[i],".R"))
+    #formula=submissions[i,"formula"][[1]]
+    #i=6
+    formula=submissions[i,"formula"][[1]]
+    groupname=submissions[i,"Name"][[1]]
+    
+    
+    if(test==TRUE){
+      formula <- paste("avaxhoaxid ~ ",paste(sample(colnames(crime)[-140],rbinom(1,130,0.5)),collapse=" + "))
+    }
+    
+    performance$course[i]<- submissions[i,"course"][[1]]
+    performance$group[i] <- groupname
+    performance$formula[i] <- formula
+    
+    #e <- function() "error"
+    result = tryCatch({
+      logit.mod <-  glm(formula(formula), data = crime, 
+                     family = binomial(logit)) 
+      
+      }, 
+      error = function(e) {
+        print("error")
+      })
+     result    
+     if( result=="error") {
+       performance$a1[i] <- "Error" 
+       next
+     }
+     
+    
+    fitted.results <- predict(logit.mod, newdata=crime, type="response") # predict probabilities
+    fitted.results <- ifelse(fitted.results > 0.5,1,0) # convert to binary
+    fitted.results <- factor(fitted.results,levels = c(FALSE,TRUE), labels = c("0","1"))
+    performance1 <- confusionMatrix(fitted.results,
+                                    crime[,"avaxhoaxid"])
+    
+    
+    
+
+
+    result = tryCatch({
+      fitted.results <- predict(logit.mod, newdata=val, type="response") # predict probabilities
+      
+      }, 
+      error = function(e) {
+        print("error")
+      })
+     result    
+     if( result=="error") {
+       performance$a1[i] <- "Error" 
+       next
+     }
+    
+    
+    
+    fitted.results <- ifelse(fitted.results > 0.5,1,0) # convert to binary
+    fitted.results <- factor(fitted.results,levels = c(0,1), labels = c("0","1"))
+    performance2 <- confusionMatrix(fitted.results,
+                                    val[,"avaxhoaxid"])
+    
+    
+    performance$a1[i] <- round(performance1$overall[1],4)
+    #performance$p1[i] <- round(performance1$byClass[4],4)
+    #performance$r1[i] <- round(performance1$byClass[2],4)
+    performance$a2[i] <- round(performance2$overall[1],4)
+    #performance$p2[i] <- round(performance2$byClass[4],4)
+    #performance$r2[i] <- round(performance2$byClass[2],4)
+    performance$p[i] <- length(logit.mod$coefficients) - 1
+   
+  }
+  
+  colnames(performance) <- c("Name", "Course",
+                             "accuracy in train",
+                             #"precision in train",
+                             #"recall in train",
+                             "accuracy in test",
+                             #"precision in test",
+                             #"recall in test",
+                             "complexity",
+                             "formula"
+                             )
+  
+  
+  #write.csv(performance,"performance_1.csv")
+  return(performance) 
+}
+
+
+
+
+
+
+```
+
+
+```{r calc, include=FALSE}
+
+print("hello")
+
+library(googlesheets4)
+gs4_deauth()
+dat=read_sheet("https://docs.google.com/spreadsheets/d/1yTkmZFfIAWRyUsMkFK4x99_NREIB1V51v92-vis5_MY/edit?usp=sharing")
+
+#https://docs.google.com/spreadsheets/d/1UYnZM8Y5qkhSLi5yu_-Q4uIXYxiLlzUiwnEMs61zIVs/edit?usp=sharing
+
+#dat=read.csv("https://www.dropbox.com/s/rsa567ib28tdmbl/Datastories%20Machine%20Learning%20Competition%201%20%28Responses%29%20-%20Form%20responses%201.csv?dl=1")
+library(dplyr)
+dat=dat %>% rename(formula="What's your winning formula?",course="Select your course")
+#dat=dat %>% rename(group=Group)  %>% mutate(formula=as.character(formula))
+
+submissions=dat
+dat=dat %>% filter(is.na(Name)==FALSE) #%>% select(-Group)
+
+
+performance=competition_1(dat)
+
+
+#test=dat[1,"formula"]
+
+```
+
+
+
+
+
+
+```{r,message=FALSE,echo=FALSE,eval=FALSE}
+
+DT::renderDataTable({performance })
+
+#performance
+
+
+```
+
+
+
+
+
+
+```{r,message=FALSE,echo=FALSE}
+#from https://stackoverflow.com/questions/54627008/shiny-datatable-filter-box
+
+sketch <- htmltools::tags$table(
+  tableHeader(c("",names(performance))),
+  tableFooter(rep("", 1+ncol(performance)))
+)
+
+js <- c(
+  "function(){", 
+  "  this.api().columns().every(function(){",
+  "    var column = this;",
+  "    var select = $('<select multiple=\"multiple\"><option value=\"\"></option></select>')",
+  "      .appendTo( $(column.footer()).empty() )", 
+  "      .on('change', function(){",
+  "        var vals = $('option:selected', this).map(function(index,element){",
+  "          return $.fn.dataTable.util.escapeRegex($(element).val());",
+  "        }).toArray().join('|');",
+  "        column.search(vals.length > 0 ? '^('+vals+')$' : '', true, false).draw();",
+  "      });",
+  "    column.data().unique().sort().each(function(d,j){",
+  "      select.append('<option value=\"'+d+'\">'+d+'</option>')",
+  "    });",
+  "  });",
+  "}")
+
+
+js <- c(
+  "function(){", 
+  "  this.api().columns().every(function(i){",
+  "    var column = this;",
+  "    var select = $('<select multiple=\"multiple\"><option value=\"\"></option></select>')",
+  "      .appendTo( $(column.footer()).empty() )", 
+  "      .on('change', function(){",
+  "        var vals = $('option:selected', this).map(function(index,element){",
+  "          return $.fn.dataTable.util.escapeRegex($(element).val());",
+  "        }).toArray().join('|');",
+  "        column.search(vals.length > 0 ? '^('+vals+')$' : '', true, false).draw();",
+  "      });",
+  "    var data = column.data();",
+  "    if(i == 0){",
+  "      data.each(function(d,j){",
+  "        select.append('<option value=\"'+d+'\">'+d+'</option>');",
+  "      });",
+  "    }else{",
+  "      data.unique().sort().each(function(d,j){",
+  "        select.append('<option value=\"'+d+'\">'+d+'</option>');",
+  "      });",
+  "    }",
+  "  });",
+  "}")
+
+#DT::renderDataTable
+datatable(performance, container=sketch, 
+          options = list(
+            initComplete = JS(js)
+          )
+)
+
+
+```

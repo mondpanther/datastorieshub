@@ -1,0 +1,9 @@
+"0","```r
+iii=as.data.frame(res$variable.importance)       %>% 
+    rename(importance='res$variable.importance') %>%
+    arrange(-importance) %>% 
+    filter(row_number()  <30) %>% rownames_to_column() %>% 
+    mutate(rowname = fct_reorder(rowname, desc(-importance))) 
+ggplot(iii,aes(x=rowname,y=importance))+
+       geom_bar(stat='identity')+
+```"

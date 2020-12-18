@@ -49,8 +49,7 @@ For this exercise you have to work with an online app that you find
 [here](https://datastorieshub.shinyapps.io/competition_antivaxx/)
 
 
-# Exercise 8.3 - 
-
+# Exercise 8.3 - Rich areas
 
 Can you find rich areas? Competition 2 is [here]( https://datastorieshub.shinyapps.io/competition2/).
 

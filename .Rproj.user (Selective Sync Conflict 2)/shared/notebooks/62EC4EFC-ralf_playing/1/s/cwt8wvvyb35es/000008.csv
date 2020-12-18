@@ -1,0 +1,4 @@
+"0","rr=read_csv(""../data/Final/Bvdid_Q2_2019_vs_Q2_2020_Twittertext.csv"")
+"
+"2","Error: '../data/Final/Bvdid_Q2_2019_vs_Q2_2020_Twittertext.csv' does not exist in current working directory ('C:/Users/Ralf Martin/Dropbox/twitter/code/Analyizing_Tweets').
+"

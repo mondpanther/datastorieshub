@@ -1,0 +1,10 @@
+"0","df=read.csv(""https://www.dropbox.com/s/yylc6ygkcrjir39/ets_thres_final.csv?dl=1"")
+df%<>%mutate(nonfree=(1-free)) #%>% select(-free)
+write.csv(""../../../../data/ets_thres_final.csv"")
+"
+"1",""""",""x""
+"
+"1","""1"","
+"1","""../../../../data/ets_thres_final.csv"""
+"1","
+"

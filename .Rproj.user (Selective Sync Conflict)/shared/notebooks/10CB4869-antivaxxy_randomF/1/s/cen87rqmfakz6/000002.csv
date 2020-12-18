@@ -1,0 +1,34 @@
+"0","library(caret)
+library(randomForest)
+library(doParallel)
+
+
+cores <- 5
+cl <- makePSOCKcluster(cores)
+registerDoParallel(cl)
+
+
+# 3 times cross validation.
+my_control <- trainControl(method = \"oob\", number = cores )
+
+my_forest  <- train(avaxhoaxid ~.,data = wide_narrow,  importance=T,
+                               method = \"parRF\",
+                                ntree = 5,
+                            trControl = my_control)
+
+
+# don't forget to stop the cluster
+stopCluster(cl)
+
+
+randomForest::varImpPlot(my_forest$finalModel,n.var=10)
+
+
+#knitr::kable(my_forest$finalModel$confusion)
+
+ok=my_forest$finalModel$predicted
+
+wide_res=wide_narrow %>% mutate( ok=my_forest$finalModel$predicted == wide_narrow$avaxhoaxid)
+
+
+wide_res %>% filter(avaxhoaxid==TRUE) %>% summarise(mean(ok, na.rm = TRUE))"
