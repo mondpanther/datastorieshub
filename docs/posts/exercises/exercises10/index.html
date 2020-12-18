@@ -1557,7 +1557,7 @@ Answer:
 <p>In the dataset as it is there is actually no variable that properly captures the treatment we are interested in. <code>nonfree</code> identifies firms that are eventually treated (the treatment being the bitter pill of having to pay for all their permits) but it is equal to 1 also in periods when they are not treated. But it is easy to create a dummy variable, which is only equal to one for those firms that treated in periods when they are treated: we simply have to create a dummy variable that is only true for <code>nonfree</code> firms during period 2. Let’s try that:</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
-df=df %&gt;% mutate( period2Xnonfree= (free==1) &amp; ( as.character(period)==&quot;2&quot; ) )
+df=df %&gt;% mutate( period2Xnonfree= (nonfree==1) &amp; ( as.character(period)==&quot;2&quot; ) )
 
 lm(lnco2~period2Xnonfree,df) %&gt;% summary()</code></pre>
 <pre><code>

@@ -106,7 +106,6 @@ $$AGE^{max.wage}=\frac{10}{0.1\times 2}=50$$
 
 # Exercise 10.2
 
-
 Consider the dataset [ets_thres_final.csv](https://www.dropbox.com/sh/rqmo1hvij1veff0/AAAnRCRpxRqV7LKu9nzt1SCea?dl=1). It contains emission figures (lnco2=log of CO2 emissions) for a sample of firms regulated by the European Emissions Trading System (EUETS) for the years from 2005 to 2017 although the firm identifiers have gone missing from the dataset. Note that an Emissions Trading System requires firms to buy permits for every unit of CO2 they emit. By restricting the total number of permits that are issued governments can control the total amount of emissions while allowing firms to trade permits freely so that they can be used with those businesses that find it hardest to reduce emissions. In the early days of the EU ETS (which started in 2005) permits where freely given to firms. This changed from 2013 onwards when permits where only given to certain firms and sectors that were deemed at risk from foreign competition. The variable `nonfree` indicates those firms in the dataset. According to economic theory the method of permits allocation should have no effect on the eventual emissions by firms (Independence hypothesis). Firms that have been given free permits will have an incentive to reduce emissions as that frees up permits to sell within the permit market. 
 
 (a)	Examine this hypothesis by running a regression of lnco2 on the `nonfree` variable. Report what you find. 
@@ -175,7 +174,7 @@ In the dataset as it is there is actually no variable that properly captures the
 
 ```{r,echo=TRUE}
 
-df=df %>% mutate( period2Xnonfree= (free==1) & ( as.character(period)=="2" ) )
+df=df %>% mutate( period2Xnonfree= (nonfree==1) & ( as.character(period)=="2" ) )
 
 lm(lnco2~period2Xnonfree,df) %>% summary()
 
