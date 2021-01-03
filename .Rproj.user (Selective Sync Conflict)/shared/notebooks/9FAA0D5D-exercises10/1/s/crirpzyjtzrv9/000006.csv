@@ -1,4 +1,0 @@
-"0","library(dplyr)"
-"0","df=read.csv(""https://www.dropbox.com/s/urro3ty46kr4f7z/ets_thres_final.csv?dl=1"")"
-"0","df=df %>% mutate(free=factor(nonfree),period=factor(period))"
-"0","head(df)"

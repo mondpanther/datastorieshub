@@ -90,3 +90,6 @@ $(1-(14/316)^2-(302/316)^2)*316/498=$
 
 avaxhoaxid ~ AT_realDonaldTrump + AT_elonmusk + AT_KendallJenner + AT_kobebryant + AT_piersmorgan + atnumLT4
 
+
+
+Further reading: https://medium.com/@mijordan3/artificial-intelligence-the-revolution-hasnt-happened-yet-5e1d5812e1e7

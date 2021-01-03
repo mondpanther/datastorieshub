@@ -163,3 +163,25 @@ knitr::include_url("https://www.cbsnews.com/news/do-night-lights-cause-myopia/")
 Short-sightedness is a growing problem globally. Researchers at the Children’s Hospital of Philadelphia thought they found the culprit: night-lights. The data, at face value, seemed to have suggested that kids who sleep with night lights develop myopia later in life. According to the researchers, the story was that the light makes the eye develop abnormally, which then affects focus. There could be a more obvious explanation, however, which is that myopia is hereditary – myopic parents are more likely to install night lights in the house, including their children’s bedrooms, but the light itself has nothing to do with their kids becoming short-sighted. This is, again, a case of upwards bias as myopia in parents is positively correlated with the presence of night lights in the house and with myopia in their children.
 
 `r unhide()`
+
+
+<!--
+# Exercise 1.8
+
+A new strain of COVID 19 is suspected to be more contagious. This is based on finding higher shares of patients with the new virus strain in areas that have a larger number of cases per capita.
+
+
+```{r}
+knitr::include_url("https://www.theguardian.com/world/2020/dec/21/european-experts-urge-caution-over-new-covid-mutation-uk?CMP=Share_AndroidApp_Other")
+```
+
+
+`r hide("Example Answer:")`
+
+Clearly, if a strain emerges that is more contagious, that would be a causal mechanism that could explain
+the observed pattern in the data.
+<br>
+Alternatively - as discussed in the article - suppose the virus is just as contagious as the old variant. Now imagine it arrives across a variety of areas with very different social distancing characteristics; e.g. London where people live more densely or Kent which might well have more people who believe COVID is a hoax vs a less dense area with a better educated population (e.g. Cambridgeshire). 
+
+`r unhide()`
+-->
