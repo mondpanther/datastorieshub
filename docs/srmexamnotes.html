@@ -25,8 +25,8 @@
   
   
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-01-03"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-01-03"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-01-07"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-01-07"/>
   <meta name="article:author" content="Ralf Martin"/>
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -45,7 +45,7 @@
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Assessment for SRM"]},{"type":"character","attributes":{},"value":["More details on your assessment\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-01-03"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["webex.js"]}]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Assessment for SRM"]},{"type":"character","attributes":{},"value":["More details on your assessment\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-01-07"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["webex.js"]}]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -1331,7 +1331,7 @@
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Assessment for SRM","description":"More details on your assessment","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2021-01-03T00:00:00.000+00:00","citationText":"Martin, 2021"}
+{"title":"Assessment for SRM","description":"More details on your assessment","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2021-01-07T00:00:00.000+00:00","citationText":"Martin, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1362,7 +1362,7 @@
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br/>2021-01-03
+<br/>2021-01-07
 </div>
 
 <div class="d-article">
@@ -1376,6 +1376,7 @@
 <li>see <a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises10/#pollution">Question 10.4</a> Question from Exercise sheet 10</li>
 </ul>
 <h3 id="multiple-choice-question-examples">Multiple Choice Question Examples</h3>
+<p>(To check your understanding select what you think is the correct option in the dropdown selection menus. If you are right the menu box should turn blue)</p>
 <h4 id="question-1">Question 1</h4>
 <p>Suppose you have estimated the following regression model on a representative sample of the UK population <span class="math display">\[\log(Weight_i)=\beta_0+\beta_1 Female_i+\beta_2 AGE_i +\beta_3+AGE_i^2+\epsilon_i\]</span></p>
 <p>where Weight_i is weight of a person in 100s of kilograms Suppose you find that <span class="math inline">\(\hat\beta_1=-0.10\)</span> Which of the following is a correct interpretation?</p>
@@ -1438,6 +1439,129 @@ Hint
 <li>50%</li>
 <li>95% for a significance level of 0.1</li>
 <li>I need more information on the variance and probability distribution to answer this question.</li>
+</ol>
+<p><select class='solveme' data-answer='["b"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
+<h4 id="question-6">Question 6</h4>
+<p>The R output below shows a regression of COVID19 cases per student among US Universities in Fall 2020. The variable <code>partyrank</code> ranks Universities according to the quality of the local party scene (i.e. the uni with the best partyscene has rank 1). What does the regression suggest abou the relationship between party rank and covid cases?</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+Call:
+lm(formula = casesOstudent ~ partyrank, data = datafinal2)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.05011 -0.02694 -0.01124  0.01172  0.20685 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  5.937e-02  4.823e-03  12.310  &lt; 2e-16 ***
+partyrank   -5.224e-05  1.205e-05  -4.336 2.08e-05 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.04017 on 260 degrees of freedom
+Multiple R-squared:  0.06743,   Adjusted R-squared:  0.06384 
+F-statistic:  18.8 on 1 and 260 DF,  p-value: 2.078e-05</code></pre>
+</div>
+<p>Moving to one lower rank (e.g from rank 4 to rank 5) …</p>
+<ol type="a">
+<li>… leads to 5.2 students less being affected by covid</li>
+<li>… leads to 5.2% less COVID cases.</li>
+<li>… leads to 0.52 less COVID cases in 10,000 students.</li>
+<li>… leads to 5.2 less COVID cases in 1000 students.</li>
+</ol>
+<p><select class='solveme' data-answer='["c"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select> ..</p>
+<h4 id="question-7">Question 7</h4>
+<p>The figure below shows the result of a Monte-Carlo study of a parameter estimate. It’s a density plot of the estimated parameter for a large number of replications along with the true parameter value (vertical line)</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="srmexamnotes_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<ol type="a">
+<li>The estimate is unbiased.</li>
+<li>The estimate is upward biased.</li>
+<li>The estimate is downward biased</li>
+<li>There is not enough information to tell</li>
+</ol>
+<p><select class='solveme' data-answer='["c"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
+<h4 id="question-8">Question 8</h4>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>Consider the R output below where the variable <code>oilprice</code> is the spot price for oil computed at the monthly level from 2010-19. Based on what is reported below, which of the following can you conclude:</p>
+<ol type="a">
+<li>The oil price is non-stationary at a 5% significance level but not at 1%.</li>
+<li>The oil price is stationary at all significance levels.</li>
+<li>The oil price is stationary only at the 10% significance level.</li>
+<li>The oil price non-stationary at all significance levels.</li>
+</ol>
+<p><select class='solveme' data-answer='["d"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-13.9677  -3.2336   0.6622   3.3823  14.7928 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)   
+z.lag.1    -0.004069   0.006139  -0.663   0.5088   
+z.diff.lag  0.258295   0.089599   2.883   0.0047 **
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 5.05 on 116 degrees of freedom
+Multiple R-squared:  0.07005,   Adjusted R-squared:  0.05402 
+F-statistic: 4.369 on 2 and 116 DF,  p-value: 0.01481
+
+
+Value of test-statistic is: -0.6628 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.58 -1.95 -1.62</code></pre>
+</div>
+<h4 id="question-9">Question 9</h4>
+<p>Consider the R output below where the variable <code>oilprice</code> is (as in Question 8) the spot price for oil computed at the monthly level from 2010-19. Based on what is reported below, which of the following can you conclude:</p>
+<ol type="a">
+<li>Oil prices are growing at a rate of 7% on average.</li>
+<li>Oil prices are shrinking at a rate of 3.1% on average.</li>
+<li>Oil prices are shrinking at a rate of 0.31% on average.</li>
+<li>Oil prices are srhinking at a rate of 0.23% on average.</li>
+</ol>
+<p><select class='solveme' data-answer='["d"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+Call:
+lm(formula = diff(log(oilprice)) ~ 1, data = set)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.24327 -0.04393  0.01249  0.04868  0.21612 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) -0.002257   0.007238  -0.312    0.756
+
+Residual standard error: 0.07896 on 118 degrees of freedom</code></pre>
+</div>
+<h4 id="question-10">Question 10</h4>
+<p>Which notation is correct?</p>
+<ol type="a">
+<li><span class="math display">\[y_i=β_1+β_2 x_{2i}\]</span><br />
+</li>
+<li><span class="math display">\[\hat{y}_i=\hat{β}_1+\hat{β}_2 x_{2i}\]</span><br />
+</li>
+<li><span class="math display">\[\hat{y}_i=β_1+β_2 x_{2i}\]</span></li>
+<li><span class="math display">\[\hat{y}_i=\hat{β}_1+\hat{β}_2 \hat{x}_{2i}\]</span></li>
 </ol>
 <p><select class='solveme' data-answer='["b"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
 <!--radix_placeholder_article_footer-->
