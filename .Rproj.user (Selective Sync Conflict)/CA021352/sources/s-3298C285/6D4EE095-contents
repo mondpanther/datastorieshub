@@ -1,0 +1,363 @@
+---
+title: "Time Series"
+author: Ralf Martin
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE,echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# spurious relations over time: the case of covid and weekly economic activity
+
+```{r get weekly covid data for us,echo=FALSE,message=FALSE}
+library(dplyr)
+library(lubridate)
+nyt <- read.csv(url("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv"))
+nyt=nyt%>%mutate(date=as.character(date))
+maxt=max(nyt$date)
+nytmax=nyt%>% filter(date==maxt)
+covidus=nyt %>% group_by(date) %>% summarise_at(vars(cases,deaths),sum)
+
+start.date = ymd_hms("2008-01-05 00:00:00")
+end.date   = as_datetime(now()) #ymd_hms("2020-04-02 01:00:00")
+#end.date   = ymd_hms("2020-04-04 01:00:00")
+breaks = seq(start.date, end.date, "1 week")
+
+covidus = covidus %>% mutate(date=as_datetime(date),
+                             week=cut(date, breaks=breaks)) %>% 
+          group_by(week) %>%  
+          summarise_at(vars(cases,deaths),max)
+
+
+wei=read.csv("https://www.dropbox.com/s/d4h50imfkvmo2la/weekly-economic-index_data.csv?dl=1") %>% 
+    rename(week=Date)
+    #mutate(week=as.character(as_date(Date)))  
+    #mutate(week=gsub("/","-",Date))
+
+
+
+ld=read.csv("https://www.dropbox.com/s/q599zbhc1wfxoju/lockdown_us.csv?dl=1")
+ld=ld %>% group_by(State) %>% filter(Date==min(Date)) %>% distinct(State,Date) %>% rename(state=State)
+
+pp=read.csv("https://www.dropbox.com/s/whsm336mwqzch57/statistic_id183497_population-in-the-states-of-the-us-2019.csv?dl=1")
+
+uspop=sum(pp$popmm)
+
+ldpp=pp %>% left_join(ld,by="state") %>% group_by(Date) %>% 
+     summarise_at(vars(popmm),sum) %>% filter(is.na(Date)==F) %>% 
+     mutate(cumpopmm=cumsum(popmm))
+
+ldppweek=wei %>% mutate( Fweek=dplyr::lead(week) ) %>% merge(ldpp) %>% filter(Date>week & Date<Fweek) %>% 
+         group_by(week) %>% 
+         summarise(lockshare=max(cumpopmm/uspop)) %>% mutate(week=as_date(week))
+
+
+df=wei %>%  left_join(covidus, by="week") %>%  
+   mutate(week=as_date(week),cases=replace(deaths,is.na(cases),0),
+                  deaths=replace(deaths,is.na(deaths),0),lnindex=log(Index)) %>% 
+   left_join(ldppweek,by="week") %>% mutate(lockshare=replace(lockshare,is.na(lockshare),0),lockshare=cummax(lockshare)*100) %>% 
+   mutate(cases=cases/100000,deaths=deaths/100000)
+   
+
+
+```
+
+
+So we got ourselves some time series data:
+
+```{r}
+
+
+head(df)
+
+
+```
+
+
+```{r}
+library(ggplot2)
+library(scales)
+
+
+  scaler=max(df$cases,na.rm=TRUE)/max(df$Index,na.rm=TRUE)
+  
+  ggplot(df,aes(x=week)) + theme_minimal() + xlab("Weekly Data") +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(breaks = date_breaks("12 months"),labels = date_format("%Y")) +
+    geom_line(aes(y = Index*scaler, colour = "Economic Activity Index"))+
+    geom_line(aes(y = cases, colour = "Covid Cases per 100K"))+ylab("Covid Cases")+
+    scale_y_continuous(sec.axis = sec_axis(label=comma, trans=~./(scaler),
+                       name = "Economic Activity Index"),labels=comma)
+
+
+```
+
+
+
+
+
+
+
+## Illustration of time trend
+
+```{r}
+
+lm(lnindex~cases,df) %>% summary()
+df=df %>% mutate(t=1:n())
+lm(lnindex~cases+t,df) %>% summary()
+lm(Index~cases+t,df,year(week)>2018) %>% summary()
+lm(Index~cases+t+lockshare,df,year(week)>2018) %>% summary()
+
+```
+
+
+
+## The case of Panel data
+
+
+```{r,message=FALSE,echo=FALSE}
+statsbyday=read.csv("https://www.dropbox.com/s/e26qs4vfl4xjy99/statsbydlong.cvs?dl=1") %>%  mutate(date=as_date(date),week=round_date( date,  unit = "week"))
+  #mutate(hoaxsh=hoax/tweets)
+
+statsbyweek= statsbyday %>% group_by(state,week) %>%    
+          summarise(hoax=sum(hoax), 
+                    tweets=sum(tweets),
+                    cases=max(cases),
+                    deaths=max(deaths))  %>%
+          mutate(hoaxsh=hoax/tweets*100)     %>% 
+          filter(week<max(week)) 
+          # we get rid of the last week because it is not a full week so not comparable with the others
+
+
+# Let's also compute extra cases and deaths per day as opposed to cumulative ones.
+# To implement that we order ther dataframe by week and then take the difference
+# between current and lagged cases and death figures.
+statsbyweek = statsbyweek %>% arrange(week) %>% 
+           mutate(Dcases=cases-lag(cases,n=1L),
+                 Ddeaths=deaths-lag(deaths,n=1L))
+
+```
+
+
+```{r}
+head(statsbyweek %>% arrange(state,week))
+
+statsbyweek %>% group_by(state) %>% summarise(n())
+
+
+
+```
+
+```{r,echo=FALSE,message=FALSE}
+
+library(ggplot2)
+library(scales)
+
+tsplotter=function(df,label=""){
+  
+  scaler=max(df$cases,na.rm=TRUE)/max(df$hoaxsh,na.rm=TRUE)
+  
+  ggplot(df,aes(x=week)) + theme_minimal() + xlab("Weekly Data") +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(breaks = date_breaks("12 months"),labels = date_format("%Y")) +
+    geom_line(aes(y = hoaxsh*scaler, colour = "Share of Hoax Tweets"))+
+    geom_line(aes(y = cases, colour = "Covid cases"))+ylab("Covid Cases")+
+    scale_y_continuous(sec.axis = sec_axis(label=comma, trans=~./(scaler),
+                       name = "Share of Hoax Tweets"),labels=comma)+ggtitle(label)
+
+}
+
+
+
+```
+
+
+```{r}
+tsplotter(statsbyweek %>% filter(state=="New York"),label="New York")
+tsplotter(statsbyweek %>% filter(state=="California"),label="California")
+tsplotter(statsbyweek %>% filter(state=="Texas"),label="Texas")
+statsbyweek=as.data.frame(statsbyweek)
+
+```
+
+
+```{r,message=FALSE}
+
+
+
+lm(cases~hoaxsh,statsbyweek) %>% summary()
+lm(cases~hoaxsh+factor(week),statsbyweek) %>% summary()
+lm(cases~hoaxsh++factor(state)+factor(week),statsbyweek) %>% summary()
+
+library(plm)
+plm(cases~hoaxsh+factor(week)+factor(state),statsbyweek,
+    index=c("state","week"),
+    model="within", 
+    effect="twoways") %>% summary()
+
+```
+
+
+
+
+## Unit roots
+```{r unit root simulation}
+library(ggplot2)
+set.seed(12356.2231)
+obs=100
+eps=rnorm(obs)
+y99=eps
+y100=eps
+yM100=eps
+
+for(i in 2:obs){
+  
+  y99[i] = y99[i-1] *.95 +eps[i]
+  yM100[i]=-yM100[i-1]*1+eps[i]
+  y100[i]= y100[i-1]*1+eps[i]
+  
+}
+
+
+sdf=data.frame(y99,y100,yM100,eps,period=1:obs) 
+
+#library(latex2exp)
+ggplot(sdf,aes(x=period))+geom_line(aes(y=y99,color="rho=0.99"))+
+      geom_line(aes(y=y100,color="rho=1"))+
+      geom_line(aes(y=yM100,color="rho=-1"))+
+     theme_minimal()+ylab("y")
+
+
+
+
+
+```
+
+
+
+
+
+```{r,message=FALSE}
+  library(urca)
+  ur.df(df$cases,type="none",lags=1) %>% summary()
+  ur.df(df$lnindex,type="none",lags=1) %>% summary()
+
+```
+
+  
+  
+```{r}  
+  ur.df(diff(df$cases,1),type="none",lags=1) %>% summary()
+  ur.df(diff(df$lnindex,1),type="none",lags=1) %>% summary()
+
+```
+  
+
+```{r,message=FALSE}  
+df=df %>% arrange(week) %>% mutate(Dlnindex=lnindex-dplyr::lag(lnindex),
+                                     Dcases=cases-dplyr::lag(cases) ,
+                                     DDlnindex=Dlnindex-dplyr::lag(Dlnindex),Dlockshare=lockshare-dplyr::lag(lockshare))
+  
+  
+lm(Dlnindex~Dcases+t,df) %>% summary()  
+
+lm(Dlnindex~Dcases+t+Dlockshare,df) %>% summary()
+
+
+
+
+
+lm(Dlnindex~Dcases+t+Dlockshare,df) %>% summary()
+
+
+lm(Dlnindex~dplyr::lag(Dlnindex)+Dcases+t+Dlockshare,df) %>% summary()  
+
+lm(Dlnindex~dplyr::lag(Dlnindex)+dplyr::lag(Dlnindex,2)+Dcases+dplyr::lag(Dcases)+dplyr::lag(Dcases,2)+t+Dlockshare+dplyr::lag(Dlockshare)+dplyr::lag(Dlockshare,2),df) %>% summary()  
+
+  
+    
+```
+
+
+```{r,eval=FALSE}
+# Time Series
+
+#< load libraries
+  library(foreign)
+  
+
+#< GDP Japan
+  library(haven)
+  gdpjp <-read_dta("data/gdp_JP_etc.dta")
+  library(zoo)
+  library(DataCombine)
+  library(quantmod)
+  library(tseries)
+  
+  
+  gdpjp["L1lngdp"]=Lag(gdpjp$lngdp,1)
+  
+  
+  gdpjp["L1lngdp"]=Lag(gdpjp$lngdp,1)
+  
+  summary(lm(lngdp~L1lngdp ,gdpjp))
+  summary(arma(gdpjp$lngdp, order = c(1, 0)))
+  
+  summary(arma(gdpjp$lngdp, order = c(2, 0)))
+  
+  
+  
+  summary(lm(lngdp~L1lngdp+time ,gdpjp))
+  
+  gdpjp["Dlngdp"]<-c(NA,diff(gdpjp$lngdp, differences=1))
+#>
+  
+#< Dickey Fuller
+  library(urca)
+  
+  df=ur.df(gdpjp$lngdp,type="trend",lags=0)
+  summary(df)
+ 
+  summary(ur.df(diff(gdpjp$lngdp,1),type="trend",lags=0))
+  
+  summary(ur.df(diff(gdpjp$lngdp,1),type="trend",lags=1))
+  
+  
+  summary(ur.df(gdpjp$lngdp,type="trend",lags=1))
+  summary(ur.df(gdpjp$lngdp,type="trend",lags=5))
+  summary(ur.df(gdpjp$lngdp,type="trend",lags=3))
+  
+  summary(ur.df(diff(gdpjp$lngdp,1),type="trend",lags=3))
+  
+  
+
+#>
+#< Oragne juice
+  
+  oj <-read_dta("data/oj.dta")  
+  oj = na.omit(oj)
+  oj["lnp"]=log(oj$ppioj/oj$pwfsa *100)
+  
+  
+  summary(ur.df(oj$fdd,type="trend",lags=12))
+  
+  summary(ur.df(oj$lnp,type="trend",lags=12))
+  summary(ur.df(diff(oj$lnp,1),type="trend",lags=12))
+
+  
+  summary(lm(diff(oj$lnp,1)~oj$fdd[-1]))
+  
+  
+  
+  ojm=lm(diff(oj$lnp)~oj$fdd[-1])
+  library(sandwich)
+  library(lmtest)
+  coeftest(ojm, vcov. = NeweyWest)
+  
+#>  
+  
+```

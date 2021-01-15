@@ -1,0 +1,6 @@
+"0","#drop the outlier and get the graph"
+"0","ggplot(datafinal1%>%filter(datafinal1$case<2500),aes(x=invalidmask,y=case))+"
+"0","  geom_point()+ylab(""Covid-19 Infections at Insitution"")+xlab(""Invalid utilization of masks in county"")+"
+"0","  geom_smooth(method = ""lm"")+"
+"0","  ggtitle(""Covid-19 Infections vs The share of invalid utilization of masks"")+"
+"0","  theme(plot.title = element_text(hjust = 0.45, vjust=2.12))"

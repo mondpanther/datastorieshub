@@ -1,0 +1,262 @@
+---
+title: "Assessment for SRM"
+description: |
+  More details on your assessment
+author:
+  - name: Ralf Martin
+    url: https://mondpanther.github.io/wwwmondpanther/
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    self_contained: true
+    css: webex.css
+    includes:
+      after_body: webex.js
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+
+
+
+```{r setup, include = FALSE, message=FALSE}
+library("webex")
+library(ggplot2)
+#knitr::opts_chunk$set(fig.path='../../images/')
+```
+
+
+
+
+
+# Exam
+
+
+- 2 Open (Essay style) Answer Questions: select 1 ,  20 Marks
+
+- 32 Multiple Choice Questions: 4 answer options, 2.5 Marks each, with no deduction for a wrong answer.
+
+### Example for open questions
+
+- see [Question 10.4](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises10/#pollution) Question from Exercise sheet 10
+
+
+
+### Multiple Choice Question Examples
+(To check your understanding select what you think is the correct option in the dropdown selection menus. If you are right the menu box should turn blue)
+
+#### Question 1
+Suppose you have estimated the following regression model on a representative sample of the UK population
+$$\log(Weight_i)=\beta_0+\beta_1 Female_i+\beta_2 AGE_i +\beta_3+AGE_i^2+\epsilon_i$$
+
+where Weight_i is weight of a person in 100s of kilograms
+Suppose you find that $\hat\beta_1=-0.10$ Which of the following is a correct interpretation?
+
+(a) The average weight for women is 10kg
+(b) Women – on average - weigh 10 kg less than men
+(c) Women – on average – weigh 10% less than men
+(d) None of the above.
+	
+Correct answer `r mcq(c("a","b",answer="c","d"))`
+
+<br>
+
+#### Question 2
+
+For the model from Question 1: suppose you find that $\hat\beta_2=0.01$ and $\hat\beta_3=-0.0001$ .
+What does it tell you about the age at which we expect people to be heaviest?
+
+(a) At 25 years
+(b) At 75 years 
+(c) At 40 years
+(d) None of the above
+
+Correct answer `r mcq(c("a","b","c",answer="d"))`
+
+`r hide("Hint")`
+Because $\beta_3$ is negative the weight-age relationship is hump shaped. We can find the
+maximum of the hump by setting the gradient equal to 0 implying
+
+$$0.01-2\times 0.0001\times AGE=0$$
+Consequently:
+
+$$AGE=\frac{0.01}{2\times 0.0001}=50$$
+
+
+`r unhide()`
+
+<br>
+
+#### Question 3
+
+Using a univariate model you obtain a parameter estimate $\hat\beta=2.1$ with a standard error of 0.1 obtained using a sample size of 1000 observations. Should you reject the hypothesis that β=1 at the 5% level?
+
+(a)	Yes
+(b)	No
+(c)	It depends on the variance of the residuals
+(d)	It depends on the variance of the explanatory variable
+
+`r mcq(c(answer="a","b","c","d"))`
+
+`r hide("Hint")`
+The t value becomes $t=\frac{2.1}{0.1}=$`r 2.1/.1` , which is larger than 1.96, the 5% critical threshold
+with a standard normal distribution. Note that 1000 observations we can ignore that the t-statistic is only approximately normally distributed.
+
+`r unhide()`
+
+
+<br>
+
+#### Question 4
+
+The demand for a new drug is known to be linear and downward sloping; i.e. a higher price means a lower demand. A researcher provided an estimate of this demand curve but suspects that a confounding factor led to a downward bias. This means that the estimated curve is
+
+(a) Flatter than it should be
+(b)	Steeper than it should be
+(c)	Upward sloping
+(d)	None of the above
+
+`r mcq(c("a",answer="b","c","d"))` 
+
+<br>
+
+#### Question 5
+
+The probability that a standardised normal variable takes a value of zero or more is: 
+
+(a)	Equal to zero.
+(b)	50%
+(c)	95% for a significance level of 0.1
+(d)	I need more information on the variance and probability distribution to answer this question. 
+
+`r mcq(c("a",answer="b","c","d"))` 
+
+
+#### Question 6
+```{r ,include=FALSE,message=FALSE}
+
+#clean and combine the dataset
+library(readr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(car)
+library(sandwich)
+library(AER)
+rank<-read.csv("https://raw.githubusercontent.com/zihanz14/data_team17/main/ForbesAmericasTopColleges2019.csv")
+student<-read.csv("https://raw.githubusercontent.com/zihanz14/data_team17/main/studentsss.csv")
+data1<-inner_join(rank,student)
+case<-read.csv("https://raw.githubusercontent.com/zihanz14/data_team17/main/colleges.csv")
+data2<-inner_join(data1,case)
+datafinal<-data.frame(college=data2$college,rank=data2$Rank,outstaterate=data2$Percent.out.of.state/100,student=data2$Undergraduate.Population,case=data2$cases,county=data2$county)
+mask<-read.csv("https://raw.githubusercontent.com/zihanz14/data_team17/main/mask.csv")
+data3<-mask %>% group_by(county) %>% summarise(invalidmask=mean(rate.of.people.who.use.masks.uneffectively))
+datafinal1<-inner_join(datafinal,data3)
+datafinal1 <- datafinal1[!is.na(datafinal1$case),]
+party<-read.csv("https://raw.githubusercontent.com/zihanz14/data_team17/main/party.csv")
+dataparty<-inner_join(party,case)
+
+
+datafinal2<-inner_join(party,datafinal1)
+datafinal2 <- datafinal2[!is.na(datafinal2$case),]
+datafinal2=datafinal2 %>% mutate(casesOstudent=case/student)
+```
+
+
+The R output below shows a regression of COVID19 cases per student among US Universities in Fall 2020. The variable `partyrank`
+ranks Universities according to the quality of the local party scene (i.e. the uni with the best partyscene has rank 1).
+What does the regression suggest abou the relationship between party rank and covid cases?
+
+
+```{r}
+#simple regression of case on partyrank
+lm(casesOstudent~partyrank,datafinal2) %>% summary()
+
+
+```
+Moving to one lower rank (e.g from rank 4 to rank 5) ...
+
+(a)	... leads to 5.2 students less being affected by covid
+(b)	... leads to 5.2% less COVID cases.
+(c) ... leads to 0.52 less COVID cases in 10,000 students.
+(d)	... leads to 5.2 less COVID cases in 1000 students.
+
+`r mcq(c("a","b",answer="c","d"))` ..
+
+
+
+
+#### Question 7
+
+The figure below shows the result of a Monte-Carlo study of a parameter estimate. It's a density plot of the estimated parameter for a large number of replications along with the true parameter value (vertical line)
+
+
+```{r,include=TRUE}
+obs=1000
+df=data.frame(mc=rnorm(obs)+1)
+library(ggplot2)
+ggplot(df,aes(x=mc))+geom_density()+geom_vline(xintercept=2,color="red")+theme_minimal()+xlab("")
+
+```
+(a)	The estimate is unbiased.
+(b)	The estimate is upward biased.
+(c) The estimate is downward biased
+(d)	There is not enough information to tell
+
+`r mcq(c("a","b",answer="c","d"))` 
+
+
+#### Question 8
+
+```{r}
+library(readxl)
+set <- read_excel("datastories/worldoilprice/Dataset.xlsx",  skip = 1) %>% 
+       rename(oilprice=`Oil Price - WTI spot price ($)`)
+```
+
+Consider the R output below where the variable `oilprice` is the spot price for oil computed at the monthly level from 2010-19. Based on what is reported below, which of the following can you conclude:
+
+(a)	The oil price is non-stationary at a 5% significance level but not at 1%.
+(b)	The oil price is stationary at all significance levels.
+(c) The oil price is stationary only at the 10% significance level.
+(d) The oil price non-stationary at all significance levels.
+
+`r mcq(c("a","b","c",answer="d"))` 
+
+
+```{r,include=TRUE}
+library(urca)
+ur.df(set$oilprice) %>% summary()
+
+```
+
+
+#### Question 9
+
+Consider the R output below where the variable `oilprice` is (as in Question 8) the spot price for oil computed at the monthly level from 2010-19. Based on what is reported below, which of the following can you conclude:
+
+(a)	Oil prices are growing at a rate of 7% on average.
+(b)	Oil prices are shrinking at a rate of 3.1% on average.
+(c) Oil prices are shrinking at a rate of 0.31% on average.
+(d) Oil prices are srhinking at a rate of 0.23% on average.
+
+`r mcq(c("a","b","c",answer="d"))` 
+
+```{r}
+
+lm(formula=diff(log(oilprice))~1,set) %>% summary()
+
+
+```
+#### Question 10
+
+Which notation is correct? 
+
+(a) $$y_i=β_1+β_2 x_{2i}$$   
+(b) $$\hat{y}_i=\hat{β}_1+\hat{β}_2 x_{2i}$$   
+(c) $$\hat{y}_i=β_1+β_2 x_{2i}$$
+(d) $$\hat{y}_i=\hat{β}_1+\hat{β}_2 \hat{x}_{2i}$$   
+
+
+`r mcq(c("a",answer="b","c","d"))` 
