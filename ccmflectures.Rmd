@@ -152,7 +152,9 @@ We will be deepening our ability to understand the R programming language by loo
 
 # Topic 4 - Testing Times
 
-We have discussed how to estimate the parameters of a simple regression model. In this topic we will discuss how work out the reliability of such estimates. We will examine what determines the distribution of the estimates and how we can use hypothesis testing to explore the data and estimates.  
+We have discussed how to estimate the parameters of a simple regression model. In this topic we will discuss how work out the reliability of such estimates. We will examine what determines the distribution of the estimates and how we can use hypothesis testing to explore the data and estimates. 
+
+
 ## Learning Objectives
 
 - Use the R programming language to create basic and some more advanced graphs and visualisations based on data.
