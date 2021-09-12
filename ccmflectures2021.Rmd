@@ -1,0 +1,208 @@
+---
+  title: "CCMF - Quantitative Methods 2021" 
+  site: distill::distill_website
+
+---
+
+
+```{r echo = FALSE, include=FALSE}
+
+slidelinks=function(rstring){
+
+  filei=list.files(path="./slides",pattern=rstring)
+  
+  file=c(filei)
+  
+  #path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
+  path="https://mondpanther.github.io/datastorieshub/slides/"
+  full=paste0(path,file[[1]])
+  
+  
+  #```{r echo = FALSE, results = "asis"}
+  
+  for (i in seq(1,length(file))) {
+    
+    full=paste0(path,file[[i]])
+    cur=paste("- [", file[[i]],"](",full,") \n")
+    cat(cur)
+  
+  }
+}
+```
+
+
+
+
+
+Welcome to Quantitative Methods.
+
+In this course we give you an introduction into common concepts and tools for data analysis in economics and business. Emphasis will be on practical data skills as well as the ability to formulate a question appropriately, provide data analysis relevant to the question and interpret the results correctly. As part of the course you will be asked to provide a small piece of data analysis.
+
+---
+
+# Topic 1 - Introduction
+
+
+
+## Learning Objectives
+
+- Understanding what causal relationships are
+- Become aware of factors that lead to biased estimates of causal relationship
+- Understand upward and downward bias
+- Discuss causal identification and biases in the context of a univarite linear model
+
+
+## Slides
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("IntroductionCCMF")
+
+```
+
+## Exercises
+
+- [Exercises 1](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises1/)
+
+---
+
+# Topic 2- Rrrr
+
+We take a first look at the R software package and programming language, which we will be using throughout this module. For those who have not yet been programming this will be a steep learning curve. However, it should be worth it. 
+
+You will not be able to analyse data effectively without being familiar with basic programming concepts. What’s more, to grasp many aspects of today’s world an understanding of programming is key. Even if you don’t envisage a career as master coder or data analyst, trying these things for yourself will be useful as you will very likely have to manage coders and analysts or rely on their work at some point in your career. 
+
+
+## Learning Objectives
+
+- Install R and RStudio on your computer.
+- Use R as a glorified pocket calculator
+- Load a dataset and provide simple analysis of it.
+- Have an understanding of programming concepts such as loops
+- Be able to merge or join different data sources using code.
+- Learn how to create data yourself using random number generators.
+
+
+
+```{r ,echo=FALSE, message=FALSE}
+
+fileo=list.files(path="./slides",pattern="^Topic")
+filei=list.files(path="./slides",pattern="CCMF")
+
+file=c(filei,fileo)
+
+#path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
+path="https://mondpanther.github.io/datastorieshub/slides/"
+full=paste0(path,file[[1]])
+
+
+```
+
+```{r echo = FALSE, results = "asis"}
+
+for (i in seq(1,length(file))) {
+  
+  full=paste0(path,file[[i]])
+  cur=paste("- [", file[[i]],"](",full,") \n")
+  cat(cur)
+
+}
+```
+
+
+
+# R scripts
+
+
+```{r ,echo=FALSE, message=FALSE}
+
+fileo=list.files(path="./code",pattern="^Topic")
+filei=list.files(path="./code",pattern="^Farage")
+
+file=c(filei,fileo)
+
+#path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
+path="https://mondpanther.github.io/datastorieshub/code/"
+full=paste0(path,file[[1]])
+
+
+```
+
+```{r echo = FALSE, results = "asis"}
+
+for (i in seq(1,length(file))) {
+  
+  full=paste0(path,file[[i]])
+  cur=paste("- [", file[[i]],"](",full,") \n")
+  cat(cur)
+
+}
+```
+
+
+# Guides
+
+```{r ,echo=FALSE, message=FALSE}
+
+file=list.files(path="./code",pattern="Guide")
+#filei=list.files(path="./code",pattern="^Farage")
+
+#file=c(filei,fileo)
+
+#path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
+path="https://mondpanther.github.io/datastorieshub/code/"
+full=paste0(path,file[[1]])
+
+
+```
+
+```{r echo = FALSE, results = "asis"}
+
+for (i in seq(1,length(file))) {
+  
+  full=paste0(path,file[[i]])
+  cur=paste("- [", file[[i]],"](",full,") \n")
+  cat(cur)
+
+}
+```
+
+
+# Past Exam Papers
+
+- [Past Exam 1](https://www.dropbox.com/s/97tvh8z87wuvujt/CCMF%20Quantitative%20Methods%20ANSWER%20version%20%282%29%20IT%202018%20%28RM%29%28MM%29%20clean.pdf?dl=1)
+
+- [Past Exam 2](https://www.dropbox.com/s/wmnmqdn64e8vaxb/Quant%20Methods%20Exam%20%2016-17%20with%20solutions.docx?dl=1)
+
+- [Past Exam 3](https://www.dropbox.com/s/e05obku5roeyu97/Quantitative%20Methods%20Exam%202017%20%28final%20with%20solutions%29.pdf?dl=1)
+
+
+
+## Datasets for past papers (and more)
+
+
+```{r ,echo=FALSE, message=FALSE}
+
+file=list.files(path="./data")
+
+
+
+#path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
+path="https://mondpanther.github.io/datastorieshub/data/"
+full=paste0(path,file[[1]])
+
+
+```
+
+```{r echo = FALSE, results = "asis"}
+
+for (i in seq(1,length(file))) {
+  
+  full=paste0(path,file[[i]])
+  cur=paste("- [", file[[i]],"](",full,") \n")
+  cat(cur)
+
+}
+```
+
+
+

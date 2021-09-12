@@ -211,8 +211,8 @@ ggplot(df,aes(x=mc))+geom_density()+geom_vline(xintercept=2,color="red")+theme_m
 
 ```{r}
 library(readxl)
-set <- read_excel("datastories/worldoilprice/Dataset.xlsx",  skip = 1) %>% 
-       rename(oilprice=`Oil Price - WTI spot price ($)`)
+set <- read_excel("datastories/worldoilprice/Dataset.xlsx",  skip = 0) %>% 
+       rename(oilprice=`WTIspotprice`)
 ```
 
 Consider the R output below where the variable `oilprice` is the spot price for oil computed at the monthly level from 2010-19. Based on what is reported below, which of the following can you conclude:

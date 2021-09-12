@@ -1,3 +1,0 @@
-"0","library(readxl)"
-"0","set <- read_excel(""datastories/worldoilprice/Dataset.xlsx"",  skip = 1) %>% "
-"0","       rename(oilprice=`Oil Price - WTI spot price ($)`)"

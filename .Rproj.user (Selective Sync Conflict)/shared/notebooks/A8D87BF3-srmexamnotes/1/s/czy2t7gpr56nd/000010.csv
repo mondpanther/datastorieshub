@@ -1,5 +1,0 @@
-"0","obs=1000"
-"0","df=data.frame(mc=rnorm(obs)+1)"
-"0","library(ggplot2)"
-"0","ggplot(df,aes(x=mc))+geom_density()+geom_vline(xintercept=2,color=""red"")+theme_minimal()+xlab("""")"
-"0",""

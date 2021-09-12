@@ -69,7 +69,7 @@ If you use the RStudio dialog just discussed it will show you the R command that
 `r hide("Answer:")`
 
 ```{r load auto, echo = TRUE}
-auto <- read.csv("C:/Users/Ralf Martin/Dropbox/datastories/data/auto.csv", header=TRUE)
+auto <- read.csv("https://www.dropbox.com/s/gm22o5efboc3q0w/auto.csv?dl=1", header=TRUE)
 
 
 ```
