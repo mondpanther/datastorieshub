@@ -40,7 +40,7 @@ knitr::include_graphics("Mente.png")
 ```
 
 
-In the lecture we discussed the notion of causality. We contrasted the causality mechanism that you might be most interested in (your story) with the causality mechanism(s) that might be driving your data (the data story). For good data-analysis you need to be aware of both: Have a clear idea of what you want to analyse or explore as well as of all the things that could be going on in your data. To practice this I ask you to go through a couple of examples.
+In the lecture we discussed the notion of causality. We contrasted the causality mechanism that you might be most interested in (your story) with the causality mechanism(s) that might be driving your data (the data story). For good data-analysis you need to be aware of both: have a clear idea of what you want to analyse or explore as well as of all the things that could be going on in your data. To practise this I ask you to go through a couple of examples.
 These are suggestive causal relationships typically found on the basis of some correlation  in in one dataset or another. 
 In each case:
 
@@ -58,7 +58,7 @@ For each case I give you a suggestion as example when clicking the answer tab. Y
 Police body worn cameras increase violence against the police?
 
 ```{r}
-knitr::include_url("https://www.govtech.com/public-safety/Study-Finds-Negative-Effects-of-Police-Worn-Body-Cameras.html")
+knitr::include_url("https://www.govtech.com/public-safety/study-finds-negative-effects-of-police-worn-body-cameras.html")
 ```
 
 
