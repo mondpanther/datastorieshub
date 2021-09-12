@@ -7,9 +7,9 @@
 
 ```{r echo = FALSE, include=FALSE}
 
-slidelinks=function(rstring){
+slidelinks=function(rstring,folder="./slides"){
 
-  filei=list.files(path="./slides",pattern=rstring)
+  filei=list.files(path=folder,pattern=rstring)
   
   file=c(filei)
   
@@ -83,6 +83,68 @@ You will not be able to analyse data effectively without being familiar with bas
 
 
 
+## Slides
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic2")
+
+```
+
+## Additional Material
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Farage",folder="./code")
+
+```
+
+
+
+## Exercises
+
+- [Exercises 2](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/)
+
+
+---
+
+
+
+# Topic 3 - Visions
+
+Some of the best ways to understand data are graphs and visualisations. R has powerful tools for that purpose. 
+
+We will be deepening our ability to understand the R programming language by looking at some of its graphics commands. We will also discuss some of the pitfalls as well as deliberate manipulations that people engage in when producing data visualisations. 
+
+## Learning Objectives
+
+- Use the R programming language to create basic and some more advanced graphs and visualisations based on data.
+- Avoid common pitfals that lead to misleading or un-informative visualisations.
+
+
+## Slides
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic3")
+
+```
+
+## Additional Material
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic3",folder="./code")
+
+```
+
+
+
+## Exercises
+
+- [Exercises 3](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises3/)
+
+
+---
+
+
+
 ```{r ,echo=FALSE, message=FALSE}
 
 fileo=list.files(path="./slides",pattern="^Topic")
@@ -111,7 +173,6 @@ for (i in seq(1,length(file))) {
 
 
 # R scripts
-
 
 ```{r ,echo=FALSE, message=FALSE}
 
