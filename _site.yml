@@ -13,7 +13,7 @@ navbar:
 base_url: https://mondpanther.github.io/datastorieshub/
 output:
   distill::distill_article:
-    #theme: flatly
+    theme: flatly
     css: webex.css
 
     
