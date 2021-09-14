@@ -35,7 +35,7 @@ knitr::opts_chunk$set(fig.path='../../images/')
 ```
 
 
-```{r  fig.width=30,echo=F,preview=TRUE,out.width = '75%'}
+```{r  fig.width=30,echo=FALSE,preview=TRUE,out.width = '75%'}
 knitr::include_graphics("Mente.png")
 ```
 
@@ -57,7 +57,7 @@ For each case I give you a suggestion as example when clicking the answer tab. Y
 
 Police body worn cameras increase violence against the police?
 
-```{r}
+```{r,echo=FALSE}
 
 knitr::include_url("https://www.asmag.com/showpost/20498.aspx")
 
@@ -76,7 +76,7 @@ This "data story" would imply an upward bias on the actual impact of cameras on 
 # Exercise 1.2
 Guacamole makes you more succesful at online dating?
 
-```{r}
+```{r,echo=FALSE}
 knitr::include_url("https://abcnews.go.com/Lifestyle/adding-extra-guacamole-boost-online-daters-popularity/story?id=51483738")
 ```
 
@@ -97,7 +97,7 @@ The story of the data could be another:
 # Exercise 1.3
 Going to the Museum makes you live longer?
 
-```{r}
+```{r,echo=FALSE}
 knitr::include_url("https://www.bmj.com/content/367/bmj.l6377")
 ```
 
@@ -143,7 +143,7 @@ Marriage makes you happy?
 
 
 
-```{r}
+```{r,echo=FALSE}
 knitr::include_url("https://www.sciencedirect.com/science/article/abs/pii/S1053535705001745")
 ```
 
@@ -156,7 +156,7 @@ And they lived happily ever after…or did they? This study from a 2006 issue of
 # Exercise 1.7
 Sleeping with a night light as a kid makes you blind later?
 
-```{r}
+```{r,echo=FALSE}
 knitr::include_url("https://www.cbsnews.com/news/do-night-lights-cause-myopia/")
 ```
 
