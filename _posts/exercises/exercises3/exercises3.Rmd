@@ -18,13 +18,13 @@ editor_options:
   chunk_output_type: inline
 ---
 
-
+<script src="https://hypothes.is/embed.js" async></script>
 
 ```{r setup, include = FALSE, message=FALSE}
 library("webex")
 library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../../images/')
-knitr::opts_chunk$set(echo=TRUE)
+knitr::opts_chunk$set(echo=FALSE)
 
 
 part=function(reset=FALSE){

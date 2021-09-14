@@ -37,6 +37,7 @@ Lots of great examples...
 library("webex")
 library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../images/')
+knitr::opts_chunk$set(echo=FALSE)
 ```
 
 
