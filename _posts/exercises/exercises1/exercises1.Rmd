@@ -28,6 +28,11 @@ Lots of great examples...
 
 -->
 
+
+
+
+<script src="https://hypothes.is/embed.js" async></script>
+
 ```{r setup, include = FALSE, message=FALSE}
 library("webex")
 library(ggplot2)
