@@ -57,7 +57,7 @@ In this course we give you an introduction into common concepts and tools for da
 ## Slides
 
 ```{r echo = FALSE, results = "asis"}
-  slidelinks("IntroductionCCMF")
+  slidelinks("^IntroductionCCMF")
 
 ```
 
