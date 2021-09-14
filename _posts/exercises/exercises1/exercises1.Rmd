@@ -40,7 +40,7 @@ knitr::include_graphics("Mente.png")
 ```
 
 
-In the lecture we discussed the notion of causality. We contrasted the causality mechanism that you might be most interested in (your story) with the causality mechanism(s) that might be driving your data (the data story). For good data-analysis you need to be aware of both: Have a clear idea of what you want to analyse or explore as well as of all the things that could be going on in your data. To practice this I ask you to go through a couple of examples.
+In the lecture we discussed the notion of causality. We contrasted the causality mechanism that you might be most interested in (your story) with the causality mechanism(s) that might be driving your data (the data story). For good data-analysis you need to be aware of both: have a clear idea of what you want to analyse or explore as well as of all the things that could be going on in your data. To practise this I ask you to go through a couple of examples.
 These are suggestive causal relationships typically found on the basis of some correlation  in in one dataset or another. 
 In each case:
 
@@ -58,7 +58,9 @@ For each case I give you a suggestion as example when clicking the answer tab. Y
 Police body worn cameras increase violence against the police?
 
 ```{r}
-knitr::include_url("https://www.govtech.com/public-safety/Study-Finds-Negative-Effects-of-Police-Worn-Body-Cameras.html")
+
+knitr::include_url("https://www.asmag.com/showpost/20498.aspx")
+
 ```
 
 
@@ -96,14 +98,14 @@ The story of the data could be another:
 Going to the Museum makes you live longer?
 
 ```{r}
-knitr::include_url("https://www.nytimes.com/2019/12/22/us/arts-health-effects-ucl-study.html")
+knitr::include_url("https://www.bmj.com/content/367/bmj.l6377")
 ```
 
 
 `r hide("Example Answer:")`
 It's conceivable that visiting a museum calms you down, allows time for reflection and leas to insights that help you to be more healthy and less stressed and as a consequence makes you live longer.
 
-Equally, museum visits could simply be conflated with other more clearcut factors that make you live longer. Income and education would be clear candidates. That said, the study quoted in the article has already accounted for these. But there are other factors that are not easily controlled for. For instance, having a stressful job with little spar time it probably not good for both finding itme to go the museum as well as for your life expectancy. This mechanism would bias the museum -> life expectancy effect upward (stressful job is negatively correlated with both museum visits and life expectancy) 
+Equally, museum visits could simply be conflated with other more clear-cut factors that make you live longer. Income and education would be clear candidates. That said, the study quoted in the article has already accounted for these. But there are other factors that are not easily controlled for. For instance, having a stressful job with little spare time it probably not good for both finding time to go the museum as well as for your life expectancy. This mechanism would bias the museum -> life expectancy effect upward (stressful job is negatively correlated with both museum visits and life expectancy) 
 
 `r unhide()`
 
