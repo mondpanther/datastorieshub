@@ -59,7 +59,7 @@ Police body worn cameras increase violence against the police?
 
 ```{r}
 
-knitr::include_url("https://www.govtech.com/public-safety/study-finds-negative-effects-of-police-worn-body-cameras.html")
+
 knitr::include_graphics("Govtech - body cameras.png")
 
 ```
@@ -101,7 +101,7 @@ The story of the data could be another:
 Going to the Museum makes you live longer?
 
 ```{r}
-knitr::include_url("https://www.nytimes.com/2019/12/22/us/arts-health-effects-ucl-study.html")
+
 knitr::include_graphics("NYT - museums longer life")
 ```
 
