@@ -1,101 +1,436 @@
 ---
-title: "Course Materials - Data Analytics" 
-site: distill::distill_website
-editor_options: 
-  chunk_output_type: inline
+  title: "ESB - Analytics for Applied Economics and Business" 
+  site: distill::distill_website
+
 ---
 
 
-# Lecture Slides
+```{r echo = FALSE, include=FALSE}
 
-```{r ,echo=FALSE, message=FALSE}
+slidelinks=function(rstring,folder="./slides"){
 
-fileo=list.files(path="./slides",pattern="^Topic")
-filei=list.files(path="./slides",pattern="ESB")
-
-file=c(filei,fileo)
-
-#path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
-path="https://mondpanther.github.io/datastorieshub/slides/"
-full=paste0(path,file[[1]])
-
-
-```
-
-```{r echo = FALSE, results = "asis"}
-
-for (i in seq(1,length(file))) {
+  filei=list.files(path=folder,pattern=rstring)
   
-  full=paste0(path,file[[i]])
-  cur=paste("- [", file[[i]],"](",full,") \n")
-  cat(cur)
-
+  file=c(filei)
+  
+  #path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
+  path="https://mondpanther.github.io/datastorieshub/slides/"
+  full=paste0(path,file[[1]])
+  
+  
+  #```{r echo = FALSE, results = "asis"}
+  
+  for (i in seq(1,length(file))) {
+    
+    full=paste0(path,file[[i]])
+    cur=paste("- [", file[[i]],"](",full,") \n")
+    cat(cur)
+  
+  }
 }
 ```
 
 
 
-# R scripts
 
 
-```{r ,echo=FALSE, message=FALSE}
+Welcome to Analytics!
 
-fileo=list.files(path="./code",pattern="^Topic")
-filei=list.files(path="./code",pattern="^Farage")
+In this course we give you an introduction into common concepts and tools for data analysis in economics and business. Emphasis will be on practical data skills as well as the ability to formulate a question appropriately, provide data analysis relevant to the question and interpret the results correctly. As part of the course you will be asked to provide a small piece of data analysis.
 
-file=c(filei,fileo)
+---
 
-#path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
-path="https://mondpanther.github.io/datastorieshub/code/"
-full=paste0(path,file[[1]])
+# Topic 1 - Introduction
 
+
+
+## Learning Objectives
+
+- Understanding what causal relationships are
+- Become aware of factors that lead to biased estimates of causal relationships
+- Understand upward and downward bias
+- Understand the concept of endogenous and exogenous variation.
+- Discuss causal identification and biases in the context of a univariate linear model
+
+
+## Slides
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("IntroductionESB")
 
 ```
+
+## Exercises
+
+- [Exercises 1](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises1/)
+
+---
+
+# Topic 2- Rrrr
+
+We take a first look at the R software package and programming language, which we will be using throughout this module. For those who have not yet been programming this will be a steep learning curve. However, it should be worth it. 
+
+You will not be able to analyse data effectively without being familiar with basic programming concepts. What’s more, to grasp many aspects of today’s world an understanding of programming is key. Even if you don’t envisage a career as master coder or data analyst, trying these things for yourself will be useful as you will very likely have to manage coders and analysts or rely on their work at some point in your career. 
+
+
+## Learning Objectives
+
+- Install R and RStudio on your computer.
+- Use R as a glorified pocket calculator
+- Load a dataset and provide simple analysis of it.
+- Have an understanding of programming concepts such as loops
+- Be able to merge or join different data sources using code.
+- Learn how to create data yourself using random number generators.
+
+
+
+## Slides
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic2")
+
+```
+
+## Additional Material
 
 ```{r echo = FALSE, results = "asis"}
 
-for (i in seq(1,length(file))) {
-  
-  full=paste0(path,file[[i]])
-  cur=paste("- [", file[[i]],"](",full,") \n")
-  cat(cur)
 
-}
-```
+  slidelinks("^Farage",folder="./code")
 
-# Guides
-
-```{r ,echo=FALSE, message=FALSE}
-
-file=list.files(path="./code",pattern="Guide")
-#filei=list.files(path="./code",pattern="^Farage")
-
-#file=c(filei,fileo)
-
-#path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
-path="https://mondpanther.github.io/datastorieshub/code/"
-full=paste0(path,file[[1]])
-
+  #slidelinks("^(Farage)(?!_files)([a-z]+)/?(\?(.+))?$",folder="./code")
+   
 
 ```
+
+
+## Exercises
+
+- [Exercises 2](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/)
+
+
+---
+
+
+
+# Topic 3 - Visions
+
+Some of the best ways to understand data are graphs and visualisations. R has powerful tools for that purpose. 
+
+We will be deepening our ability to understand the R programming language by looking at some of its graphics commands. We will also discuss some of the pitfalls as well as deliberate manipulations that people engage in when producing data visualisations. 
+
+## Learning Objectives
+
+- Use the R programming language to create basic and some more advanced graphs and visualisations based on data.
+- Avoid common pitfals that lead to misleading or un-informative visualisations.
+
+
+## Slides
 
 ```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic3")
 
-for (i in seq(1,length(file))) {
-  
-  full=paste0(path,file[[i]])
-  cur=paste("- [", file[[i]],"](",full,") \n")
-  cat(cur)
+```
 
-}
+## Additional Material
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic3.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
+
 ```
 
 
-# Past graded exercise papers
 
-- [Graded Assignment 2019](https://www.dropbox.com/s/hvd31mgwgjgxunk/Graded%20Assignment%202019%20-%20With%20Solutions.docx?dl=1)
+## Exercises
 
-- [Graded Assignment 2018](https://www.dropbox.com/s/j2p6je4eo98wubi/Graded%20Exercise%20Set%202018%20-%20with%20solutions.docx?dl=1)
+- [Exercises 3](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises3/)
+
+
+---
+
+
+
+# Topic 4 - Testing Times
+
+We have discussed how to estimate the parameters of a simple regression model. In this topic we will discuss how work out the reliability of such estimates. We will examine what determines the distribution of the estimates and how we can use hypothesis testing to explore the data and estimates. 
+
+
+## Learning Objectives
+
+- Use the R programming language to create basic and some more advanced graphs and visualisations based on data.
+- Avoid common pitfals that lead to misleading or un-informative visualisations.
+
+
+## Slides
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic4")
+
+```
+
+## Additional Material
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic4.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
+
+```
+
+
+
+## Exercises
+
+- [Exercises 4](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises4/)
+
+
+
+---
+
+
+
+
+
+# Topic 5 - Multivariate Regressions
+
+we look at multivariate regressions; i.e. regressions where the dependent variable depends on several – not just one – explanatory variables.
+
+
+## Learning Objectives
+
+- Estimate regression models that depend on multiple explanatory variables
+- Be able to interpret output from multivariate regressions correctly
+- Understand which variables to include and which ones not to include to improve causal identification.
+
+
+
+## Slides
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic5")
+
+```
+
+## Additional Material
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic5.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
+
+```
+
+
+
+## Exercises
+
+- [Exercises 5](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises5/)
+
+
+
+---
+
+
+
+
+
+
+# Topic 6 - Econometrics for Dummies
+
+This might be a course about quantitative analysis, but that doesn’t mean we can’t handle qualitative issues as well. To capture qualitative aspects – e.g. an individual in our dataset having a job, the gender of a person, the location of the headquarters of a company, etc. - we can use so called dummy or binary variables; i.e. we simply set variable equal to 1 if the qualitative aspect is true and to 0 if not. We will be discussing what this means for regression analysis. Moreover, we will be looking at some nonlinear regression models. 
+
+## Learning Objectives
+
+- Conduct regression analysis with dummy variables
+- Interpret regression results correctly.
+
+
+## Slides
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic6")
+
+```
+
+## Additional Material
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic6.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
+
+```
+
+
+
+## Exercises
+
+- [Exercises 6](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/)
+
+
+
+---
+
+
+
+# Topic 7 - Econometrics for Dummies
+
+This might be a course about quantitative analysis, but that doesn’t mean we can’t handle qualitative issues as well. To capture qualitative aspects – e.g. an individual in our dataset having a job, the gender of a person, the location of the headquarters of a company, etc. - we can use so called dummy or binary variables; i.e. we simply set variable equal to 1 if the qualitative aspect is true and to 0 if not. We will be discussing what this means for regression analysis. Moreover, we will be looking at some nonlinear regression models. 
+
+## Learning Objectives
+
+- Conduct regression analysis with dummy variables
+- Interpret regression results correctly.
+
+
+## Slides
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic7")
+
+```
+
+## Additional Material
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic7.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
+
+```
+
+
+
+## Exercises
+
+- [Exercises 7](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises7/)
+
+
+
+---
+
+
+
+
+
+# Topic 7 - Instrumental Variables
+
+Suppose you want to know the causal effect of a variable X on a variable Y but there are concerns that X might be endogenous because of omitted variable bias for instance. Instrumental variables are variables that your are not necessarily interested in for their own sake, but that can help you identify the causal effect that you are interested in despite the endogeneity.
+
+## Learning Objectives
+
+- Identify the requirements and conditions that make the Instrumental Variables approach feasible
+- Implement Instrumental Variables regressions.
+
+
+## Slides
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic7")
+
+```
+
+## Additional Material
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic7.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
+
+```
+
+
+
+## Exercises
+
+- [Exercises 7](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises7/)
+
+
+
+---
+
+
+
+
+# Topic 8 - Learning like a machine
+
+You might think studying for this course is so hard that it could only be done by a machine. After this topic, you'll hopefully think again.
+
+You will get a brief introduction into Machine Learning. Compared to the rest of the course, Machine Learning is essentially econometrics where we are more concerned about prediction rather than the identification of causal relationships. 
+
+## Learning Objectives
+
+- Explain the basic principles of machine learning
+- Implement simple machine learning applications.
+
+
+## Slides
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic8")
+
+```
+
+## Additional Material
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic8.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
+
+```
+
+
+
+## Exercises
+
+- [Exercises 8](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises8/)
+
+
+
+---
+
+
+# Topic 9 - Time for Series
+
+To do any data analysis we need different datapoints. Most data we looked at so far was cross sectional data; i.e. datapoints derived from several data units (e.g. individuals, countries, cities, firms). Alternatively, we might have data for just one data unit but over many different periods of time (e.g. years, quarters, days or even sometimes seconds). This creates some specific issues, which we will discuss. Given that time itself causes a form of confounding and correlation from one datapoint to the next, we might get some very biased estimates if we are not careful.  
+
+
+## Learning Objectives
+
+- Identify the problems related to time series data
+- Correctly implement causal analysis in a time series context.
+
+
+## Slides
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic9")
+
+```
+
+## Additional Material
+
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^Topic9.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
+
+```
+
+
+
+## Exercises
+
+- [Exercises 9](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises9/)
+
+
+
+---
+
+
+# Group Coursework
+
+As part of this course you are asked to hand in a piece of group coursework. For this you are asked to provide some simple  a short report on anything you like as long as it involves a discussion of a dataset and some of the methods we discussed in this class. I.e. think of a good question, some data and a strategy to say something towards the answer of the question using data.
+
+You find a template with further instructions [here](https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.html) ([RMarkdown Version](https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.Rmd)).
+
+
+---
+
+# Past Exam Papers
+
+- [Past Exam 1](https://www.dropbox.com/s/97tvh8z87wuvujt/CCMF%20Quantitative%20Methods%20ANSWER%20version%20%282%29%20IT%202018%20%28RM%29%28MM%29%20clean.pdf?dl=1)
+
+- [Past Exam 2](https://www.dropbox.com/s/wmnmqdn64e8vaxb/Quant%20Methods%20Exam%20%2016-17%20with%20solutions.docx?dl=1)
+
+- [Past Exam 3](https://www.dropbox.com/s/e05obku5roeyu97/Quantitative%20Methods%20Exam%202017%20%28final%20with%20solutions%29.pdf?dl=1)
 
 
 
@@ -128,3 +463,4 @@ for (i in seq(1,length(file))) {
 
 
 
+---
