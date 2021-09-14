@@ -1,0 +1,19 @@
+name: Datastories Hub
+author: Ralf Martin
+output_dir: "docs"
+include: ["code","slides"]
+navbar:
+  title: Datastories Hub
+  right:
+    - text: "Home"
+      icon: fa-home
+      href: index.html
+    - text: "Exercises"
+      href: listexercises.html
+base_url: https://mondpanther.github.io/datastorieshub/
+output:
+  distill::distill_article:
+    theme: flatly
+    css: webex.css
+
+    
