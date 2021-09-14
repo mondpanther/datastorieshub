@@ -18,7 +18,7 @@ editor_options:
   chunk_output_type: inline
 ---
 
-
+<script src="https://hypothes.is/embed.js" async></script>
 
 ```{r setup, include = FALSE, message=FALSE}
 library("webex")
