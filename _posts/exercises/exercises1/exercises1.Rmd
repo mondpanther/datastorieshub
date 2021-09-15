@@ -34,10 +34,10 @@ Lots of great examples...
 <script src="https://hypothes.is/embed.js" async></script>
 
 ```{r setup, include = FALSE, message=FALSE}
-library("webex")
+library(webex)
 library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../images/')
-knitr::opts_chunk$set(echo=FALSE)
+knitr::opts_chunk$set(echo=TRUE)
 ```
 
 
