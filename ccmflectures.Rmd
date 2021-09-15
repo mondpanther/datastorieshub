@@ -116,6 +116,12 @@ You will not be able to analyse data effectively without being familiar with bas
 - [Exercises 2](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/)
 
 
+
+## Further Reading
+
+- [The definite guide to R Markdown](https://bookdown.org/yihui/rmarkdown/)
+
+
 ---
 
 
