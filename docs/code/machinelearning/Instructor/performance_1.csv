@@ -1,3 +1,0 @@
-"","group","accuracy in train","accuracy in test","complexity","formula"
-"1",8,0.5227,0.4783,1,"larcPerPop ~ householdsize"
-"2",35,0.7045,0.6087,3,"larcPerPop ~ householdsize+population+racepctblack"
