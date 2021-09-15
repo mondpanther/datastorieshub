@@ -1,0 +1,55 @@
+---
+title: "Datastories"
+description: |
+  An introduction to data analysis
+author:
+  - name: Richard Davis & Ralf Martin 
+    
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    self_contained: false
+    css: ../../webex.css
+    includes:
+      after_body: ../../webex.js
+categories:
+  - coursenotes
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+
+```{r setup, include = FALSE, message=FALSE}
+library("webex")
+library(ggplot2)
+knitr::opts_chunk$set(fig.path='../../images/')
+```
+
+
+
+```{r  fig.width=30,echo=F,preview=TRUE,out.width = '80%'}
+knitr::include_graphics("adidas-superstar-EG4958.jpg")
+```
+
+
+
+# Introduction
+
+A paradox of our times is that evidence and data has never been more accessible while an increasing
+share of the population seems to willfully reject basing their views and decisions on evidence.
+This is perhaps a reaction to being overwhelmed by data. Dataflows in our networked society are so plentiful that merely looking at them can drive anybody mad. To make sense of data and draw meaningful conclusions from data requires some skill and methodology. These notes are an attempt to make data analysis accessible to a wider audience. 
+
+
+
+
+# Causality or not?
+
+
+https://twitter.com/page_eco/status/1373266475230789633
+
+https://twitter.com/oliverwkim/status/1385014928155631622
+
+
+
+
