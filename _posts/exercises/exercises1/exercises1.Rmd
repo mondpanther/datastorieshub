@@ -122,7 +122,7 @@ For the full story, visit: https://www.nytimes.com/2019/12/22/us/arts-health-eff
 # Exercise 1.4
 Eating chocolate helps you win a Nobel?
 
-```{r}
+```{r,echo=FALSE}
 knitr::include_url("https://healthland.time.com/2012/10/12/can-eating-chocolate-help-you-win-a-nobel-prize/")
 ```
 
