@@ -8,14 +8,15 @@
 
 ```{r echo = FALSE, include=FALSE}
 
-slidelinks=function(rstring,folder="./slides"){
+slidelinks=function(rstring,folder="slides"){
 
-  filei=list.files(path=folder,pattern=rstring)
+  filei=list.files(path=paste0("./",folder),pattern=rstring)
   
   file=c(filei)
   
   #path="https://github.com/mondpanther/datastorieshub/raw/master/slides/"
-  path="https://mondpanther.github.io/datastorieshub/slides/"
+  library(stringr)
+  path=paste0("https://mondpanther.github.io/datastorieshub/",folder,"/")
   full=paste0(path,file[[1]])
   
   
@@ -103,7 +104,7 @@ You will not be able to analyse data effectively without being familiar with bas
 ```{r echo = FALSE, results = "asis"}
 
 
-  slidelinks("^Farage",folder="./code")
+  slidelinks("^Farage",folder="code")
 
   #slidelinks("^(Farage)(?!_files)([a-z]+)/?(\?(.+))?$",folder="./code")
    
