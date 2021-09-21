@@ -112,10 +112,15 @@ You will not be able to analyse data effectively without being familiar with bas
   slidelinks("^Farage",folder="code")
 
   #slidelinks("^(Farage)(?!_files)([a-z]+)/?(\?(.+))?$",folder="./code")
-   
+
+
 
 ```
 
+- Video Guide: R scripts   
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pAVyb9ViUgY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Exercises
 
