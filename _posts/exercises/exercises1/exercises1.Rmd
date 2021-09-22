@@ -66,9 +66,8 @@ Police body worn cameras increase violence against the police?
 ```{r,echo=FALSE}
 
 knitr::include_graphics("Govtech - body cameras.png")
-
 ```
-
+(For the full story, visit: https://www.govtech.com/public-safety/study-finds-negative-effects-of-police-worn-body-cameras.html)
 
 `r hide("Example Answer:")`
 
@@ -78,7 +77,7 @@ Another story could be as follows: perhaps having a camera changes the behaviour
 On the other hand: Maybe the story of the data behind these results is another one. Perhaps the introduction of cameras let violence against police officers to be better measured. Maybe police officers previously did not report all violence against them as doing so would require them to substantiate their claims which is harder if you don't have a video record. With that available reporting went up but not actual incidence of violence. 
 This "data story" would imply an upward bias on the actual impact of cameras on violence.
 
-For the full story, visit: https://www.govtech.com/public-safety/study-finds-negative-effects-of-police-worn-body-cameras.html
+
 `r unhide()`
 
 # Exercise 1.2
@@ -108,14 +107,14 @@ Going to the Museum makes you live longer?
 ```{r,echo=FALSE}
 knitr::include_graphics("NYT - museums longer life.png")
 ```
-
+(For the full story, visit: https://www.nytimes.com/2019/12/22/us/arts-health-effects-ucl-study.html)
 
 `r hide("Example Answer:")`
 It's conceivable that visiting a museum calms you down, allows time for reflection and leas to insights that help you to be more healthy and less stressed and as a consequence makes you live longer.
 
 Equally, museum visits could simply be conflated with other more clear-cut factors that make you live longer. Income and education would be clear candidates. That said, the study quoted in the article has already accounted for these. But there are other factors that are not easily controlled for. For instance, having a stressful job with little spare time it probably not good for both finding time to go the museum as well as for your life expectancy. This mechanism would bias the museum -> life expectancy effect upward (stressful job is negatively correlated with both museum visits and life expectancy).
 
-For the full story, visit: https://www.nytimes.com/2019/12/22/us/arts-health-effects-ucl-study.html
+
 
 `r unhide()`
 
