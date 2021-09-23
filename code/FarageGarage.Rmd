@@ -54,7 +54,7 @@ ff=read.csv("https://www.dropbox.com/s/g1w75gkw7g91zef/foreigners.csv?dl=1")
 ```
 
 
-This loads the local authority dataset we have seen before. Note that you can include inline are code as well. 
+This loads the local authority dataset we have seen before. Note that you can include inline R code as well. 
 For instance: the dataset has `r nrow(ff)` observations and contains `r ncol(ff)` variables.
 
 As before we can summarise the data:
