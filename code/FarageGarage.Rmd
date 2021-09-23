@@ -55,7 +55,7 @@ ff=read.csv("https://www.dropbox.com/s/g1w75gkw7g91zef/foreigners.csv?dl=1")
 
 
 This loads the local authority dataset we have seen before. Note that you can include inline R code as well. 
-For instance: the dataset has `r nrow(ff)` observations and contains `r ncol(ff)` variables.
+For instance: the dataset has `r nrow(ff)` observations and contains `r ncol(ff)` variables.x
 
 As before we can summarise the data:
 
@@ -109,7 +109,7 @@ ff= ff %>% filter(crimesPc<15)
 
 
 ```{r}
-ggplot(ff, aes(y=crimesPc,x=b_migr11)) + geom_point()   +   # Make sure + is on this line so R understands the command is not finished
+ggplot(ff, aes(y=crimesPc,x=b_migr11)) + geom_point()   +    # Make sure + is on this line so R understands the command is not finished
                    xlab("Share of foreign born in %")   +  
                    ylab("Number of Crimes per capita")  + 
                    geom_smooth(method = "lm", se = FALSE) +
@@ -209,7 +209,9 @@ ff_more=read.csv("https://www.dropbox.com/s/gwq2wmmxr8s3v7t/foreigners_more.csv?
 
 names(ff_more)
 
-inner=ff_raw %>% inner_join(ff_more,by="area")
+inner <- ff_raw %>% inner_join(ff_more,by="area")
+
+
 inner=ff_raw %>% full_join(ff_more,by="area")
 
 inner=ff %>% inner_join(ff_more,by="area")
