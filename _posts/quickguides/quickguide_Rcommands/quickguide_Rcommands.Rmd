@@ -47,6 +47,51 @@ knitr::include_graphics("R.png")
 
 
 
+
+## `abline()`
+`r hide("More...")`
+
+With a function like ggplot() you have an endless range of possilities for add-ons. The abline command adds a straight line to a scatterplot.
+
+`r unhide()`
+
+
+
+## `as.Date()`
+`r hide("More...")`
+Sometimes when you upload data for the first time into R and you have a date variable, R will not understand that it is a date. To plot etc., you will need to convert it to a date variable.
+
+E.g. 
+
+mydates <- as.Date(c("2007-06-22", "2004-02-13"))
+`r unhide()`
+
+   
+## `c()`  
+
+`r hide("More...")`
+
+This is a function to tie together (or 'concatenate') objects, e.g. x = c(3,5,8,9) or y = c(”Jack”,”Queen”,”King”). 
+
+`r unhide()`
+
+
+## `cor()`  
+
+`r hide("More...")`
+
+Produces a correlation matrix. 
+
+`r unhide()`
+
+## `boxplot()`  
+
+`r hide("More...")`
+
+Produces boxplots with whiskers - which are sometimes neat for showing the structure of a variable. The syntax is: boxplot(x,main="title")                         
+
+`r unhide()`
+
 ## `factor()`
 `r hide("More...")`
 Converts a numeric or string variable into a categorical variable. 
@@ -75,6 +120,8 @@ Repeating a series of commands several times
 `r unhide()`
 
 
+
+
 ## `getwd()`
 `r hide("More...")`
 
@@ -95,7 +142,7 @@ Useful to compute statistics at the level of these groupw
 `r unhide()`
 
 
-##`head()`
+## `head()`
 `r hide("More...")`
 Shows the first couple of lines in a dataframe
 
@@ -115,6 +162,19 @@ head(rdf)
 This command will fetch a help sheet on the function specified in the brackets, which includes information about usage and syntax.
 
 `r unhide()`
+
+
+
+
+## `hist()`  
+
+`r hide("More...")`
+
+Produces a histogram - which can be useful when you're learning more about your variables and want to assess, for instance, if you should log them. 
+
+`r unhide()`
+
+
 
 ## `inner_join()`
 `r hide("More...")`
@@ -194,6 +254,18 @@ Implements the a linear regression model using the least squares algorithm
 <!--/html_preserve-->
 `r unhide()`
 
+
+## `log()`
+
+`r hide("More...")`
+
+ You will sometimes need to transform your variables into natural logs (as explained in the lectures). The log() fundction transforms a variable into a natural logarithm (i.e. base e). 
+
+`r unhide()`
+  
+
+
+
 ## `prop.table()`
 `r hide("More...")`
 
@@ -249,6 +321,13 @@ Will set working directory. E.g. setwd(“c:/folder/folder2”)
 
 `r unhide()`
 
+
+## `stargazer()`
+`r hide("More...")`
+
+Possibly the most amazing function in R. Will let you produce very nice looking descriptive statistics tables and regression tables.
+
+`r unhide()`
 
 
 ## `str()`
