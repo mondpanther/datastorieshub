@@ -140,7 +140,7 @@ A New York doctor wanted to investigate the effect of flavanols, compounds found
 # Exercise 1.5
 Sex makes you rich?
 
-```{r}
+```{r,echo=FALSE}
 knitr::include_url("https://blogs.scientificamerican.com/roots-of-unity/sex-makes-you-rich-why-we-keep-saying-e2809ccorrelation-is-not-causatione2809d-even-though-ite28099s-annoying/")
 ```
 
@@ -159,8 +159,15 @@ Marriage makes you happy?
 
 
 ```{r,echo=FALSE}
-knitr::include_url("https://www.sciencedirect.com/science/article/abs/pii/S1053535705001745")
+#knitr::include_url("https://www.sciencedirect.com/science/article/abs/pii/S1053535705001745")
+
+
+knitr::include_graphics("marriage.png")
+
 ```
+
+[Full article]("https://www.sciencedirect.com/science/article/abs/pii/S1053535705001745")
+
 
 `r hide("Example Answer:")`
 
