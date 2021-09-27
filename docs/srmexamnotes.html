@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-09-23"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-09-23"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-09-27"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-09-27"/>
   <meta name="article:author" content="Ralf Martin"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -112,7 +112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Assessment for SRM"]},{"type":"character","attributes":{},"value":["More details on your assessment\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-09-23"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["webex.js"]}]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Assessment for SRM"]},{"type":"character","attributes":{},"value":["More details on your assessment\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-09-27"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["webex.js"]}]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2048,41 +2048,65 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <style type="text/css">
-  #twitter {
-    float: right; 
-    width: 50%;
-  }
-  #scheduler {
-    float: left; 
-    width: 50%;
-  }
-  @media screen and (max-width: 600px) {
-    embed {
-      height: 250px;
-    }
-    #twitter, #scheduler { width: 100%; }
+  :root {
+    --pink: #983E82;   /* hsl(315, 42%, 42%) */
+    --orange: #E2A458; /* hsl( 33, 70%, 62%) */
+    --yellow: #F5DC70; /* hsl( 49, 87%, 70%) */
+    --green: #59935B;  /* hsl(122, 25%, 46%) */
+    --blue: #467AAC;   /* hsl(209, 42%, 47%) */
+    --purple: #61589C; /* hsl(248, 28%, 48%) */
   }
 
-  /* styles for solveme */
-  .solveme { border: 2px dotted red; }
-  .solveme.correct { border: 2px solid blue; }
-  /* styles for hidden solutions */
-  .solution {
-      height: 2em;
-      overflow-y: hidden;
-      padding: 0.2em;
+  /* styles for webex-solveme */
+  .webex-incorrect,
+  .webex-radiogroup label.webex-incorrect{
+      border: 2px dotted var(--pink);
+      background-color: #edaddd;
+      border-radius: 0.25em;
   }
-  .solution.open {
+  .webex-correct,
+  .webex-radiogroup label.webex-correct {
+      border: 2px solid var(--green);
+      background-color: #c0edc2;
+      border-radius: 0.25em;
+  }
+  /* styles for hidden solutions */
+  .webex-solution {
+      height: 2.5em;
+      overflow-y: hidden;
+      padding: 0.15em;
+      margin-bottom: 10px;
+  }
+  .webex-solution.open {
       height: auto;
-      background-color: rgba(0, 0, 0, 0.1);
+      border: 2px solid var(--blue);
       border-radius: 5px;
   }
-  .solution button {
-      height: 1.5em;
+  .webex-solution button {
+      height: 2em;
       margin-bottom: 0.5em;
+      border-radius: 0.5em;
+      background-color: var(--blue);
+      color: white;
+      padding: 0 0.5em;
   }
-  .solution pre.sourceCode {
-      border-color: green;
+  .webex-solution pre.sourceCode {
+      border-color: var(--green);
+  }
+
+  .webex-radiogroup label {
+    margin-left: 2em;
+    text-indent: -1em;
+    padding-left: 0.5em;
+    font-weight: 400;
+    display: block;
+    border: 2px solid rgba(255, 255, 255, 1);
+    border-radius: 0.25em;
+  }
+
+  .webex-radiogroup label input {
+    position: relative;
+    left: -1em;
   }
 
   </style>
@@ -2097,7 +2121,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Assessment for SRM","description":"More details on your assessment","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-23T00:00:00.000+01:00","citationText":"Martin, 2021"}
+{"title":"Assessment for SRM","description":"More details on your assessment","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-27T00:00:00.000+01:00","citationText":"Martin, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2131,7 +2155,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br/>2021-09-23
+<br/>2021-09-27
 </div>
 
 <div class="d-article">
@@ -2192,7 +2216,7 @@ Hint
 </div>
 <p><br></p>
 <h4 id="question-4">Question 4</h4>
-<p>The demand for a new drug is known to be linear and downward sloping; i.e. a higher price means a lower demand. A researcher provided an estimate of this demand curve but suspects that a confounding factor led to a downward bias. This means that the estimated curve is</p>
+<p>The demand for a new drug is known to be linear and downward sloping; i.e. a higher price means a lower demand. A researcher provided an estimate of this demand curve but suspects that a confounding factor led to a downward bias. This means that the estimated curve is</p>
 <ol type="a">
 <li>Flatter than it should be</li>
 <li>Steeper than it should be</li>
@@ -2211,7 +2235,7 @@ Hint
 </ol>
 <p><select class='webex-solveme' data-answer='["b"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
 <h4 id="question-6">Question 6</h4>
-<p>The R output below shows a regression of COVID19 cases per student among US Universities in Fall 2020. The variable <code>partyrank</code> ranks Universities according to the quality of the local party scene (i.e. the uni with the best partyscene has rank 1). What does the regression suggest abou the relationship between party rank and covid cases?</p>
+<p>The R output below shows a regression of COVID19 cases per student among US Universities in Fall 2020. The variable <code>partyrank</code> ranks Universities according to the quality of the local party scene (i.e. the uni with the best partyscene has rank 1). What does the regression suggest abou the relationship between party rank and covid cases?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#simple regression of case on partyrank</span>
@@ -2237,16 +2261,16 @@ Residual standard error: 0.04017 on 260 degrees of freedom
 Multiple R-squared:  0.06743,   Adjusted R-squared:  0.06384 
 F-statistic:  18.8 on 1 and 260 DF,  p-value: 2.078e-05</code></pre>
 </div>
-<p>Moving to one lower rank (e.g from rank 4 to rank 5) …</p>
+<p>Moving to one lower rank (e.g from rank 4 to rank 5) ...</p>
 <ol type="a">
-<li>… leads to 5.2 students less being affected by covid</li>
-<li>… leads to 5.2% less COVID cases.</li>
-<li>… leads to 0.52 less COVID cases in 10,000 students.</li>
-<li>… leads to 5.2 less COVID cases in 1000 students.</li>
+<li>... leads to 5.2 students less being affected by covid</li>
+<li>... leads to 5.2% less COVID cases.</li>
+<li>... leads to 0.52 less COVID cases in 10,000 students.</li>
+<li>... leads to 5.2 less COVID cases in 1000 students.</li>
 </ol>
 <p><select class='webex-solveme' data-answer='["c"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select> ..</p>
 <h4 id="question-7">Question 7</h4>
-<p>The figure below shows the result of a Monte-Carlo study of a parameter estimate. It’s a density plot of the estimated parameter for a large number of replications along with the true parameter value (vertical line)</p>
+<p>The figure below shows the result of a Monte-Carlo study of a parameter estimate. It's a density plot of the estimated parameter for a large number of replications along with the true parameter value (vertical line)</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>obs</span><span class='op'>=</span><span class='fl'>1000</span>
@@ -2460,6 +2484,178 @@ window.onload = function() {
 
 </script>
 <!--radix_placeholder_site_after_body-->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+    
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+  
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+  
+  var cl = this.classList
+  
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+  
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+  
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+  
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+  }
+
+  update_total_correct();
+}
+
+</script>
+
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
 <div class="appendix-bottom"></div>
