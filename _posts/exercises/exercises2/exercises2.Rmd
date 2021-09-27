@@ -151,7 +151,7 @@ Much of the power of R derives from extensions (so called packages) that have be
 
 `r hide("Answer:")`
 To install these packages use 
-`install.packages("dplyr","tydr")`
+`install.packages("dplyr","tidyr")`
 
 Note that you only need to do this once on a given computer (it's like installing software).
 However, each time you re-start R you need to load the packages you want to use into memory again. For that you use
@@ -270,6 +270,7 @@ auto_summary %>% gather(stat, val) %>%
 
 
 # Exercise 2.2 
+  
 This github repository provides COVID related data for the US at the state and county level: [https://github.com/nytimes/covid-19-data](https://github.com/nytimes/covid-19-data) 
 
 ### Part(`r part(reset=TRUE)`)
@@ -360,7 +361,7 @@ We can use the `group_by()` command which is par of dplyr. It allows to group ro
 
 
 
-```{r}
+```{r,echo=TRUE}
 
 usdaily=covid %>% group_by(date) %>% summarise(deaths=sum(deaths),cases=sum(cases))
 head(usdaily)
@@ -401,7 +402,7 @@ ggplot(usdaily, aes(x=date, y=deathsOcases)) +
 
 
 Now what do we expect to find?
-To die from COVID you have te get sick and it will take at least a couple of days. Hence, we would expect to see death rates to be low at first and then to increase. Over time we would hope that doctors get better at treating COVID patients. Also, people who know they are at risk will increasingly shielding so that the only people who get sick will be those who are less likely to die. Both factors should bring the death rate down after an initial peak. This is what we are seeing when only looking at the series from the end of March onwards with a peak in mid May.
+To die from COVID you have to get sick and it will take at least a couple of days. Hence, we would expect to see death rates to be low at first and then to increase. Over time we would hope that doctors get better at treating COVID patients. Also, people who know they are at risk will increasingly shielding so that the only people who get sick will be those who are less likely to die. Both factors should bring the death rate down after an initial peak. This is what we are seeing when only looking at the series from the end of March onwards with a peak in mid May.
 However, there is a first peak in early March. What could explain this? The most plausible explanation is probably measurement error: early on cases of infections where probably not counted properly as there was no systematic way of testing the population. On the other, if somebody was so ill that they die this would almost certainly be picked up by the authorities. Hence death figures were not under counted. Also, early on numbers were low. So a couple of counts too few for cases could easily swing the ratio.
 [Here](https://www.ft.com/content/c011e214-fb95-4a64-b23c-2bd87ebb29d7?utm_source=pocket-newtab-global-en-GB) is some further discussion of this.
 
@@ -419,7 +420,7 @@ A large part of data analysis work is getting the data into a format that lends 
 
 First you need to load the population dataset into a dataframe as well:
 
-```{r}
+```{r,echo=TRUE}
 pop=read.csv("https://www.dropbox.com/s/tp4kiq8if372rcz/populationdata.csv?dl=1")
 
 ```
@@ -427,7 +428,7 @@ pop=read.csv("https://www.dropbox.com/s/tp4kiq8if372rcz/populationdata.csv?dl=1"
 
 To combine the two dataframes we can use a command called `merge()`:
 
-```{r}
+```{r,echo=TRUE}
 covid_julyb=covid_july %>% merge(pop,by="state", all.x=TRUE)
 
 ```
@@ -449,20 +450,17 @@ Explore the relationship between per capita cases and population density. What k
 
 Add per capita cases with mutate (to make things easier to read we use cases per 1000 of population):
 
-```{r}
+```{r,echo=TRUE}
 
 covid_julyb=covid_julyb %>% mutate(casesOpop000=cases/pop*1000)
 
 
 ```
 
-We would we expect a positive relationship between per capita cases and density: if 
+We would we expect a positive relationship between per capita cases and density. A scatter plot is usually the best way to get going on a question like this. We can once more use the ggplot command (geom_smooth(method=lm) and add a regression line):
 
 
-A scatter plot is usually the best way to get going on a question like this. We can once more use the ggplot command (geom_smooth(method=lm) adds a regression line):
-
-
-```{r}
+```{r,echo=TRUE}
 
 usdaily=usdaily %>% mutate(date=as.Date(date), deathsOcases=deaths/cases)
 ggplot(covid_julyb, aes(x=density, y=casesOpop000 ))+ 
@@ -471,9 +469,9 @@ ggplot(covid_julyb, aes(x=density, y=casesOpop000 ))+
 ```
 
 
-Dropping the outlier on the right (i.e. Washington DC which is not really a State)
+Dropping the outlier on the right (i.e. Washington DC which is not really a State).
 
-```{r}
+```{r,echo=TRUE}
 ggplot(covid_julyb %>% filter(density<6000), aes(x=density, y=casesOpop000 ))+ 
       geom_point() + geom_smooth(method=lm)
 ```
@@ -482,7 +480,7 @@ ggplot(covid_julyb %>% filter(density<6000), aes(x=density, y=casesOpop000 ))+
 Hence, there is clearly a positive relationship between density and covid cases. It becomes more pro-nounced when dropping Washington DC.
 This is also confirmed when looking at the parameters of the regression line directly, which we can do with the lm() command.
 
-```{r}
+```{r,echo=TRUE}
 summary(lm(casesOpop000~density,covid_julyb  %>% filter(density<6000) ))
 ```
 
@@ -501,7 +499,7 @@ If your are stuck check out the answer below.
 
 Let's start by arranging the states in a collection. Also add a death rate column to the covid dataframe (and clear up the date variable):
 
-```{r}
+```{r,echo=TRUE}
 states=c("California","Texas","New York","Alaska")
 
 covid=covid%>% mutate(deathsOcases=deaths/cases, date=as.Date(date))
@@ -511,7 +509,7 @@ covid=covid%>% mutate(deathsOcases=deaths/cases, date=as.Date(date))
 
 Now loop over those states:
 
-```{r}
+```{r,echo=TRUE}
 
 for(s in states){
   print(s)
@@ -538,7 +536,7 @@ Besides analysing data we can use R to make up data. Why would we do that? It's 
 In this exercise we walk through how this can be done in a simple case. As ever: try to work through all of this while creating an R script or R markdown file.
 First we need to decide about the sample size. 	Let’s use a sample of size 100. It makes sense to assign this number to a variable as follows:
 
-```{r}
+```{r,echo=TRUE}
 obs<-100
 ```
 
@@ -546,7 +544,7 @@ obs<-100
 Assume that the data is driven by the following true model $Y=2+0.5 X +\epsilon$ where $\epsilon$ is a random variable that follows a standard normal distribution; i.e. its distribution follows the famous bell curve. Using R you can draw realisations  of such a random variable using the function `rnorm()`
 To assign those values to a variable called `eps` we can write
  
-```{r} 
+```{r,echo=TRUE} 
 df=data.frame(eps=rnorm(obs))
 ```
 where the `data.frame` command arranges the newly created variable eps into a dataframe rather than being standalone.
@@ -560,7 +558,7 @@ df=df%>% mutate(X=runif(obs))
 This will draw the values of X by drawing random variables on the interval between 0 and 1 with uniform (i.e. all values have the same) probility.
 Look at the values of X and $\epsilon$. Here are the first 10:
 
-```{r}
+```{r,echo=TRUE}
 head(df,10)
 ```
 
@@ -569,7 +567,7 @@ head(df,10)
 Now create the Y variable according to the formula above.
 
 `r hide("Answer:")`
-```{r}
+```{r,echo=TRUE}
 df=df%>% mutate(Y=2+0.5*X+eps)
 ```
 
@@ -580,7 +578,7 @@ Run a regression of Y on X. What value do you find for the coefficient on X? Wou
 
 
 `r hide("Answer:")`
-```{r}
+```{r,echo=TRUE}
   
     reg=lm(Y~X,df)
     summary(reg)
@@ -610,7 +608,7 @@ i.e. the lines of code between the first line and `}` will be repeated 1000 time
 
 `r hide("Answer:")`
 
-```{r}
+```{r,echo=TRUE}
 beta <- double(1000)
 for(i in 1:1000){
     
@@ -639,7 +637,7 @@ Compute the average value of the estimate of the X coefficient across the 1000 r
 
 `r hide("Answer:")`
 
-```{r}
+```{r,echo=TRUE}
 
 mean(beta)
 
