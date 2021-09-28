@@ -8,7 +8,7 @@
 <script src="https://hypothes.is/embed.js" async></script>
 
 ```{r echo = FALSE, include=FALSE}
-
+library(webexercises)
 slidelinks=function(rstring,folder="slides"){
 
   filei=list.files(path=paste0("./",folder),pattern=rstring)
@@ -52,6 +52,7 @@ To get your participation mark please participate in the Datathon Forum with eit
 # Topic 1 - Introduction
 
 
+`r hide("More...")`
 
 ## Learning Objectives
 
@@ -62,10 +63,13 @@ To get your participation mark please participate in the Datathon Forum with eit
 - Discuss causal identification and biases in the context of a univariate linear model
 
 
+
+
+
 ## Slides
 
 ```{r echo = FALSE, results = "asis"}
-  slidelinks("IntroductionESB")
+  slidelinks("^IntroductionCCMF")
 
 ```
 
@@ -74,16 +78,23 @@ To get your participation mark please participate in the Datathon Forum with eit
 - [Exercises 1](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises1/)
 
 
-
 ## Further reading
 
 - [Introduction to Econometrics with R, Chapters 1-3](https://www.econometrics-with-r.org/1-introduction.html)
 - [Causal Data Science in Large U.S. Firms](https://causalscience.org/blog/causal-data-science-in-large-us-firms)
 
 
+
+`r unhide()`
+
 ---
 
+
+
 # Topic 2- Rrrr
+
+
+`r hide("More...")`
 
 We take a first look at the R software package and programming language, which we will be using throughout this module. For those who have not yet been programming this will be a steep learning curve. However, it should be worth it. 
 
@@ -116,9 +127,19 @@ You will not be able to analyse data effectively without being familiar with bas
   slidelinks("^Farage",folder="code")
 
   #slidelinks("^(Farage)(?!_files)([a-z]+)/?(\?(.+))?$",folder="./code")
-   
+
+
 
 ```
+
+- Video Guide: R scripts   
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pAVyb9ViUgY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+- Video Guide: Installing R Packages
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/3ffc105985044ec0acf2082215f52491" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 
 ## Exercises
@@ -126,11 +147,25 @@ You will not be able to analyse data effectively without being familiar with bas
 - [Exercises 2](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/)
 
 
+
+## Further Reading
+
+- [The definite guide to R Markdown](https://bookdown.org/yihui/rmarkdown/)
+
+
+
+
+`r unhide()`
+
 ---
 
 
 
 # Topic 3 - Visions
+
+
+
+`r hide("More...")`
 
 Some of the best ways to understand data are graphs and visualisations. R has powerful tools for that purpose. 
 
@@ -163,11 +198,17 @@ We will be deepening our ability to understand the R programming language by loo
 - [Exercises 3](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises3/)
 
 
+
+`r unhide()`
+
 ---
 
 
 
 # Topic 4 - Testing Times
+
+
+`r hide("More...")`
 
 We have discussed how to estimate the parameters of a simple regression model. In this topic we will discuss how work out the reliability of such estimates. We will examine what determines the distribution of the estimates and how we can use hypothesis testing to explore the data and estimates. 
 
@@ -200,6 +241,8 @@ We have discussed how to estimate the parameters of a simple regression model. I
 
 
 
+`r unhide()`
+
 ---
 
 
@@ -207,6 +250,9 @@ We have discussed how to estimate the parameters of a simple regression model. I
 
 
 # Topic 5 - Multivariate Regressions
+
+
+`r hide("More...")`
 
 we look at multivariate regressions; i.e. regressions where the dependent variable depends on several – not just one – explanatory variables.
 
@@ -240,6 +286,7 @@ we look at multivariate regressions; i.e. regressions where the dependent variab
 - [Exercises 5](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises5/)
 
 
+`r unhide()`
 
 ---
 
@@ -249,6 +296,10 @@ we look at multivariate regressions; i.e. regressions where the dependent variab
 
 
 # Topic 6 - Econometrics for Dummies
+
+
+
+`r hide("More...")`
 
 This might be a course about quantitative analysis, but that doesn’t mean we can’t handle qualitative issues as well. To capture qualitative aspects – e.g. an individual in our dataset having a job, the gender of a person, the location of the headquarters of a company, etc. - we can use so called dummy or binary variables; i.e. we simply set variable equal to 1 if the qualitative aspect is true and to 0 if not. We will be discussing what this means for regression analysis. Moreover, we will be looking at some nonlinear regression models. 
 
@@ -279,42 +330,7 @@ This might be a course about quantitative analysis, but that doesn’t mean we c
 - [Exercises 6](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/)
 
 
-
----
-
-
-
-# Topic 7 - Econometrics for Dummies
-
-This might be a course about quantitative analysis, but that doesn’t mean we can’t handle qualitative issues as well. To capture qualitative aspects – e.g. an individual in our dataset having a job, the gender of a person, the location of the headquarters of a company, etc. - we can use so called dummy or binary variables; i.e. we simply set variable equal to 1 if the qualitative aspect is true and to 0 if not. We will be discussing what this means for regression analysis. Moreover, we will be looking at some nonlinear regression models. 
-
-## Learning Objectives
-
-- Conduct regression analysis with dummy variables
-- Interpret regression results correctly.
-
-
-## Slides
-
-```{r echo = FALSE, results = "asis"}
-  slidelinks("^Topic7")
-
-```
-
-## Additional Material
-
-```{r echo = FALSE, results = "asis"}
-  slidelinks("^Topic7.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
-
-```
-
-
-
-## Exercises
-
-- [Exercises 7](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises7/)
-
-
+`r unhide()`
 
 ---
 
@@ -323,6 +339,9 @@ This might be a course about quantitative analysis, but that doesn’t mean we c
 
 
 # Topic 7 - Instrumental Variables
+
+
+`r hide("More...")`
 
 Suppose you want to know the causal effect of a variable X on a variable Y but there are concerns that X might be endogenous because of omitted variable bias for instance. Instrumental variables are variables that your are not necessarily interested in for their own sake, but that can help you identify the causal effect that you are interested in despite the endogeneity.
 
@@ -353,6 +372,7 @@ Suppose you want to know the causal effect of a variable X on a variable Y but t
 - [Exercises 7](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises7/)
 
 
+`r unhide()`
 
 ---
 
@@ -360,6 +380,10 @@ Suppose you want to know the causal effect of a variable X on a variable Y but t
 
 
 # Topic 8 - Learning like a machine
+
+
+
+`r hide("More...")`
 
 You might think studying for this course is so hard that it could only be done by a machine. After this topic, you'll hopefully think again.
 
@@ -392,11 +416,16 @@ You will get a brief introduction into Machine Learning. Compared to the rest of
 - [Exercises 8](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises8/)
 
 
+`r unhide()`
 
 ---
 
 
 # Topic 9 - Time for Series
+
+
+
+`r hide("More...")`
 
 To do any data analysis we need different datapoints. Most data we looked at so far was cross sectional data; i.e. datapoints derived from several data units (e.g. individuals, countries, cities, firms). Alternatively, we might have data for just one data unit but over many different periods of time (e.g. years, quarters, days or even sometimes seconds). This creates some specific issues, which we will discuss. Given that time itself causes a form of confounding and correlation from one datapoint to the next, we might get some very biased estimates if we are not careful.  
 
@@ -427,6 +456,8 @@ To do any data analysis we need different datapoints. Most data we looked at so 
 
 - [Exercises 9](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises9/)
 
+
+`r unhide()`
 
 
 ---
