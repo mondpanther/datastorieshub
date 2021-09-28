@@ -150,6 +150,8 @@ You will not be able to analyse data effectively without being familiar with bas
 - Video Guide: Installing R Packages
 <div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/3ffc105985044ec0acf2082215f52491" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
+- Video Guide: Functions in R
+<div style="position: relative; padding-bottom: 62.40740740740741%; height: 0;"><iframe src="https://www.loom.com/embed/1134b503afc2465590c748e5d59c3888" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 ## Exercises
 
@@ -158,6 +160,8 @@ You will not be able to analyse data effectively without being familiar with bas
 
 
 ## Further Reading
+
+- [R for Data Science](https://ebookcentral.proquest.com/lib/imperial/detail.action?docID=4770093)
 
 - [The definite guide to R Markdown](https://bookdown.org/yihui/rmarkdown/)
 

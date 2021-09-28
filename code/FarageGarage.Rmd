@@ -237,16 +237,21 @@ inner %>% group_by(region) %>% summarise(n())
 
 ```{r}
 
+ffx=inner 
+r="London"
+
+
 plotter=function(r){
   
-  #r="Londonddd
+  
   ffx=inner %>% filter(region==r)
-  #ffx=inner; r=""
+  
+  
   
   plot=ggplot(ffx, aes(x = b_migr11, y = crimesPc)) +
     geom_smooth(method = "lm", se = FALSE) +
     geom_point()+theme_minimal()+
-    xlab("% foreign born")+ylab("Crimes per capita")+
+    xlab("% foreign born")+ylab("Crimes per capita") + 
     ggtitle(r)
   
   
@@ -261,6 +266,7 @@ plotter=function(r){
 ```{r calling the function,message=FALSE}
 p=plotter("London") 
 p[[1]];  summary(p[[2]])
+
 
 p=plotter("East")
 p[[1]];summary(p[[2]])

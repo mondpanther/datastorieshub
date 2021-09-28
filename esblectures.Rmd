@@ -141,6 +141,8 @@ You will not be able to analyse data effectively without being familiar with bas
 - Video Guide: Installing R Packages
 <div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/3ffc105985044ec0acf2082215f52491" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
+- Video Guide: Functions in R
+<div style="position: relative; padding-bottom: 62.40740740740741%; height: 0;"><iframe src="https://www.loom.com/embed/1134b503afc2465590c748e5d59c3888" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 ## Exercises
 
@@ -150,9 +152,9 @@ You will not be able to analyse data effectively without being familiar with bas
 
 ## Further Reading
 
+- [R for Data Science](https://ebookcentral.proquest.com/lib/imperial/detail.action?docID=4770093)
+
 - [The definite guide to R Markdown](https://bookdown.org/yihui/rmarkdown/)
-
-
 
 
 `r unhide()`
@@ -162,7 +164,6 @@ You will not be able to analyse data effectively without being familiar with bas
 
 
 # Topic 3 - Visions
-
 
 
 `r hide("More...")`
@@ -472,17 +473,16 @@ You find a template with further instructions [here](https://mondpanther.github.
 
 ---
 
-# Past Exam Papers
+# Past graded exercise papers
 
-- [Past Exam 1](https://www.dropbox.com/s/97tvh8z87wuvujt/CCMF%20Quantitative%20Methods%20ANSWER%20version%20%282%29%20IT%202018%20%28RM%29%28MM%29%20clean.pdf?dl=1)
+- [Graded Assignment 2019](https://www.dropbox.com/s/hvd31mgwgjgxunk/Graded%20Assignment%202019%20-%20With%20Solutions.docx?dl=1)
 
-- [Past Exam 2](https://www.dropbox.com/s/wmnmqdn64e8vaxb/Quant%20Methods%20Exam%20%2016-17%20with%20solutions.docx?dl=1)
-
-- [Past Exam 3](https://www.dropbox.com/s/e05obku5roeyu97/Quantitative%20Methods%20Exam%202017%20%28final%20with%20solutions%29.pdf?dl=1)
+- [Graded Assignment 2018](https://www.dropbox.com/s/j2p6je4eo98wubi/Graded%20Exercise%20Set%202018%20-%20with%20solutions.docx?dl=1)
 
 
 
-## Datasets for past papers (and more)
+
+## Datasets for past graded papers (and more)
 
 
 ```{r ,echo=FALSE, message=FALSE}

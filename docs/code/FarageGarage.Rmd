@@ -226,8 +226,8 @@ The inner join has `r nrow(inner)`, the full join `r nrow(full)`.
 
 # Doing stuff by region and how to use functions
 
-One of the variables we merged earlier includes a region variable. The following command counts the number of observations for every region.
-```{r}
+One of the variables we merged earlier includes a region variable. The following command counts the number of observations for every region.ff
+```{r}n
 inner %>% group_by(region) %>% summarise(n())
 ```
 
@@ -237,26 +237,36 @@ inner %>% group_by(region) %>% summarise(n())
 
 ```{r}
 
+ffx=inner 
+r="London"
+
+
 plotter=function(r){
   
+  
   ffx=inner %>% filter(region==r)
+  
+  
   
   plot=ggplot(ffx, aes(x = b_migr11, y = crimesPc)) +
     geom_smooth(method = "lm", se = FALSE) +
     geom_point()+theme_minimal()+
-    xlab("% foreign born")+ylab("Crimes per capita")+
+    xlab("% foreign born")+ylab("Crimes per capita") + 
     ggtitle(r)
   
   
   reg=(lm(crimesPc~b_migr11,ffx))
+  
   return(list(plot,reg))
 }
+
 ```
 
 ### Call the function:
 ```{r calling the function,message=FALSE}
 p=plotter("London") 
-p[[1]];summary(p[[2]])
+p[[1]];  summary(p[[2]])
+
 
 p=plotter("East")
 p[[1]];summary(p[[2]])
