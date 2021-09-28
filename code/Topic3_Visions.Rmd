@@ -25,7 +25,7 @@ We already have seen ggplot drawing scatterplots. Here we include a new example:
 
 The basic concern is that the believe by some that the COVID pandemic is a hoax, has made things worse; i.e. because people believe it is a hoax they are less cautious and as a consequence help to spread the desease more. One way to explore this is with data for US states. I measure hoaxism for individual states by the share of tweets expressing hoaxist ideas in all tweets related to COVID.
 
-Here are some examples of hoaxists Tweets:
+Here are some examples of hoaxists Tweets (..well it seems Twitter is doing it's job and has now deleted most of those..):
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"> <a href="https://twitter.com/Dexxter____/status/1307626139465244672">Electro magnetic hoaxist</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -79,7 +79,7 @@ Let's look at the average deaths for every density quartile:
 
 ```{r}
 
-stats %>% group_by(dens_quart) %>% summarise(mean(deathsPC))
+stats %>% group_by(dens_quart) %>% summarise(mean(deathsPC),n())
 
 ```
 There is clearly a relationship between density and deaths as well.
@@ -160,7 +160,7 @@ tsplot +  scale_x_date(breaks = date_breaks("1 months"),labels = date_format("%m
 
 ```
 
-Hence, there was a major hoaxism outbrake around May. However, even in recent months hoaxsim isn't really going away.
+Hence, there was a major hoaxism outbrake around May. However, even in October 2020 hoaxsim isn't really going away.
 
 More data is not always better. For instance in the time series above outliers at the daily level could distract from the overall trend. Here is how we can aggregate over time. For instance, we might want to see weekly figures (Note that we treat the `hoax` and `tweets` variables differently from the `cases` and `deaths`. This is because `cases` and `deaths` are recorded as cumulative cases and deaths):
 
@@ -193,13 +193,20 @@ usbyweek  %>% ggplot( aes(x = week,y=hoaxsh*100  )  )+geom_line()  + theme_minim
 ```
 
 
-How does hoaxim evolve relative to covid deaths per capita? Because deaths are counted in different units we need a second scale for that. Here is how you can do that
+How does hoaxism evolve relative to covid deaths per capita? Because deaths are counted in different units we need a second scale for that. Here is how you can do that
 
 ```{r}
 library(scales)
 # We need to re-scale one series so that that they are on a comparable scale
 # Here we re-scale Ddeaths
+   
+   # We first work the ration between the maximum value for hoaxsh and the Ddeaths variable
    scaler=max(usbyweek$hoaxsh*100,na.rm=TRUE)/max(usbyweek$Ddeaths,na.rm=TRUE)
+   
+   # i.e. the Ddeaths is a bigger variable....we wanna get a sense how much smaller hoaxsh is
+   # compared to deaths
+   
+   
    usbyweek=usbyweek %>% mutate(test= Ddeaths*scaler)
    
 
@@ -208,6 +215,10 @@ library(scales)
     p =  ggplot(usbyweek, aes(x = week)) +
          geom_line(aes(y = hoaxsh*100, colour  = "Hoaxshare in %") ) +
          geom_line(aes(y = Ddeaths*scaler, colour = "Weekly deaths"))
+
+# Note: We multiplied Ddeaths by the scaler before plotting. This makes all datapoints look smaller than
+#       they really are. This is confusing but brings the Ddeaths times series to a comparable size to 
+#       the hoaxsh time series
 
 # Note: we store the plot in a variable p. This will allow us to make further modifications to the plot
 # below. In order to see the plot we simply write that variable
@@ -218,10 +229,16 @@ library(scales)
 # Now we can add the second axis. Note with the option  trans=~./(scaler)
 # we are undoing the re-scaling done above so that we can see
 # the series Ddeaths in its original scaling
-    p= p  + scale_y_continuous(sec.axis = sec_axis(label=comma, trans=~./(scaler),
-                                                   name = "Number of deaths"),
-                               labels=comma)
-  
+    p= p  + scale_y_continuous(sec.axis = sec_axis( trans=~.*1/(scaler),
+                                                    name = "Number of deaths"))
+                               
+
+# We are now adding an extra axis which we label "Number of deaths"
+# Also: we are setting the trans option. This transposes the values compared to the 
+#       first axis which reports everything as is. "~." is a kind of joker sign.
+#       The important part is that we multiply by 1/scaler which for the Ddeaths    
+#       variable undoes the effect of mulitplying by scaler.
+    
     p
     
     
@@ -429,6 +446,12 @@ centroid=states_mapPdata %>% group_by(region) %>%
 The R package [networkD3](https://christophergandrud.github.io/networkD3/) provides a simple interface to make some of the functionality available in R.
 
 E.g. we can create flow diagrams (also known as Sankey Networks)
+
+Below we illustrate this with some data from ongoing research. For some background see [here](https://blogs.lse.ac.uk/businessreview/2021/02/11/increasing-support-for-clean-innovation-a-win-win-win-strategy/).
+
+The data has information on the knowledge spillover flows between different technological fields.
+In particular we are looking at the spillover flow (using an estimate of the economic value of spillovers) from COVID related technologies to either clean, dirty or grey technologies.
+
 
 
 ```{r}
