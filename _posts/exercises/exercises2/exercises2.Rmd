@@ -24,7 +24,7 @@ editor_options:
 library(webexercises)
 library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../../images/')
-knitr::opts_chunk$set(echo=FALSE)
+#knitr::opts_chunk$set(echo=FALSE)
 
 
 part=function(reset=FALSE){
