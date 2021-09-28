@@ -206,6 +206,7 @@ We will be deepening our ability to understand the R programming language by loo
 
 - [Exercises 3](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises3/)
 
+- [Enter the visualisation challenge](https://teams.microsoft.com/l/channel/19%3ad0293ee280754395ae42b93d93b4950c%40thread.skype/Visualisation%2520Challenge%25202021?groupId=bee22207-25e0-4515-b861-e0fa99c42aaf&tenantId=2b897507-ee8c-4575-830b-4f8267c3d307)
 
 
 `r unhide()`
