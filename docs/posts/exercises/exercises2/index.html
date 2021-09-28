@@ -93,8 +93,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <link rel="canonical" href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2021-09-27"/>
-<meta property="article:created" itemprop="dateCreated" content="2021-09-27"/>
+<meta property="article:published" itemprop="datePublished" content="2021-09-28"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-09-28"/>
 <meta name="article:author" content="Ralf Martin"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -120,14 +120,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
 <meta name="citation_title" content="Datastories Hub: Exercises 2"/>
 <meta name="citation_fulltext_html_url" content="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/"/>
-<meta name="citation_online_date" content="2021/09/27"/>
-<meta name="citation_publication_date" content="2021/09/27"/>
+<meta name="citation_online_date" content="2021/09/28"/>
+<meta name="citation_publication_date" content="2021/09/28"/>
 <meta name="citation_author" content="Ralf Martin"/>
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 2"]},{"type":"character","attributes":{},"value":["Exercises to get familiar with R."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-09-27"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 2"]},{"type":"character","attributes":{},"value":["Exercises to get familiar with R."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-09-28"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2140,7 +2140,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Exercises 2","description":"Exercises to get familiar with R.","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-27T00:00:00.000+01:00","citationText":"Martin, 2021"}
+{"title":"Exercises 2","description":"Exercises to get familiar with R.","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-28T00:00:00.000+01:00","citationText":"Martin, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2177,7 +2177,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br/>2021-09-27
+<br/>2021-09-28
 </div>
 
 <div class="d-article">
@@ -2482,7 +2482,8 @@ Explanation:
 <h1 id="exercise-2.2">Exercise 2.2</h1>
 <p>This github repository provides COVID related data for the US at the state and county level: <a href="https://github.com/nytimes/covid-19-data">https://github.com/nytimes/covid-19-data</a></p>
 <h3 id="parta">Part(a)</h3>
-<p>Download the state level data (in csv format) from <a href="%22https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv%22">here</a> and load it into an R dataframe. Have a look at the dataframe. How many rows are there? What do the rows represent? What do the columns represent?</p>
+<p>Download the state level data (in csv format) from</p>
+<p><a href="https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv">here</a> and load it into an R dataframe. Have a look at the dataframe. How many rows are there? What do the rows represent? What do the columns represent?</p>
 <div class="webex-solution">
 <button>
 Answer:
@@ -2702,17 +2703,17 @@ Answer:
 </div>
 <p>This will draw the values of X by drawing random variables on the interval between 0 and 1 with uniform (i.e. all values have the same) probility. Look at the values of X and <span class="math inline">\(\epsilon\)</span>. Here are the first 10:</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>          eps          X
-1  -0.1691255 0.43313085
-2  -0.9752648 0.94455616
-3   0.9407187 0.38219205
-4   1.1431378 0.04129223
-5   0.5644953 0.36337464
-6  -1.3606454 0.68816325
-7   0.1787266 0.98228513
-8   1.6342307 0.86124583
-9  -0.1460254 0.16354473
-10  0.2874755 0.02070481</code></pre>
+<pre><code>          eps         X
+1  -0.8537504 0.7671707
+2   0.1788763 0.3583896
+3   0.3031143 0.7133610
+4  -0.8240126 0.4798735
+5   0.2649955 0.9643284
+6   2.2470597 0.4328418
+7  -0.3873077 0.9648572
+8  -0.8163555 0.8393339
+9  -0.8957155 0.6669137
+10 -1.0202918 0.6264740</code></pre>
 </div>
 <h3 id="part-b-1">Part (b)</h3>
 <p>Now create the Y variable according to the formula above.</p>
@@ -2736,19 +2737,19 @@ Call:
 lm(formula = Y ~ X, data = df)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--1.79348 -0.71761 -0.09975  0.58974  2.82481 
+    Min      1Q  Median      3Q     Max 
+-2.7679 -0.6900  0.1023  0.6194  3.2599 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   2.0492     0.1849  11.080   &lt;2e-16 ***
-X             0.4509     0.3141   1.435    0.154    
+(Intercept)  2.21487    0.19864  11.150   &lt;2e-16 ***
+X            0.05638    0.35608   0.158    0.875    
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.9509 on 98 degrees of freedom
-Multiple R-squared:  0.02059,   Adjusted R-squared:  0.0106 
-F-statistic:  2.06 on 1 and 98 DF,  p-value: 0.1544</code></pre>
+Residual standard error: 1.042 on 98 degrees of freedom
+Multiple R-squared:  0.0002557, Adjusted R-squared:  -0.009946 
+F-statistic: 0.02507 on 1 and 98 DF,  p-value: 0.8745</code></pre>
 </div>
 </div>
 <h3 id="part-d-1">Part (d)</h3>
@@ -2774,7 +2775,7 @@ Answer:
 Answer:
 </button>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>[1] 0.4929044</code></pre>
+<pre><code>[1] 0.4952524</code></pre>
 <p><img src="../../../images/unnamed-chunk-38-1.png" width="624" /></p>
 </div>
 <p>Note: we can use ggplot to draw a histogram of all the results for beta as well. This shows that while we not always get a value close to 0.5, over many replications the value we find are centered around the true value of 0.5</p>
@@ -2975,7 +2976,7 @@ window.onload = function() {
 <div class="appendix-bottom">
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Martin (2021, Sept. 27). Datastories Hub: Exercises 2. Retrieved from https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/</pre>
+  <pre class="citation-appendix short">Martin (2021, Sept. 28). Datastories Hub: Exercises 2. Retrieved from https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/</pre>
   <p>BibTeX citation</p>
   <pre class="citation-appendix long">@misc{martin2021exercises,
   author = {Martin, Ralf},

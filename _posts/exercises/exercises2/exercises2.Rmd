@@ -272,12 +272,17 @@ auto_summary %>% gather(stat, val) %>%
 # Exercise 2.2 
 This github repository provides COVID related data for the US at the state and county level: [https://github.com/nytimes/covid-19-data](https://github.com/nytimes/covid-19-data) 
 
+
 ### Part(`r part(reset=TRUE)`)
-Download the state level data (in csv format) from [here]("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv") and load 
+
+Download the state level data (in csv format) from
+        
+[here](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv) and load 
 it into an R dataframe. Have a look at the dataframe.
 How many rows are there? What do the rows represent? What do the columns represent?
 
 `r hide("Answer:")`
+
 
 To load the dataset into a dataframe you can use:
 ```{r,echo=TRUE}
