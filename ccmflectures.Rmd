@@ -213,6 +213,13 @@ We will be deepening our ability to understand the R programming language by loo
 - [Enter the visualisation challenge](https://teams.microsoft.com/l/channel/19%3ad0293ee280754395ae42b93d93b4950c%40thread.skype/Visualisation%2520Challenge%25202021?groupId=bee22207-25e0-4515-b861-e0fa99c42aaf&tenantId=2b897507-ee8c-4575-830b-4f8267c3d307)
 
 
+
+## Further Reading
+
+- [An Economist's Guide to Visualizing Data](https://www.aeaweb.org/articles?id=10.1257/jep.28.1.209)
+
+
+
 `r unhide()`
 
 ---

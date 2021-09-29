@@ -388,7 +388,7 @@ Couple of words about the ggplot command:
 
 - You start by telling R which dataframe to use (`usdaily`)
 - with `aes()` for aesthetic you declare which variables to use for x and y axis.
-- By adding further commands with a `+` sign you control how things look; e.g. that you want to see points (`gem_point()`) and that you want monthly date labels.
+- By adding further commands with a `+` sign you control how things look; e.g. that you want to see points (`geom_point()`) and that you want monthly date labels.
 
 
 ```{r}

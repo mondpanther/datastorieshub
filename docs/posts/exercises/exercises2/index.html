@@ -2603,7 +2603,7 @@ Answer:
 <ul>
 <li>You start by telling R which dataframe to use (<code>usdaily</code>)</li>
 <li>with <code>aes()</code> for aesthetic you declare which variables to use for x and y axis.</li>
-<li>By adding further commands with a <code>+</code> sign you control how things look; e.g. that you want to see points (<code>gem_point()</code>) and that you want monthly date labels.</li>
+<li>By adding further commands with a <code>+</code> sign you control how things look; e.g. that you want to see points (<code>geom_point()</code>) and that you want monthly date labels.</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2770,17 +2770,17 @@ Answer:
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>df</span>,<span class='fl'>10</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>          eps          X
-1   1.5149066 0.23337107
-2  -0.4101560 0.02563174
-3  -0.9340748 0.76824715
-4   0.4309053 0.16007828
-5   0.7071985 0.03750147
-6  -0.4014552 0.31878764
-7   0.8385802 0.57972005
-8   0.1310991 0.38760663
-9   0.6387521 0.56061879
-10 -0.2194198 0.90942662</code></pre>
+<pre><code>           eps          X
+1   0.69184278 0.81893886
+2  -0.39848944 0.45236989
+3   0.76860483 0.28009019
+4  -0.04212744 0.03519611
+5  -0.49918979 0.31857007
+6   0.71191672 0.81330192
+7  -2.41220787 0.95718426
+8  -0.44696618 0.76356229
+9   0.28693239 0.31973028
+10  1.91744276 0.82396772</code></pre>
 </div>
 <h3 id="part-b-1">Part (b)</h3>
 <p>Now create the Y variable according to the formula above.</p>
@@ -2812,19 +2812,19 @@ Call:
 lm(formula = Y ~ X, data = df)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--2.47116 -0.44546  0.02318  0.75423  2.36403 
+    Min      1Q  Median      3Q     Max 
+-2.9175 -0.8362  0.1754  0.6337  2.6862 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   1.9471     0.2176   8.948 2.32e-14 ***
-X             0.7008     0.3818   1.835   0.0695 .  
+(Intercept)   1.6571     0.2008   8.252 7.35e-13 ***
+X             1.0509     0.3614   2.908   0.0045 ** 
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.9888 on 98 degrees of freedom
-Multiple R-squared:  0.03324,   Adjusted R-squared:  0.02337 
-F-statistic: 3.369 on 1 and 98 DF,  p-value: 0.06946</code></pre>
+Residual standard error: 1.019 on 98 degrees of freedom
+Multiple R-squared:  0.07945,   Adjusted R-squared:  0.07005 
+F-statistic: 8.458 on 1 and 98 DF,  p-value: 0.004497</code></pre>
 </div>
 </div>
 <h3 id="part-d-1">Part (d)</h3>
@@ -2867,7 +2867,7 @@ Answer:
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>beta</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 0.5168708</code></pre>
+<pre><code>[1] 0.4875261</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>results</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>beta</span><span class='op'>)</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>results</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>beta</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
