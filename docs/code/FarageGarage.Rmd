@@ -284,6 +284,10 @@ regions=inner$region %>% unique()
 
 
 
+
+
+
+
 for(rrr in regions){
 
   p=plotter(rrr)
@@ -291,6 +295,17 @@ for(rrr in regions){
   print(summary(p[[2]]))
 
 }
+
+
+#### A simple loop example
+for(i in 1:10){
+  
+  print(paste0("Loop Round ",i))
+  
+}
+
+
+
 ```
 
 

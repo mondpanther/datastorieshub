@@ -151,7 +151,7 @@ Much of the power of R derives from extensions (so called packages) that have be
 
 `r hide("Answer:")`
 To install these packages use 
-`install.packages("dplyr","tydr")`
+`install.packages("dplyr","tidyr")`
 
 Note that you only need to do this once on a given computer (it's like installing software).
 However, each time you re-start R you need to load the packages you want to use into memory again. For that you use

@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-09-28"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-09-28"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-09-29"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-09-29"/>
   <meta name="article:author" content="Ralf Martin"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -111,7 +111,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 2"]},{"type":"character","attributes":{},"value":["Exercises to get familiar with R.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-09-28"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 2"]},{"type":"character","attributes":{},"value":["Exercises to get familiar with R.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-09-29"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1455,7 +1455,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Exercises 2","description":"Exercises to get familiar with R.","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-28T00:00:00.000+01:00","citationText":"Martin, 2021"}
+{"title":"Exercises 2","description":"Exercises to get familiar with R.","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-29T00:00:00.000+01:00","citationText":"Martin, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1477,7 +1477,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br/>2021-09-28
+<br/>2021-09-29
 </div>
 
 <div class="d-article">
@@ -1627,7 +1627,7 @@ Answer:
 <button>
 Answer:
 </button>
-<p>To install these packages use <code>install.packages("dplyr","tydr")</code></p>
+<p>To install these packages use <code>install.packages("dplyr","tidyr")</code></p>
 <p>Note that you only need to do this once on a given computer (it’s like installing software). However, each time you re-start R you need to load the packages you want to use into memory again. For that you use</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2070,17 +2070,17 @@ Answer:
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>df</span>,<span class='fl'>10</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>           eps          X
-1   0.69184278 0.81893886
-2  -0.39848944 0.45236989
-3   0.76860483 0.28009019
-4  -0.04212744 0.03519611
-5  -0.49918979 0.31857007
-6   0.71191672 0.81330192
-7  -2.41220787 0.95718426
-8  -0.44696618 0.76356229
-9   0.28693239 0.31973028
-10  1.91744276 0.82396772</code></pre>
+<pre><code>          eps          X
+1   0.4856098 0.45666531
+2   0.4250705 0.52068524
+3  -0.9589984 0.37642910
+4   0.4073621 0.78430270
+5  -0.7204279 0.10854992
+6  -1.8517362 0.11278312
+7   2.3999178 0.29691438
+8   0.9891476 0.77279643
+9  -0.1282813 0.47812008
+10 -0.6340727 0.02257224</code></pre>
 </div>
 <h3 id="part-b-1">Part (b)</h3>
 <p>Now create the Y variable according to the formula above.</p>
@@ -2113,18 +2113,18 @@ lm(formula = Y ~ X, data = df)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--2.9175 -0.8362  0.1754  0.6337  2.6862 
+-3.2452 -0.7657 -0.0043  0.7998  2.5112 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   1.6571     0.2008   8.252 7.35e-13 ***
-X             1.0509     0.3614   2.908   0.0045 ** 
+(Intercept)   1.7109     0.2250   7.605 1.75e-11 ***
+X             1.0989     0.3855   2.851  0.00531 ** 
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 1.019 on 98 degrees of freedom
-Multiple R-squared:  0.07945,   Adjusted R-squared:  0.07005 
-F-statistic: 8.458 on 1 and 98 DF,  p-value: 0.004497</code></pre>
+Residual standard error: 1.102 on 98 degrees of freedom
+Multiple R-squared:  0.07659,   Adjusted R-squared:  0.06717 
+F-statistic: 8.128 on 1 and 98 DF,  p-value: 0.005314</code></pre>
 </div>
 </div>
 <h3 id="part-d-1">Part (d)</h3>
@@ -2167,7 +2167,7 @@ Answer:
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>beta</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 0.4875261</code></pre>
+<pre><code>[1] 0.499315</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>results</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>beta</span><span class='op'>)</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>results</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>beta</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
