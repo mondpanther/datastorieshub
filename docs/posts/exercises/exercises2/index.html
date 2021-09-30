@@ -93,8 +93,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <link rel="canonical" href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2021-09-28"/>
-<meta property="article:created" itemprop="dateCreated" content="2021-09-28"/>
+<meta property="article:published" itemprop="datePublished" content="2021-09-30"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-09-30"/>
 <meta name="article:author" content="Ralf Martin"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -120,14 +120,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
 <meta name="citation_title" content="Datastories Hub: Exercises 2"/>
 <meta name="citation_fulltext_html_url" content="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/"/>
-<meta name="citation_online_date" content="2021/09/28"/>
-<meta name="citation_publication_date" content="2021/09/28"/>
+<meta name="citation_online_date" content="2021/09/30"/>
+<meta name="citation_publication_date" content="2021/09/30"/>
 <meta name="citation_author" content="Ralf Martin"/>
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 2"]},{"type":"character","attributes":{},"value":["Exercises to get familiar with R."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-09-29"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 2"]},{"type":"character","attributes":{},"value":["Exercises to get familiar with R."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-09-30"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2140,7 +2140,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Exercises 2","description":"Exercises to get familiar with R.","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-28T00:00:00.000+01:00","citationText":"Martin, 2021"}
+{"title":"Exercises 2","description":"Exercises to get familiar with R.","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-30T00:00:00.000+01:00","citationText":"Martin, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2177,7 +2177,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br/>2021-09-29
+<br/>2021-09-30
 </div>
 
 <div class="d-article">
@@ -2639,7 +2639,7 @@ Answer:
 </code></pre>
 </div>
 </div>
-<p>This tells R to create a new dataframe (<code>covid_julyb</code>) by combinig the information in <code>covid_july</code> and <code>pop</code>. Rows are being matched using the variable <code>state</code>. Maybe you noted that pop has only 2 observations whereas <code>covid_july</code> has 55. This is because <code>pop</code> doesn’t include information on places such as Guam and a couple of other Islands that are not formal US states but controlled by the US, whereas <code>covid_july</code> does. The <code>all.x</code> option tells R to keep observations from the first dataset (i.e. <code>covid_july</code>) even if no equivalent observation in the second dataset can be found. This is also known as a left join. Similarly there is a right join with <code>all.y=TRUE</code> or a full join with <code>all=TRUE</code>. You might want to read a bit more about the merge command e.g. <a href="https://www.dummies.com/programming/r/how-to-use-the-merge-function-with-data-sets-in-r/">here</a></p>
+<p>This tells R to create a new dataframe (<code>covid_julyb</code>) by combinig the information in <code>covid_july</code> and <code>pop</code>. Rows are being matched using the variable <code>state</code>. Maybe you noted that pop has only 52 observations whereas <code>covid_july</code> has 55. This is because <code>pop</code> doesn’t include information on places such as Guam and a couple of other Islands that are not formal US states but controlled by the US, whereas <code>covid_july</code> does. The <code>all.x</code> option tells R to keep observations from the first dataset (i.e. <code>covid_july</code>) even if no equivalent observation in the second dataset can be found. This is also known as a left join. Similarly there is a right join with <code>all.y=TRUE</code> or a full join with <code>all=TRUE</code>. You might want to read a bit more about the merge command e.g. <a href="https://www.dummies.com/programming/r/how-to-use-the-merge-function-with-data-sets-in-r/">here</a></p>
 </div>
 <h3 id="partg">Part(g)</h3>
 <p>Using the newly created dataframe create a new variable COVID cases per capita (i.e. per head of population). Explore the relationship between per capita cases and population density. What kind of relationship would you expect? What do you find?</p>
@@ -2770,17 +2770,17 @@ Answer:
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>df</span>,<span class='fl'>10</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>          eps          X
-1   0.4856098 0.45666531
-2   0.4250705 0.52068524
-3  -0.9589984 0.37642910
-4   0.4073621 0.78430270
-5  -0.7204279 0.10854992
-6  -1.8517362 0.11278312
-7   2.3999178 0.29691438
-8   0.9891476 0.77279643
-9  -0.1282813 0.47812008
-10 -0.6340727 0.02257224</code></pre>
+<pre><code>          eps         X
+1  -1.2900028 0.5958205
+2   0.8168841 0.5829558
+3   1.2326044 0.5726064
+4   0.3055738 0.6577908
+5  -0.3046453 0.9053362
+6   1.7298321 0.1800592
+7   0.9339064 0.3002180
+8  -0.6631717 0.3234343
+9  -0.1526502 0.3775629
+10  1.3318213 0.8236410</code></pre>
 </div>
 <h3 id="part-b-1">Part (b)</h3>
 <p>Now create the Y variable according to the formula above.</p>
@@ -2812,19 +2812,19 @@ Call:
 lm(formula = Y ~ X, data = df)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--3.2452 -0.7657 -0.0043  0.7998  2.5112 
+     Min       1Q   Median       3Q      Max 
+-2.37013 -0.54542  0.05759  0.65863  2.52561 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   1.7109     0.2250   7.605 1.75e-11 ***
-X             1.0989     0.3855   2.851  0.00531 ** 
+(Intercept)   2.4044     0.2211   10.88   &lt;2e-16 ***
+X             0.1349     0.3746    0.36     0.72    
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 1.102 on 98 degrees of freedom
-Multiple R-squared:  0.07659,   Adjusted R-squared:  0.06717 
-F-statistic: 8.128 on 1 and 98 DF,  p-value: 0.005314</code></pre>
+Residual standard error: 0.95 on 98 degrees of freedom
+Multiple R-squared:  0.001321,  Adjusted R-squared:  -0.008869 
+F-statistic: 0.1296 on 1 and 98 DF,  p-value: 0.7196</code></pre>
 </div>
 </div>
 <h3 id="part-d-1">Part (d)</h3>
@@ -2867,7 +2867,7 @@ Answer:
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>beta</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 0.499315</code></pre>
+<pre><code>[1] 0.5226581</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>results</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>beta</span><span class='op'>)</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>results</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>beta</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
@@ -3075,7 +3075,7 @@ window.onload = function() {
 <div class="appendix-bottom">
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Martin (2021, Sept. 28). Datastories Hub: Exercises 2. Retrieved from https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/</pre>
+  <pre class="citation-appendix short">Martin (2021, Sept. 30). Datastories Hub: Exercises 2. Retrieved from https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/</pre>
   <p>BibTeX citation</p>
   <pre class="citation-appendix long">@misc{martin2021exercises,
   author = {Martin, Ralf},
