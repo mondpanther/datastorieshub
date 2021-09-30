@@ -44,7 +44,7 @@ library(dplyr)
 stats=read.csv("https://www.dropbox.com/s/8w4zbg40y84pnqk/statslong.csv?dl=1")
 
 # Creating some extra variables
-stats=stats%>%mutate(   pop=pop/1000, 
+stats=stats %>% mutate(   pop=pop/1000, 
                         hoaxshXdensity=(hoaxsh)*(density-mean(density)),
                         tweetsPCXdensity=(tweetsPC)*(density-mean(density))
                       )
@@ -61,7 +61,7 @@ ggplot(stats,aes(x=hoaxsh, y=deathsPC))+
        theme_minimal()+
        xlab("Share of Hoax Tweets") + 
        ylab("Covid Deaths per capita") + 
-       geom_smooth(method = "lm", se = FALSE)+
+       geom_smooth(method = "lm",se=FALSE)+
        ggtitle("Covid Deaths and Hoxism") 
 ```
 
@@ -69,7 +69,7 @@ We examine in our research if the effect of hoaxism is stronger when population 
 For that we group states into quartiles of population density:
 
 ```{r}
-stats=stats %>%mutate(dens_quart=cut(density, 
+stats=stats %>% mutate(dens_quart = cut(density, 
                                 breaks=quantile(density, probs=seq(0,1, by=0.25), na.rm=TRUE), 
                                 include.lowest=TRUE))
 
@@ -79,7 +79,7 @@ Let's look at the average deaths for every density quartile:
 
 ```{r}
 
-stats %>% group_by(dens_quart) %>% summarise(mean(deathsPC),n())
+stats %>% group_by(dens_quart) %>%    summarise(mean(deathsPC),n())
 
 ```
 There is clearly a relationship between density and deaths as well.
