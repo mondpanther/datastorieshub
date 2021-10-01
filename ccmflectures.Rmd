@@ -204,6 +204,7 @@ We will be deepening our ability to understand the R programming language by loo
 
 ```
 
+- [The R Graph Gallery](https://www.r-graph-gallery.com/)
 
 
 ## Exercises
