@@ -248,6 +248,12 @@ We have discussed how to estimate the parameters of a simple regression model. I
 
 
 
+## Further reading
+
+- [A Refresher on Statistical Significance](https://hbr.org/2016/02/a-refresher-on-statistical-significance)
+
+
+
 `r unhide()`
 
 ---
