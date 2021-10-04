@@ -41,6 +41,16 @@ ggplot(ff, aes(y=crimesPc,x=b_migr11)) + geom_point()   +   # Make sure + is on 
 
 ```
 
+Recall the regression command:
+
+
+```{r}
+
+
+
+
+```
+
 
 # Monte Carlo
 

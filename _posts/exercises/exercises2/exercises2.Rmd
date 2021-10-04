@@ -425,7 +425,8 @@ A large part of data analysis work is getting the data into a format that lends 
 First you need to load the population dataset into a dataframe as well:
 
 ```{r}
-pop=read.csv("https://www.dropbox.com/s/tp4kiq8if372rcz/populationdata.csv?dl=1")
+pop=read.csv("https://mondpanther.github.io/datastorieshub/data/populationclean.csv")
+ 
 
 ```
 
