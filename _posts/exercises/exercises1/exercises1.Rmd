@@ -9,9 +9,13 @@ date: "`r Sys.Date()`"
 output:
   distill::distill_article:
     self_contained: false
-    css: ../../webex.css
-    includes:
-      after_body: ../../webex.js
+    #css: ../../webex.css
+    #includes:
+    #  after_body: ../../webex.js
+#  css: include/webex.css
+#  includes:
+#    after_body: include/webex.js
+#  md_extensions: -smart
 categories:
   - Exercises
 editor_options: 
@@ -33,8 +37,10 @@ Lots of great examples...
 
 <script src="https://hypothes.is/embed.js" async></script>
 
+
+
 ```{r setup, include = FALSE, message=FALSE}
-library(webex)
+library(webexercises)
 library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../images/')
 knitr::opts_chunk$set(echo=TRUE)
@@ -134,7 +140,7 @@ A New York doctor wanted to investigate the effect of flavanols, compounds found
 # Exercise 1.5
 Sex makes you rich?
 
-```{r}
+```{r,echo=FALSE}
 knitr::include_url("https://blogs.scientificamerican.com/roots-of-unity/sex-makes-you-rich-why-we-keep-saying-e2809ccorrelation-is-not-causatione2809d-even-though-ite28099s-annoying/")
 ```
 
@@ -153,8 +159,15 @@ Marriage makes you happy?
 
 
 ```{r,echo=FALSE}
-knitr::include_url("https://www.sciencedirect.com/science/article/abs/pii/S1053535705001745")
+#knitr::include_url("https://www.sciencedirect.com/science/article/abs/pii/S1053535705001745")
+
+
+knitr::include_graphics("marriage.png")
+
 ```
+
+[Full article]("https://www.sciencedirect.com/science/article/abs/pii/S1053535705001745")
+
 
 `r hide("Example Answer:")`
 

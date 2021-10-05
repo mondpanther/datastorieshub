@@ -23,7 +23,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -2041,47 +2040,71 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <style type="text/css">
-  #twitter {
-    float: right; 
-    width: 50%;
-  }
-  #scheduler {
-    float: left; 
-    width: 50%;
-  }
-  @media screen and (max-width: 600px) {
-    embed {
-      height: 250px;
-    }
-    #twitter, #scheduler { width: 100%; }
+  :root {
+    --pink: #983E82;   /* hsl(315, 42%, 42%) */
+    --orange: #E2A458; /* hsl( 33, 70%, 62%) */
+    --yellow: #F5DC70; /* hsl( 49, 87%, 70%) */
+    --green: #59935B;  /* hsl(122, 25%, 46%) */
+    --blue: #467AAC;   /* hsl(209, 42%, 47%) */
+    --purple: #61589C; /* hsl(248, 28%, 48%) */
   }
 
-  /* styles for solveme */
-  .solveme { border: 2px dotted red; }
-  .solveme.correct { border: 2px solid blue; }
-  /* styles for hidden solutions */
-  .solution {
-      height: 2em;
-      overflow-y: hidden;
-      padding: 0.2em;
+  /* styles for webex-solveme */
+  .webex-incorrect,
+  .webex-radiogroup label.webex-incorrect{
+      border: 2px dotted var(--pink);
+      background-color: #edaddd;
+      border-radius: 0.25em;
   }
-  .solution.open {
+  .webex-correct,
+  .webex-radiogroup label.webex-correct {
+      border: 2px solid var(--green);
+      background-color: #c0edc2;
+      border-radius: 0.25em;
+  }
+  /* styles for hidden solutions */
+  .webex-solution {
+      height: 2.5em;
+      overflow-y: hidden;
+      padding: 0.15em;
+      margin-bottom: 10px;
+  }
+  .webex-solution.open {
       height: auto;
-      background-color: rgba(0, 0, 0, 0.1);
+      border: 2px solid var(--blue);
       border-radius: 5px;
   }
-  .solution button {
-      height: 1.5em;
+  .webex-solution button {
+      height: 2em;
       margin-bottom: 0.5em;
+      border-radius: 0.5em;
+      background-color: var(--blue);
+      color: white;
+      padding: 0 0.5em;
   }
-  .solution pre.sourceCode {
-      border-color: green;
+  .webex-solution pre.sourceCode {
+      border-color: var(--green);
+  }
+
+  .webex-radiogroup label {
+    margin-left: 2em;
+    text-indent: -1em;
+    padding-left: 0.5em;
+    font-weight: 400;
+    display: block;
+    border: 2px solid rgba(255, 255, 255, 1);
+    border-radius: 0.25em;
+  }
+
+  .webex-radiogroup label input {
+    position: relative;
+    left: -1em;
   }
 
   </style>
   <!--/radix_placeholder_site_in_header-->
 
-  <link rel="stylesheet" href="webex.css" type="text/css"/>
+  <link rel="stylesheet" href="include\webex.css" type="text/css"/>
 
 </head>
 
@@ -2126,10 +2149,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <script src="https://hypothes.is/embed.js" async></script>
 <p>Welcome to Analytics!</p>
 <p>In this course we give you an introduction into common concepts and tools for data analysis in economics and business. Emphasis will be on practical data skills as well as the ability to formulate a question appropriately, provide data analysis relevant to the question and interpret the results correctly. As part of the course you will be asked to provide a small piece of data analysis.</p>
-<h5 id="class-participation">Class participation…</h5>
-<p>To get your participation mark please participate in the Datathon Forum with either questions or answers or by sharing relevant stuff (e.g. an interesting dataset or article). You find the forum <a href="https://teams.microsoft.com/l/team/19%3a33e09cf87c974e3181f08097c0eb5252%40thread.skype/conversations?groupId=bee22207-25e0-4515-b861-e0fa99c42aaf&amp;tenantId=2b897507-ee8c-4575-830b-4f8267c3d307">here</a>. You should already be enrolled to participate. But if not let me know. Please only participate with your official Imperial Email address.</p>
+<h5 id="class-participation...">Class participation...</h5>
+<p>To get your participation mark please participate in the Datathon Forum with either questions or answers or by sharing relevant stuff (e.g. an interesting dataset or article). You find the forum <a href="https://teams.microsoft.com/l/team/19%3a33e09cf87c974e3181f08097c0eb5252%40thread.skype/conversations?groupId=bee22207-25e0-4515-b861-e0fa99c42aaf&amp;tenantId=2b897507-ee8c-4575-830b-4f8267c3d307">here</a>. You should already be enrolled to participate. But if not let me know. Please only participate with your official Imperial Email address.</p>
 <hr />
 <h1 id="topic-1---introduction">Topic 1 - Introduction</h1>
+<div class="webex-solution">
+<button>
+More...
+</button>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
 <li>Understanding what causal relationships are</li>
@@ -2154,8 +2181,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="https://www.econometrics-with-r.org/1-introduction.html">Introduction to Econometrics with R, Chapters 1-3</a></li>
 <li><a href="https://causalscience.org/blog/causal-data-science-in-large-us-firms">Causal Data Science in Large U.S. Firms</a></li>
 </ul>
+</div>
 <hr />
 <h1 id="topic-2--rrrr">Topic 2- Rrrr</h1>
+<div class="webex-solution">
+<button>
+More...
+</button>
 <p>We take a first look at the R software package and programming language, which we will be using throughout this module. For those who have not yet been programming this will be a steep learning curve. However, it should be worth it.</p>
 <p>You will not be able to analyse data effectively without being familiar with basic programming concepts. What’s more, to grasp many aspects of today’s world an understanding of programming is key. Even if you don’t envisage a career as master coder or data analyst, trying these things for yourself will be useful as you will very likely have to manage coders and analysts or rely on their work at some point in your career.</p>
 <h2 id="learning-objectives-1">Learning Objectives</h2>
@@ -2181,12 +2213,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="https://mondpanther.github.io/datastorieshub/code/FarageGarage.Rmd">FarageGarage.Rmd</a></li>
 </ul>
 </div>
+<ul>
+<li>Video Guide: R scripts</li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pAVyb9ViUgY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<ul>
+<li>Video Guide: Installing R Packages
+<div style="position: relative; padding-bottom: 56.25%; height: 0;">
+<iframe src="https://www.loom.com/embed/3ffc105985044ec0acf2082215f52491" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+</iframe>
+</div></li>
+<li>Video Guide: Functions in R
+<div style="position: relative; padding-bottom: 62.40740740740741%; height: 0;">
+<iframe src="https://www.loom.com/embed/1134b503afc2465590c748e5d59c3888" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+</iframe>
+</div></li>
+</ul>
 <h2 id="exercises-1">Exercises</h2>
 <ul>
 <li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/">Exercises 2</a></li>
 </ul>
+<h2 id="further-reading-1">Further Reading</h2>
+<ul>
+<li><p><a href="https://ebookcentral.proquest.com/lib/imperial/detail.action?docID=4770093">R for Data Science</a></p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/">The definite guide to R Markdown</a></p></li>
+</ul>
+</div>
 <hr />
 <h1 id="topic-3---visions">Topic 3 - Visions</h1>
+<div class="webex-solution">
+<button>
+More...
+</button>
 <p>Some of the best ways to understand data are graphs and visualisations. R has powerful tools for that purpose.</p>
 <p>We will be deepening our ability to understand the R programming language by looking at some of its graphics commands. We will also discuss some of the pitfalls as well as deliberate manipulations that people engage in when producing data visualisations.</p>
 <h2 id="learning-objectives-2">Learning Objectives</h2>
@@ -2208,12 +2267,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic3_Visions.Rmd">Topic3_Visions.Rmd</a></li>
 </ul>
 </div>
+<ul>
+<li><a href="https://www.r-graph-gallery.com/">The R Graph Gallery</a></li>
+</ul>
 <h2 id="exercises-2">Exercises</h2>
 <ul>
 <li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises3/">Exercises 3</a></li>
 </ul>
+<h2 id="further-reading-2">Further Reading</h2>
+<ul>
+<li><a href="https://www.aeaweb.org/articles?id=10.1257/jep.28.1.209">An Economist's Guide to Visualizing Data</a></li>
+</ul>
+</div>
 <hr />
 <h1 id="topic-4---testing-times">Topic 4 - Testing Times</h1>
+<div class="webex-solution">
+<button>
+More...
+</button>
 <p>We have discussed how to estimate the parameters of a simple regression model. In this topic we will discuss how work out the reliability of such estimates. We will examine what determines the distribution of the estimates and how we can use hypothesis testing to explore the data and estimates.</p>
 <h2 id="learning-objectives-3">Learning Objectives</h2>
 <ul>
@@ -2238,9 +2309,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises4/">Exercises 4</a></li>
 </ul>
+<h2 id="further-reading-3">Further reading</h2>
+<ul>
+<li><a href="https://hbr.org/2016/02/a-refresher-on-statistical-significance">A Refresher on Statistical Significance</a></li>
+</ul>
+</div>
 <hr />
 <h1 id="topic-5---multivariate-regressions">Topic 5 - Multivariate Regressions</h1>
-<p>we look at multivariate regressions; i.e. regressions where the dependent variable depends on several – not just one – explanatory variables.</p>
+<div class="webex-solution">
+<button>
+More...
+</button>
+<p>we look at multivariate regressions; i.e. regressions where the dependent variable depends on several – not just one – explanatory variables.</p>
 <h2 id="learning-objectives-4">Learning Objectives</h2>
 <ul>
 <li>Estimate regression models that depend on multiple explanatory variables</li>
@@ -2265,9 +2345,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises5/">Exercises 5</a></li>
 </ul>
+</div>
 <hr />
 <h1 id="topic-6---econometrics-for-dummies">Topic 6 - Econometrics for Dummies</h1>
-<p>This might be a course about quantitative analysis, but that doesn’t mean we can’t handle qualitative issues as well. To capture qualitative aspects – e.g. an individual in our dataset having a job, the gender of a person, the location of the headquarters of a company, etc. - we can use so called dummy or binary variables; i.e. we simply set variable equal to 1 if the qualitative aspect is true and to 0 if not. We will be discussing what this means for regression analysis. Moreover, we will be looking at some nonlinear regression models.</p>
+<div class="webex-solution">
+<button>
+More...
+</button>
+<p>This might be a course about quantitative analysis, but that doesn’t mean we can’t handle qualitative issues as well. To capture qualitative aspects – e.g. an individual in our dataset having a job, the gender of a person, the location of the headquarters of a company, etc. - we can use so called dummy or binary variables; i.e. we simply set variable equal to 1 if the qualitative aspect is true and to 0 if not. We will be discussing what this means for regression analysis. Moreover, we will be looking at some nonlinear regression models.</p>
 <h2 id="learning-objectives-5">Learning Objectives</h2>
 <ul>
 <li>Conduct regression analysis with dummy variables</li>
@@ -2283,7 +2368,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="additional-material-4">Additional Material</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic6_EconometricsforDummies%20(ms-rmartin-ws2&#39;s%20conflicted%20copy%202020-12-17).html">Topic6_EconometricsforDummies (ms-rmartin-ws2’s conflicted copy 2020-12-17).html</a></li>
+<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic6_EconometricsforDummies%20(ms-rmartin-ws2&#39;s%20conflicted%20copy%202020-12-17).html">Topic6_EconometricsforDummies (ms-rmartin-ws2's conflicted copy 2020-12-17).html</a></li>
 <li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic6_EconometricsforDummies.html">Topic6_EconometricsforDummies.html</a></li>
 <li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic6_EconometricsforDummies.Rmd">Topic6_EconometricsforDummies.Rmd</a></li>
 </ul>
@@ -2292,13 +2377,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/">Exercises 6</a></li>
 </ul>
+</div>
 <hr />
-<h1 id="topic-7---econometrics-for-dummies">Topic 7 - Econometrics for Dummies</h1>
-<p>This might be a course about quantitative analysis, but that doesn’t mean we can’t handle qualitative issues as well. To capture qualitative aspects – e.g. an individual in our dataset having a job, the gender of a person, the location of the headquarters of a company, etc. - we can use so called dummy or binary variables; i.e. we simply set variable equal to 1 if the qualitative aspect is true and to 0 if not. We will be discussing what this means for regression analysis. Moreover, we will be looking at some nonlinear regression models.</p>
+<h1 id="topic-7---instrumental-variables">Topic 7 - Instrumental Variables</h1>
+<div class="webex-solution">
+<button>
+More...
+</button>
+<p>Suppose you want to know the causal effect of a variable X on a variable Y but there are concerns that X might be endogenous because of omitted variable bias for instance. Instrumental variables are variables that your are not necessarily interested in for their own sake, but that can help you identify the causal effect that you are interested in despite the endogeneity.</p>
 <h2 id="learning-objectives-6">Learning Objectives</h2>
 <ul>
-<li>Conduct regression analysis with dummy variables</li>
-<li>Interpret regression results correctly.</li>
+<li>Identify the requirements and conditions that make the Instrumental Variables approach feasible</li>
+<li>Implement Instrumental Variables regressions.</li>
 </ul>
 <h2 id="slides-6">Slides</h2>
 <div class="layout-chunk" data-layout="l-body">
@@ -2318,97 +2408,81 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises7/">Exercises 7</a></li>
 </ul>
-<hr />
-<h1 id="topic-7---instrumental-variables">Topic 7 - Instrumental Variables</h1>
-<p>Suppose you want to know the causal effect of a variable X on a variable Y but there are concerns that X might be endogenous because of omitted variable bias for instance. Instrumental variables are variables that your are not necessarily interested in for their own sake, but that can help you identify the causal effect that you are interested in despite the endogeneity.</p>
-<h2 id="learning-objectives-7">Learning Objectives</h2>
-<ul>
-<li>Identify the requirements and conditions that make the Instrumental Variables approach feasible</li>
-<li>Implement Instrumental Variables regressions.</li>
-</ul>
-<h2 id="slides-7">Slides</h2>
-<div class="layout-chunk" data-layout="l-body">
-<ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic7_InstrumentalVariables.pdf">Topic7_InstrumentalVariables.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic7_InstrumentalVariables.pptx">Topic7_InstrumentalVariables.pptx</a></li>
-</ul>
 </div>
-<h2 id="additional-material-6">Additional Material</h2>
-<div class="layout-chunk" data-layout="l-body">
-<ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic7_InstrumentalVariables.html">Topic7_InstrumentalVariables.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic7_InstrumentalVariables.Rmd">Topic7_InstrumentalVariables.Rmd</a></li>
-</ul>
-</div>
-<h2 id="exercises-7">Exercises</h2>
-<ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises7/">Exercises 7</a></li>
-</ul>
 <hr />
 <h1 id="topic-8---learning-like-a-machine">Topic 8 - Learning like a machine</h1>
-<p>You might think studying for this course is so hard that it could only be done by a machine. After this topic, you’ll hopefully think again.</p>
+<div class="webex-solution">
+<button>
+More...
+</button>
+<p>You might think studying for this course is so hard that it could only be done by a machine. After this topic, you'll hopefully think again.</p>
 <p>You will get a brief introduction into Machine Learning. Compared to the rest of the course, Machine Learning is essentially econometrics where we are more concerned about prediction rather than the identification of causal relationships.</p>
-<h2 id="learning-objectives-8">Learning Objectives</h2>
+<h2 id="learning-objectives-7">Learning Objectives</h2>
 <ul>
 <li>Explain the basic principles of machine learning</li>
 <li>Implement simple machine learning applications.</li>
 </ul>
-<h2 id="slides-8">Slides</h2>
+<h2 id="slides-7">Slides</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
 <li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic8_MachineLearning_Part1.pdf">Topic8_MachineLearning_Part1.pdf</a></li>
 <li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic8_MachineLearning_Part2.pdf">Topic8_MachineLearning_Part2.pdf</a></li>
 </ul>
 </div>
-<h2 id="additional-material-7">Additional Material</h2>
+<h2 id="additional-material-6">Additional Material</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
 <li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic8_LearningLikeaMachine.html">Topic8_LearningLikeaMachine.html</a></li>
 <li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic8_LearningLikeaMachine.Rmd">Topic8_LearningLikeaMachine.Rmd</a></li>
 </ul>
 </div>
-<h2 id="exercises-8">Exercises</h2>
+<h2 id="exercises-7">Exercises</h2>
 <ul>
 <li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises8/">Exercises 8</a></li>
 </ul>
+</div>
 <hr />
 <h1 id="topic-9---time-for-series">Topic 9 - Time for Series</h1>
-<p>To do any data analysis we need different datapoints. Most data we looked at so far was cross sectional data; i.e. datapoints derived from several data units (e.g. individuals, countries, cities, firms). Alternatively, we might have data for just one data unit but over many different periods of time (e.g. years, quarters, days or even sometimes seconds). This creates some specific issues, which we will discuss. Given that time itself causes a form of confounding and correlation from one datapoint to the next, we might get some very biased estimates if we are not careful.</p>
-<h2 id="learning-objectives-9">Learning Objectives</h2>
+<div class="webex-solution">
+<button>
+More...
+</button>
+<p>To do any data analysis we need different datapoints. Most data we looked at so far was cross sectional data; i.e. datapoints derived from several data units (e.g. individuals, countries, cities, firms). Alternatively, we might have data for just one data unit but over many different periods of time (e.g. years, quarters, days or even sometimes seconds). This creates some specific issues, which we will discuss. Given that time itself causes a form of confounding and correlation from one datapoint to the next, we might get some very biased estimates if we are not careful.</p>
+<h2 id="learning-objectives-8">Learning Objectives</h2>
 <ul>
 <li>Identify the problems related to time series data</li>
 <li>Correctly implement causal analysis in a time series context.</li>
 </ul>
-<h2 id="slides-9">Slides</h2>
+<h2 id="slides-8">Slides</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
 <li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic9_TimeSeries.pdf">Topic9_TimeSeries.pdf</a></li>
 <li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic9_TimeSeries.pptx">Topic9_TimeSeries.pptx</a></li>
 </ul>
 </div>
-<h2 id="additional-material-8">Additional Material</h2>
+<h2 id="additional-material-7">Additional Material</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
 <li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic9_TimeSeries.html">Topic9_TimeSeries.html</a></li>
 <li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic9_TimeSeries.Rmd">Topic9_TimeSeries.Rmd</a></li>
 </ul>
 </div>
-<h2 id="exercises-9">Exercises</h2>
+<h2 id="exercises-8">Exercises</h2>
 <ul>
 <li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises9/">Exercises 9</a></li>
 </ul>
+</div>
 <hr />
 <h1 id="group-coursework">Group Coursework</h1>
 <p>As part of this course you are asked to hand in a piece of group coursework. For this you are asked to provide some simple a short report on anything you like as long as it involves a discussion of a dataset and some of the methods we discussed in this class. I.e. think of a good question, some data and a strategy to say something towards the answer of the question using data.</p>
 <p>You find a template with further instructions <a href="https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.html">here</a> (<a href="https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.Rmd">RMarkdown Version</a>).</p>
 <hr />
-<h1 id="past-exam-papers">Past Exam Papers</h1>
+<h1 id="past-graded-exercise-papers">Past graded exercise papers</h1>
 <ul>
-<li><p><a href="https://www.dropbox.com/s/97tvh8z87wuvujt/CCMF%20Quantitative%20Methods%20ANSWER%20version%20%282%29%20IT%202018%20%28RM%29%28MM%29%20clean.pdf?dl=1">Past Exam 1</a></p></li>
-<li><p><a href="https://www.dropbox.com/s/wmnmqdn64e8vaxb/Quant%20Methods%20Exam%20%2016-17%20with%20solutions.docx?dl=1">Past Exam 2</a></p></li>
-<li><p><a href="https://www.dropbox.com/s/e05obku5roeyu97/Quantitative%20Methods%20Exam%202017%20%28final%20with%20solutions%29.pdf?dl=1">Past Exam 3</a></p></li>
+<li><p><a href="https://www.dropbox.com/s/hvd31mgwgjgxunk/Graded%20Assignment%202019%20-%20With%20Solutions.docx?dl=1">Graded Assignment 2019</a></p></li>
+<li><p><a href="https://www.dropbox.com/s/j2p6je4eo98wubi/Graded%20Exercise%20Set%202018%20-%20with%20solutions.docx?dl=1">Graded Assignment 2018</a></p></li>
 </ul>
-<h2 id="datasets-for-past-papers-and-more">Datasets for past papers (and more)</h2>
+<h2 id="datasets-for-past-graded-papers-and-more">Datasets for past graded papers (and more)</h2>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
@@ -2427,6 +2501,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="https://mondpanther.github.io/datastorieshub/data/NH.Ts+dSST.csv">NH.Ts+dSST.csv</a></li>
 <li><a href="https://mondpanther.github.io/datastorieshub/data/oj.csv">oj.csv</a></li>
 <li><a href="https://mondpanther.github.io/datastorieshub/data/populationclean.csv">populationclean.csv</a></li>
+<li><a href="https://mondpanther.github.io/datastorieshub/data/populationdata.csv">populationdata.csv</a></li>
 <li><a href="https://mondpanther.github.io/datastorieshub/data/prod.csv">prod.csv</a></li>
 <li><a href="https://mondpanther.github.io/datastorieshub/data/prod_balanced.csv">prod_balanced.csv</a></li>
 <li><a href="https://mondpanther.github.io/datastorieshub/data/proddata_clean.csv">proddata_clean.csv</a></li>
@@ -2451,6 +2526,178 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <!--radix_placeholder_site_after_body-->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+    
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+  
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+  
+  var cl = this.classList
+  
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+  
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+  
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+  
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+  }
+
+  update_total_correct();
+}
+
+</script>
+
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
 <div class="appendix-bottom"></div>

@@ -14,6 +14,10 @@ base_url: https://mondpanther.github.io/datastorieshub/
 output:
   distill::distill_article:
     #theme: flatly
-    css: webex.css
+    #css: webex.css
+    css: include/webex.css
+    includes:
+      after_body: include/webex.js
+    md_extensions: -smart
 
     

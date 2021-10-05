@@ -8,10 +8,10 @@ author:
 date: "`r Sys.Date()`"
 output:
   distill::distill_article:
-    self_contained: true
-    css: ../../webex.css
-    includes:
-      after_body: ../../webex.js
+    self_contained: false
+    #css: ../../webex.css
+    #includes:
+    #  after_body: ../../webex.js
 categories:
   - Exercises
 editor_options: 
@@ -21,10 +21,10 @@ editor_options:
 <script src="https://hypothes.is/embed.js" async></script>
 
 ```{r setup, include = FALSE, message=FALSE}
-library(webex)
+library(webexercises)
 library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../../images/')
-knitr::opts_chunk$set(echo=FALSE)
+#knitr::opts_chunk$set(echo=FALSE)
 
 
 part=function(reset=FALSE){
@@ -273,12 +273,17 @@ auto_summary %>% gather(stat, val) %>%
   
 This github repository provides COVID related data for the US at the state and county level: [https://github.com/nytimes/covid-19-data](https://github.com/nytimes/covid-19-data) 
 
+
 ### Part(`r part(reset=TRUE)`)
-Download the state level data (in csv format) from [here]("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv") and load 
+
+Download the state level data (in csv format) from
+        
+[here](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv) and load 
 it into an R dataframe. Have a look at the dataframe.
 How many rows are there? What do the rows represent? What do the columns represent?
 
 `r hide("Answer:")`
+
 
 To load the dataset into a dataframe you can use:
 ```{r,echo=TRUE}
@@ -384,7 +389,7 @@ Couple of words about the ggplot command:
 
 - You start by telling R which dataframe to use (`usdaily`)
 - with `aes()` for aesthetic you declare which variables to use for x and y axis.
-- By adding further commands with a `+` sign you control how things look; e.g. that you want to see points (`gem_point()`) and that you want monthly date labels.
+- By adding further commands with a `+` sign you control how things look; e.g. that you want to see points (`geom_point()`) and that you want monthly date labels.
 
 
 ```{r}
@@ -420,8 +425,10 @@ A large part of data analysis work is getting the data into a format that lends 
 
 First you need to load the population dataset into a dataframe as well:
 
+
 ```{r,echo=TRUE}
-pop=read.csv("https://www.dropbox.com/s/tp4kiq8if372rcz/populationdata.csv?dl=1")
+pop=read.csv("https://mondpanther.github.io/datastorieshub/data/populationclean.csv")
+ 
 
 ```
 
@@ -434,7 +441,7 @@ covid_julyb=covid_july %>% merge(pop,by="state", all.x=TRUE)
 ```
 
 This tells R to create a new dataframe (`covid_julyb`) by combinig the information in `covid_july`
-and `pop`. Rows are being matched using the variable `state`. Maybe you noted that pop has only 2 observations whereas `covid_july` has 55. This is because `pop` doesn't include information on places such as Guam and a couple of other Islands that are not formal US states but controlled by the US, whereas `covid_july` does. The `all.x` option tells R to keep observations from the first dataset (i.e. `covid_july`) even if no equivalent observation in the second dataset can be found. This is also known as a left join. Similarly there is a right join with `all.y=TRUE` or a full join with `all=TRUE`. You might want to read a bit more about the merge command e.g. [here](https://www.dummies.com/programming/r/how-to-use-the-merge-function-with-data-sets-in-r/)
+and `pop`. Rows are being matched using the variable `state`. Maybe you noted that pop has only 52 observations whereas `covid_july` has 55. This is because `pop` doesn't include information on places such as Guam and a couple of other Islands that are not formal US states but controlled by the US, whereas `covid_july` does. The `all.x` option tells R to keep observations from the first dataset (i.e. `covid_july`) even if no equivalent observation in the second dataset can be found. This is also known as a left join. Similarly there is a right join with `all.y=TRUE` or a full join with `all=TRUE`. You might want to read a bit more about the merge command e.g. [here](https://www.dummies.com/programming/r/how-to-use-the-merge-function-with-data-sets-in-r/)
 
 
 `r unhide()`
