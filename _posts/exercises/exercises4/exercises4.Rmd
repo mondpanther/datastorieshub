@@ -9,9 +9,9 @@ date: "`r Sys.Date()`"
 output:
   distill::distill_article:
     self_contained: false
-    css: ../../webex.css
-    includes:
-      after_body: ../../webex.js
+    #css: ../../webex.css
+    #includes:
+    #  after_body: ../../webex.js
 categories:
   - Exercises
 editor_options: 
@@ -28,7 +28,7 @@ knitr::include_graphics("selfservicetest.png")
 
 
 ```{r setup, include = FALSE, message=FALSE}
-library("webex")
+library(webexercises)
 library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../../images/')
 knitr::opts_chunk$set(echo=FALSE)
@@ -111,7 +111,7 @@ i.e. the probability of having an estimate lower than -.2 is `r pt(-.2/0.07,58)`
 Note, if we estimate a positive value we still need to use the same value but in negative terms. So, more generally we could write that we need compute `2*pt(-abs(t),58)`; i.e. the negative of the absolute value 
 of the t-value. Because `pt()` (like any cumulative density) sums to 1 and is symmetric and alterive formula with the same result would be `2*(1-pt(-abs(t),58))`  
 
-```
+
 `r unhide()`
 
 `r hide("Answer:")`
@@ -146,7 +146,7 @@ Lets use the WAGE1.DTA dataset again!
 
 Regress wages on education (years of schooling). Perform a test of the hypothesis that the coefficient on schooling is equal to 0. 
 
-Can you reject the hypothesis? `r mcq(c("Yes", answer = "Yes"))`
+Can you reject the hypothesis? `r mcq(c("No", answer = "Yes"))`
 
 `r hide("Answer:")`
 ```{r, echo = TRUE}
