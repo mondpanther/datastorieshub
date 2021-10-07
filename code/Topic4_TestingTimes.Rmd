@@ -30,7 +30,7 @@ for(i in 1:5){
 library(dplyr)
 library(ggplot2)
 ff=read.csv("https://www.dropbox.com/s/g1w75gkw7g91zef/foreigners.csv?dl=1")  
-ff=ff%>%mutate(crimesPc=crimes11/pop11)%>% filter( crimesPc<10)
+ff=ff%>%mutate(crimesPc=crimes11/pop11)%>% filter( crimesPc<10)  # We are dropping some outliers
 
 ggplot(ff, aes(y=crimesPc,x=b_migr11)) + geom_point()   +   # Make sure + is on this line so R understands the command is not finished
                    xlab("Share of foreign born in %")   +  
@@ -45,7 +45,9 @@ Recall the regression command:
 
 
 ```{r}
-
+df=ff
+reg1=lm(crimesPc~b_migr11,df) 
+reg1 %>%  summary()
 
 
 
@@ -431,7 +433,7 @@ Let's look at this
 ```{r,eval=T}
   library(foreign)
   library(haven)
-  eaef <- read.csv("https://www.dropbox.com/s/9n0k7bs20z7qkv9/eaef21.csv?dl=1")
+  eaef <- read.csv("https://www.dropbox.com/s/31lyn5p5edyoxl5/eaef21.csv?dl=1")
   head(eaef, n=10)  
   library("lattice")
   xyplot(EARNINGS ~ S, data = eaef, type = c("p","r"), col.line = "red")
@@ -454,7 +456,7 @@ Let's look at this
 # Effect of Experience on Earnings
 ```{r,eval=T}
   library(foreign)
-  eaef <- read.csv("https://www.dropbox.com/s/9n0k7bs20z7qkv9/eaef21.csv?dl=1")
+  eaef <- read.csv("https://www.dropbox.com/s/31lyn5p5edyoxl5/eaef21.csv?dl=1")
 
   mod_earn_exp <- lm(EARNINGS ~ EXP , data = eaef)    
   summary(mod_earn_exp) 
