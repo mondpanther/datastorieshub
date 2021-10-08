@@ -427,7 +427,7 @@ First you need to load the population dataset into a dataframe as well:
 
 
 ```{r,echo=TRUE}
-pop=read.csv("https://mondpanther.github.io/datastorieshub/data/populationclean.csv")
+pop=read.csv("https://mondpanther.github.io/datastorieshub/data/populationdata.csv")
  
 
 ```
@@ -470,6 +470,7 @@ We would we expect a positive relationship between per capita cases and density.
 ```{r,echo=TRUE}
 
 usdaily=usdaily %>% mutate(date=as.Date(date), deathsOcases=deaths/cases)
+
 ggplot(covid_julyb, aes(x=density, y=casesOpop000 ))+ 
       geom_point() + geom_smooth(method=lm)
   
