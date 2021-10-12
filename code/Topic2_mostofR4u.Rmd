@@ -2,6 +2,7 @@
 title: "Most of the R u need 4 this course"
 author: "Ralf Martin"
 date: "08/10/2021"
+#output: word_document
 output: html_document
 ---
 
@@ -64,16 +65,24 @@ Data comes rarely in a way such that you can start analysis right away. So you n
 library(dplyr)
 
 # keep the data point for  the end of July 2020
-covid_july=covid %>% filter(as.character(date)=="2020-07-31") 
+covid_july=covid %>%  
+  filter(date=="2020-07-31") 
 
 
 # create various ratios
 covid_july = covid_july %>%
-                 mutate(deathsOcases=deaths/cases,
-                 deaths_sh=deaths/sum(deaths),
-                 cases_sh=cases/sum(cases))
+                 mutate(
+                    deathsOcases=deaths/cases,
+                    deaths_sh=deaths/sum(deaths),
+                    meandeaths=mean(deaths),
+                    cases_sh=cases/sum(cases))
 
 ```
+
+
+
+
+
 
 Part of data manipulation is that you look at your data. We already saw the summary command
 
@@ -97,18 +106,19 @@ covid_july=covid_july %>% arrange(-deathsOcases)
 
 ```
 
+
 ## Compute summary statistics or aggregate data
 
 For instance work out the total death and case figures from state level ones
 
 ```{r}
-
+# now we aggregate to daily level
 usdaily=covid %>% group_by(date) %>% 
         summarise(deaths=sum(deaths), 
                   cases=sum(cases))
                  
 head(usdaily)
-
+#### make lag and lead example
 
 
 ```
@@ -137,6 +147,45 @@ covid_julyb=covid_july %>% left_join(pop,by="state")
 
 
 
+
+## Calculations that involve values from different rows
+
+The `mutate` command examples we have seen so far create new variables by combining values from existing variables that are in the same row of a dataframe (e.g. when computing `deathsOcases`). We also have seen examples where we use values that refer to the same line as well as calculations that apply to the full dataframe columns (e.g. when computing the share variables such as `deaths_sh=deaths/sum(deaths)`). Sometimes we need to compute new values that are based on values in other rows but not necessarily all values as in `sum(deaths)`. A good example and use case of that emerges from the covid figures used earlier. Note that the dataset we are using report cumulative figures of deaths and cases for the whole pandemic. What if instead we wantd to examine the daily figures instead? For that we would have to look at the change in cumulative numbers for a given day (i.e. the cumulative figure today minus that of yesterday for all days)
+
+To calculate that on the `usdaily` dataframe we can use the `lag()` function within the `mutate()` function:
+
+```{r}
+usdaily=usdaily %>% mutate(Dcases=cases-lag(cases,1),
+                           Ddeaths=deaths-lag(deaths,1))
+
+```
+
+i.e. we subtract the value of the `cases` and `death` variables in a given row with the value in the previous row (make sure the table is sorted in the right way; i.e. in this case by date).
+Also note that you that the second parameter controls the lag; i.e. if you wanted to subtract the value 2 days back you would have to put a 2 instead of a 1. There is also a function that allows you to refer to values in rows further down in the dataframe; it's called `lead()`.
+
+Note that you can combine that with the `group_by` command. For instance, in the original covid dataframe you might want to get daily changes by US state:
+
+```{r}
+covid=covid %>% arrange(state,date) %>% 
+  group_by(state) %>%  
+  mutate(Dcases=cases-lag(cases,1),
+                           Ddeaths=deaths-lag(deaths,1))
+
+```
+
+Compare this with using `lag` command without `group_by`:
+
+
+```{r}
+xcovid=covid %>% arrange(state,date) %>% 
+  group_by(state) %>%  
+  mutate(Dcases=cases-lag(cases,1),
+                           Ddeaths=deaths-lag(deaths,1))
+
+```
+
+Can you see the difference `covid` and `xcovid`? Can you explain what is wrong in the `xcovid` way of computing daily changes?
+
 # Data visualisation
 
 Let's run through the ggplot command once more.....as I said: it's a bit of swiss army
@@ -148,7 +197,8 @@ knife of plotting
 However first: with more data comes more data manipulation; e.g. cases per capita....
 
 ```{r}
-covid_julyb=covid_julyb %>% mutate(casesOpop000=cases/pop*1000)
+covid_julyb=covid_julyb %>%  
+  mutate(casesOpop000=cases/pop*1000)
 ```
 
 
@@ -159,11 +209,12 @@ Now how about a scatter plot of cases per capita and population density
 library(ggplot2)
 
 
-p=ggplot(covid_julyb, aes(x=density, y=casesOpop000 ))+ 
-       geom_point() 
+p=ggplot(covid_julyb, 
+         aes(x=density, y=casesOpop000 )) +  
+         geom_point() 
 p
 
-p=p + geom_smooth(method=lm)
+p + geom_smooth(method=lm)
 
 
 # Dropping an outlier
@@ -174,6 +225,8 @@ ggplot(covid_julyb %>% filter(density<6000), aes(x=density, y=casesOpop000 ))+
 
 
 # Less clutter
+
+#newfr=covid_julyb %>% filter(density<6000)
 
 ggplot(covid_julyb %>% filter(density<6000), aes(x=density, y=casesOpop000 ))+ 
       geom_point() + 
@@ -187,11 +240,14 @@ ggplot(covid_julyb %>% filter(density<6000), aes(x=density, y=casesOpop000 ))+
 ```{r}
 library(ggplot2)
 
-usdailyx=usdaily %>% mutate(date=as.Date(date), deathsOcases=deaths/cases)
+usdailyx=usdaily %>% mutate(date=as.Date(date),
+  deathsOcases=deaths/cases)
 
 ggplot(usdailyx, aes(x=date, y=deathsOcases)) +
-      geom_point() + geom_line()+
-      scale_x_date(date_breaks="1 month",date_labels = "%b")
+      #geom_point() +
+      geom_line() +
+      scale_x_date(date_breaks="2 month",
+                   date_labels = "%b")
 
 ```
 
@@ -208,7 +264,13 @@ The simplest case is the linear model which we can fit using the OLS algorithm. 
 
 
 ```{r}
-summary(lm(casesOpop000~density,covid_julyb  %>% filter(density<6000) ))
+df=covid_julyb  %>% filter(density<6000) 
+
+reg=lm(casesOpop000~density,df)
+
+summary(reg)
+
+reg %>% summary()
 ```
 
 
