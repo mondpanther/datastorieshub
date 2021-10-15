@@ -1,7 +1,8 @@
 ---
 title: "Taking back control"
 author: Ralf Martin
-output: html_document
+#output: html_document
+output: word_document
 editor_options: 
   chunk_output_type: inline
 ---

@@ -471,6 +471,9 @@ Let's look at this
   library(data.table)
   library("car")
   linearHypothesis(mod_exp_s, c( "S = -1") )
+  linearHypothesis(mod_exp_s, c( "S = 0") )
+  
+  
   
 ```
 
