@@ -260,7 +260,7 @@ Note that the linear model is fairly close to the average marginal effect
 
 # Nonlinear
 ```{r}
-  wage1["educ2"] =wage1$educ^2 
+  wage1=wage1 %>% mutate(educ2 =educ^2) 
   summary(lm(wage ~ educ+educ2, wage1))
 ```  
 `
