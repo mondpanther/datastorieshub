@@ -299,7 +299,7 @@ reg2 %>% summary()
 
 
 # Heteroskedasticity
-```{r}
+```{r,eval=FALSE}
   # load necessary packages for importing the function
   library(RCurl)
   
