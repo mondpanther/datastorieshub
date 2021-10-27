@@ -86,10 +86,9 @@ where $E\{wage| Women\}$ is a mathematical way of saying the average (or expecte
 
 
 ```{r}
-wage1["educats"] = 0
-wage1$educats[wage1$educ==12] = 1  
-wage1$educats[wage1$educ>12]  = 2  
-
+wage1= wage1 %>% mutate(educats=0,
+                        educats=ifelse(educ==12,1,educats),
+                        educats=ifelse(educ>12,2,educats))
 
 wage1 %>% group_by(educats) %>% summarize(n())
 
