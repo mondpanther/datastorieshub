@@ -25,6 +25,7 @@ editor_options:
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(webexercises)
 if (!requireNamespace("webex")) {
   stop("You must have the 'webex' package installed to knit HTML from this template.\n   devtools::install_github(\"psyteachr/webex\")")
 } else {
