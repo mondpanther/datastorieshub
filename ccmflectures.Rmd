@@ -166,7 +166,11 @@ You will not be able to analyse data effectively without being familiar with bas
 
 - [The definite guide to R Markdown](https://bookdown.org/yihui/rmarkdown/)
 
+## R workshop slides
 
+```{r echo = FALSE, results = "asis"}
+  slidelinks("^R workshop_Petra")
+```
 
 
 `r unhide()`
