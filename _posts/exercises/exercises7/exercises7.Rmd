@@ -9,9 +9,9 @@ date: "`r Sys.Date()`"
 output:
   distill::distill_article:
     self_contained: false
-    css: ../../webex.css
-    includes:
-      after_body: ../../webex.js
+    #css: ../../webex.css
+    #includes:
+    #  after_body: ../../webex.js
 categories:
   - Exercises
 editor_options: 
@@ -31,6 +31,7 @@ knitr::include_graphics("20131205_Istanbul_321_cropped.jpg")
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(webexercises)
 if (!requireNamespace("webex")) {
   stop("You must have the 'webex' package installed to knit HTML from this template.\n   devtools::install_github(\"psyteachr/webex\")")
 } else {

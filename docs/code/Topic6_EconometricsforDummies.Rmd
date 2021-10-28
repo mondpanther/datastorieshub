@@ -179,6 +179,55 @@ What about continous explanatory variables?
 (linear1 <- lm(call ~ factor(yearsexp), data = bm)) %>% summary()
 
 ```
+Student Question: A stepwise linear model?
+
+
+```{r}
+
+bm= bm %>% mutate(moret10=yearsexp>10,
+                  
+                  moret10Xyearsexp=moret10*yearsexp,
+                  
+                  
+                  dev=ifelse(moret10==T, yearsexp-10,yearsexp))
+
+
+lm(call ~ yearsexp        , data = bm) %>% summary()
+
+
+lm(call ~ yearsexp+moret10        , data = bm) %>% summary()
+
+
+res=lm(call ~ yearsexp+moret10+moret10Xyearsexp        , data = bm) 
+res %>% summary()
+
+
+lm(call ~ yearsexp+moret10Xyearsexp        , data = bm) %>% summary()
+```
+
+
+$$ y=\beta_1 + \beta_2  exper + \beta_3 MT10 + \beta_4 MT10 \times exper$$
+
+
+say we are at 15 years
+
+
+$$ y=\beta_1+ \beta_3 + (\beta_2 + \beta_4 )exper $$
+
+
+```{r}
+
+
+bm=bm %>% mutate(hat=res$coefficients[[1]] + 
+                     res$coefficients[[2]] * yearsexp+
+                     res$coefficients[[3]] * moret10 +
+                     res$coefficients[[4]] * moret10Xyearsexp )
+
+ggplot(bm, aes(x=yearsexp,y=hat))+geom_point()
+
+```
+
+
 ```{r,message=FALSE}
 agg2=agg=bm %>% group_by(yearsexp) %>% summarise(call=mean(call))
 ggplot(bm,aes(x=yearsexp,y=call) ) + geom_jitter()+
