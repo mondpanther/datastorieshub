@@ -113,7 +113,7 @@ statsbyday=read.csv("https://www.dropbox.com/s/e26qs4vfl4xjy99/statsbydlong.cvs?
 ```
 
 
-There are a number of stories we might want explore with this kind of data. Firstly, we might ask if hoaxism has died down as the crisis progressed. We might want to start with a look for the US as a whole. Note, that the data above is by state and by day. So we first need to aggrate across states:
+There are a number of stories we might want explore with this kind of data. Firstly, we might ask if hoaxism has died down as the crisis progressed. We might want to start with a look for the US as a whole. Note, that the data above is by state and by day. So we first need to aggregate across states:
 
 ```{r,message=FALSE}
 
