@@ -93,8 +93,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-10-28"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-10-28"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-11-09"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-11-09"/>
   <meta name="article:author" content="Ralf Martin"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -112,7 +112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 5"]},{"type":"character","attributes":{},"value":["Becoming a Data Detective: Uncovering Racial Bias & more\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-10-28"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 5"]},{"type":"character","attributes":{},"value":["Becoming a Data Detective: Uncovering Racial Bias & more\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-11-09"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1459,7 +1459,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Exercises 5","description":"Becoming a Data Detective: Uncovering Racial Bias & more","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-10-28T00:00:00.000+01:00","citationText":"Martin, 2021"}
+{"title":"Exercises 5","description":"Becoming a Data Detective: Uncovering Racial Bias & more","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-09T00:00:00.000+00:00","citationText":"Martin, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1481,7 +1481,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br/>2021-10-28
+<br/>2021-11-09
 </div>
 
 <div class="d-article">
@@ -1734,7 +1734,7 @@ Answer:
 </button>
 <p>There seems to be a clear difference between the races. Whereas for white people call back rates where above average (9.65%) they were below average for black people (6.45%) suggesting a racial bias by employers.</p>
 </div>
-<h1 id="exercise-5.2">Exercise 5.2</h1>
+<h1 id="exercise-5.2-more-advanced">Exercise 5.2 (more advanced)</h1>
 <p>Lets use the dataset from the experiment by Bertand and Mullainathan (bm.dta) again.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1864,36 +1864,11 @@ Answer:
 </button>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">  <span class='va'>HE</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>education</span><span class='op'>==</span><span class='st'>"some col"</span> <span class='op'>|</span> <span class='va'>data</span><span class='op'>$</span><span class='va'>education</span><span class='op'>==</span><span class='st'>"col+"</span><span class='op'>)</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>HE</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r">  <span class='va'>data</span><span class='op'>=</span><span class='va'>data</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>HE <span class='op'>=</span>  <span class='va'>education</span><span class='op'>==</span><span class='st'>"some col"</span> <span class='op'>|</span> <span class='va'>education</span><span class='op'>==</span><span class='st'>"col+"</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>HE</span><span class='op'>)</span>  
 </code></pre>
 </div>
 <pre><code>[1] 0.6245642</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">  <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>HE</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1] 5553</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">  <span class='co'>#adding HE variable to dataframe</span>
-  <span class='va'>data</span><span class='op'>[</span><span class='st'>"HE"</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>HE</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code> employed        black            female          education   
- No  :1942   Min.   :0.0000   Min.   :0.0000   HSD     : 980  
- Yes :6931   1st Qu.:0.0000   1st Qu.:0.0000   HSG     :2358  
- NA&#39;s:  18   Median :0.0000   Median :1.0000   some col:2460  
-             Mean   :0.1508   Mean   :0.5161   col+    :3093  
-             3rd Qu.:0.0000   3rd Qu.:1.0000                  
-             Max.   :1.0000   Max.   :1.0000                  
-    yearsexp           HE        
- Min.   : 0.00   Min.   :0.0000  
- 1st Qu.:11.00   1st Qu.:0.0000  
- Median :21.00   Median :1.0000  
- Mean   :20.94   Mean   :0.6246  
- 3rd Qu.:30.00   3rd Qu.:1.0000  
- Max.   :59.00   Max.   :1.0000  </code></pre>
 </div>
 <p>Note that nearly 63% of the sample have some college education.</p>
 </div>
@@ -1908,42 +1883,8 @@ Answer:
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r">  <span class='co'>#modify employed as a dichotomous variable</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>employed</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>
-  No  Yes 
-1942 6931 </code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">  <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>employed</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>
-   1    2 
-1942 6931 </code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">  <span class='va'>data</span><span class='op'>[</span><span class='st'>"employed2"</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>employed</span><span class='op'>)</span><span class='op'>-</span><span class='fl'>1</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code> employed        black            female          education   
- No  :1942   Min.   :0.0000   Min.   :0.0000   HSD     : 980  
- Yes :6931   1st Qu.:0.0000   1st Qu.:0.0000   HSG     :2358  
- NA&#39;s:  18   Median :0.0000   Median :1.0000   some col:2460  
-             Mean   :0.1508   Mean   :0.5161   col+    :3093  
-             3rd Qu.:0.0000   3rd Qu.:1.0000                  
-             Max.   :1.0000   Max.   :1.0000                  
-                                                              
-    yearsexp           HE           employed2     
- Min.   : 0.00   Min.   :0.0000   Min.   :0.0000  
- 1st Qu.:11.00   1st Qu.:0.0000   1st Qu.:1.0000  
- Median :21.00   Median :1.0000   Median :1.0000  
- Mean   :20.94   Mean   :0.6246   Mean   :0.7811  
- 3rd Qu.:30.00   3rd Qu.:1.0000   3rd Qu.:1.0000  
- Max.   :59.00   Max.   :1.0000   Max.   :1.0000  
-                                  NA&#39;s   :18      </code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">  <span class='va'>mod1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>employed2</span><span class='op'>~</span><span class='va'>black</span>,<span class='va'>data</span><span class='op'>)</span>
+  <span class='va'>data</span><span class='op'>=</span><span class='va'>data</span><span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>employed2<span class='op'>=</span><span class='va'>employed</span><span class='op'>==</span><span class='st'>"Yes"</span><span class='op'>)</span>
+  <span class='va'>mod1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>employed2</span><span class='op'>~</span><span class='va'>black</span>,<span class='va'>data</span><span class='op'>)</span>
   <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mod1</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -2029,7 +1970,7 @@ Residuals:
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
 (Intercept) 0.715486   0.007109  100.64   &lt;2e-16 ***
-HE          0.105124   0.008996   11.69   &lt;2e-16 ***
+HETRUE      0.105124   0.008996   11.69   &lt;2e-16 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
@@ -2448,7 +2389,7 @@ Model 2: log(vadd) ~ log(emp) + log(cap)
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
 </div>
-<h3 id="part-c-3">Part (c)</h3>
+<h3 id="part-c-advanced">Part (c) (Advanced)</h3>
 <p>An alternative way to test the hypothesis of constant returns to scale is to impose this restriction on the parameters and transform your regression model. Derive the necessary transformation, and show how the constant returns hypothesis amounts to a t-test in this transformed model. Carry out this test.</p>
 <p>Does your result match what you found in (b)? <select class='webex-select'><option value='blank'></option><option value=''>No</option><option value='answer'>Yes</option></select></p>
 <div class="webex-solution">
@@ -2601,7 +2542,7 @@ Answer:
 <p>The regression in (a) could be biased for a number of reasons. The main worry would be that students who are better irrespective of attendance are also more diligent in general and therefore more likely to attend class.</p>
 <p>The best way of dealing with endogeneity in this context would be to use an instrumental variable. In absence of a good instrument (e.g. a nice instrument would be if some students where kept from attending class because of some weather or transport problem) we have to rely on the inclusion of further controls to deal which hopefully control for ability/diligence etc. of students.</p>
 </div>
-<h3 id="part-c-4">Part (c)</h3>
+<h3 id="part-c-3">Part (c)</h3>
 <p>Enter each of the following variables one at a time as a control in your regression: termgpa, priGPA, ACT. For each of these controls, answer the following questions:</p>
 <ol type="1">
 <li><p>Does entering the control variable termgpa help solve the problem you discussed in part (b) and gets you closer to a causal effect of lecture attendance? <select class='webex-select'><option value='blank'></option><option value=''>Yes</option><option value='answer'>No</option></select></p></li>
@@ -2898,7 +2839,7 @@ Answer:
 </div>
 <p>i.e. gives us a very similar answer.</p>
 </div>
-<h3 id="part-c-5">Part (c)</h3>
+<h3 id="part-c-4">Part (c)</h3>
 <p>Is the slope coefficient in (a) statistically significantly different from zero? <select class='webex-select'><option value='blank'></option><option value=''>No</option><option value='answer'>Yes</option></select></p>
 <div class="webex-solution">
 <button>
@@ -2985,7 +2926,7 @@ Answer:
 </button>
 <p>As usual we have to consider confounding factors. It’s not immediately clear why other factors driving good teaching could have a reverse causality on teaching. But here is one story: beauty is of course a very subjective measure. We perceive people who are well dressed as more beautiful. Perhaps the same factors that make a person dress well are also useful when teaching (e.g. lecture slides are more tidy). Hence, when we just consider beauty we may in part pick up the effect of tidier lecture slides.</p>
 <p>`r unhide()</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

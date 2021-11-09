@@ -26,6 +26,7 @@ knitr::include_graphics("p03dq1gg.jpg")
 ```{r setup, include = FALSE, message=FALSE}
 library(webexercises)
 library(ggplot2)
+library(dplyr)
 knitr::opts_chunk$set(fig.path='../../../images/')
 knitr::opts_chunk$set(echo=TRUE)
 part=function(reset=FALSE){
@@ -163,7 +164,7 @@ There seems to be a clear difference between the races. Whereas for white people
 `r unhide()`
 
 
-# Exercise 5.2
+# Exercise 5.2 (more advanced)
 
 Lets use the dataset from the experiment by Bertand and Mullainathan (bm.dta) again. 
 
@@ -235,12 +236,9 @@ What percentage of respondents has at least some college education (rounded up t
 `r hide("Answer:")`
 
 ```{r}
-  HE <- as.integer(data$education=="some col" | data$education=="col+")
-  mean(HE)
-  sum(HE)
-  #adding HE variable to dataframe
-  data["HE"] <- HE
-  summary(data)
+  data=data %>% mutate(HE =  education=="some col" | education=="col+")
+  mean(data$HE)  
+
 ```  
 Note that nearly 63% of the sample have some college education.
 
@@ -258,10 +256,7 @@ If yes, what is the percentage difference (rounded to the nearest percentage poi
 
 ```{r}
   #modify employed as a dichotomous variable
-  table(data$employed)
-  table(as.integer(data$employed))
-  data["employed2"] <- as.integer(data$employed)-1
-  summary(data)
+  data=data%>% mutate(employed2=employed=="Yes")
   mod1 <- lm(employed2~black,data)
   summary(mod1)
   
@@ -506,7 +501,7 @@ linearHypothesis(mod1,"log(emp)+log(cap)=1" )
 
 `r unhide()`
 
-### Part (c)
+### Part (c) (Advanced)
 
 An alternative way to test the hypothesis of constant returns to scale is to impose this restriction on the parameters and transform your regression model. Derive the necessary transformation, and show how the constant returns hypothesis amounts to a t-test in this transformed model. Carry out this test. 
 

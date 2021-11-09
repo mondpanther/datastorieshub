@@ -336,6 +336,10 @@ This might be a course about quantitative analysis, but that doesn’t mean we c
 ```{r echo = FALSE, results = "asis"}
   slidelinks("^Topic6.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
 
+
+  slidelinks("^Tutorial3.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
+
+
 ```
 
 

@@ -312,6 +312,8 @@ we look at multivariate regressions; i.e. regressions where the dependent variab
 ```{r echo = FALSE, results = "asis"}
   slidelinks("^Topic5.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
 
+
+
 ```
 
 
@@ -321,8 +323,6 @@ we look at multivariate regressions; i.e. regressions where the dependent variab
 - [Exercises 5](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises5/)
 
 
-`r unhide()`
-
 
 ## Further reading
 
@@ -330,6 +330,14 @@ we look at multivariate regressions; i.e. regressions where the dependent variab
 - [Econometrics with R chapter 6](https://www.econometrics-with-r.org/6-rmwmr.html)
 
 - [Causal Inference Mixtape, Pages 65-80](https://ebookcentral-proquest-com.iclibezp1.cc.ic.ac.uk/lib/imperial/detail.action?docID=6425560)
+
+
+
+
+
+
+`r unhide()`
+
 
 ---
 
@@ -363,6 +371,10 @@ This might be a course about quantitative analysis, but that doesn’t mean we c
 
 ```{r echo = FALSE, results = "asis"}
   slidelinks("^Topic6.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
+
+
+  slidelinks("^Tutorial3.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
+
 
 ```
 
