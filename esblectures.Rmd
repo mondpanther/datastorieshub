@@ -301,6 +301,13 @@ we look at multivariate regressions; i.e. regressions where the dependent variab
 - [Exercises 5](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises5/)
 
 
+## Further Reading
+
+- [Introduction to Econometrics with R, Chapter 6](https://www.econometrics-with-r.org/6-rmwmr.html)
+
+- [Causal Inference Mixtape, Pages 65-80](https://ebookcentral.proquest.com/lib/imperial/detail.action?docID=6425560)
+
+
 `r unhide()`
 
 ---
@@ -349,6 +356,12 @@ This might be a course about quantitative analysis, but that doesn’t mean we c
 - [Exercises 6](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/)
 
 
+## Further Reading
+
+- [Using R for Introductory Econometrics Chapter 7](http://www.urfie.net/read/index.html#page/161)
+
+- [Introduction to Econometrics Chapters 5.3 and 6.9](https://ebookcentral.proquest.com/lib/imperial/detail.action?docID=5640381)
+
 `r unhide()`
 
 ---
@@ -358,7 +371,6 @@ This might be a course about quantitative analysis, but that doesn’t mean we c
 
 
 # Topic 7 - Instrumental Variables
-
 
 `r hide("More...")`
 
@@ -391,6 +403,17 @@ Suppose you want to know the causal effect of a variable X on a variable Y but t
 - [Exercises 7](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises7/)
 
 
+## Further Reading
+
+
+
+- [Introduction to Econometrics with R, Chapter 12](https://www.econometrics-with-r.org/12-ivr.html)
+
+
+
+- [Introduction to Econometrics Chapter 12](https://ebookcentral.proquest.com/lib/imperial/reader.action?docID=5640381&ppg=428)
+
+
 `r unhide()`
 
 ---
@@ -419,7 +442,7 @@ You will get a brief introduction into Machine Learning. Compared to the rest of
 ```{r echo = FALSE, results = "asis"}
   slidelinks("^Topic8_MachineLearning_Part1")
 
-  #slidelinks("^Topic8_MachineLearning_Part2")
+  slidelinks("^Topic8_MachineLearning_Part2")
 
 ```
 
@@ -480,6 +503,15 @@ To do any data analysis we need different datapoints. Most data we looked at so 
 ## Exercises
 
 - [Exercises 9](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises9/)
+
+
+## Further Reading
+
+- [Introduction to Econometrics with R, Chapter 14 &15](https://www.econometrics-with-r.org/14-ittsraf.html)
+
+
+
+
 
 
 `r unhide()`
