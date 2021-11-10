@@ -442,7 +442,7 @@ You will get a brief introduction into Machine Learning. Compared to the rest of
 ```{r echo = FALSE, results = "asis"}
   slidelinks("^Topic8_MachineLearning_Part1")
 
-  #slidelinks("^Topic8_MachineLearning_Part2")
+  slidelinks("^Topic8_MachineLearning_Part2")
 
 ```
 

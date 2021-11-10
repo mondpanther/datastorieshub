@@ -1,0 +1,32 @@
+---
+title: "Elon Musk's Twitter feed"
+output: html_notebook
+---
+
+Getting somebody's twitter feed. For instance: Elons Musk (Why not?)
+
+
+
+
+```{r}
+
+library(rtweet)
+library(tidytext)
+
+# plotting and pipes - tidyverse!
+library(ggplot2)
+library(dplyr)
+library(gdata)
+library(fst)
+
+```
+
+```{r}
+
+
+library(rtweet)
+
+resx <- get_timelines("elonmusk", n = 3000, check=T,fast=TRUE)
+
+
+```
