@@ -417,11 +417,16 @@ You will get a brief introduction into Machine Learning. Compared to the rest of
 ## Slides
 
 ```{r echo = FALSE, results = "asis"}
-  slidelinks("^Topic8")
+  slidelinks("^Topic8_MachineLearning_Part1")
+
+  #slidelinks("^Topic8_MachineLearning_Part2")
 
 ```
 
 ## Additional Material
+
+- [Machine Learning Competition](https://ml101-cpg.doc.ic.ac.uk/)
+
 
 ```{r echo = FALSE, results = "asis"}
   slidelinks("^Topic8.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
@@ -429,11 +434,12 @@ You will get a brief introduction into Machine Learning. Compared to the rest of
 ```
 
 
-
+<!--
 ## Exercises
 
 - [Exercises 8](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises8/)
 
+-->
 
 `r unhide()`
 

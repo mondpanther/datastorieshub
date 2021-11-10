@@ -6,8 +6,6 @@ output:
     #css: ../../webex.css
     #includes:
     #  after_body: ../../webex.js
-categories:
-  - Exercises
 editor_options: 
   chunk_output_type: inline
 ---
@@ -17,6 +15,7 @@ editor_options:
 ```{r setup, include = FALSE, message=FALSE}
 library(webexercises)
 library(ggplot2)
+library(dplyr)
 part=function(reset=FALSE){
   if(reset){ pp <<- 0}
   pp <<- pp+1
@@ -175,7 +174,7 @@ What is the command for a slightly more complex linear regression with two varia
 
   mod1 <- lm(employed2~black+HE,data)
   summary(mod1)
-  mod2 <- lm(employed2~black+HE+black*HE,data)
+  mod2 <- lm(employed2~black*HE,data)
   summary(mod2)
 ```
 
@@ -244,7 +243,8 @@ We can allow for a separate response for women by including a female dummy and a
 
 
 ```{r}
- 
+  lm(wage~educ+female,data)%>%summary()
+
   mod2 <- lm(wage~educ+educ*female,data)
   summary(mod2)
   
@@ -255,6 +255,11 @@ However, a joint significance test reveals that the variables combined have expl
 
 ```{r}
     summary( lm(wage~educ+female:educ,data))
+
+
+    summary( lm(wage~educ+female,data))
+
+
 ```  
 You might consequently ask, which is the right model? There are several considerations:
 
