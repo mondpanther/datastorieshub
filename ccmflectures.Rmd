@@ -78,7 +78,7 @@ To get your participation mark please participate in the Datathon Forum with eit
 ## Slides
 
 ```{r echo = FALSE, results = "asis"}
-  slidelinks("^IntroductionCCMF")
+  slidelinks("^IntroductionESB")
 
 ```
 
@@ -137,6 +137,7 @@ You will not be able to analyse data effectively without being familiar with bas
 
   #slidelinks("^(Farage)(?!_files)([a-z]+)/?(\?(.+))?$",folder="./code")
 
+
   slidelinks("^Topic2",folder="code")
 
 
@@ -166,12 +167,6 @@ You will not be able to analyse data effectively without being familiar with bas
 
 - [The definite guide to R Markdown](https://bookdown.org/yihui/rmarkdown/)
 
-## R workshop slides
-
-```{r echo = FALSE, results = "asis"}
-  slidelinks("^Rworkshop_Petra")
-```
-
 
 `r unhide()`
 
@@ -180,7 +175,6 @@ You will not be able to analyse data effectively without being familiar with bas
 
 
 # Topic 3 - Visions
-
 
 
 `r hide("More...")`
@@ -209,16 +203,13 @@ We will be deepening our ability to understand the R programming language by loo
 
 ```
 
+
 - [The R Graph Gallery](https://www.r-graph-gallery.com/)
 
 
 ## Exercises
 
 - [Exercises 3](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises3/)
-
-- [Enter the visualisation challenge](https://teams.microsoft.com/l/channel/19%3ad0293ee280754395ae42b93d93b4950c%40thread.skype/Visualisation%2520Challenge%25202021?groupId=bee22207-25e0-4515-b861-e0fa99c42aaf&tenantId=2b897507-ee8c-4575-830b-4f8267c3d307)
-
-
 
 ## Further Reading
 
@@ -270,10 +261,12 @@ We have discussed how to estimate the parameters of a simple regression model. I
 
 ## Further reading
 
-- [Econometrics with R chapter 5](https://www.econometrics-with-r.org/5-htaciitslrm.html)
-
 - [A Refresher on Statistical Significance](https://hbr.org/2016/02/a-refresher-on-statistical-significance)
 
+
+- [Introduction to Econometrics with R, Chapter 4.5 (Siumlation Study 2)](https://www.econometrics-with-r.org/4.5-tsdotoe.html#simulation-study-2
+)
+- [Introduction to Econometrics with R,  Chapter 5](https://www.econometrics-with-r.org/5-htaciitslrm.html)
 
 
 `r unhide()`
@@ -312,8 +305,6 @@ we look at multivariate regressions; i.e. regressions where the dependent variab
 ```{r echo = FALSE, results = "asis"}
   slidelinks("^Topic5.*(?i)(rmd|html|rmd)(?-i)$",folder="./code")
 
-
-
 ```
 
 
@@ -323,21 +314,14 @@ we look at multivariate regressions; i.e. regressions where the dependent variab
 - [Exercises 5](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises5/)
 
 
+## Further Reading
 
-## Further reading
+- [Introduction to Econometrics with R, Chapter 6](https://www.econometrics-with-r.org/6-rmwmr.html)
 
-
-- [Econometrics with R chapter 6](https://www.econometrics-with-r.org/6-rmwmr.html)
-
-- [Causal Inference Mixtape, Pages 65-80](https://ebookcentral-proquest-com.iclibezp1.cc.ic.ac.uk/lib/imperial/detail.action?docID=6425560)
-
-
-
-
+- [Causal Inference Mixtape, Pages 65-80](https://ebookcentral.proquest.com/lib/imperial/detail.action?docID=6425560)
 
 
 `r unhide()`
-
 
 ---
 
@@ -385,6 +369,12 @@ This might be a course about quantitative analysis, but that doesn’t mean we c
 - [Exercises 6](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/)
 
 
+## Further Reading
+
+- [Using R for Introductory Econometrics Chapter 7](http://www.urfie.net/read/index.html#page/161)
+
+- [Introduction to Econometrics Chapters 5.3 and 6.9](https://ebookcentral.proquest.com/lib/imperial/detail.action?docID=5640381)
+
 `r unhide()`
 
 ---
@@ -394,7 +384,6 @@ This might be a course about quantitative analysis, but that doesn’t mean we c
 
 
 # Topic 7 - Instrumental Variables
-
 
 `r hide("More...")`
 
@@ -425,6 +414,16 @@ Suppose you want to know the causal effect of a variable X on a variable Y but t
 ## Exercises
 
 - [Exercises 7](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises7/)
+
+
+## Further Reading
+
+
+
+- [Introduction to Econometrics with R, Chapter 12](https://www.econometrics-with-r.org/12-ivr.html)
+
+
+- [Introduction to Econometrics Chapter 12](https://ebookcentral.proquest.com/lib/imperial/reader.action?docID=5640381&ppg=428)
 
 
 `r unhide()`
@@ -477,7 +476,6 @@ You will get a brief introduction into Machine Learning. Compared to the rest of
 
 -->
 
-
 `r unhide()`
 
 ---
@@ -519,7 +517,19 @@ To do any data analysis we need different datapoints. Most data we looked at so 
 - [Exercises 9](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises9/)
 
 
+## Further Reading
+
+- [Introduction to Econometrics with R, Chapter 14 &15](https://www.econometrics-with-r.org/14-ittsraf.html)
+
+
+
+
+
+
 `r unhide()`
+
+
+
 
 ---
 
