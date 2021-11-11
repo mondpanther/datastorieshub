@@ -255,6 +255,10 @@ We have discussed how to estimate the parameters of a simple regression model. I
 - [A Refresher on Statistical Significance](https://hbr.org/2016/02/a-refresher-on-statistical-significance)
 
 
+- [Introduction to Econometrics with R, Chapter 4.5 (Siumlation Study 2)](https://www.econometrics-with-r.org/4.5-tsdotoe.html#simulation-study-2
+)
+- [Introduction to Econometrics with R,  Chapter 5](https://www.econometrics-with-r.org/5-htaciitslrm.html)
+
 
 `r unhide()`
 
@@ -408,7 +412,6 @@ Suppose you want to know the causal effect of a variable X on a variable Y but t
 
 
 - [Introduction to Econometrics with R, Chapter 12](https://www.econometrics-with-r.org/12-ivr.html)
-
 
 
 - [Introduction to Econometrics Chapter 12](https://ebookcentral.proquest.com/lib/imperial/reader.action?docID=5640381&ppg=428)
