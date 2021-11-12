@@ -114,7 +114,7 @@ To get your participation mark please participate in the Datathon Forum with eit
 ## Slides
 
 ```{r echo = FALSE, results = "asis"}
-  slidelinks("^IntroductionESB")
+  slidelinks("^IntroductionSRM")
 
 ```
 
