@@ -310,6 +310,13 @@ Note that the linear model is fairly close to the average marginal effect
 ```{r}
   wage1=wage1 %>% mutate(educ2 =educ^2) 
   summary(lm(wage ~ educ+educ2, wage1))
+  
+  
+  library(ggplot2)
+  
+  ggplot(wage1, aes(x=educ, y=wage))+geom_point()+theme_minimal()+
+    geom_smooth(method=lm,se=FALSE,formula=y ~ poly(x, 2))
+  
 ```  
 `
 
