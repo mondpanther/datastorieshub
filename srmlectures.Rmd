@@ -1,5 +1,5 @@
 ---
-title: "JH-IBSc - Social Research Methods 2021 - Part II" 
+title: "JH-IBSc - Social Research Methods 2021" 
 #site: distill::distill_website
 
 output:
@@ -47,19 +47,52 @@ slidelinks=function(rstring,folder="slides"){
 
 
 
-Welcome to Social Research Methods - Part II( Quantitative Methods).
+Welcome to Social Research Methods.
 
-In this course we give you an introduction into common concepts and tools for data analysis in economics and business. Emphasis will be on practical data skills as well as the ability to formulate a question appropriately, provide data analysis relevant to the question and interpret the results correctly. As part of the course you will be asked to provide a small piece of data analysis.
+This module consists of two parts:
+
+Part I - Qualitative Research Methods
+
+
+Part II - Quantitative methods
+
+In this part we give you an introduction into common concepts and tools for data analysis in economics and business. Emphasis will be on practical data skills as well as the ability to formulate a question appropriately, provide data analysis relevant to the question and interpret the results correctly. As part of the course you will be asked to provide a small piece of data analysis.
 
 ##### Class participation...
 
 To get your participation mark please participate in the Datathon Forum with either questions or answers or by sharing relevant stuff (e.g. an interesting dataset or article). You find the forum [here](https://teams.microsoft.com/l/team/19%3a33e09cf87c974e3181f08097c0eb5252%40thread.skype/conversations?groupId=bee22207-25e0-4515-b861-e0fa99c42aaf&tenantId=2b897507-ee8c-4575-830b-4f8267c3d307). You should already be enrolled to participate. But if not let me know. Please only participate with your official Imperial Email address.
 
+
+
 <hr style="border:2px solid"> </hr>
+
+# Part I - Qualitative Methods
+
+---
+
+# Week 1 
+
+
+
+
+## Qualitative Methods 1
+
+
+## Qualitative Methods 2
+
+
+<hr style="border:2px solid"> </hr>
+
+
+# Part II - Quantitative Methods
+
+
+---
+
 
 # Week 2
 
----
+
 
 ## Topic 1 - Introduction
 
@@ -99,11 +132,9 @@ To get your participation mark please participate in the Datathon Forum with eit
 
 `r unhide()`
 
----
 
 
-
-## Topic 2- Rrrr
+## Topic 2 - Rrrr
 
 
 `r hide("More...")`
@@ -174,13 +205,11 @@ You will not be able to analyse data effectively without being familiar with bas
 `r unhide()`
 
 
-<hr style="border:2px solid"> </hr>
-
+---
 
 
 # Week 3
 
----
 
 ## Topic 3 - Visions
 
@@ -226,8 +255,6 @@ We will be deepening our ability to understand the R programming language by loo
 
 
 `r unhide()`
-
----
 
 
 
@@ -279,14 +306,13 @@ We have discussed how to estimate the parameters of a simple regression model. I
 
 `r unhide()`
 
-<hr style="border:2px solid"> </hr>
+---
 
 # Week 4
 
----
 
 
-# Topic 5 - Taking Back Control
+## Topic 5 - Taking Back Control
 
 
 `r hide("More...")`
@@ -332,14 +358,14 @@ we look at multivariate regressions; i.e. regressions where the dependent variab
 
 `r unhide()`
 
----
 
 
 
 
 
 
-# Topic 6 - Econometrics for Dummies
+
+## Topic 6 - Econometrics for Dummies
 
 
 
@@ -386,12 +412,11 @@ This might be a course about quantitative analysis, but that doesn’t mean we c
 
 `r unhide()`
 
-<hr style="border:2px solid"> </hr>
-
-
-# Week 4
 
 ---
+
+# Week 5
+
 
 
 ## Topic 7 - Instrumental Variables
@@ -438,10 +463,6 @@ Suppose you want to know the causal effect of a variable X on a variable Y but t
 
 
 `r unhide()`
-
----
-
-
 
 
 
@@ -495,7 +516,7 @@ To do any data analysis we need different datapoints. Most data we looked at so 
 
 
 
----
+<hr style="border:2px solid"> </hr>
 
 
 # Group Coursework
@@ -505,7 +526,8 @@ As part of this course you are asked to hand in a piece of group coursework. For
 You find a template with further instructions [here](https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.html) ([RMarkdown Version](https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.Rmd)).
 
 
----
+<hr style="border:2px solid"> </hr>
+
 
 # Exam Guidelines
 
@@ -520,7 +542,10 @@ You find a template with further instructions [here](https://mondpanther.github.
 `r unhide()`
 
 
-## Datasets used in class (and more)
+<hr style="border:2px solid"> </hr>
+
+
+# Datasets used in class (and more)
 
 `r hide("More...")`
 
