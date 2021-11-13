@@ -53,6 +53,7 @@ This module consists of two parts:
 
 Part I - Qualitative Research Methods
 
+In this part you will be introduced to the main differences between qualitative and quantitative methods, before focusing on key themes for designing and executing qualitative research. In particular, you will develop an understanding of how to formulate research purposes and questions to study healthcare organizations, how to choose the research setting through purposeful sampling, and how to collect and analyse interview data. You will also familiarize with some of the most relevant methodologies (e.g., grounded theory, ethnography, etc.) 
 
 Part II - Quantitative methods
 
@@ -74,8 +75,11 @@ To get your participation mark please participate in the Datathon Forum with eit
 
 
 
-
 ## Qualitative Methods 1
+
+In this session, you will learn the main dimensions along which qualitative and quantitative research differ, and how each set of methods enables to investigate different phenomena. You will then explore examples of relevant research questions in healthcare settings and try your hand at developing your own. You will learn the criteria for choosing an ideal research setting, and the critical issues to consider for collecting and analysing interview data.
+
+
 
 
 ## Qualitative Methods 2
