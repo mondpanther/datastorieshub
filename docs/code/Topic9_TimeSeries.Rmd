@@ -1,7 +1,8 @@
 ---
 title: "Time Series"
 author: Ralf Martin
-output: html_document
+#output: html_document
+output: word_document
 editor_options: 
   chunk_output_type: inline
 ---
@@ -16,7 +17,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r get weekly covid data for us,echo=FALSE,message=FALSE}
 library(dplyr)
 library(lubridate)
+
 nyt <- read.csv(url("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv"))
+
 nyt=nyt%>%mutate(date=as.character(date))
 maxt=max(nyt$date)
 nytmax=nyt%>% filter(date==maxt)
@@ -64,6 +67,8 @@ df=wei %>%  left_join(covidus, by="week") %>%
    
 
 
+
+
 ```
 
 
@@ -89,7 +94,7 @@ library(scales)
     theme(axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(breaks = date_breaks("12 months"),labels = date_format("%Y")) +
     geom_line(aes(y = Index*scaler, colour = "Economic Activity Index"))+
-    geom_line(aes(y = cases, colour = "Covid Cases per 100K"))+ylab("Covid Cases")+
+    geom_line(aes(y = cases, colour = "Total Covid Cases per 100K"))+ylab("Covid Cases")+
     scale_y_continuous(sec.axis = sec_axis(label=comma, trans=~./(scaler),
                        name = "Economic Activity Index"),labels=comma)
 
@@ -102,15 +107,19 @@ library(scales)
 
 
 
+
 ## Illustration of time trend
 
 ```{r}
 
 lm(lnindex~cases,df) %>% summary()
+
+
+
 df=df %>% mutate(t=1:n())
 lm(lnindex~cases+t,df) %>% summary()
-lm(Index~cases+t,df,year(week)>2018) %>% summary()
-lm(Index~cases+t+lockshare,df,year(week)>2018) %>% summary()
+
+
 
 ```
 
@@ -136,9 +145,9 @@ statsbyweek= statsbyday %>% group_by(state,week) %>%
 # Let's also compute extra cases and deaths per day as opposed to cumulative ones.
 # To implement that we order ther dataframe by week and then take the difference
 # between current and lagged cases and death figures.
-statsbyweek = statsbyweek %>% arrange(week) %>% 
-           mutate(Dcases=cases-lag(cases,n=1L),
-                 Ddeaths=deaths-lag(deaths,n=1L))
+statsbyweek = statsbyweek %>% arrange(state,week) %>% group_by(state) %>% 
+           mutate(Dcases=cases-dplyr::lag(cases,n=1L),
+                  Ddeaths=deaths-dplyr::lag(deaths,n=1L))
 
 ```
 
@@ -159,18 +168,31 @@ library(scales)
 
 tsplotter=function(df,label=""){
   
-  scaler=max(df$cases,na.rm=TRUE)/max(df$hoaxsh,na.rm=TRUE)
+  scaler=max(df$cases,na.rm=TRUE)/max(df$cumhoaxsh,na.rm=TRUE)
   
   ggplot(df,aes(x=week)) + theme_minimal() + xlab("Weekly Data") +
     theme(axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(breaks = date_breaks("12 months"),labels = date_format("%Y")) +
-    geom_line(aes(y = hoaxsh*scaler, colour = "Share of Hoax Tweets"))+
-    geom_line(aes(y = cases, colour = "Covid cases"))+ylab("Covid Cases")+
+    geom_line(aes(y = cumhoaxsh*scaler, colour = "Share of Hoax Tweets"))+
+    geom_line(aes(y = cases, colour = "Cases"))+ylab("Total Covid Cases")+
     scale_y_continuous(sec.axis = sec_axis(label=comma, trans=~./(scaler),
-                       name = "Share of Hoax Tweets"),labels=comma)+ggtitle(label)
+                       name = "Cumulative Share of Hoax Tweets"),labels=comma)+ggtitle(label)
 
 }
 
+
+
+```
+
+
+```{r}
+statsbyweek=statsbyweek %>% arrange(state,week) %>% 
+  group_by(state) %>% 
+  mutate(cumhoax=cumsum(hoax),cumtweets=cumsum(tweets),
+         cumhoaxsh=cumhoax/cumtweets*100,
+         Dcumhoaxsh=cumhoaxsh-dplyr::lag(cumhoaxsh),
+         Dcases=cases-dplyr::lag(cases),
+         Ddeaths=deaths-dplyr::lag(deaths))
 
 
 ```
@@ -189,15 +211,21 @@ statsbyweek=as.data.frame(statsbyweek)
 
 
 
-lm(cases~hoaxsh,statsbyweek) %>% summary()
-lm(cases~hoaxsh+factor(week),statsbyweek) %>% summary()
-lm(cases~hoaxsh++factor(state)+factor(week),statsbyweek) %>% summary()
+lm(cases~cumhoaxsh, statsbyweek) %>% summary()
+lm(cases~cumhoaxsh+factor(week), statsbyweek) %>% summary()
+lm(cases~cumhoaxsh+factor(state)+factor(week),statsbyweek) %>% summary()
 
-library(plm)
-plm(cases~hoaxsh+factor(week)+factor(state),statsbyweek,
-    index=c("state","week"),
-    model="within", 
-    effect="twoways") %>% summary()
+
+
+# Another command doing the same but quicker
+library(fixest)
+feols(cases ~ cumhoaxsh | week + state,statsbyweek)
+
+
+
+
+
+
 
 ```
 
@@ -243,40 +271,31 @@ ggplot(sdf,aes(x=period))+geom_line(aes(y=y99,color="rho=0.99"))+
 
 ```{r,message=FALSE}
   library(urca)
-  ur.df(df$cases,type="none",lags=1) %>% summary()
-  ur.df(df$lnindex,type="none",lags=1) %>% summary()
+  ur.df(df$lnindex) %>% summary()
+  
 
 ```
 
   
   
 ```{r}  
-  ur.df(diff(df$cases,1),type="none",lags=1) %>% summary()
-  ur.df(diff(df$lnindex,1),type="none",lags=1) %>% summary()
 
+
+
+
+  ur.df(diff(df$lnindex)) %>% summary()
+  
+  
 ```
   
 
 ```{r,message=FALSE}  
-df=df %>% arrange(week) %>% mutate(Dlnindex=lnindex-dplyr::lag(lnindex),
-                                     Dcases=cases-dplyr::lag(cases) ,
-                                     DDlnindex=Dlnindex-dplyr::lag(Dlnindex),Dlockshare=lockshare-dplyr::lag(lockshare))
-  
-  
-lm(Dlnindex~Dcases+t,df) %>% summary()  
-
-lm(Dlnindex~Dcases+t+Dlockshare,df) %>% summary()
+df=df %>% arrange(week) %>% mutate( Dlnindex=lnindex - lag(lnindex)  )
 
 
+lm(Dlnindex~cases+t,df) %>% summary()
 
 
-
-lm(Dlnindex~Dcases+t+Dlockshare,df) %>% summary()
-
-
-lm(Dlnindex~dplyr::lag(Dlnindex)+Dcases+t+Dlockshare,df) %>% summary()  
-
-lm(Dlnindex~dplyr::lag(Dlnindex)+dplyr::lag(Dlnindex,2)+Dcases+dplyr::lag(Dcases)+dplyr::lag(Dcases,2)+t+Dlockshare+dplyr::lag(Dlockshare)+dplyr::lag(Dlockshare,2),df) %>% summary()  
 
   
     

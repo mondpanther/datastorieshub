@@ -93,8 +93,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-11-13"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-11-13"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-11-17"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-11-17"/>
   <meta name="article:author" content="Ralf Martin"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -113,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Assessment for SRM"]},{"type":"character","attributes":{},"value":["More details on your assessment\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-11-13"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["webex.js"]}]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Assessment for SRM"]},{"type":"character","attributes":{},"value":["More details on your assessment\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-11-17"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["webex.js"]}]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2125,7 +2125,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Assessment for SRM","description":"More details on your assessment","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-13T00:00:00.000+00:00","citationText":"Martin, 2021"}
+{"title":"Assessment for SRM","description":"More details on your assessment","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-17T00:00:00.000+00:00","citationText":"Martin, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2159,7 +2159,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br/>2021-11-13
+<br/>2021-11-17
 </div>
 
 <div class="d-article">
@@ -2243,7 +2243,7 @@ Hint
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#simple regression of case on partyrank</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>casesOstudent</span><span class='op'>~</span><span class='va'>partyrank</span>,<span class='va'>datafinal2</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>casesOstudent</span><span class='op'>~</span><span class='va'>partyrank</span>,<span class='va'>datafinal2</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>
@@ -2296,7 +2296,7 @@ F-statistic:  18.8 on 1 and 260 DF,  p-value: 2.078e-05</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readxl.tidyverse.org'>readxl</a></span><span class='op'>)</span>
-<span class='va'>set</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='st'>"datastories/worldoilprice/Dataset.xlsx"</span>,  skip <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+<span class='va'>set</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='st'>"datastories/worldoilprice/Dataset.xlsx"</span>,  skip <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>oilprice<span class='op'>=</span><span class='va'>`WTIspotprice`</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -2312,7 +2312,7 @@ F-statistic:  18.8 on 1 and 260 DF,  p-value: 2.078e-05</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>urca</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/pkg/urca/man/ur.df.html'>ur.df</a></span><span class='op'>(</span><span class='va'>set</span><span class='op'>$</span><span class='va'>oilprice</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/urca/man/summary-methods.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/urca/man/ur.df.html'>ur.df</a></span><span class='op'>(</span><span class='va'>set</span><span class='op'>$</span><span class='va'>oilprice</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/pkg/urca/man/summary-methods.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>
@@ -2359,7 +2359,7 @@ tau1 -2.58 -1.95 -1.62</code></pre>
 <p><select class='webex-solveme' data-answer='["d"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span>formula<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>oilprice</span><span class='op'>)</span><span class='op'>)</span><span class='op'>~</span><span class='fl'>1</span>,<span class='va'>set</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/urca/man/summary-methods.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span>formula<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>oilprice</span><span class='op'>)</span><span class='op'>)</span><span class='op'>~</span><span class='fl'>1</span>,<span class='va'>set</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/pkg/urca/man/summary-methods.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>
