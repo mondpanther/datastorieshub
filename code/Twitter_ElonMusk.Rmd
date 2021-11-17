@@ -17,7 +17,7 @@ library(tidytext)
 library(ggplot2)
 library(dplyr)
 library(gdata)
-library(fst)
+#library(fst)
 
 ```
 
