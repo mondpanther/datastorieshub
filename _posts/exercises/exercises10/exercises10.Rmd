@@ -9,9 +9,9 @@ date: "`r Sys.Date()`"
 output:
   distill::distill_article:
     self_contained: false
-    css: ../../webex.css
-    includes:
-      after_body: ../../webex.js
+    #css: ../../webex.css
+    #includes:
+    #  after_body: ../../webex.js
 categories:
   - Exercises
 editor_options: 
@@ -21,7 +21,7 @@ editor_options:
 
 
 ```{r setup, include = FALSE, message=FALSE}
-library("webex")
+library("webexercises")
 library(ggplot2)
 knitr::opts_chunk$set(fig.path='../../images/')
 ```
@@ -400,7 +400,7 @@ An instrument such as temperature inversion is helpful as it drives pollution an
 
 # Exercise 10.5
 
-Consider the dataset [back2country_set.dta](https://www.dropbox.com/s/oksq88o336w161j/back2country_set.dta?dl=1). It contains data on 71 countries for various 5 year periods from 1992 to 2012 (i.e. the period 2012 refers to the period from 2008 to 2012)
+Consider the dataset [back2country_set.dta](https://www.dropbox.com/s/1pxsvmq0wpoy5cc/back2country_set.dta?dl=1). It contains data on 71 countries for various 5 year periods from 1992 to 2012 (i.e. the period 2012 refers to the period from 2008 to 2012)
 Among other variables the dataset contains the following
 
 •	`en_cleanOdirtyPclean` is the share of clean as a fraction of clean and dirty innovations (as measured from patent data).
@@ -418,7 +418,7 @@ Note the dataset for this exercise is in `dta` (i.e. STATA format). You can load
 
 ```{r, echo=TRUE}
 library(haven)  # this contains the read_dta() to load dta (i.e. STATA) files
-b2c=read_dta("https://www.dropbox.com/s/oksq88o336w161j/back2country_set.dta?dl=1")
+b2c=read_dta("https://github.com/mondpanther/datastorieshub/blob/master/data/back2country_set.dta?raw=true")
 
 ```
 
@@ -503,7 +503,7 @@ Among other variables it includes the following
 
 ```{r, echo=TRUE}
 library(haven)
-lfs=read_dta("https://www.dropbox.com/s/0mvyckpzsssi5k2/lfsclean.dta?dl=1")
+lfs=read_dta("https://github.com/mondpanther/datastorieshub/blob/master/data/lfsclean.dta?raw=true")
 
 lm(lngrsswk~foreign,lfs) %>% summary()
 
@@ -583,7 +583,7 @@ See regression below. We find a statistically significant coefficient for `DDDNG
 
 ```{r}
 
-up=read.csv("https://www.dropbox.com/s/9mi7mcjnfn5nk3o/unempprep.csv?dl=1")
+up=read.csv("https://github.com/mondpanther/datastorieshub/blob/master/data/unempprep.csv?raw=true")
 names(up)
 
 table(up$year)
