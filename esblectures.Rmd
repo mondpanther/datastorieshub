@@ -510,6 +510,8 @@ To do any data analysis we need different datapoints. Most data we looked at so 
 
 ## Further Reading
 
+- [Quick Guide - Unit Roos](https://mondpanther.github.io/datastorieshub/posts/quickguides/quickguide_unitroots/)
+
 - [Introduction to Econometrics with R, Chapter 14 &15](https://www.econometrics-with-r.org/14-ittsraf.html)
 
 
