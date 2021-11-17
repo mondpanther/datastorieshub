@@ -138,7 +138,7 @@ A problem with unit roots is that they create spurious correlations. Let's explo
 epsx=rnorm(obs)
 x100=epsx
 for(i in 2:obs){
-  x100[i]= x100[i-1]*1+epsx[i]
+  x100[i]= x100[i-1]*.1+epsx[i]
 }
 sdf=bind_cols(sdf,data.frame(x100,epsx)) 
 

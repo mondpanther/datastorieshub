@@ -128,7 +128,7 @@ lm(lnindex~cases+t,df) %>% summary()
 ## The case of Panel data
 
 
-```{r,message=FALSE,echo=FALSE}
+```{r,message=FALSE,echo=TRUE}
 statsbyday=read.csv("https://www.dropbox.com/s/e26qs4vfl4xjy99/statsbydlong.cvs?dl=1") %>%  mutate(date=as_date(date),week=round_date( date,  unit = "week"))
   #mutate(hoaxsh=hoax/tweets)
 
@@ -146,8 +146,8 @@ statsbyweek= statsbyday %>% group_by(state,week) %>%
 # To implement that we order ther dataframe by week and then take the difference
 # between current and lagged cases and death figures.
 statsbyweek = statsbyweek %>% arrange(state,week) %>% group_by(state) %>% 
-           mutate(Dcases=cases-dplyr::lag(cases,n=1L),
-                  Ddeaths=deaths-dplyr::lag(deaths,n=1L))
+           mutate(Dcases=cases-dplyr::lag(cases,1),
+                  Ddeaths=deaths-dplyr::lag(deaths,1))
 
 ```
 
@@ -290,93 +290,21 @@ ggplot(sdf,aes(x=period))+geom_line(aes(y=y99,color="rho=0.99"))+
   
 
 ```{r,message=FALSE}  
-df=df %>% arrange(week) %>% mutate( Dlnindex=lnindex - lag(lnindex)  )
+df=df %>% arrange(week) %>% mutate( Dlnindex=lnindex - dplyr::lag(lnindex) ,Llnindex=dplyr::lag(lnindex) )
 
 
 lm(Dlnindex~cases+t,df) %>% summary()
 
 
+lm(Dlnindex~cases,df) %>% summary()
+
+
+lm(Dlnindex~cases+lockshare+t,df) %>% summary()
+
+
+lm(Dlnindex~cases+lockshare,df) %>% summary()
 
   
     
 ```
 
-
-```{r,eval=FALSE}
-# Time Series
-
-#< load libraries
-  library(foreign)
-  
-
-#< GDP Japan
-  library(haven)
-  gdpjp <-read_dta("data/gdp_JP_etc.dta")
-  library(zoo)
-  library(DataCombine)
-  library(quantmod)
-  library(tseries)
-  
-  
-  gdpjp["L1lngdp"]=Lag(gdpjp$lngdp,1)
-  
-  
-  gdpjp["L1lngdp"]=Lag(gdpjp$lngdp,1)
-  
-  summary(lm(lngdp~L1lngdp ,gdpjp))
-  summary(arma(gdpjp$lngdp, order = c(1, 0)))
-  
-  summary(arma(gdpjp$lngdp, order = c(2, 0)))
-  
-  
-  
-  summary(lm(lngdp~L1lngdp+time ,gdpjp))
-  
-  gdpjp["Dlngdp"]<-c(NA,diff(gdpjp$lngdp, differences=1))
-#>
-  
-#< Dickey Fuller
-  library(urca)
-  
-  df=ur.df(gdpjp$lngdp,type="trend",lags=0)
-  summary(df)
- 
-  summary(ur.df(diff(gdpjp$lngdp,1),type="trend",lags=0))
-  
-  summary(ur.df(diff(gdpjp$lngdp,1),type="trend",lags=1))
-  
-  
-  summary(ur.df(gdpjp$lngdp,type="trend",lags=1))
-  summary(ur.df(gdpjp$lngdp,type="trend",lags=5))
-  summary(ur.df(gdpjp$lngdp,type="trend",lags=3))
-  
-  summary(ur.df(diff(gdpjp$lngdp,1),type="trend",lags=3))
-  
-  
-
-#>
-#< Oragne juice
-  
-  oj <-read_dta("data/oj.dta")  
-  oj = na.omit(oj)
-  oj["lnp"]=log(oj$ppioj/oj$pwfsa *100)
-  
-  
-  summary(ur.df(oj$fdd,type="trend",lags=12))
-  
-  summary(ur.df(oj$lnp,type="trend",lags=12))
-  summary(ur.df(diff(oj$lnp,1),type="trend",lags=12))
-
-  
-  summary(lm(diff(oj$lnp,1)~oj$fdd[-1]))
-  
-  
-  
-  ojm=lm(diff(oj$lnp)~oj$fdd[-1])
-  library(sandwich)
-  library(lmtest)
-  coeftest(ojm, vcov. = NeweyWest)
-  
-#>  
-  
-```
