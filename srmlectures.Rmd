@@ -77,12 +77,16 @@ To get your participation mark please participate in the Datathon Forum with eit
 
 ## Qualitative Methods 1
 
-In this session, you will learn the main dimensions along which qualitative and quantitative research differ, and how each set of methods enables to investigate different phenomena. You will then explore examples of relevant research questions in healthcare settings and try your hand at developing your own. You will learn the criteria for choosing an ideal research setting, and the critical issues to consider for collecting and analysing interview data.
+In this session, you will learn the main dimensions along which qualitative and quantitative research differ, and how each set of methods enables to investigate different phenomena. You will then explore examples of relevant research questions in healthcare settings and try your hand at developing your own. You will learn the criteria for choosing an ideal research setting.
 
 
 
 
 ## Qualitative Methods 2
+
+In this session, you will learn how to develop interview protocols and to identify the main issues in collecting interview data for inductive research. You will also gain familiarity with the main technique for analysing textual data and with the validity criteria of inductive theory. Finally, you will get introduced to the main methodologies for conducting inductive research.
+
+
 
 
 <hr style="border:2px solid"> </hr>
