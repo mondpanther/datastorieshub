@@ -1,0 +1,3035 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
+  <!--radix_placeholder_meta_tags-->
+<title>Datastories Hub: Exercises 6</title>
+
+<meta property="description" itemprop="description" content="Econometrics for dummies"/>
+
+<link rel="canonical" href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"/>
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2021-10-28"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-10-28"/>
+<meta name="article:author" content="Ralf Martin"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="Datastories Hub: Exercises 6"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="Econometrics for dummies"/>
+<meta property="og:url" content="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"/>
+<meta property="og:image" content="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/5e91e263d083e200047f064e.png"/>
+<meta property="og:image:width" content="450"/>
+<meta property="og:image:height" content="481"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="Datastories Hub"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:title" content="Datastories Hub: Exercises 6"/>
+<meta property="twitter:description" content="Econometrics for dummies"/>
+<meta property="twitter:url" content="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"/>
+<meta property="twitter:image" content="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/5e91e263d083e200047f064e.png"/>
+<meta property="twitter:image:width" content="450"/>
+<meta property="twitter:image:height" content="481"/>
+
+<!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
+<meta name="citation_title" content="Datastories Hub: Exercises 6"/>
+<meta name="citation_fulltext_html_url" content="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"/>
+<meta name="citation_online_date" content="2021/10/28"/>
+<meta name="citation_publication_date" content="2021/10/28"/>
+<meta name="citation_author" content="Ralf Martin"/>
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 6"]},{"type":"character","attributes":{},"value":["Econometrics for dummies"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-10-28"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/"]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["5e91e263d083e200047f064e.png","exercises6_files/anchor-4.2.2/anchor.min.js","exercises6_files/bowser-1.9.3/bowser.min.js","exercises6_files/distill-2.2.21/template.v2.js","exercises6_files/figure-html5/unnamed-chunk-3-1.png","exercises6_files/header-attrs-2.10/header-attrs.js","exercises6_files/jquery-1.11.3/jquery.min.js","exercises6_files/popper-2.6.0/popper.min.js","exercises6_files/tippy-6.2.7/tippy-bundle.umd.min.js","exercises6_files/tippy-6.2.7/tippy-light-border.css","exercises6_files/tippy-6.2.7/tippy.css","exercises6_files/tippy-6.2.7/tippy.umd.min.js","exercises6_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+<meta name="distill:offset" content="../../.."/>
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      tolerance: 5,
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #0F2E3D;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+  min-width: 150px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative; min-height: 500px; }
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+/* adjust viewport for navbar height */
+/* helps vertically center bootstrap (non-distill) content */
+.min-vh-100 {
+  min-height: calc(100vh - 100px) !important;
+}
+
+</style>
+
+<script src="../../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="../../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="../../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="../../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<script src="../../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+<script src="../../../site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+<script type="application/javascript">
+
+function getMeta(metaName) {
+  var metas = document.getElementsByTagName('meta');
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+  return '';
+}
+
+function offsetURL(url) {
+  var offset = getMeta('distill:offset');
+  return offset ? offset + '/' + url : url;
+}
+
+function createFuseIndex() {
+
+  // create fuse index
+  var options = {
+    keys: [
+      { name: 'title', weight: 20 },
+      { name: 'categories', weight: 15 },
+      { name: 'description', weight: 10 },
+      { name: 'contents', weight: 5 },
+    ],
+    ignoreLocation: true,
+    threshold: 0
+  };
+  var fuse = new window.Fuse([], options);
+
+  // fetch the main search.json
+  return fetch(offsetURL('search.json'))
+    .then(function(response) {
+      if (response.status == 200) {
+        return response.json().then(function(json) {
+          // index main articles
+          json.articles.forEach(function(article) {
+            fuse.add(article);
+          });
+          // download collections and index their articles
+          return Promise.all(json.collections.map(function(collection) {
+            return fetch(offsetURL(collection)).then(function(response) {
+              if (response.status === 200) {
+                return response.json().then(function(articles) {
+                  articles.forEach(function(article) {
+                    fuse.add(article);
+                  });
+                })
+              } else {
+                return Promise.reject(
+                  new Error('Unexpected status from search index request: ' +
+                            response.status)
+                );
+              }
+            });
+          })).then(function() {
+            return fuse;
+          });
+        });
+
+      } else {
+        return Promise.reject(
+          new Error('Unexpected status from search index request: ' +
+                      response.status)
+        );
+      }
+    });
+}
+
+window.document.addEventListener("DOMContentLoaded", function (event) {
+
+  // get search element (bail if we don't have one)
+  var searchEl = window.document.getElementById('distill-search');
+  if (!searchEl)
+    return;
+
+  createFuseIndex()
+    .then(function(fuse) {
+
+      // make search box visible
+      searchEl.classList.remove('hidden');
+
+      // initialize autocomplete
+      var options = {
+        autoselect: true,
+        hint: false,
+        minLength: 2,
+      };
+      window.autocomplete(searchEl, options, [{
+        source: function(query, callback) {
+          const searchOptions = {
+            isCaseSensitive: false,
+            shouldSort: true,
+            minMatchCharLength: 2,
+            limit: 10,
+          };
+          var results = fuse.search(query, searchOptions);
+          callback(results
+            .map(function(result) { return result.item; })
+          );
+        },
+        templates: {
+          suggestion: function(suggestion) {
+            var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+              ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+              : '';
+            var html = `
+              <div class="search-item">
+                <h3>${suggestion.title}</h3>
+                <div class="search-item-description">
+                  ${suggestion.description || ''}
+                </div>
+                <div class="search-item-preview">
+                  ${img}
+                </div>
+              </div>
+            `;
+            return html;
+          }
+        }
+      }]).on('autocomplete:selected', function(event, suggestion) {
+        window.location.href = offsetURL(suggestion.path);
+      });
+      // remove inline display style on autocompleter (we want to
+      // manage responsive display via css)
+      $('.algolia-autocomplete').css("display", "");
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+
+});
+
+</script>
+
+<style type="text/css">
+
+.nav-search {
+  font-size: x-small;
+}
+
+/* Algolioa Autocomplete */
+
+.algolia-autocomplete {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: sub;
+  background-color: white;
+  color: black;
+  padding: 6px;
+  padding-top: 8px;
+  padding-bottom: 0;
+  border-radius: 6px;
+  border: 1px #0F2E3D solid;
+  width: 180px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-nav .algolia-autocomplete {
+    display: none;
+    visibility: hidden;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete {
+    display: inline-block;
+    visibility: visible;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+    margin-left: 0;
+    width: 400px;
+    max-height: 400px;
+  }
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 90%;
+  outline: none;
+  border: none;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 550px;
+  max-height: 70vh;
+  overflow-x: visible;
+  overflow-y: scroll;
+  padding: 5px;
+  margin-top: 3px;
+  margin-left: -150px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #999;
+  border-top: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+  border-bottom: none;
+  margin-bottom: 2px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+  overflow: hidden;
+  font-size: 0.8em;
+  line-height: 1.4em;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+  font-size: 1rem;
+  margin-block-start: 0;
+  margin-block-end: 5px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+  display: inline-block;
+  overflow: hidden;
+  height: 2.8em;
+  width: 80%;
+  margin-right: 4%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+  display: inline-block;
+  width: 15%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+  height: 3em;
+  width: auto;
+  display: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+  display: initial;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #eee;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+</style>
+
+
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+d-byline .byline {
+  grid-template-columns: 2fr 2fr;
+}
+
+d-byline .byline h3 {
+  margin-block-start: 1.5em;
+}
+
+d-byline .byline .authors-affiliations h3 {
+  margin-block-start: 0.5em;
+}
+
+.authors-affiliations .orcid-id {
+  width: 16px;
+  height:16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  vertical-align: middle;
+  padding-bottom: 2px;
+}
+
+d-title .dt-tags {
+  margin-top: 1em;
+  grid-column: text;
+}
+
+.dt-tags .dt-tag {
+  text-decoration: none;
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0em 0.4em;
+  margin-right: 0.5em;
+  margin-bottom: 0.4em;
+  font-size: 70%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+d-article table.gt_table td,
+d-article table.gt_table th {
+  border-bottom: none;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-top: 2.5rem;
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article h2 {
+  margin: 1rem 0 1.5rem 0;
+}
+
+d-article h3 {
+  margin-top: 1.5rem;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+/* Tweak code blocks */
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: auto;
+}
+
+d-article div.sourceCode {
+  background-color: white;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+d-article pre {
+  font-size: 12px;
+  color: black;
+  background: none;
+  margin-top: 0;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+d-article pre a {
+  border-bottom: none;
+}
+
+d-article pre a:hover {
+  border-bottom: none;
+  text-decoration: underline;
+}
+
+d-article details {
+  grid-column: text;
+  margin-bottom: 0.8em;
+}
+
+@media(min-width: 768px) {
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: visible !important;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+d-article pre {
+  font-size: 14px;
+}
+
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for d-contents */
+
+.d-contents {
+  grid-column: text;
+  color: rgba(0,0,0,0.8);
+  font-size: 0.9em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  padding-left: 0.25em;
+  justify-self: start;
+}
+
+@media(min-width: 1000px) {
+  .d-contents.d-contents-float {
+    height: 0;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    justify-self: center;
+    padding-right: 3em;
+    padding-left: 2em;
+  }
+}
+
+.d-contents nav h3 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.d-contents li {
+  list-style-type: none
+}
+
+.d-contents nav > ul {
+  padding-left: 0;
+}
+
+.d-contents ul {
+  padding-left: 1em
+}
+
+.d-contents nav ul li {
+  margin-top: 0.6em;
+  margin-bottom: 0.2em;
+}
+
+.d-contents nav a {
+  font-size: 13px;
+  border-bottom: none;
+  text-decoration: none
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.d-contents nav a:hover {
+  text-decoration: underline solid rgba(0, 0, 0, 0.6)
+}
+
+.d-contents nav > ul > li > a {
+  font-weight: 600;
+}
+
+.d-contents nav > ul > li > ul {
+  font-weight: inherit;
+}
+
+.d-contents nav > ul > li > ul > li {
+  margin-top: 0.2em;
+}
+
+
+.d-contents nav ul {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.d-article-with-toc h2:nth-child(2) {
+  margin-top: 0;
+}
+
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+/* Citations */
+
+d-article .citation {
+  color: inherit;
+  cursor: inherit;
+}
+
+div.hanging-indent{
+  margin-left: 1em; text-indent: -1em;
+}
+
+/* Citation hover box */
+
+.tippy-box[data-theme~=light-border] {
+  background-color: rgba(250, 250, 250, 0.95);
+}
+
+.tippy-content > p {
+  margin-bottom: 0;
+  padding: 2px;
+}
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Include appendix styles here so they can be overridden */
+
+d-appendix {
+  contain: layout style;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-top: 60px;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0,0,0,0.5);
+  padding-top: 60px;
+  padding-bottom: 48px;
+}
+
+d-appendix h3 {
+  grid-column: page-start / text-start;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.65);
+}
+
+d-appendix h3 + * {
+  margin-top: 1em;
+}
+
+d-appendix ol {
+  padding: 0 0 0 15px;
+}
+
+@media (min-width: 768px) {
+  d-appendix ol {
+    padding: 0 0 0 30px;
+    margin-left: -30px;
+  }
+}
+
+d-appendix li {
+  margin-bottom: 1em;
+}
+
+d-appendix a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+d-appendix > * {
+  grid-column: text;
+}
+
+d-appendix > d-footnote-list,
+d-appendix > d-citation-list,
+d-appendix > distill-appendix {
+  grid-column: screen;
+}
+
+/* Include footnote styles here so they can be overridden */
+
+d-footnote-list {
+  contain: layout style;
+}
+
+d-footnote-list > * {
+  grid-column: text;
+}
+
+d-footnote-list a.footnote-backlink {
+  color: rgba(0,0,0,0.3);
+  padding-left: 0.5em;
+}
+
+
+
+/* Anchor.js */
+
+.anchorjs-link {
+  /*transition: all .25s linear; */
+  text-decoration: none;
+  border-bottom: none;
+}
+*:hover > .anchorjs-link {
+  margin-left: -1.125em !important;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+.sidebar-section.custom {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.custom p {
+  margin-bottom: 0.5em;
+}
+
+/* Styles for listing layout (hide title) */
+.layout-listing d-title, .layout-listing .d-title {
+  display: none;
+}
+
+/* Styles for posts lists (not auto-injected) */
+
+
+.posts-with-sidebar {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.posts-list .description h2,
+.posts-list .description p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.posts-list .description h2 {
+  font-weight: 700;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.posts-list h2.post-tag {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 12px;
+}
+.posts-list {
+  margin-top: 60px;
+  margin-bottom: 24px;
+}
+
+.posts-list .post-preview {
+  text-decoration: none;
+  overflow: hidden;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 24px 0;
+}
+
+.post-preview-last {
+  border-bottom: none !important;
+}
+
+.posts-list .posts-list-caption {
+  grid-column: screen;
+  font-weight: 400;
+}
+
+.posts-list .post-preview h2 {
+  margin: 0 0 6px 0;
+  line-height: 1.2em;
+  font-style: normal;
+  font-size: 24px;
+}
+
+.posts-list .post-preview p {
+  margin: 0 0 12px 0;
+  line-height: 1.4em;
+  font-size: 16px;
+}
+
+.posts-list .post-preview .thumbnail {
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  position: relative;
+  max-width: 500px;
+}
+.posts-list .post-preview img {
+  width: 100%;
+  display: block;
+}
+
+.posts-list .metadata {
+  font-size: 12px;
+  line-height: 1.4em;
+  margin-bottom: 18px;
+}
+
+.posts-list .metadata > * {
+  display: inline-block;
+}
+
+.posts-list .metadata .publishedDate {
+  margin-right: 2em;
+}
+
+.posts-list .metadata .dt-authors {
+  display: block;
+  margin-top: 0.3em;
+  margin-right: 2em;
+}
+
+.posts-list .dt-tags {
+  display: block;
+  line-height: 1em;
+}
+
+.posts-list .dt-tags .dt-tag {
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0.3em 0.4em;
+  margin-right: 0.2em;
+  margin-bottom: 0.4em;
+  font-size: 60%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.posts-list img {
+  opacity: 1;
+}
+
+.posts-list img[data-src] {
+  opacity: 0;
+}
+
+.posts-more {
+  clear: both;
+}
+
+
+.posts-sidebar {
+  font-size: 16px;
+}
+
+.posts-sidebar h3 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.sidebar-section {
+  margin-bottom: 30px;
+}
+
+.categories ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.categories li {
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 0;
+}
+
+.categories li>a {
+  border-bottom: none;
+}
+
+.categories li>a:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.categories .active {
+  font-weight: 600;
+}
+
+.categories .category-count {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+
+@media(min-width: 768px) {
+  .posts-list .post-preview h2 {
+    font-size: 26px;
+  }
+  .posts-list .post-preview .thumbnail {
+    float: right;
+    width: 30%;
+    margin-bottom: 0;
+  }
+  .posts-list .post-preview .description {
+    float: left;
+    width: 45%;
+  }
+  .posts-list .post-preview .metadata {
+    float: left;
+    width: 20%;
+    margin-top: 8px;
+  }
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.5em;
+    font-size: 16px;
+  }
+  .posts-with-sidebar .posts-list {
+    float: left;
+    width: 75%;
+  }
+  .posts-with-sidebar .posts-sidebar {
+    float: right;
+    width: 20%;
+    margin-top: 60px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+.downlevel .posts-list .post-preview {
+  color: inherit;
+}
+
+
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // add anchors
+  if (window.anchors) {
+    window.anchors.options.placement = 'left';
+    window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+  }
+
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  // move refs into #references-listing
+  $('#references-listing').replaceWith($('#refs'));
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-contents a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('details, div.sourceCode, pre, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // remove code block used to force  highlighting css
+  $('.distill-force-highlighting-css').parent().remove();
+
+  // remove empty line numbers inserted by pandoc when using a
+  // custom syntax highlighting theme
+  $('code.sourceCode a:empty').remove();
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // article with toc class
+    $('.d-contents').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // add orcid ids
+    $('.authors-affiliations').find('.author').each(function(i, el) {
+      var orcid_id = front_matter.authors[i].orcidID;
+      if (orcid_id) {
+        var a = $('<a></a>');
+        a.attr('href', 'https://orcid.org/' + orcid_id);
+        var img = $('<img></img>');
+        img.addClass('orcid-id');
+        img.attr('alt', 'ORCID ID');
+        img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+        a.append(img);
+        $(this).append(a);
+      }
+    });
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // remove d-appendix and d-footnote-list local styles
+    $('d-appendix > style:first-child').remove();
+    $('d-footnote-list > style:first-child').remove();
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // hoverable references
+    $('span.citation[data-cites]').each(function() {
+      var refs = $(this).attr('data-cites').split(" ");
+      var refHtml = refs.map(function(ref) {
+        return "<p>" + $('#ref-' + ref).html() + "</p>";
+      }).join("\n");
+      window.tippy(this, {
+        allowHTML: true,
+        content: refHtml,
+        maxWidth: 500,
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start'
+      });
+    });
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-contents').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.distill-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<!--/radix_placeholder_distill-->
+  <script src="../../../site_libs/header-attrs-2.11.3/header-attrs.js"></script>
+  <script src="../../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../../site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="../../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<style type="text/css">
+:root {
+  --pink: #983E82;   /* hsl(315, 42%, 42%) */
+  --orange: #E2A458; /* hsl( 33, 70%, 62%) */
+  --yellow: #F5DC70; /* hsl( 49, 87%, 70%) */
+  --green: #59935B;  /* hsl(122, 25%, 46%) */
+  --blue: #467AAC;   /* hsl(209, 42%, 47%) */
+  --purple: #61589C; /* hsl(248, 28%, 48%) */
+}
+
+/* styles for webex-solveme */
+.webex-incorrect,
+.webex-radiogroup label.webex-incorrect{
+    border: 2px dotted var(--pink);
+    background-color: #edaddd;
+    border-radius: 0.25em;
+}
+.webex-correct,
+.webex-radiogroup label.webex-correct {
+    border: 2px solid var(--green);
+    background-color: #c0edc2;
+    border-radius: 0.25em;
+}
+/* styles for hidden solutions */
+.webex-solution {
+    height: 2.5em;
+    overflow-y: hidden;
+    padding: 0.15em;
+    margin-bottom: 10px;
+}
+.webex-solution.open {
+    height: auto;
+    border: 2px solid var(--blue);
+    border-radius: 5px;
+}
+.webex-solution button {
+    height: 2em;
+    margin-bottom: 0.5em;
+    border-radius: 0.5em;
+    background-color: var(--blue);
+    color: white;
+    padding: 0 0.5em;
+}
+.webex-solution pre.sourceCode {
+    border-color: var(--green);
+}
+
+.webex-radiogroup label {
+  margin-left: 2em;
+  text-indent: -1em;
+  padding-left: 0.5em;
+  font-weight: 400;
+  display: block;
+  border: 2px solid rgba(255, 255, 255, 1);
+  border-radius: 0.25em;
+}
+
+.webex-radiogroup label input {
+  position: relative;
+  left: -1em;
+}
+
+</style>
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Exercises 6","description":"Econometrics for dummies","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-10-28T00:00:00.000+01:00","citationText":"Martin, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="../../../index.html" class="title">Datastories Hub</a>
+<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
+</div>
+<div class="nav-right">
+<a href="../../../index.html" aria-label="Home">
+<i class="fa fa-home" aria-hidden="true"></i>
+</a>
+<a href="../../../listexercises.html">Exercises</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Exercises 6</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../../index.html#category:Exercises" class="dt-tag">Exercises</a>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>Econometrics for dummies</p></p>
+</div>
+
+<div class="d-byline">
+  Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
+  
+<br/>2021-10-28
+</div>
+
+<div class="d-article">
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="5e91e263d083e200047f064e.png" width="80%" data-distill-preview=1 /></p>
+</div>
+<h1 id="exercise-6.1">Exercise 6.1</h1>
+<p>Consider the dataset Brexit.dta. It contains data on the outcome of the Brexit vote from June 23 this year by local area along with a range of area characteristics. The variable pct_leave records the percentage of voters in an area that voted for leave.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://haven.tidyverse.org'>haven</a></span><span class='op'>)</span>
+<span class='va'>df</span><span class='op'>=</span><span class='fu'><a href='https://haven.tidyverse.org/reference/read_dta.html'>read_dta</a></span><span class='op'>(</span><span class='st'>"https://www.dropbox.com/sh/rqmo1hvij1veff0/AAC_4UZXJG9kmImypJXTZ9IOa/brexit.dta?dl=1"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  [1] &quot;oslaua&quot;               &quot;region_code&quot;         
+  [3] &quot;region&quot;               &quot;area&quot;                
+  [5] &quot;pct_turnout&quot;          &quot;pct_leave&quot;           
+  [7] &quot;pct_rejected&quot;         &quot;electorate&quot;          
+  [9] &quot;expectedballots&quot;      &quot;verifiedballotpapers&quot;
+ [11] &quot;votes_cast&quot;           &quot;valid_votes&quot;         
+ [13] &quot;remain&quot;               &quot;leave&quot;               
+ [15] &quot;rejected_ballots&quot;     &quot;no_official_mark&quot;    
+ [17] &quot;writing_or_mark&quot;      &quot;unmarked_or_void&quot;    
+ [19] &quot;pop91&quot;                &quot;pop11&quot;               
+ [21] &quot;sh_young&quot;             &quot;m_migr&quot;              
+ [23] &quot;b_migr&quot;               &quot;b_migr11&quot;            
+ [25] &quot;etn11_W&quot;              &quot;etn11_AI&quot;            
+ [27] &quot;etn11_AP&quot;             &quot;etn11_AB&quot;            
+ [29] &quot;etn11_AC&quot;             &quot;etn11_AO&quot;            
+ [31] &quot;etn11_BCA&quot;            &quot;etn11_BAF&quot;           
+ [33] &quot;etn11_BO&quot;             &quot;etn11_O&quot;             
+ [35] &quot;ni11_sco&quot;             &quot;ni11_bri&quot;            
+ [37] &quot;ni11_eng&quot;             &quot;ni11_oth&quot;            
+ [39] &quot;ni11_oe&quot;              &quot;shni11_sco&quot;          
+ [41] &quot;shni11_bri&quot;           &quot;shni11_eng&quot;          
+ [43] &quot;shni11_oth&quot;           &quot;shni11_oe&quot;           
+ [45] &quot;citshare&quot;             &quot;urate2004&quot;           
+ [47] &quot;urate2005&quot;            &quot;urate2006&quot;           
+ [49] &quot;urate2007&quot;            &quot;urate2008&quot;           
+ [51] &quot;urate2009&quot;            &quot;urate2010&quot;           
+ [53] &quot;urate2011&quot;            &quot;urate2012&quot;           
+ [55] &quot;urate2013&quot;            &quot;urate2014&quot;           
+ [57] &quot;urate2015&quot;            &quot;epop2004&quot;            
+ [59] &quot;epop2005&quot;             &quot;epop2006&quot;            
+ [61] &quot;epop2007&quot;             &quot;epop2008&quot;            
+ [63] &quot;epop2009&quot;             &quot;epop2010&quot;            
+ [65] &quot;epop2011&quot;             &quot;epop2012&quot;            
+ [67] &quot;epop2013&quot;             &quot;epop2014&quot;            
+ [69] &quot;epop2015&quot;             &quot;zage18_24&quot;           
+ [71] &quot;zage45_59&quot;            &quot;zage25_29&quot;           
+ [73] &quot;zage60&quot;               &quot;dlmig&quot;               
+ [75] &quot;zshi61_ACD&quot;           &quot;zshi61_F&quot;            
+ [77] &quot;zshi61_GHI&quot;           &quot;zshi61_JKO&quot;          
+ [79] &quot;zshi61_LMN&quot;           &quot;zshi71_ACD&quot;          
+ [81] &quot;zshi71_F&quot;             &quot;zshi71_GHI&quot;          
+ [83] &quot;zshi71_JKO&quot;           &quot;zshi71_LMN&quot;          
+ [85] &quot;zshi81_ACD&quot;           &quot;zshi81_F&quot;            
+ [87] &quot;zshi81_GHI&quot;           &quot;zshi81_JKO&quot;          
+ [89] &quot;zshi81_LMN&quot;           &quot;zshi91_ACD&quot;          
+ [91] &quot;zshi91_F&quot;             &quot;zshi91_GHI&quot;          
+ [93] &quot;zshi91_JKO&quot;           &quot;zshi91_LMN&quot;          
+ [95] &quot;zshi01_ACD&quot;           &quot;zshi01_F&quot;            
+ [97] &quot;zshi01_GHI&quot;           &quot;zshi01_JKO&quot;          
+ [99] &quot;zshi01_LMN&quot;           &quot;zshi11_ACD&quot;          
+[101] &quot;zshi11_F&quot;             &quot;zshi11_GHI&quot;          
+[103] &quot;zshi11_JKO&quot;           &quot;zshi11_LMN&quot;          
+[105] &quot;dzshi_ACD&quot;            &quot;dzshi_F&quot;             
+[107] &quot;dzshi_GHI&quot;            &quot;dzshi_JKO&quot;           
+[109] &quot;dzshi_LMN&quot;            &quot;zshedu11_noqual&quot;     
+[111] &quot;zshedu11_l1&quot;          &quot;zshedu11_l2&quot;         
+[113] &quot;zshedu11_l3&quot;          &quot;zshedu11_l4&quot;         
+[115] &quot;wrkage&quot;               &quot;age16over&quot;           
+[117] &quot;zsh11_wrk&quot;           </code></pre>
+</div>
+<h3 id="part-a">Part (a)</h3>
+<p>Consider the variable b_migr11. It records the share (in %) of foreign born residents in an area (according to the last census, which was in 2011). There is no shortage of politicians claiming that the vote for Brexit was due to immigration particularly after 2005 when Eastern European countries joined the EU and their residents could freely move to countries like Britain. Hence, we would expect there to be a strong effect from the presence of foreigners in an area to the vote outcome. Explore this using the pct_leave and b_migr11 variables using graphical and regression analysis.</p>
+<p>Which way is the line of best fit sloping on your scatter plot? <select class='webex-solveme' data-answer='["Downwards"]'> <option></option> <option>Upwards</option> <option>Downwards</option></select></p>
+<p>What is the constant (rounded to 3 decimal places)? <input class='webex-solveme nospaces' size='6' data-answer='["58.553"]'/></p>
+<p>What is the slope coefficient (rounded to 3 decimal places)? <input class='webex-solveme nospaces' size='6' data-answer='["-0.504","-.504"]'/></p>
+<div class="webex-solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>b_migr11</span>, y<span class='op'>=</span><span class='va'>pct_leave</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="exercises6_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<p>Looking at the scatter plot it seems there is rather a negative relationship between the proportion of foreigners in an area and the support for leave; i.e. exactly the opposite of what one would expect. Regression analysis confirms this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>pct_leave</span><span class='op'>~</span><span class='va'>b_migr11</span>, data<span class='op'>=</span><span class='va'>df</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = pct_leave ~ b_migr11, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-30.4487  -5.3237   0.6445   5.6518  24.9745 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 58.55342    0.68603   85.35   &lt;2e-16 ***
+b_migr11    -0.50359    0.04668  -10.79   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 9.12 on 378 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.2354,    Adjusted R-squared:  0.2334 
+F-statistic: 116.4 on 1 and 378 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>We see that there is a significant negative relationship. 1 percentage point more foreigners in an area leads to 0.5 percentage point loss in support for the vote to leave.</p>
+</div>
+<h3 id="part-b">Part (b)</h3>
+<p>Various commentators have suggested that it might not be so much the level of immigrants as such, but the experience of a change due to more foreigners in an area that was driving the vote. The variable b_migr contains the share of immigrants in 1991.</p>
+<p>Construct a new variable recording the change in the share of immigrants between 2011 and 1992. Explore its impact by extending the regression model from part a).</p>
+<p>What is the coefficient on this new variable (rounded to 3 decimal places)? <input class='webex-solveme nospaces' size='5' data-answer='["0.926",".926"]'/></p>
+<p>Is it statistically significant? <select class='webex-solveme' data-answer='["Yes"]'> <option></option> <option>No</option> <option>Yes</option></select></p>
+<div class="webex-solution">
+<button>
+Answer:
+</button>
+<p>We can construct the change in migration shares as:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span><span class='op'>[</span><span class='st'>"Db_migr"</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>df</span><span class='op'>$</span><span class='va'>b_migr11</span><span class='op'>-</span><span class='va'>df</span><span class='op'>$</span><span class='va'>b_migr</span>
+</code></pre>
+</div>
+</div>
+<p>We can then regress</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>pct_leave</span><span class='op'>~</span><span class='va'>Db_migr</span><span class='op'>+</span><span class='va'>b_migr11</span>, data<span class='op'>=</span><span class='va'>df</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = pct_leave ~ Db_migr + b_migr11, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-30.2777  -4.4700   0.6883   5.8477  28.5925 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  58.6970     0.6703  87.566  &lt; 2e-16 ***
+Db_migr       0.9259     0.2078   4.454 1.11e-05 ***
+b_migr11     -1.0987     0.1412  -7.783 6.86e-14 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 8.901 on 377 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.2736,    Adjusted R-squared:  0.2698 
+F-statistic:    71 on 2 and 377 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>It seems that indeed the change in the migration share has a strong positive and significant impact on the leave share. Notice also that the share of migrants in 2011 now becomes larger as well. This is because the areas with higher increase in foreigners are also the areas with a higher share of foreigners (e.g. like London). Consequently, in the previous univariate regression the b_migr11 coefficient suffered from an upward bias.</p>
+<p><span class="math display">\[LeaveShare = \beta_{0}+\beta_{1}MShare_{2011}+\beta_{2}(MShare_{2011}-MShare_{1991})+\epsilon\]</span></p>
+</div>
+<h3 id="part-c">Part (c)</h3>
+<p>Work out the change in an area’s leave percentage if the 2011 migrant share would move to back to its level in 1991 in every area.</p>
+<p>According to your model from part (b), what would have happened to the vote if there would not have been any change in the share of migrants between 1991 and 2011? Support for Brexit would <select class='webex-solveme' data-answer='["Increase"]'> <option></option> <option>Decrease</option> <option>Increase</option></select></p>
+<p>In how many areas would the vote flip from a majority support for Brexit to a majority support for Remain? <input class='webex-solveme nospaces' size='1' data-answer='["0"]'/></p>
+<div class="webex-solution">
+<button>
+Answer:
+</button>
+<p>Note that the impact of changing the 2011 migrant share is a combination of the factors found in the previous section i.e. reducing the migrant share by one percentage point leads to a change in the leave share of <span class="math inline">\(-(\beta_{1}+\beta_{2})=-(-1.099+0.926)=0.173\)</span> percentage points. In other words, it would seem that a reversal in migrant presence would tend to lead to an increase in the support for Brexit, rather than an increase in the support for remain. Consequently, in no area would be find a flip in the vote from majority support for Brexit to remain.</p>
+</div>
+<h3 id="part-d">Part (d)</h3>
+<p>Can you think of any reason why the estimates in (b) might not adequately reflect the causal impact of immigration on the vote? What are plausible confounding forces? <select class='webex-solveme' data-answer='["Economic opportunity"]'> <option></option> <option>Aging population (more boomers)</option> <option>Economic opportunity</option></select></p>
+<div class="webex-solution">
+<button>
+Answer:
+</button>
+<p>One reason could be as follows: an important factor that drives immigration is economic opportunity. Hence, it is quite likely that immigration is higher in areas of the country where economic growth was higher. This could mean that there is a positive correlation between the errors and immigration which could imply a downward bias in the estimate of the coefficient on immigration. This in turn could in principle be an explanation for why we find a negative coefficient for the immigration variable (i.e. immigration in 2011 has actually a positive effect on support for leave but we fail to detect it because it is conflated by the more substantial negative effect of economic conditions on the leave vote).</p>
+</div>
+<h3 id="part-e">Part (e)</h3>
+<p>The dataset contains a large number of additional characteristics about a local area. Which variable would you add to your model from part b) to test the alternative explanation mentioned in d)? <select class='webex-solveme' data-answer='["Unemployment"]'> <option></option> <option>Number of Scottish people</option> <option>Share of people living in cities</option> <option>Unemployment</option></select></p>
+<div class="webex-solution">
+<button>
+Answer:
+</button>
+<p>We can explore the point made in answer d) by using unemployment as an additional control variable. Below we include both the level of the unemployment rate in 2004 and the change in in the rate between 2011 and 2004.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span><span class='op'>[</span><span class='st'>"Durate"</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>df</span><span class='op'>$</span><span class='va'>urate2011</span><span class='op'>-</span><span class='va'>df</span><span class='op'>$</span><span class='va'>urate2004</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>pct_leave</span><span class='op'>~</span><span class='va'>Db_migr</span> <span class='op'>+</span> <span class='va'>b_migr11</span> <span class='op'>+</span> <span class='va'>Durate</span> <span class='op'>+</span> <span class='va'>urate2004</span>, data<span class='op'>=</span><span class='va'>df</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = pct_leave ~ Db_migr + b_migr11 + Durate + urate2004, 
+    data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-27.9548  -4.3850   0.6518   5.1247  19.8195 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  55.7178     1.3368  41.681  &lt; 2e-16 ***
+Db_migr       0.9224     0.2165   4.260 2.60e-05 ***
+b_migr11     -1.0015     0.1453  -6.894 2.42e-11 ***
+Durate        1.0426     0.1781   5.854 1.08e-08 ***
+urate2004    -0.3586     0.2610  -1.374     0.17    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 8.393 on 362 degrees of freedom
+  (14 observations deleted due to missingness)
+Multiple R-squared:  0.3543,    Adjusted R-squared:  0.3471 
+F-statistic: 49.65 on 4 and 362 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>Note that including the unemployment variables does not change the migration variables by much, which suggests that the economic conditions are not conflating the results on immigration. That said, note that the net negative effect of b_migr11 (coefficient for b_migr11+ coefficient for Db_migr) is slightly less negative than in in (b) which would be consistent with a slight conflation of the immigration effect by economic factors.</p>
+<p>Also, note that the change in the unemployment rate has a high and significant coefficient. If the unemployment rate goes up by 1 percentage point the support for leave goes up by about 1 percentage point as well. Hence, it might be more useful to consider economic conditions as a factor that has been driving the vote rather than recent immigration.</p>
+</div>
+<h1 id="exercise-6.2">Exercise 6.2</h1>
+<p>The dataset data/prod.dta contains production data for various companies from 1979 to 1986.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://haven.tidyverse.org'>haven</a></span><span class='op'>)</span>
+<span class='va'>prod</span><span class='op'>=</span><span class='fu'><a href='https://haven.tidyverse.org/reference/read_dta.html'>read_dta</a></span><span class='op'>(</span><span class='st'>"https://www.dropbox.com/sh/rqmo1hvij1veff0/AACD9OHn_yCnKFAX7hbEASVha/prod.dta?dl=1"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>prod</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;year&quot;      &quot;id&quot;        &quot;go&quot;        &quot;m&quot;         &quot;l&quot;        
+[6] &quot;k&quot;         &quot;sic3dig&quot;   &quot;countyear&quot; &quot;va&quot;       </code></pre>
+</div>
+<h3 id="part-a-1">Part (a)</h3>
+<p>Examine the data using a Cobb-Douglas production function in terms of value added; i.e. regress ln value added on ln capital and ln labour (va contains the value added, k the capital stock and l labour all not in logs). On the basis of the regression examine the hypothesis that the production function has constant returns to scale (i.e. the labour and capital coefficients would add ot 1).</p>
+<p>The hypothesis is <select class='webex-solveme' data-answer='["Rejected"]'> <option></option> <option>Supported</option> <option>Rejected</option></select></p>
+<div class="webex-solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>prod</span><span class='op'>$</span><span class='va'>year</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>prod</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>
+<span class='va'>mod1</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>va</span><span class='op'>)</span><span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>k</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>l</span><span class='op'>)</span><span class='op'>+</span><span class='va'>year</span>, <span class='va'>prod</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mod1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + year, data = prod)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.7397 -0.4336  0.0305  0.4477  2.1339 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.985474   0.128579  23.219   &lt;2e-16 ***
+log(k)       0.346498   0.021273  16.288   &lt;2e-16 ***
+log(l)       0.938894   0.038330  24.495   &lt;2e-16 ***
+year80       0.036981   0.082998   0.446   0.6560    
+year81       0.141971   0.083009   1.710   0.0875 .  
+year82       0.092141   0.082992   1.110   0.2671    
+year83       0.005795   0.082994   0.070   0.9443    
+year84       0.035601   0.083003   0.429   0.6681    
+year85      -0.061518   0.083138  -0.740   0.4595    
+year86       0.108689   0.083340   1.304   0.1924    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.7091 on 1158 degrees of freedom
+Multiple R-squared:  0.7846,    Adjusted R-squared:  0.7829 
+F-statistic: 468.6 on 9 and 1158 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-forge.r-project.org/projects/car/'>car</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://cran.r-project.org/package=plm'>plm</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/car/man/linearHypothesis.html'>linearHypothesis</a></span><span class='op'>(</span><span class='va'>mod1</span>,<span class='st'>"log(k)+log(l)=1"</span>,vcov<span class='op'>=</span><span class='va'>vcovHC</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+log(k)  + log(l) = 1
+
+Model 1: restricted model
+Model 2: log(va) ~ log(k) + log(l) + year
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F    Pr(&gt;F)    
+1   1159                        
+2   1158  1 136.16 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>We turn year into a categorical (factor) variable. Treating year as a categorical variable will calculate effect of each individual year - i.e. what impact on the target variable was on average in a given year.</p>
+<p>We then go on to test the hypothesis that the production function has constant returns to scale, formulated as log(k)+log(l)=1. We want to tell R to use robust standard errors and therefore we need to include vcov=vcovHC. We introduce this to deal with heteroskedasticity.</p>
+<p>We need to install and load two packages (package “car”, which includes the function linearHypothesis and package “plm”, which includes our robust covariance matrix estimators, including vcovHC).</p>
+<p>Constant returns are clearly rejected.</p>
+</div>
+<h3 id="part-b-1">Part (b)</h3>
+<p>The variable sic3dig contains an industry classifier which groups the firms into 17 industries.</p>
+<p>Why might it be useful to include industry classifiers in order to estimate the production function better? <select class='webex-solveme' data-answer='["It could reduce bias"]'> <option></option> <option>It will increase the R^2 of the model</option> <option>It could reduce bias</option></select></p>
+<p>Re-estimate the production function controlling for industry. Does your assessment about constant returns to scale change based on this new estimate? <select class='webex-solveme' data-answer='["No"]'> <option></option> <option>Yes</option> <option>No</option></select></p>
+<div class="webex-solution">
+<button>
+Answer:
+</button>
+<p>Typically the residual from a production function estimation is interpreted as productivity. However, it is plausible that more productive firms will want to employ more production factors. This might lead to a correlation between residuals and the explanatory variables which could lead to biases. A big part of that might come from variations between sectors; i.e. some sectors are just more productive and profitable and those will also be the sectors that attract more capital and other production factors.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>prod</span><span class='op'>$</span><span class='va'>sic3dig</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>prod</span><span class='op'>$</span><span class='va'>sic3dig</span><span class='op'>)</span>
+<span class='va'>mod2</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>va</span><span class='op'>)</span><span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>k</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>l</span><span class='op'>)</span><span class='op'>+</span><span class='va'>year</span><span class='op'>+</span><span class='va'>sic3dig</span>, <span class='va'>prod</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mod2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + year + sic3dig, data = prod)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.88207 -0.40007  0.05372  0.44165  1.92283 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  3.216195   0.134458  23.920  &lt; 2e-16 ***
+log(k)       0.285436   0.022608  12.625  &lt; 2e-16 ***
+log(l)       0.995616   0.038889  25.602  &lt; 2e-16 ***
+year80       0.036104   0.077877   0.464 0.643019    
+year81       0.142005   0.077888   1.823 0.068537 .  
+year82       0.094111   0.077871   1.209 0.227085    
+year83       0.007594   0.077874   0.098 0.922338    
+year84       0.032116   0.077884   0.412 0.680161    
+year85      -0.071111   0.078036  -0.911 0.362352    
+year86       0.093891   0.078264   1.200 0.230517    
+sic3dig321  -0.107406   0.079196  -1.356 0.175304    
+sic3dig322   0.155755   0.079807   1.952 0.051224 .  
+sic3dig323   0.847057   0.239067   3.543 0.000411 ***
+sic3dig324   0.034193   0.124769   0.274 0.784093    
+sic3dig331  -0.175586   0.085783  -2.047 0.040900 *  
+sic3dig332   0.260137   0.085636   3.038 0.002438 ** 
+sic3dig341   0.733683   0.176477   4.157 3.46e-05 ***
+sic3dig342   0.035795   0.095630   0.374 0.708245    
+sic3dig351   1.297901   0.175805   7.383 2.98e-13 ***
+sic3dig352   0.597134   0.102678   5.816 7.84e-09 ***
+sic3dig355   0.509182   0.237587   2.143 0.032313 *  
+sic3dig356   0.195583   0.095147   2.056 0.040050 *  
+sic3dig369  -0.239435   0.101992  -2.348 0.019065 *  
+sic3dig371   0.771417   0.139946   5.512 4.38e-08 ***
+sic3dig381   0.174591   0.071427   2.444 0.014663 *  
+sic3dig383   0.367663   0.140038   2.625 0.008769 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.6653 on 1142 degrees of freedom
+Multiple R-squared:  0.813, Adjusted R-squared:  0.8089 
+F-statistic: 198.5 on 25 and 1142 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/car/man/linearHypothesis.html'>linearHypothesis</a></span><span class='op'>(</span><span class='va'>mod2</span>, <span class='st'>"log(k)+log(l)=1"</span>, vcov<span class='op'>=</span><span class='va'>vcovHC</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+log(k)  + log(l) = 1
+
+Model 1: restricted model
+Model 2: log(va) ~ log(k) + log(l) + year + sic3dig
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df     F    Pr(&gt;F)    
+1   1143                       
+2   1142  1 130.6 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>i.e. the test continues to be rejected. Consequently, we don’t find constant returns to scale.</p>
+</div>
+<h3 id="part-c-1">Part (c)</h3>
+<p>Which of the 17 industries has the largest number of observations? <select class='webex-solveme' data-answer='["311"]'> <option></option> <option>381</option> <option>383</option> <option>311</option></select></p>
+<p>Lets pick the first two industries that appear in our table, 311 and 321. For each of the two industries separately, estimate a Cobb-Douglas production function.</p>
+<p>Would you say the functions are very different in the two industries? <select class='webex-solveme' data-answer='["Yes"]'> <option></option> <option>No</option> <option>Yes</option></select></p>
+<div class="webex-solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>prod</span><span class='op'>$</span><span class='va'>sic3dig</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+311 321 322 323 324 331 332 341 342 351 352 355 356 369 371 381 383 
+400  88  88   8  32  72  72  16  56  16  48   8  56  48  24 112  24 </code></pre>
+</div>
+<p>The table reveals that the industry with the largest number of observations is 311.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
+<span class='va'>mod311</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>va</span><span class='op'>)</span><span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>k</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>l</span><span class='op'>)</span><span class='op'>+</span><span class='va'>year</span>, <span class='va'>prod</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sic3dig</span><span class='op'>==</span><span class='st'>"311"</span><span class='op'>)</span><span class='op'>)</span> 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mod311</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + year, data = prod %&gt;% 
+    filter(sic3dig == &quot;311&quot;))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.30248 -0.41505  0.07536  0.45801  1.73235 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.56445    0.20804  12.327  &lt; 2e-16 ***
+log(k)       0.41456    0.04113  10.079  &lt; 2e-16 ***
+log(l)       0.80244    0.07461  10.756  &lt; 2e-16 ***
+year80       0.08684    0.13017   0.667 0.505074    
+year81       0.26948    0.13017   2.070 0.039090 *  
+year82       0.39208    0.13033   3.008 0.002798 ** 
+year83       0.23738    0.13065   1.817 0.070003 .  
+year84       0.22519    0.13086   1.721 0.086078 .  
+year85       0.07980    0.13209   0.604 0.546113    
+year86       0.48876    0.13271   3.683 0.000263 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.6508 on 390 degrees of freedom
+Multiple R-squared:  0.8318,    Adjusted R-squared:  0.8279 
+F-statistic: 214.2 on 9 and 390 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mod321</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>va</span><span class='op'>)</span><span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>k</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>l</span><span class='op'>)</span><span class='op'>+</span><span class='va'>year</span>, <span class='va'>prod</span><span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sic3dig</span><span class='op'>==</span><span class='st'>"321"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mod321</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + year, data = prod %&gt;% 
+    filter(sic3dig == &quot;321&quot;))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.12790 -0.32740  0.02603  0.38229  0.95998 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  3.61053    0.41939   8.609 6.19e-13 ***
+log(k)       0.20105    0.07984   2.518   0.0138 *  
+log(l)       1.04942    0.13980   7.507 8.45e-11 ***
+year80       0.16420    0.22541   0.728   0.4685    
+year81       0.17994    0.22527   0.799   0.4268    
+year82       0.17906    0.22650   0.791   0.4316    
+year83       0.22520    0.22623   0.995   0.3226    
+year84      -0.03102    0.22546  -0.138   0.8909    
+year85      -0.16535    0.22671  -0.729   0.4680    
+year86       0.26596    0.22574   1.178   0.2423    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.5282 on 78 degrees of freedom
+Multiple R-squared:  0.8231,    Adjusted R-squared:  0.8027 
+F-statistic: 40.32 on 9 and 78 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>In each case the labor coefficient is larger than the capital coefficient. However, the numbers are not necessarily very close. In the case of sector 321 the capital coefficient is only half of the coefficient for sector 311. Still, to make sure they are statistically different it’s good to do a formal test which is the next question.</p>
+</div>
+<h3 id="part-d-1">Part (d)</h3>
+<p>Conduct a hypothesis test to compare the two functions formally. Note, that for that you need to estimate both functions using a single regression model.</p>
+<p>Are the coefficients statistically different from zero? <select class='webex-solveme' data-answer='["No"]'> <option></option> <option>Yes</option> <option>No</option></select></p>
+<p>Could they be jointly significant? <select class='webex-solveme' data-answer='["Yes"]'> <option></option> <option>No</option> <option>Yes</option></select></p>
+<div class="webex-solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mod_inter</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>va</span><span class='op'>)</span><span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>k</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>l</span><span class='op'>)</span><span class='op'>+</span><span class='va'>sic3dig</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>k</span><span class='op'>)</span><span class='op'>+</span><span class='va'>sic3dig</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>l</span><span class='op'>)</span><span class='op'>+</span><span class='va'>sic3dig</span><span class='op'>+</span><span class='va'>year</span>, <span class='va'>prod</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sic3dig</span><span class='op'>==</span><span class='st'>"311"</span><span class='op'>|</span><span class='va'>sic3dig</span><span class='op'>==</span><span class='st'>"321"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mod_inter</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = log(va) ~ log(k) + log(l) + sic3dig * log(k) + sic3dig * 
+    log(l) + sic3dig + year, data = prod %&gt;% filter(sic3dig == 
+    &quot;311&quot; | sic3dig == &quot;321&quot;))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.28294 -0.41035  0.05918  0.41383  1.74454 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        2.60151    0.19647  13.242  &lt; 2e-16 ***
+log(k)             0.40941    0.03950  10.364  &lt; 2e-16 ***
+log(l)             0.81146    0.07167  11.322  &lt; 2e-16 ***
+sic3dig321         0.86072    0.49179   1.750 0.080733 .  
+year80             0.10020    0.11394   0.879 0.379609    
+year81             0.25290    0.11392   2.220 0.026894 *  
+year82             0.35202    0.11414   3.084 0.002161 ** 
+year83             0.23322    0.11434   2.040 0.041942 *  
+year84             0.17799    0.11443   1.555 0.120516    
+year85             0.03436    0.11543   0.298 0.766105    
+year86             0.44649    0.11578   3.856 0.000131 ***
+log(k):sic3dig321 -0.18972    0.09998  -1.898 0.058355 .  
+log(l):sic3dig321  0.20729    0.17579   1.179 0.238910    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.6291 on 475 degrees of freedom
+Multiple R-squared:  0.8316,    Adjusted R-squared:  0.8274 
+F-statistic: 195.5 on 12 and 475 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>coeftest</span><span class='op'>(</span><span class='va'>mod_inter</span>, vcov<span class='op'>=</span><span class='va'>vcovHC</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+t test of coefficients:
+
+                   Estimate Std. Error t value  Pr(&gt;|t|)    
+(Intercept)        2.601515   0.210652 12.3498 &lt; 2.2e-16 ***
+log(k)             0.409406   0.048051  8.5202 &lt; 2.2e-16 ***
+log(l)             0.811456   0.087765  9.2458 &lt; 2.2e-16 ***
+sic3dig321         0.860720   0.456747  1.8845 0.0601137 .  
+year80             0.100202   0.108075  0.9272 0.3543179    
+year81             0.252903   0.106088  2.3839 0.0175224 *  
+year82             0.352021   0.102787  3.4248 0.0006687 ***
+year83             0.233218   0.112821  2.0672 0.0392611 *  
+year84             0.177992   0.114145  1.5594 0.1195786    
+year85             0.034356   0.117276  0.2929 0.7696888    
+year86             0.446495   0.109287  4.0855 5.161e-05 ***
+log(k):sic3dig321 -0.189720   0.098068 -1.9346 0.0536363 .  
+log(l):sic3dig321  0.207288   0.178478  1.1614 0.2460545    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>We continue to work with a subset of our data. We introduce interaction terms into our model – multiplying our logged labor variable with the sector code and the logged capital variable with the sector code. The t-test on these interaction terms is what we are interested in. Remember interaction terms should be interpreted as “effect modifiers” - we are interested in whether the industry modifies the relationship between labour/capital and value added.</p>
+<p>As before, we are concerned about heteroskedascity. We therefore perform a coeftest, specifying we want robust standard errors. It turns out the coefficients are not statistically different; i.e. the t-tests for the interaction coefficients are not significantly different from zero. However, it could still be the case that they are jointly significant (e.g. there could be a high degree of collinearity in the interaction variables.)</p>
+<p>We can examine that with the linearHypothesis command:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/car/man/linearHypothesis.html'>linearHypothesis</a></span><span class='op'>(</span><span class='va'>mod_inter</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"log(k):sic3dig321=0"</span>,<span class='st'>"log(l):sic3dig321=0"</span><span class='op'>)</span>, vcov<span class='op'>=</span><span class='va'>vcovHC</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+log(k):sic3dig321 = 0
+log(l):sic3dig321 = 0
+
+Model 1: restricted model
+Model 2: log(va) ~ log(k) + log(l) + sic3dig * log(k) + sic3dig * log(l) + 
+    sic3dig + year
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F Pr(&gt;F)  
+1    477                   
+2    475  2 2.4557 0.0869 .
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>This suggests that the production function for sector 321 is weakly significantly different from that in sector 311.</p>
+</div>
+<h3 id="part-e-1">Part (e)</h3>
+<p>Re-estimate your extended model from d) by allowing for fixed effects.</p>
+<p>Does this change your assessment concerning the hypothesis that the production functions are identical in the two industries? <select class='webex-solveme' data-answer='["Yes"]'> <option></option> <option>No</option> <option>Yes</option></select></p>
+<div class="webex-solution">
+<button>
+Answer:
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mod_fe</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/pkg/plm/man/plm.html'>plm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>va</span><span class='op'>)</span><span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>k</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>l</span><span class='op'>)</span><span class='op'>+</span><span class='va'>sic3dig</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>k</span><span class='op'>)</span><span class='op'>+</span><span class='va'>sic3dig</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>l</span><span class='op'>)</span><span class='op'>+</span><span class='va'>sic3dig</span><span class='op'>+</span><span class='va'>year</span>, index<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"id"</span>,<span class='st'>"year"</span><span class='op'>)</span>,data<span class='op'>=</span><span class='va'>prod</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sic3dig</span><span class='op'>==</span><span class='st'>"311"</span><span class='op'>|</span><span class='va'>sic3dig</span><span class='op'>==</span><span class='st'>"321"</span><span class='op'>)</span>, model<span class='op'>=</span><span class='st'>"within"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mod_fe</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Oneway (individual) effect Within Model
+
+Call:
+plm(formula = log(va) ~ log(k) + log(l) + sic3dig * log(k) + 
+    sic3dig * log(l) + sic3dig + year, data = prod %&gt;% filter(sic3dig == 
+    &quot;311&quot; | sic3dig == &quot;321&quot;), model = &quot;within&quot;, index = c(&quot;id&quot;, 
+    &quot;year&quot;))
+
+Balanced Panel: n = 61, T = 8, N = 488
+
+Residuals:
+      Min.    1st Qu.     Median    3rd Qu.       Max. 
+-1.5714319 -0.2166290  0.0028078  0.2322813  1.3800158 
+
+Coefficients:
+                  Estimate Std. Error t-value  Pr(&gt;|t|)    
+log(k)            0.308997   0.134568  2.2962  0.022160 *  
+log(l)            0.359801   0.118239  3.0430  0.002491 ** 
+year80            0.102850   0.079814  1.2886  0.198247    
+year81            0.251459   0.079807  3.1508  0.001746 ** 
+year82            0.344801   0.080830  4.2657 2.469e-05 ***
+year83            0.230999   0.082761  2.7911  0.005494 ** 
+year84            0.183991   0.085504  2.1518  0.031985 *  
+year85            0.079124   0.090678  0.8726  0.383396    
+year86            0.477635   0.094902  5.0329 7.204e-07 ***
+log(k):sic3dig321 0.238587   0.236232  1.0100  0.313097    
+log(l):sic3dig321 0.138285   0.204708  0.6755  0.499719    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Total Sum of Squares:    96.276
+Residual Sum of Squares: 80.641
+R-Squared:      0.1624
+Adj. R-Squared: 0.019445
+F-statistic: 7.33249 on 11 and 416 DF, p-value: 1.6864e-11</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/car/man/linearHypothesis.html'>linearHypothesis</a></span><span class='op'>(</span><span class='va'>mod_fe</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"log(k):sic3dig321=0"</span>,<span class='st'>"log(l):sic3dig321=0"</span><span class='op'>)</span>, vcov<span class='op'>=</span><span class='va'>vcovHC</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+log(k):sic3dig321 = 0
+log(l):sic3dig321 = 0
+
+Model 1: restricted model
+Model 2: log(va) ~ log(k) + log(l) + sic3dig * log(k) + sic3dig * log(l) + 
+    sic3dig + year
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df  Chisq Pr(&gt;Chisq)
+1    418                     
+2    416  2 1.5389     0.4633</code></pre>
+</div>
+<p>We continue to work with the same subset of our data but introduce a different model here. Instead of OLS regression, we use a fixed effects panel regression. This allows us to control for differences between firms that we cannot observe by including firm-specific dummies (that is why it is sometimes called Least Squares Dummy Variable Model).</p>
+<p>As for lm() we have to specify the dependent and independent variables and the data to be used in our call of plm(). We also need to include a vector of names of entity and time ID variables to the argument index. Since the fixed effects estimator is also called the within estimator, we set model = “within”.</p>
+<p>It seems that once we allow for fixed effects the interaction coefficients are no longer significant even in a joint significance test.</p>
+</div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!--radix_placeholder_site_after_body-->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+    
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+  
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+  
+  var cl = this.classList
+  
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+  
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+  
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+  
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+  }
+
+  update_total_correct();
+}
+
+</script>
+
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+  <h3 id="citation">Citation</h3>
+  <p>For attribution, please cite this work as</p>
+  <pre class="citation-appendix short">Martin (2021, Oct. 28). Datastories Hub: Exercises 6. Retrieved from https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/</pre>
+  <p>BibTeX citation</p>
+  <pre class="citation-appendix long">@misc{martin2021exercises,
+  author = {Martin, Ralf},
+  title = {Datastories Hub: Exercises 6},
+  url = {https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/},
+  year = {2021}
+}</pre>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
