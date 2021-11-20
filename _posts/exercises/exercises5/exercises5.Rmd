@@ -56,9 +56,33 @@ The data set contains two dummy variables (0-1 variables) for gender (female) an
 Do gender and computer skills look balanced – i.e. random -  across race groups? `r mcq(c("No", answer = "Yes"))`
 
 `r hide("Answer:")`
+
+
+
 ```{r, echo = TRUE}
+  # This can be answered with the prop.table command
+
+  
   table(data$female,data$black)
   prop.table(table(data$female,data$black))
+  
+  
+
+  # Alternatively you can compute (using the dplyr syntax only):
+  data %>% group_by(black, female) %>% 
+    summarise(n=n()) %>% 
+    group_by(female) %>%
+    mutate(black_share_within_gender=n/sum(n)) 
+  
+  
+  data %>% group_by(black, female) %>% 
+    summarise(n=n()) %>% 
+    group_by(black) %>% 
+    mutate(female_share_within_ethnicity=n/sum(n)) %>% 
+    arrange(female)    # note that arrange is dplyr's sort command
+
+  
+  
 ```
 There are many more female than male CVs (i.e. about 38%+38%=76% of the sample are female). However, gender seems not all correlated with race; i.e. the split between black and non black is virtually half for both men and women.
 
@@ -145,9 +169,12 @@ Do you find differences in call back rates by race?  `r mcq(c("No", answer = "Ye
   prop.table(table(data$call,data$black))
   prop.table(table(data$call,data$black),2) 
   
-  # Note that by specifying 2 we report proportions by column (if you specify 1 it reports proportions by rows)
+  # Note that by specifying 2 we report proportions by column; i.e. it divides
+  # the number of cases falling in a cell by the total number in a column.
+  # (if you specify 1 or omit the parameter it reports proportions by rows)
   
 ```
+
 We see that most CVs never received a call back (i.e. overall only 8.05% received a call back). 
 
 `r unhide()`
@@ -159,7 +186,7 @@ What do you conclude from the results of the Bertand and Mullainathan experiment
 Are black people as likely to receive a call back as white people? `r mcq(c("Yes", answer = "No"))`
 
 `r hide("Answer:")`
-There seems to be a clear difference between the races. Whereas for white people call back rates where above average (9.65%) they were below average for black people (6.45%) suggesting a racial bias by employers.
+There seems to be a clear difference between the different ethnic backgrounds. Whereas for white people call back rates where above average (9.65%) they were below average for black people (6.45%) suggesting a racial bias by employers.
 
 `r unhide()`
 
@@ -178,6 +205,7 @@ Develop a regression to examine if the difference in interview callbacks between
 What is the code for the simplest linear regression (we call this model "mod")? mod <- `r fitb("lm(call~black,data)", ignore_case = TRUE, ignore_ws = TRUE)`
 
 Whata is the code for the simplest logit regression (we call this model "mod2")? mod2 <- `r fitb("glm(call~black,data,family=binomial)", ignore_case = TRUE, ignore_ws = TRUE)`
+
 
 `r hide("Answer:")`
 

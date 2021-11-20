@@ -203,7 +203,7 @@ auto_summary
 
 ### Part (`r part()`)
 The summary statistics in the previous part are not displayed very nice.
-The dplyr and tidyr offer alot of nice functions to reshape any output
+The dplyr and tidyr offer a lot of nice functions to reshape any output
 in whichever way you want. Below is a somewhat elaborate example. Below I am explaining step by step what it does. However, before you look at my explanation, maybe you can run those commands yourself step by step and figure what they do?
 
 ```{r, echo=TRUE}
@@ -246,7 +246,6 @@ where the first column is the key (i.e. a name or label) for the value that foll
 ```
 
 The separate command splits the `stat` column in two new columns, `var` and `stat` where `sep="_"` tells R where to separate the original `stat` column.
-
 
 
 ```{r,echo=TRUE}
