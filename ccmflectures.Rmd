@@ -554,6 +554,13 @@ You find a template with further instructions [here](https://mondpanther.github.
 
 - [Past Exam 3](https://www.dropbox.com/s/e05obku5roeyu97/Quantitative%20Methods%20Exam%202017%20%28final%20with%20solutions%29.pdf?dl=1)
 
+
+
+To prepare also look at [Exercises 10](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises10/)
+
+
+
+
 `r unhide()`
 
 

@@ -541,6 +541,8 @@ You find a template with further instructions [here](https://mondpanther.github.
 - [Graded Assignment 2018](https://www.dropbox.com/s/j2p6je4eo98wubi/Graded%20Exercise%20Set%202018%20-%20with%20solutions.docx?dl=1)
 
 
+To prepare also look at [Exercises 10](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises10/)
+
 
 
 ## Datasets for past graded papers (and more)

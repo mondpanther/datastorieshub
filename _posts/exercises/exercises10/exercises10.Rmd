@@ -608,6 +608,51 @@ Subsidies are given to disadvantaged areas. Hence it could be the case that a po
 `r unhide()`
 
 
+(c)	A research team of Imperial and LSE researchers have developed an instrument which is recorded in the variable `DDDxnivav`. Run a regression of the variable `DDDNGE` on this instrumental variable. What do you find and what does this tell you about the validity of the instrument? Can you implement further checks that would help you to understand if you are dealing with a valid instrument?
+
+`r hide()`
+
+```{r}
+  summary(reg2<-lm(	 DDDNGE~DDDxnivav,up))
+
+```
+
+The regressions shows the first stage regression for that instrument. The instrument is significantly driving the explanatory variable of interest. This is promising, however to make sure we are not suffering from a weak instrument problem we need to check the  F-test of the hypothesis that the instrument has no effect on the explanatory variable. 
+
+For that we can use the `linearHypothesis` command as shown below. We see that the instrument is strongly (F statistic = 1172 > 10) correlated with the explanatory variable. Hence, as far as criterion 2 of an IV estimator is concerned this is a good instrument. Of course this tells us nothing about the other criteria which we cannot test with the data.
+
+
+```{r}
+  library(AER)
+  linearHypothesis(reg2,c("DDDxnivav=0"))
+  
+```
+
+
+
+`r unhide()`
+
+
+
+(d)	Implement the 2 Stage Least Squares estimator of the effect of support (as measured by `DDDNGE`) on unemployment. Do you find an estimate that is larger or smaller than the value you found in part (a)?  Can you motivate why? 
+
+
+`r hide()`
+
+We can use the `ivreg()` command:
+
+```{r}
+
+summary(reg3<-ivreg(DDDln1Punemp ~DDDNGE 	| DDDxnivav ,data=up))
+
+
+```
+
+
+We see that the effect of subsidies on unemployment growth is much stronger than in part a); i.e. now we have a coefficient of -.48.  This suggest that indeed in the OLS case we suffer from an upward bias because of a positive correlation between the error term and the subsidy variables; i.e. areas that have a higher growth of unemployment are more likely to get an increase in their subsidy levels.
+
+`r unhide()`
+
 # Exercise 10.8
 
 This question is based on an analysis of daily electricity consumption data for a sample of more than 1000 UK households from October 2018 until September 2020. Importantly, this includes the period from late March 2020 when the UK government first imposed strict lockdown measures. 

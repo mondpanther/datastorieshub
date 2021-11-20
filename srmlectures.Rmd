@@ -547,6 +547,9 @@ You find a template with further instructions [here](https://mondpanther.github.
 
 
 
+To prepare for the exam also see the extra exercises: [Exercises 10](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises10/)
+
+
 `r unhide()`
 
 
