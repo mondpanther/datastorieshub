@@ -127,7 +127,6 @@ lm(lnindex~cases+t,df) %>% summary()
 
 ## The case of Panel data
 
-
 ```{r,message=FALSE,echo=TRUE}
 statsbyday=read.csv("https://www.dropbox.com/s/e26qs4vfl4xjy99/statsbydlong.cvs?dl=1") %>%  mutate(date=as_date(date),week=round_date( date,  unit = "week"))
   #mutate(hoaxsh=hoax/tweets)
