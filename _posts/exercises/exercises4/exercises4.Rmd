@@ -196,7 +196,7 @@ Which cars, in terms of weight, tend to be more expensive? `r mcq(c("Lighter", a
 `r hide("Answer:")`
 ```{r, echo = TRUE}
   library(ggplot2)
-  ggplot(data, aes(x=price, y=weight)) + geom_point()
+  ggplot(data, aes(y=price, x=weight)) + geom_point()
 ```
 
 Heavier cars tend to be more expensive.
@@ -221,7 +221,7 @@ What is the slope coefficient? `r fitb(2.0441)`
 ### Part (c)
 What is the predicted price of a car weighing 2,500lb?  `r fitb(5103.449)`
 
-What is the predicted price of a car weighing 2,500lb?  `r fitb(8169.543)`
+What is the predicted price of a car weighing 4,000lb?  `r fitb(8169.543)`
 
 `r hide("Answer:")`
 ```{r, echo = TRUE}
@@ -234,6 +234,10 @@ Alternatively:
   mod$coefficients[[1]]+mod$coefficients[[2]]*2500
   mod$coefficients[[1]]+mod$coefficients[[2]]*4000
 ```
+
+i.e. with `mod$coefficients[[1]]` and `mod$coefficients[[2]]` you can extract the $\beta$ coefficients from the regression stored in the variable `mod`.
+
+
 `r unhide()`
 
 ### Part (d)

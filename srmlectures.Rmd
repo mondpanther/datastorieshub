@@ -209,6 +209,8 @@ You will not be able to analyse data effectively without being familiar with bas
 
 - [The definite guide to R Markdown](https://bookdown.org/yihui/rmarkdown/)
 
+- [R - A good friend with a difficult personality](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7063554/)
+
 
 `r unhide()`
 

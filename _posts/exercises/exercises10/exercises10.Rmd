@@ -23,7 +23,7 @@ editor_options:
 ```{r setup, include = FALSE, message=FALSE}
 library("webexercises")
 library(ggplot2)
-knitr::opts_chunk$set(fig.path='../../images/')
+#knitr::opts_chunk$set(fig.path='../../images/')
 ```
 
 
@@ -46,6 +46,7 @@ Provide an interpretation if $δ_0<0$ and $δ_1<0$.
 
 
 `r hide("Answer:")`
+
 <br>
 This is a linear model where the intercept men is $\beta_0$ and for women is $\beta_0+\delta_0 female$. The change in log wages for men is $\beta_1$ whereas for women it is $\beta_1+\delta_1 female$. Also note that because we have log wage as dependent variable, these coefficients can be interpreted as percentage changes in wage.
 If $δ_0<0$ and $δ_1<0$, this means that women earn less for a given level of education and also that the change in wage for a given change in education (i.e. the returns to education) are lower for women.
@@ -124,7 +125,7 @@ write.csv(df,"../../../../data/ets_thres_final.csv")
 ```{r,echo=TRUE}
 library(dplyr)
 df=read.csv("https://www.dropbox.com/s/urro3ty46kr4f7z/ets_thres_final.csv?dl=1")
-df=df %>% mutate(free=factor(nonfree),period=factor(period))
+df=df %>% mutate(nonfree=factor(nonfree),period=factor(period))
 head(df)
 
 lm(lnco2~nonfree,df) %>% summary()
@@ -189,6 +190,7 @@ We can control for the first issue by including `nonfree` as a control variable 
 ```{r, echo=TRUE}
 lm(lnco2~period+nonfree+period2Xnonfree,df) %>% summary()
 
+
 ```
 Hence, this changes the the coefficient for period2Xfree quite a bit; i.e. it would suggest that nonfree permit allocation reduces emissions by 16% only.
 
@@ -196,8 +198,83 @@ An alternative way of implementing that is via the `:` operator which interacts 
 
 
 ```{r , echo=TRUE}
-lm(lnco2~period+nonfree+period:nonfree,df) %>% summary()
+fm=lm(lnco2~period+nonfree+period:nonfree,df) 
+fm%>% summary()
+
+
+
+
+
+
 ```
+
+It's also instructive to look at this graphically:
+
+```{r,echo=FALSE}
+library(scales)
+
+p1free=fm[["coefficients"]][["(Intercept)"]]
+
+p2free=fm[["coefficients"]][["(Intercept)"]]+
+       fm[["coefficients"]][["period2"]]
+
+p1nonfree=fm[["coefficients"]][["(Intercept)"]]+
+  fm[["coefficients"]][["nonfree1"]]
+
+p2nonfree=fm[["coefficients"]][["(Intercept)"]]+
+  fm[["coefficients"]][["period2"]]+
+  fm[["coefficients"]][["nonfree1"]]+
+  fm[["coefficients"]][["period2:nonfree1"]]
+
+
+```
+
+
+```{r, echo=FALSE}
+ggplot(df,aes(x=year,y=lnco2,color=nonfree))+geom_jitter(height=0,width=0.2)+
+  scale_x_continuous(breaks= pretty_breaks())+
+  geom_vline(xintercept =2012.5,color="orange",size=2)+
+  
+  geom_segment(aes(x=2008, xend=2012.5, y=p1free, yend=p1free), colour="red")+
+  geom_segment(aes(x=2008, xend=2012.5, y=p1nonfree, yend=p1nonfree), colour="blue")+
+
+  geom_segment(aes(x=2012.5, xend=2017, y=p2free, yend=p2free), colour="red")+
+  geom_segment(aes(x=2012.5, xend=2017, y=p2nonfree, yend=p2nonfree), colour="blue")+
+
+  scale_colour_manual(values = c("red", "blue", "green"),name="Non Free")
+
+
+
+```
+
+zooming in:
+```{r,echo=FALSE}
+
+
+```
+
+```{r,echo=FALSE}
+dfx=df %>% filter(abs(lnco2-9.5)<.5)
+
+ggplot(dfx,aes(x=year,y=lnco2,color=nonfree))+geom_jitter(height=0,width=0.2)+
+  scale_x_continuous(breaks= pretty_breaks())+
+  geom_vline(xintercept =2012.5,color="orange",size=2)+
+  
+  geom_segment(aes(x=2008, xend=2012.5, y=p1free, yend=p1free), colour="red")+
+  geom_segment(aes(x=2008, xend=2012.5, y=p1nonfree, yend=p1nonfree), colour="blue")+
+
+  geom_segment(aes(x=2012.5, xend=2017, y=p2free, yend=p2free), colour="red")+
+  geom_segment(aes(x=2012.5, xend=2017, y=p2nonfree, yend=p2nonfree), colour="blue")+
+
+  
+  scale_colour_manual(values = c("red", "blue", "green"),name="Non Free")
+
+
+
+
+```
+
+
 `r unhide()`
 
 

@@ -554,6 +554,7 @@ You find a template with further instructions [here](https://mondpanther.github.
 
 - [Past Exam 3](https://www.dropbox.com/s/e05obku5roeyu97/Quantitative%20Methods%20Exam%202017%20%28final%20with%20solutions%29.pdf?dl=1)
 
+- [Past Exam 4](https://www.dropbox.com/s/8z2zdeqwxzttdt3/ccmf_final2020%20%28with%20solutions%29%20clean.docx?dl=1)
 
 
 To prepare also look at [Exercises 10](https://mondpanther.github.io/datastorieshub/posts/exercises/exercises10/)
@@ -580,9 +581,9 @@ path="https://mondpanther.github.io/datastorieshub/data/"
 full=paste0(path,file[[1]])
 
 
-```
 
-```{r echo = FALSE, results = "asis"}
+
+#```{r echo = FALSE, results = "asis"}
 
 for (i in seq(1,length(file))) {
   
