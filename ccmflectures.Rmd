@@ -484,7 +484,6 @@ You will get a brief introduction into Machine Learning. Compared to the rest of
 # Topic 9 - Time for Series
 
 
-
 `r hide("More...")`
 
 To do any data analysis we need different datapoints. Most data we looked at so far was cross sectional data; i.e. datapoints derived from several data units (e.g. individuals, countries, cities, firms). Alternatively, we might have data for just one data unit but over many different periods of time (e.g. years, quarters, days or even sometimes seconds). This creates some specific issues, which we will discuss. Given that time itself causes a form of confounding and correlation from one datapoint to the next, we might get some very biased estimates if we are not careful.  
