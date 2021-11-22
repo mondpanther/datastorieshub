@@ -93,8 +93,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-11-21"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-11-21"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-11-22"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-11-22"/>
   <meta name="article:author" content="Ralf Martin"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -112,7 +112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 10"]},{"type":"character","attributes":{},"value":["More exercises to help you become an econometrics superstar\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-11-21"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 10"]},{"type":"character","attributes":{},"value":["More exercises to help you become an econometrics superstar\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-11-22"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1459,7 +1459,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Exercises 10","description":"More exercises to help you become an econometrics superstar","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-21T00:00:00.000+00:00","citationText":"Martin, 2021"}
+{"title":"Exercises 10","description":"More exercises to help you become an econometrics superstar","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-22T00:00:00.000+00:00","citationText":"Martin, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1481,7 +1481,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br/>2021-11-21
+<br/>2021-11-22
 </div>
 
 <div class="d-article">
@@ -2657,7 +2657,153 @@ Solution
 </button>
 <p>This regression does not include controls for the calendar month. We find now a significantly negative estimate for the lockdown effect suggesting that consumption went down by 1.2 kWh because of lockdown. This is because the dataset stops in September 2020. Hence, the lockdown period considered coincides with the period of the year where less electricity is being consumed. When we are not including month dummies we are confounding this effect with the lockdown effect leading to a severely downward biased estimate</p>
 </div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 id="exercise-10.9">Exercise 10.9</h1>
+<p>Download the <a href="%22https://github.com/mondpanther/datastorieshub/raw/master/code/cigs.csv%22">cigs.csv</a> dataset. It contains data on cigarattes sales across US states for the years 1985 and 1995.</p>
+<ol type="a">
+<li>Run a regression of the log number packs sold <code>log(packs)</code> on the <code>log(price)</code>. Discuss the result and provide an interpretation of the coefficient on <code>log(price)</code>.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
+<span class='va'>cigs</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"https://github.com/mondpanther/datastorieshub/raw/master/code/cigs.csv"</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>packs</span><span class='op'>)</span><span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>price</span><span class='op'>)</span>,<span class='va'>cigs</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/magrittr/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = log(packs) ~ log(price), data = cigs)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.61893 -0.08318  0.00114  0.09374  0.52046 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  7.28600    0.30459  23.921  &lt; 2e-16 ***
+log(price)  -0.53280    0.06179  -8.623 1.55e-13 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.183 on 94 degrees of freedom
+Multiple R-squared:  0.4416,    Adjusted R-squared:  0.4357 
+F-statistic: 74.35 on 1 and 94 DF,  p-value: 1.552e-13</code></pre>
+</div>
+<p>The log(price) coefficient can be interpreted as the price elasticity of cigarette demand; i.e. 1% increase in price would lead to a 0.533 percent decline in demand.</p>
+</div>
+<ol start="2" type="a">
+<li>Can you think of reasons why the estimate from part (a) might be biased? Explain the direction of the bias you would expect.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>We would expect the state level price to be driven by both supply and demand. Suppose a state is economically less successful and therefore people have less money to spend on cigarettes. Such a state will have a lower cigarette demand for a given price. However, cigarette vendors might also decide to lower prices in such a state. This would introduce a positive correlation between income and prices leading to an upward bias in a simple price estimate as above.</p>
+</div>
+<ol start="3" type="a">
+<li>Cigarettes are often heavily taxed by governments. Somebody suggests that taxes could be used as an instrumental variable (IV) to help identifying the causal effect of price changes on demand and thereby the demand function. Discuss reasons why this could work as well as potential concerns why it could not work.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>To be a valid instrument taxes need to be un-correlated with any factors apart from price that are driving demand. This might be the case if taxes are set by government for largely other reasons (e.g. to find revenue or political ideology) or in response to factors only related to supply (e.g. a state where many producers are located might be more susceptible to lobbying by those producers).</p>
+<p>To be a valid instrument taxes also need to be a strong enough driver of prices. This is something we check. However, it is also theoretically plausible as long as producers pass on some of the tax to consumers. Of course, if demand is highly elastic this might not bet the case. Also, it could be that government behaviour is driven by demand; e.g. the presence of cigarette producers in a state could not only affect government policy but because many people work in the cigarette industry they are also avid consumers. In other words: a positive shock to cigarette demand would expplain low taxes. Hence, this would create a dowward bias when finding the true tax causal effect.</p>
+</div>
+<ol start="4" type="a">
+<li>Run a regression of the log of price on the log of tax. What does it tell you about the idea of using taxes on cigarettes as an instrument for price?</li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>first</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>price</span><span class='op'>)</span><span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>tax</span><span class='op'>)</span>,<span class='va'>cigs</span><span class='op'>)</span>
+<span class='va'>first</span><span class='op'><a href='https://rdrr.io/pkg/magrittr/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = log(price) ~ log(tax), data = cigs)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.28636 -0.10804  0.00304  0.09524  0.50400 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.16155    0.15615   13.84   &lt;2e-16 ***
+log(tax)     0.74773    0.04213   17.75   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.1465 on 94 degrees of freedom
+Multiple R-squared:  0.7701,    Adjusted R-squared:  0.7677 
+F-statistic:   315 on 1 and 94 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>This is the first stage regression; i.e. we regress prices on taxes. It shows that taxes are a highly significant driver of prices. Because we are dealing with a univariate model, there is no need to conduct a separate F test. We can look at the F-statistic that is reported as part of the standard regression summary. We see that with 315 it is sufficiently high ( larger than 10). Hence this shows that criterion 2 required for a successful IV is met.</p>
+<p>If there was a need to implement a separate Ftest (e.g. if we had additional control variables included), we could do that as follows:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>AER</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/car/man/linearHypothesis.html'>linearHypothesis</a></span><span class='op'>(</span><span class='va'>first</span>,<span class='st'>"log(tax)=0"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+log(tax) = 0
+
+Model 1: restricted model
+Model 2: log(price) ~ log(tax)
+
+  Res.Df    RSS Df Sum of Sq      F    Pr(&gt;F)    
+1     95 8.7738                                  
+2     94 2.0167  1    6.7571 314.96 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<p>Note that this leads to the same F statistic as reported in the regression output.</p>
+</div>
+<ol start="5" type="a">
+<li>Implement a 2 stage least squares regression of the model from part (a) Discuss your findings. What can we conclude by comparing the regression output below to that in part (a)</li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/AER/man/ivreg.html'>ivreg</a></span><span class='op'>(</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>packs</span><span class='op'>)</span><span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>price</span><span class='op'>)</span> <span class='op'>|</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>tax</span><span class='op'>)</span>,data<span class='op'>=</span><span class='va'>cigs</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/magrittr/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+ivreg(formula = log(packs) ~ log(price) | log(tax), data = cigs)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.598254 -0.104838 -0.008713  0.100067  0.525173 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  7.65158    0.34958  21.888  &lt; 2e-16 ***
+log(price)  -0.60711    0.07095  -8.557 2.14e-13 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.1844 on 94 degrees of freedom
+Multiple R-Squared: 0.4331, Adjusted R-squared: 0.427 
+Wald test: 73.22 on 1 and 94 DF,  p-value: 2.139e-13 </code></pre>
+</div>
+<p>This is the 2nd stage of the 2SLS IV regression. We find a price elasticity of -.6; i.e. 1% increase in price leads to a .6 percent decline in demand. If this is a valid IV it implies that the OLS (in part a) was upward biased (in line with our suggested reason for a bias in b)</p>
+</div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

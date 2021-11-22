@@ -788,3 +788,92 @@ This regression does not include controls for the calendar month.
 We find now a significantly negative estimate for the lockdown effect suggesting that consumption went down by 1.2 kWh because of lockdown. 
 This is because the dataset stops in September 2020. Hence, the lockdown period considered coincides with the period of the year where less electricity is being consumed. When we are not including month dummies we are confounding this effect with the lockdown effect leading to a severely downward biased estimate 
 `r unhide()`
+
+
+# Exercise 10.9
+
+Download the [cigs.csv]("https://github.com/mondpanther/datastorieshub/raw/master/code/cigs.csv") dataset. It contains data on cigarattes sales across US states for the years 1985 and 1995.
+
+
+
+(a) Run a regression of the log number packs sold `log(packs)` on the  `log(price)`. Discuss the result and provide an interpretation of the coefficient on `log(price)`.
+
+
+`r hide()`
+
+```{r}
+library(dplyr)
+cigs=read.csv("https://github.com/mondpanther/datastorieshub/raw/master/code/cigs.csv")
+
+lm(log(packs)~log(price),cigs) %>% summary()
+
+
+```
+
+The log(price) coefficient can be interpreted as the price elasticity of cigarette demand; i.e. 1% increase in price would lead to a 0.533 percent decline in demand. 
+
+`r unhide()`
+
+
+(b)	Can you think of reasons why the estimate from part (a) might be biased? Explain the direction of the bias you would expect. 
+
+
+`r hide()`
+
+We would expect the state level price to be driven by both supply and demand. Suppose a state is economically less successful and therefore people have less money to spend on cigarettes. Such a state will have a lower cigarette demand for a given price. However, cigarette vendors might also decide to lower prices in such a state. This would introduce a positive correlation between income and prices leading to an upward bias in a simple price estimate as above.
+
+`r unhide()`
+
+(c)	Cigarettes are often heavily taxed by governments. Somebody suggests that taxes could be used as an instrumental variable (IV) to help identifying the causal effect of price changes on demand and thereby the demand function. Discuss reasons why this could work as well as potential concerns why it could not work. 
+
+`r hide()`
+To be a valid instrument taxes need to be un-correlated with any factors apart from price that are driving demand. This might be the case if taxes are set by government for largely other reasons (e.g. to find revenue or political ideology) or in response to factors only related to supply (e.g. a state where many producers are located might be more susceptible to lobbying by those producers). 
+
+To be a valid instrument taxes also need to  be a strong enough driver of prices. This is something we check. However, it is also theoretically plausible as long as producers pass on some of the tax to consumers. Of course, if demand is highly elastic this might not bet the case. 
+Also, it could be that government behaviour is driven by demand; e.g. the presence of cigarette producers in a state could not only affect government policy but because many people work in the cigarette industry they are also avid consumers. In other words: a positive shock to cigarette demand would expplain low taxes. Hence, this would create a dowward bias when finding the true tax causal effect.
+
+`r unhide()`
+
+(d)	Run a regression of the log of price on the log of tax. What does it tell you about the idea of using taxes on cigarettes as an instrument for price?
+
+
+`r hide()`
+
+```{r}
+
+first=lm(log(price)~log(tax),cigs)
+first%>% summary()
+
+```
+
+
+This is the first stage regression; i.e. we regress prices on taxes. It shows that taxes are a highly significant driver of prices.  Because we are dealing with a univariate model, there is no need to conduct a separate F test. We can look at the F-statistic that is reported as part of the standard regression summary. We see that with 315 it is sufficiently high ( larger than 10). Hence this shows that criterion 2 required for a successful IV is met. 
+
+If there was a need to implement a separate Ftest (e.g. if we had additional control variables included), we could do that as follows:
+
+
+```{r}
+library(AER)
+linearHypothesis(first,"log(tax)=0")
+
+```
+Note that this leads to the same F statistic as reported in the regression output.
+
+`r unhide()`
+
+(e)	Implement a 2 stage least squares regression of the model from part (a) Discuss your findings. What can we conclude by comparing the regression output below to that in part (a) 
+
+`r hide()`
+
+```{r}
+
+ivreg( log(packs)~log(price) | log(tax),data=cigs) %>% summary()
+
+```
+
+This is the 2nd stage of the 2SLS IV regression. We find a price elasticity of -.6; i.e. 1% increase in price leads to a .6 percent decline in demand. 
+If this is a valid IV it implies that the OLS (in part a) was upward biased (in line with our suggested reason for a bias in b) 
+
+
+
+`r unhide()`
