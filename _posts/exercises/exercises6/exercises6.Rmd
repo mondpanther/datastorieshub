@@ -205,6 +205,22 @@ Including time dummies can help with idiosyncratic time shocks; e.g. a recession
 Having said that: in the case of the example above, including time dummies doesn't have a big impact on the estimated coefficients.
 
 
+```{r, eval=FALSE,echo=FALSE}
+
+prod=prod %>% mutate(idf=factor(id), year=factor(year))
+
+mod=lm(log(va)~log(k)+log(l), data=prod )
+mod %>% summary()
+
+mod_fe=lm(log(va)~log(k)+log(l)+year+idf, data=prod )
+mod_fe %>% summary()
+
+
+
+```
+
+
+
 ```{r}
 library(car)
 #library(plm)

@@ -42,24 +42,30 @@ The `fdd` contains the number of freezing degree days in a month.
 
 
 
-```{r,echo=TRUE}
+```{r,echo=FALSE,include=FALSE}
 library(dplyr)
 oj=read.csv("https://www.dropbox.com/s/o76do0oyoxhhy6p/oj.csv?dl=1")
 
 ```
 
-```{r}
+```{r,include=FALSE,echo=FALSE}
 ##########
   oj = na.omit(oj)
   oj["lnp"]=log(oj$ppioj/oj$pwfsa *100)
   
   library(lubridate)
-  oj=oj %>% mutate(date=as_date(paste0(as.character(year),"-",as.character(month),"-01")))
+  oj=oj %>% mutate(date=as_date(paste0(as.character(year),"-",as.character(month),"-01"))) %>% select(-starts_with("X"))
   
 ##########################  
 
-write.csv(oj,"../../../../data/oj.csv")    
+write.csv(oj,"../../../data/oj.csv")    
+```
+
+
+```{r}  
+oj=read.csv("https://github.com/mondpanther/datastorieshub/raw/master/data/oj.csv")  
   
+    
 library(ggplot2)
 library(lubridate)
 #ggplot(oj,aes(x=date,y=lnp))+geom_line(color="green")+theme_minimal()+xlab("Monthly data")
@@ -105,6 +111,7 @@ a good start to examine this:
 ```{r,echo=TRUE}
 p=ggplot(oj,aes(x=date,y=lnp))+geom_line(color="green")+theme_minimal()+xlab("Monthly data")
 
+
 plot(p)
 ```
 
@@ -149,6 +156,10 @@ lm( Dlnp~L1fdd,oj) %>% summary()
 ```
 
 We now find a smaller effect than before: 1 extra freezing day leads to 0.149% higher orange juice prices (i.e. we previously had an upward bias). However, the result is now significant.
+
+
+
+
 
 
 `r unhide()`
