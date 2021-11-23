@@ -54,7 +54,7 @@ oj=read.csv("https://www.dropbox.com/s/o76do0oyoxhhy6p/oj.csv?dl=1")
   oj["lnp"]=log(oj$ppioj/oj$pwfsa *100)
   
   library(lubridate)
-  oj=oj %>% mutate(date=as_date(paste0(as.character(year),"-",as.character(month),"-01"))) %>% select(-starts_with("X"))
+  oj=oj %>% mutate(date=as_date(paste0(as.character(year),"-",as.character(month),"-01"))) %>% select(-starts_with("X")) 
   
 ##########################  
 
@@ -64,12 +64,12 @@ write.csv(oj,"../../../data/oj.csv")
 
 ```{r}  
 oj=read.csv("https://github.com/mondpanther/datastorieshub/raw/master/data/oj.csv")  
-  
+oj=oj %>% mutate(date=as_date(date))
     
-library(ggplot2)
-library(lubridate)
+#library(ggplot2)
+#library(lubridate)
 #ggplot(oj,aes(x=date,y=lnp))+geom_line(color="green")+theme_minimal()+xlab("Monthly data")
-#ggplot(oj,aes(x=date,y=lnp))+geom_line()+theme_minimal()+xlab("Monthly data")  
+
 ```  
 
 
@@ -149,10 +149,12 @@ reject the unit root:
 ur.df(diff(oj$lnp)) %>% summary()
 
 ```
-```{r,echo=TRUE}
-oj=oj %>% mutate(Dlnp=lnp-dplyr::lag(lnp))
-lm( Dlnp~L1fdd,oj) %>% summary()
 
+
+```{r,echo=TRUE}
+oj=oj %>% mutate(Dlnp=lnp-dplyr::lag(lnp))%>% mutate(t=1:n())
+lm( Dlnp~L1fdd,oj) %>% summary()
+lm( Dlnp~L1fdd+t,oj) %>% summary()
 ```
 
 We now find a smaller effect than before: 1 extra freezing day leads to 0.149% higher orange juice prices (i.e. we previously had an upward bias). However, the result is now significant.
