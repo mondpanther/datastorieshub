@@ -580,6 +580,7 @@ Among other variables it includes the following
 
 ```{r, echo=TRUE}
 library(haven)
+
 lfs=read_dta("https://github.com/mondpanther/datastorieshub/blob/master/data/lfsclean.dta?raw=true")
 
 lm(lngrsswk~foreign,lfs) %>% summary()
@@ -877,3 +878,53 @@ If this is a valid IV it implies that the OLS (in part a) was upward biased (in 
 
 
 `r unhide()`
+
+
+# Exercise 10.10 MCQ Examples
+
+
+(a) An econometrics professor (sponsored by a multinational fast food chain) conducts an experiment among his students. At the beginning of the year she randomly selects half of the 100 students she teaches. These 50 students will be given a voucher to consume absolutely free as much as they want for the entire academic year in the outlets of the fast-food chain. At the end of the year all students’ weight is measured. The professor notes that the students with the free voucher have a significantly higher weight than those without. However, the professor is interested in the effects of having free fast food on the academic performance and therefore runs regressions of the form  $GPA=β_0+FF×β+ϵ$ ,
+where GPA is the grade point average of the students throughout the year and  FF is a dummy variable equal to 1 if a student received a free fast food voucher. In order to obtain an unbiased estimate of the fast food voucher impact (β), what does the professor need to do 
+
+
+`r mcq(c("Include the weight of the student at the end of the year", 
+          "Include the weight of the student at the beginning of the year",
+       answer="Not include the weight of the student at the end of year",
+       "Include the gender of the student"))`
+
+
+`r hide("Discussion")`
+
+Eating fast food could have an impact on the weight of the student. If weight also has an impact on grades this is part of the causal effect we are interested in. Hence we definitely, don't want to include it as a control. The other options all relate to variables that are fixed once the experiment starts. Hence, those variables cannot be influenced by whatever happens during the experiment so they cannot lead to biases.
+
+
+`r unhide()`
+
+
+
+(b) 	What does a slope coefficient β= -0.46 mean?
+
+	That the correlation is significant, and positive.
+	That there is no predictive power in your independent variable.
+	This means that for every unit increase in your independent variable, your dependent variable decreases by 0.46 units. 
+	If the dependent variable decreases by 0.46 units, the explanatory variable increases by 1.
+
+
+`r mcq(c("That the correlation is significant, and positive.", 
+          "That there is no predictive power in your independent variable.",
+       answer="This means that for every unit increase in your independent variable, your dependent variable decreases by 0.46 units.",
+       "If the dependent variable decreases by 0.46 units, the explanatory variable increases by 1."))`
+
+
+
+(c)	If a hypothesis is rejected at the 5% level of significance, it:
+
+
+`r mcq(c("Will always be rejected at the 1% level. ", 
+          "Will always be accepted at the 1% level.",
+       "	Will never be tested at the 1% level. ",
+       answer="May or may not be rejected at the 1% level."))`
+
+
+
+
