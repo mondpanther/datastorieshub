@@ -191,6 +191,7 @@ pre code {
 <p>So what are the basic expressions in R that you want to start your journey to Rland with; i.e. the equivalent of ordering a coffee and a croissant?</p>
 <div id="getting-data" class="section level1">
 <h1>Getting data</h1>
+<p>(note that starting a line with <code>#</code> creates a heading. Starting with <code>##</code> is a sub heading. Also note that the mening of <code>#</code> is different within a code chunk. There it represents a comment; i.e. everything that comes after <code>#</code> on the same line of code is not taken into account by the R interpreter who considers it commentary for humans rather than code. Note that we sometimes can use this as well to <code>comment out</code> parts of the code that we don’t want to run at the moment but might need later again.)</p>
 <p>You will want to start with getting data. Let’s look at the data from Exercise 2.2 however it will be very similar if you were to use some other data.</p>
 <pre class="r"><code>covid=read.csv(&quot;https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv&quot;)</code></pre>
 <p>i.e. you use the <code>read.csv</code> command to load the dataset into the memory as a data frame</p>
@@ -275,10 +276,9 @@ head(usdaily)</code></pre>
 <h2>Scatter plot</h2>
 <p>However first: with more data comes more data manipulation; e.g. cases per capita….</p>
 <pre class="r"><code>covid_julyb=covid_julyb %&gt;% mutate(casesOpop000=cases/pop*1000)</code></pre>
-<pre class="r"><code>library(ggplot2)
-
-
-p=ggplot(covid_julyb, aes(x=density, y=casesOpop000 ))+ 
+<pre class="r"><code>library(ggplot2)</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.1.2</code></pre>
+<pre class="r"><code>p=ggplot(covid_julyb, aes(x=density, y=casesOpop000 ))+ 
        geom_point() 
 p</code></pre>
 <pre><code>## Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
