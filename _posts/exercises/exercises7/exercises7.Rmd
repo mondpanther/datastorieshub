@@ -115,7 +115,8 @@ First stage suggests highly significant effect of cartel on price.
 
 ```{r }
 fs=lm(log(price)~cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
-coeftest(fs,vcov=vcovHC)
+summary(fs)
+#coeftest(rf,vcov=vcovHC) This would account for heteroskedasticity which we haven't covered in the course. So don't worry about it for now.
 linearHypothesis(fs,"cartel=0")
 ```
 
@@ -123,7 +124,8 @@ Reduced form shows strong negative effect of cartel on quantity as would be expe
 
 ```{r }
 rf=lm(log(quantity)~cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
-coeftest(rf,vcov=vcovHC)
+summary(rf)
+#coeftest(rf,vcov=vcovHC)
 ```
 
 
@@ -142,7 +144,8 @@ IV regression suggests a price elasticity of -0.86; i.e. the estimate has become
 ```{r }
 library(AER)
 iv=ivreg(log(quantity)~log(price)+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12| cartel+ice+seas1+seas2+seas3+seas4+seas5+seas6+seas7+seas8+seas9+seas10+seas11+seas12, data=d4)
-robust.se(iv)
+summary(iv)
+#robust.se(iv)
 ```
 
 `r unhide()`
