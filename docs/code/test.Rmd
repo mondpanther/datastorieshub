@@ -1,0 +1,36 @@
+---
+title: "new project"
+author: "Ralf Martin"
+date: "24/11/2021"
+output: html_document
+---
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+```{r}
+
+
+var1=runif(200)
+var2=runif(200)
+
+mean(var1)
+
+
+newframe=data.frame(var1,var2)
+
+# now let's plot
+plot(var1,var2)
+
+
+```
+
+
+```{r}
+
+cor(var1,var2)
+
+
+```
