@@ -264,15 +264,36 @@ The simplest case is the linear model which we can fit using the OLS algorithm. 
 
 
 ```{r}
-df=covid_julyb  %>% filter(density<6000) 
+df=covid_julyb  %>% filter(density<6000& !is.na(casesOpop000)) 
 
 reg=lm(casesOpop000~density,df)
 
 summary(reg)
 
 reg %>% summary()
+
+
+
 ```
 
 
+
+Let's examine the residuals for this regression
+
+
+
+```{r}
+
+df=df %>%  mutate(resids=reg$residuals)
+ggplot(df, aes(x=density, y=resids ))+ 
+      geom_point() + 
+      geom_smooth(method=lm)+theme_minimal()
+
+
+cor(df %>% select(density,resids,casesOpop000))
+
+```
+
+Note there is nocorrelation between residuals and density.
 
 
