@@ -3,6 +3,7 @@ title: "Most of the R u need 4 this course"
 author: "Ralf Martin"
 date: "08/10/2021"
 output: html_document
+#output: word_document
 ---
 
 In this document I am going through a couple of commands and use cases using R.
@@ -40,6 +41,8 @@ So what are the basic expressions in R that you want to start your journey to Rl
 
 
 # Getting data
+(note that starting a line with `#` creates a heading. Starting with `##` is a sub heading. Also note that the mening of `#` is different within a code chunk. There it represents a comment; i.e. everything that comes after `#` on the same line of code is not taken into account by the R interpreter who considers it commentary for humans rather than code. Note that we sometimes can use this as well to `comment out` parts of the code that we don't want to run at the moment but might need later again.)
+
 You will want to start with getting data. Let's look at the data from Exercise 2.2 however it will be very similar if you were to use some other data. 
 
 
