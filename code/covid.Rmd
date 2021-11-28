@@ -1,0 +1,151 @@
+---
+title: "Covid stuff"
+output: html_notebook
+---
+
+
+```{r}
+
+
+df=read.csv("https://covid.ourworldindata.org/data/owid-covid-data.csv")
+names(df)
+
+
+
+library(fixest)
+library(lubridate)
+```
+
+
+
+Aggregate to month
+
+```{r}
+
+dfm = df %>% mutate(month=substr(date, 1, 7),  date=as_date(date)) %>% 
+  group_by(month,iso_code) %>% filter(date==max(date)) %>% 
+    select(iso_code,date,location,starts_with("total_"),population,population_density,continent)
+
+dfm=dfm %>% filter(substr(iso_code, 1, 4)!="OWID")
+
+```
+
+
+
+Clean up a bit
+
+```{r}
+
+# Replace the missing values with 0
+# but only at the beginning because at the end that just means missing values...
+library(tidyr)
+
+dfm=dfm %>% arrange(iso_code,date) %>% 
+    
+    group_by(iso_code) %>% 
+  mutate( across( starts_with("total_"), ~ifelse( is.na(.x) & cumsum( replace_na(.x, 0) )==0 ,0,.x)))
+
+
+
+
+dfm=dfm %>% arrange(iso_code,date) %>% 
+  group_by(iso_code) %>% mutate(L1vax=dplyr::lag(total_vaccinations_per_hundred),
+                                vax=total_vaccinations_per_hundred,
+                                lndeaths=log(1+total_deaths_per_million),
+                                deaths=total_deaths_per_million,
+                                lnvax=log(1+vax))
+
+
+
+```
+
+
+# A cross section?
+
+```{r}
+
+cross=dfm %>% group_by(iso_code) %>% filter(month=="2021-03" | month==max(month))
+
+
+cross=cross %>% arrange(iso_code,date) %>% 
+  group_by(iso_code) %>% mutate(across( c("deaths","vax","lndeaths","lnvax"),
+                                        ~.x-dplyr::lag(.x),
+                                        .names="D{.col}"))
+                                
+                                
+    
+
+library(ggplot2)
+
+cross %>% ggplot(aes(x=Dvax,  y=Ddeaths, color=continent)) +geom_point()+geom_smooth(method="lm",se=F)
+
+
+
+
+cross %>% ggplot(aes(x=Dlnvax,y=Dlndeaths)) +geom_point()+geom_smooth(method="lm")
+
+
+cross %>% ggplot(aes(x=Dvax,y=Ddeaths)) +geom_point()+geom_smooth(method="lm")
+
+```
+
+
+
+
+A first regression
+
+
+```{r}
+
+
+
+r1=feols(total_deaths_per_million~total_vaccinations_per_hundred+L1vax+total_tests_per_thousand|iso_code+month,dfm)
+r1 %>% summary()
+
+
+
+r1=feols(lndeathsPc~total_vaccinations_per_hundred+L1vax+total_tests_per_thousand|iso_code+month,dfm)
+r1 %>% summary()
+
+
+
+r1=feols(lndeathsPc~lnvaxPc|iso_code+month,dfm)
+r1 %>% summary()
+
+
+
+
+
+
+
+
+r1=feols(total_deaths_per_million~vax+L1vax|iso_code+month,dfm %>% filter(continent=="Europe"))
+r1 %>% summary()
+
+
+r1=feols(total_deaths_per_million~L1vax|iso_code+month,dfm %>% filter(continent!="Asia"))
+r1 %>% summary()
+
+
+
+r1=fepois(total_deaths_per_million~vax+L1vax|iso_code+month,dfm)
+r1 %>% summary()
+
+
+r1=fepois(total_deaths_per_million~vax+L1vax|iso_code+month,dfm %>% filter(continent=="Europe"))
+r1 %>% summary()
+
+
+
+
+
+r1=fepois(total_deaths_per_million~total_vaccinations_per_hundred|iso_code+month,dfm)
+r1 %>% summary()
+
+
+
+r1=feols(total_cases_per_million~total_vaccinations_per_hundred+total_tests_per_thousand|iso_code+month,dfm)
+r1 %>% summary()
+
+
+```
