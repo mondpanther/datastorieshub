@@ -217,142 +217,100 @@ pre code {
 <!-- rnb-text-begin -->
 <div id="load-data" class="section level1">
 <h1>Load data</h1>
+<p>Data comes from <a href="https://github.com/owid/covid-19-data/tree/master/public/data">Our World In data</a>’s COVID dataset. I have prepared this a little bit for you.</p>
+<p>Let’s get started with a dataset called <code>cross.csv</code> which you find as follows</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5cbmRmPXJlYWQuY3N2KFwiaHR0cHM6Ly9jb3ZpZC5vdXJ3b3JsZGluZGF0YS5vcmcvZGF0YS9vd2lkLWNvdmlkLWRhdGEuY3N2XCIpXG5uYW1lcyhkZilcblxuXG5saWJyYXJ5KGZpeGVzdClcbmxpYnJhcnkobHVicmlkYXRlKVxuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5cbmNyb3NzPXJlYWQuY3N2KFwiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21vbmRwYW50aGVyL2RhdGFzdG9yaWVzaHViLzk1ZDk0ODYyMTE1ODE5MzUwMjQ3ODIzZjE3NGEyNjMzY2RlMDIzNmIvY29kZS9jcm9zcy5jc3ZcIilcbm5hbWVzKGNyb3NzKVxuYGBgIn0= -->
 <pre class="r"><code>
 
-df=read.csv(&quot;https://covid.ourworldindata.org/data/owid-covid-data.csv&quot;)
-names(df)
-
-
-library(fixest)
-library(lubridate)
-</code></pre>
+cross=read.csv(&quot;https://raw.githubusercontent.com/mondpanther/datastorieshub/95d94862115819350247823f174a2633cde0236b/code/cross.csv&quot;)
+names(cross)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIlhcIiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwibW9udGhcIiAgICAgICAgICAgICAgICAgICAgICAgICAgXCJpc29fY29kZVwiICAgICAgICAgICAgICAgICAgICAgICBcImRhdGVcIiAgICAgICAgICAgICAgICAgICAgICAgICAgIFwibG9jYXRpb25cIiAgICAgICAgICAgICAgICAgICAgICBcbiBbNl0gXCJ0b3RhbF9jYXNlc1wiICAgICAgICAgICAgICAgICAgICBcInRvdGFsX2RlYXRoc1wiICAgICAgICAgICAgICAgICAgIFwidG90YWxfY2FzZXNfcGVyX21pbGxpb25cIiAgICAgICAgXCJ0b3RhbF9kZWF0aHNfcGVyX21pbGxpb25cIiAgICAgICBcInRvdGFsX3Rlc3RzXCIgICAgICAgICAgICAgICAgICAgXG5bMTFdIFwidG90YWxfdGVzdHNfcGVyX3Rob3VzYW5kXCIgICAgICAgXCJ0b3RhbF92YWNjaW5hdGlvbnNcIiAgICAgICAgICAgICBcInRvdGFsX2Jvb3N0ZXJzXCIgICAgICAgICAgICAgICAgIFwidG90YWxfdmFjY2luYXRpb25zX3Blcl9odW5kcmVkXCIgXCJ0b3RhbF9ib29zdGVyc19wZXJfaHVuZHJlZFwiICAgIFxuWzE2XSBcInBvcHVsYXRpb25cIiAgICAgICAgICAgICAgICAgICAgIFwicG9wdWxhdGlvbl9kZW5zaXR5XCIgICAgICAgICAgICAgXCJjb250aW5lbnRcIiAgICAgICAgICAgICAgICAgICAgICBcImNzXCIgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiTDF2YXhcIiAgICAgICAgICAgICAgICAgICAgICAgICBcblsyMV0gXCJ2YXhcIiAgICAgICAgICAgICAgICAgICAgICAgICAgICBcImxuZGVhdGhzXCIgICAgICAgICAgICAgICAgICAgICAgIFwiZGVhdGhzXCIgICAgICAgICAgICAgICAgICAgICAgICAgXCJsbnZheFwiICAgICAgICAgICAgICAgICAgICAgICAgICBcInBlcmlvZFwiICAgICAgICAgICAgICAgICAgICAgICAgXG4ifQ== -->
+<pre><code> [1] &quot;X&quot;                              &quot;month&quot;                          &quot;iso_code&quot;                       &quot;date&quot;                           &quot;location&quot;                      
+ [6] &quot;total_cases&quot;                    &quot;total_deaths&quot;                   &quot;total_cases_per_million&quot;        &quot;total_deaths_per_million&quot;       &quot;total_tests&quot;                   
+[11] &quot;total_tests_per_thousand&quot;       &quot;total_vaccinations&quot;             &quot;total_boosters&quot;                 &quot;total_vaccinations_per_hundred&quot; &quot;total_boosters_per_hundred&quot;    
+[16] &quot;population&quot;                     &quot;population_density&quot;             &quot;continent&quot;                      &quot;cs&quot;                             &quot;L1vax&quot;                         
+[21] &quot;vax&quot;                            &quot;lndeaths&quot;                       &quot;deaths&quot;                         &quot;lnvax&quot;                          &quot;period&quot;                        </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhZChjcm9zcylcbmBgYCJ9 -->
+<pre class="r"><code>head(cross)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6MjUsInN1bW1hcnkiOnsiRGVzY3JpcHRpb24iOlsiZGYgWzYgeCAyNV0iXX19LCJyZGYiOiJINHNJQUFBQUFBQUFCcTFXWFdqVFVCUyt6WnBzalpzV04zVVRrZUdHNEUvcW1qbDFpTzVteXNydzN3ZnQwMnFhcEdzMFMycVN1cm1CRGtWOWtDSE0rYlMzS1lvdklqNklxT0FQdmdnSy9pRCtJVExHUkJCaEQ0SUlNcjM1dVcwU08wWDB3dTA5NXpzLzk5eHpEaWZkdlRuWlRDZHBBRUFaQ0lkQ29JeEVKS0EyN1l5ekxTd0FZUUp4SVJBR0VldnNRMXJWaUtoRHU4cFNzNFVBRUxZNTBrYWJkUEdvZlRxRzVXd1RHMmZpY1IvYnhQcloxdDlLVzRKUy93MWxYUHZlQXRtUktFVW1kcFFpTzdtQUo5cU5sV0hYK3BBbWxtSFgrWkZXcHJucFR6b3RUSE84aEk3L1RwTFQ4Mm5lWldaeG1lNHNyOHFHeWFzelF4U25kbXNLWDVLclFGeGVWaEJmTEJOYXI4Y0EwYlVVZ0YwSkFFNStkVEN2UEhJYWdFV05xS0xmVVVXblhmbnNvaHdBZU83Ti9pUGYzamJBSytvOXF2SGRLbmg4V1RLYTN2WWNubms2dE9QOWVoRVVsOTl1KytXM1M1NU03b09aVWFLeTgyWVhaS2JPdjZRM0hJUnJocS9XUHhpOU9KUGRYNngvc3VQS2JpYnRPTytHYlpCcnIxazU2RkhpVnR6WkdMRHo1RzFtdnpEOWF0ZW5FNHR2dEkzMGp5ZXUxQXpBQlkrczlSZ3JRVEpuNStFL3ZNT0pKelIyaTBpOWJMUTMrWENGdFFGWVA2OFF6N0dPakxYZ2xqWGgyclBtN2NLNWRnS0ZrYnVBejZOVGxzdnlNZUJ2MDZydG1tNW02N2tlU1pjRjNHeGh6cEJMMFJTWDhXajV1WUFqTi9wQjlJTTM2a2JVcGRGcmc1NnNlS0p5c2xkdEpiVi9QSmdLajk1L3FRS01uaG9lV0hsOUN0WThvZmIwZnZnSXFlVUhLbzZ2MW1Fa01URUU0emRtdFB2THJvYzE4MTlNbmlqbjJrWVNEYy8wUzUvYmZwRHp2cGxTQTFacSsvTHFGbjMvMVA1ZnF1NE1ZVHlJUGFkdmVwTXEzeU1aYmtucjhFaFBZbW1QcHBwWlBFQmtRMHNKbWlqaHVvcThpZWtLUlJONFU5WUtzOG5VVEY1SkNieUJuRHRRcFFPSkVtOW1NYmJBbzViS1NYcXFCdzJvb3BkYXIwa0p1WHVMS1JtbTRUZXhJZHZDekdwNWcxZEZWejdYa1IvaUJVRlc3WWl4NVd4SGt0WTB3NVIwakM3K1ZkOTJtODJyb2k1aHJ3djl0aVUwNkp5V3l5dmVGTTB0SXVpRnFpR2JoMTFKUkVCWmwxVkpOVjJBRUhBNDVOYjRJYjRQZjZlS1pJV2kraEpMK1RoU1VZdXFGQXBPMXNSQUgwUjByVGVHZThGcUlHTFFhU1lxMkRDQ3dodTRZVEJJbzFiZ1l4a2QyU051T21CU3J1V2NSQVBDK3A5QUJveERlZ0NZazFldFNFUkdRRGs4d0ZoZmRkclR6bFh1U1hub091ZEs0b2ZyaXNTUGxkUnVsTWxDSHZpMHBPQjZveGZiRDQ3bGRMbVFhaHFoUnN3dUowWUVUY0dJL1RZdy9STlRTRkNPSHdrQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["X"],"name":[1],"type":["int"],"align":["right"]},{"label":["month"],"name":[2],"type":["chr"],"align":["left"]},{"label":["iso_code"],"name":[3],"type":["chr"],"align":["left"]},{"label":["date"],"name":[4],"type":["chr"],"align":["left"]},{"label":["location"],"name":[5],"type":["chr"],"align":["left"]},{"label":["total_cases"],"name":[6],"type":["int"],"align":["right"]},{"label":["total_deaths"],"name":[7],"type":["int"],"align":["right"]},{"label":["total_cases_per_million"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["total_deaths_per_million"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["total_tests"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["total_tests_per_thousand"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["total_vaccinations"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["total_boosters"],"name":[13],"type":["int"],"align":["right"]},{"label":["total_vaccinations_per_hundred"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["total_boosters_per_hundred"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["population"],"name":[16],"type":["int"],"align":["right"]},{"label":["population_density"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["continent"],"name":[18],"type":["chr"],"align":["left"]},{"label":["cs"],"name":[19],"type":["int"],"align":["right"]},{"label":["L1vax"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["vax"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["lndeaths"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["deaths"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["lnvax"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["period"],"name":[25],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"2021-11","3":"ABW","4":"2021-11-27","5":"Aruba","6":"0","7":"0","8":"0.000","9":"0.000","10":"0","11":"0","12":"161611","13":"0","14":"150.76","15":"0","16":"107195","17":"584.800","18":"North America","19":"NA","20":"NA","21":"150.76","22":"0.000000","23":"0.000","24":"5.02230033","25":"1","_rn_":"1"},{"1":"2","2":"2021-02","3":"AFG","4":"2021-02-28","5":"Afghanistan","6":"55714","7":"2443","8":"1398.604","9":"61.327","10":"0","11":"0","12":"8200","13":"0","14":"0.02","15":"0","16":"39835428","17":"54.422","18":"Asia","19":"NA","20":"0.00","21":"0.02","22":"4.132395","23":"61.327","24":"0.01980263","25":"1","_rn_":"2"},{"1":"3","2":"2021-09","3":"AFG","4":"2021-09-30","5":"Afghanistan","6":"155174","7":"7204","8":"3895.377","9":"180.844","10":"0","11":"0","12":"2369625","13":"0","14":"5.95","15":"0","16":"39835428","17":"54.422","18":"Asia","19":"NA","20":"4.97","21":"5.95","22":"5.203149","23":"180.844","24":"1.93874166","25":"2","_rn_":"3"},{"1":"4","2":"2021-02","3":"AGO","4":"2021-02-28","5":"Angola","6":"20807","7":"508","8":"613.168","9":"14.970","10":"0","11":"0","12":"0","13":"0","14":"0.00","15":"0","16":"33933611","17":"23.890","18":"Africa","19":"2375","20":"0.00","21":"0.00","22":"2.770712","23":"14.970","24":"0.00000000","25":"1","_rn_":"4"},{"1":"5","2":"2021-05","3":"AGO","4":"2021-05-31","5":"Angola","6":"34551","7":"766","8":"1018.194","9":"22.573","10":"0","11":"0","12":"909215","13":"0","14":"2.68","15":"0","16":"33933611","17":"23.890","18":"Africa","19":"4274","20":"0.00","21":"2.68","22":"3.160102","23":"22.573","24":"1.30291275","25":"2","_rn_":"5"},{"1":"6","2":"2021-02","3":"AIA","4":"2021-02-28","5":"Anguilla","6":"0","7":"0","8":"0.000","9":"0.000","10":"0","11":"0","12":"0","13":"0","14":"0.00","15":"0","16":"15125","17":"NA","18":"North America","19":"NA","20":"NA","21":"0.00","22":"0.000000","23":"0.000","24":"0.00000000","25":"1","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[25]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbk5BXG5gYGAifQ== -->
+<pre class="r"><code>NA
+NA</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
+<div id="lets-only-take-the-eu-part-of-the-data" class="section level1">
+<h1>Let’s only take the EU part of the data</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5jcm9zcz1jcm9zcyAlPiUgYXJyYW5nZShpc29fY29kZSxkYXRlKSAlPiUgXG4gIGdyb3VwX2J5KGlzb19jb2RlKSAlPiUgXG4gIG11dGF0ZShEZGVhdGhzPWRlYXRocy1kcGx5cjo6bGFnKGRlYXRocykpICU+JSBcbiAgXG4gIG11dGF0ZShhY3Jvc3MoIGMoXCJkZWF0aHNcIixcInZheFwiLFwibG5kZWF0aHNcIixcImxudmF4XCIpLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH4ueC1kcGx5cjo6bGFnKC54KSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAubmFtZXM9XCJEey5jb2x9XCIpKVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgXG5cbmxpYnJhcnkoZ2dwbG90MilcblxuY3Jvc3MgJT4lIGdncGxvdChhZXMoeD1EdmF4LCAgeT1EZGVhdGhzLCBjb2xvcj1jb250aW5lbnQpKSArZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD1cImxtXCIsc2U9RikrdGhlbWVfbWluaW1hbCgpXG5cblxuXG5jcm9zcyAlPiUgZ2dwbG90KGFlcyh4PUR2YXgsICB5PURsbmRlYXRocywgY29sb3I9Y29udGluZW50LGxhYmVsPWxvY2F0aW9uKSkrXG4gICAgICAgICAgZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD1cImxtXCIsc2U9RikrdGhlbWVfbWluaW1hbCgpK1xuICAgICAgICAgIGdlb21fdGV4dChzaXplPTMsY2hlY2tfb3ZlcmxhcCA9IFRSVUUpXG5cblxuYGBgIn0= -->
-<pre class="r"><code>
-cross=cross %&gt;% arrange(iso_code,date) %&gt;% 
-  group_by(iso_code) %&gt;% 
-  mutate(Ddeaths=deaths-dplyr::lag(deaths)) %&gt;% 
-  
-  mutate(across( c(&quot;deaths&quot;,&quot;vax&quot;,&quot;lndeaths&quot;,&quot;lnvax&quot;),
-                                        ~.x-dplyr::lag(.x),
-                                        .names=&quot;D{.col}&quot;))
-                                
-                                
-    
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcblxuY3Jvc3NfZXVyPWNyb3NzICU+JSBmaWx0ZXIoY29udGluZW50PT1cIkV1cm9wZVwiKVxuYGBgIn0= -->
+<pre class="r"><code>library(dplyr)
 
+cross_eur=cross %&gt;% filter(continent==&quot;Europe&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Start by plotting</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KGdncGxvdDIpXG5cbmNyb3NzX2V1ciAlPiUgZ2dwbG90KCAgYWVzKHg9dmF4LHk9ZGVhdGhzKSAgKSArICMgc2V0dXAgdGhlIGFlc3RoZXRpY1xuICAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgZ2VvbV9wb2ludCgpICAgICAgICAgICAgIyB1c2UgaXQgdG8gcGxvdCBwb2luZXNcblxuXG5cblxuIyBOb3RlIHRoYXQgYWJvdmUgd2UgYnJva2UgdGhlIGNvbW1hbmQgb3ZlciBzZXZlcmFsIGxpbmVzIHdoaWNoIGNhbiBiZSBhIGdvb2RcbiMgaWRlYSB0byBtYWtlIHRoaW5ncyBtb3JlIGVhc2lseSByZWFkYWJsZS4uLmhvd2V2ZXIgdGhlIGZvbGxvd2luZyBpcyBleGFjdGx5IHRoZSBzYW1lXG4jIGNvbW1hbmQ6XG5cblxuY3Jvc3NfZXVyICU+JSBnZ3Bsb3QoICBhZXMoeD12YXgseT1kZWF0aHMpICApICsgIGdlb21fcG9pbnQoKSAgICAgXG5cblxuXG5cbmBgYCJ9 -->
+<pre class="r"><code>
 library(ggplot2)
 
-cross %&gt;% ggplot(aes(x=Dvax,  y=Ddeaths, color=continent)) +geom_point()+geom_smooth(method=&quot;lm&quot;,se=F)+theme_minimal()
+cross_eur %&gt;% ggplot(  aes(x=vax,y=deaths)  ) + # setup the aesthetic
+                       
+                       geom_point()            # use it to plot poines
 
 
 
-cross %&gt;% ggplot(aes(x=Dvax,  y=Dlndeaths, color=continent,label=location))+
-          geom_point()+geom_smooth(method=&quot;lm&quot;,se=F)+theme_minimal()+
-          geom_text(size=3,check_overlap = TRUE)
+
+# Note that above we broke the command over several lines which can be a good
+# idea to make things more easily readable...however the following is exactly the same
+# command:
+
+
+cross_eur %&gt;% ggplot(  aes(x=vax,y=deaths)  ) +  geom_point()     
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Let’s only look at Europe</p>
+<p>Let’s do that a bit nicer:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3Jvc3NfZXVyPWNyb3NzICU+JSBmaWx0ZXIoY29udGluZW50PT1cIkV1cm9wZVwiKSBcblxuXG5cbmNyb3NzX2V1ciAlPiUgZ2dwbG90KGFlcyh4PXZheCwgIHk9ZGVhdGhzLCBjb2xvcj1jb250aW5lbnQsbGFiZWw9bG9jYXRpb24pKStcbiAgICAgICAgICBnZW9tX3BvaW50KCkrZ2VvbV9zbW9vdGgobWV0aG9kPVwibG1cIixzZT1GKSt0aGVtZV9taW5pbWFsKCkrXG4gICAgICAgICAgZ2VvbV90ZXh0KHNpemU9MylcblxuXG5jcm9zc19ldXIgJT4lIGdncGxvdChhZXMoeD12YXgsICB5PURkZWF0aHMsIGNvbG9yPWNvbnRpbmVudCxsYWJlbD1sb2NhdGlvbikpK1xuICAgICAgICAgIGdlb21fcG9pbnQoKStnZW9tX3Ntb290aChtZXRob2Q9XCJsbVwiLHNlPUYpK3RoZW1lX21pbmltYWwoKStcbiAgICAgICAgICBnZW9tX3RleHQoc2l6ZT0zKVxuXG5cblxuY3Jvc3MgJT4lIGdncGxvdChhZXMoeD12YXgsICB5PURsbmRlYXRocywgY29sb3I9Y29udGluZW50LGxhYmVsPWxvY2F0aW9uKSkrXG4gICAgICAgICAgZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD1cImxtXCIsc2U9RikrdGhlbWVfbWluaW1hbCgpK1xuICAgICAgICAgIGdlb21fdGV4dChzaXplPTMsY2hlY2tfb3ZlcmxhcCA9IFRSVUUpXG5cblxuXG5jcm9zcyAlPiUgZ2dwbG90KGFlcyh4PURsbnZheCx5PURsbmRlYXRocykpICtnZW9tX3BvaW50KCkrZ2VvbV9zbW9vdGgobWV0aG9kPVwibG1cIilcblxuXG5jcm9zcyAlPiUgZ2dwbG90KGFlcyh4PUR2YXgseT1EZGVhdGhzKSkgK2dlb21fcG9pbnQoKStnZW9tX3Ntb290aChtZXRob2Q9XCJsbVwiKVxuXG5gYGAifQ== -->
-<pre class="r"><code>cross_eur=cross %&gt;% filter(continent==&quot;Europe&quot;) 
-
-
-
-cross_eur %&gt;% ggplot(aes(x=vax,  y=deaths, color=continent,label=location))+
-          geom_point()+geom_smooth(method=&quot;lm&quot;,se=F)+theme_minimal()+
-          geom_text(size=3)
-
-
-cross_eur %&gt;% ggplot(aes(x=vax,  y=Ddeaths, color=continent,label=location))+
-          geom_point()+geom_smooth(method=&quot;lm&quot;,se=F)+theme_minimal()+
-          geom_text(size=3)
-
-
-
-cross %&gt;% ggplot(aes(x=vax,  y=Dlndeaths, color=continent,label=location))+
-          geom_point()+geom_smooth(method=&quot;lm&quot;,se=F)+theme_minimal()+
-          geom_text(size=3,check_overlap = TRUE)
-
-
-
-cross %&gt;% ggplot(aes(x=Dlnvax,y=Dlndeaths)) +geom_point()+geom_smooth(method=&quot;lm&quot;)
-
-
-cross %&gt;% ggplot(aes(x=Dvax,y=Ddeaths)) +geom_point()+geom_smooth(method=&quot;lm&quot;)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3Jvc3NfZXVyICU+JSBnZ3Bsb3QoICBhZXMoeD12YXgseT1kZWF0aHMpICApICsgIFxuICBnZW9tX3BvaW50KCkgK1xuICB5bGFiKFwiVG90YWwgbnVtYmVyIG9mIGRlYXRocyBwZXIgMSBtaWxsaW9uXCIpK1xuICB4bGFiKFwiVG90YWwgbnVtYmVyIG9mIHZhY2NpbmF0aW9ucyBwZXIgMTAwS1wiKStcbiAgdGhlbWVfbWluaW1hbCgpK1xuICBnZW9tX3Ntb290aChtZXRob2Q9XCJsbVwiLHNlPUZBTFNFKVxuXG5gYGAifQ== -->
+<pre class="r"><code>cross_eur %&gt;% ggplot(  aes(x=vax,y=deaths)  ) +  
+  geom_point() +
+  ylab(&quot;Total number of deaths per 1 million&quot;)+
+  xlab(&quot;Total number of vaccinations per 100K&quot;)+
+  theme_minimal()+
+  geom_smooth(method=&quot;lm&quot;,se=FALSE)
 </code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYGdlb21fc21vb3RoKClgIHVzaW5nIGZvcm11bGEgJ3kgfiB4J1xuIn0= -->
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-plot-begin eyJoZWlnaHQiOjQzMi42MzI5LCJ3aWR0aCI6NzAwLCJzaXplX2JlaGF2aW9yIjowLCJjb25kaXRpb25zIjpbXX0= -->
+<p><img src="data:image/png;base64,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" /></p>
+<!-- rnb-plot-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>A first regression</p>
+<p>Vaccines seem to be associated with more deaths. Before we discuss this more let’s</p>
 <!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5cblxucjE9ZmVvbHModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufnRvdGFsX3ZhY2NpbmF0aW9uc19wZXJfaHVuZHJlZCtMMXZheCt0b3RhbF90ZXN0c19wZXJfdGhvdXNhbmR8aXNvX2NvZGUrbW9udGgsZGZtKVxucjEgJT4lIHN1bW1hcnkoKVxuXG5cblxucjE9ZmVvbHMobG5kZWF0aHNQY350b3RhbF92YWNjaW5hdGlvbnNfcGVyX2h1bmRyZWQrTDF2YXgrdG90YWxfdGVzdHNfcGVyX3Rob3VzYW5kfGlzb19jb2RlK21vbnRoLGRmbSlcbnIxICU+JSBzdW1tYXJ5KClcblxuXG5cbnIxPWZlb2xzKGxuZGVhdGhzUGN+bG52YXhQY3xpc29fY29kZSttb250aCxkZm0pXG5yMSAlPiUgc3VtbWFyeSgpXG5cblxuXG5cblxuXG5cblxucjE9ZmVvbHModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufnZheCtMMXZheHxpc29fY29kZSttb250aCxkZm0gJT4lIGZpbHRlcihjb250aW5lbnQ9PVwiRXVyb3BlXCIpKVxucjEgJT4lIHN1bW1hcnkoKVxuXG5cbnIxPWZlb2xzKHRvdGFsX2RlYXRoc19wZXJfbWlsbGlvbn5MMXZheHxpc29fY29kZSttb250aCxkZm0gJT4lIGZpbHRlcihjb250aW5lbnQhPVwiQXNpYVwiKSlcbnIxICU+JSBzdW1tYXJ5KClcblxuXG5cbnIxPWZlcG9pcyh0b3RhbF9kZWF0aHNfcGVyX21pbGxpb25+dmF4K0wxdmF4fGlzb19jb2RlK21vbnRoLGRmbSlcbnIxICU+JSBzdW1tYXJ5KClcblxuXG5yMT1mZXBvaXModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufnZheCtMMXZheHxpc29fY29kZSttb250aCxkZm0gJT4lIGZpbHRlcihjb250aW5lbnQ9PVwiRXVyb3BlXCIpKVxucjEgJT4lIHN1bW1hcnkoKVxuXG5cblxuXG5cbnIxPWZlcG9pcyh0b3RhbF9kZWF0aHNfcGVyX21pbGxpb25+dG90YWxfdmFjY2luYXRpb25zX3Blcl9odW5kcmVkfGlzb19jb2RlK21vbnRoLGRmbSlcbnIxICU+JSBzdW1tYXJ5KClcblxuXG5cbnIxPWZlb2xzKHRvdGFsX2Nhc2VzX3Blcl9taWxsaW9ufnRvdGFsX3ZhY2NpbmF0aW9uc19wZXJfaHVuZHJlZCt0b3RhbF90ZXN0c19wZXJfdGhvdXNhbmR8aXNvX2NvZGUrbW9udGgsZGZtKVxucjEgJT4lIHN1bW1hcnkoKVxuXG5cbmBgYCJ9 -->
-<pre class="r"><code>
-
-
-r1=feols(total_deaths_per_million~total_vaccinations_per_hundred+L1vax+total_tests_per_thousand|iso_code+month,dfm)
-r1 %&gt;% summary()
-
-
-
-r1=feols(lndeathsPc~total_vaccinations_per_hundred+L1vax+total_tests_per_thousand|iso_code+month,dfm)
-r1 %&gt;% summary()
-
-
-
-r1=feols(lndeathsPc~lnvaxPc|iso_code+month,dfm)
-r1 %&gt;% summary()
-
-
-
-
-
-
-
-
-r1=feols(total_deaths_per_million~vax+L1vax|iso_code+month,dfm %&gt;% filter(continent==&quot;Europe&quot;))
-r1 %&gt;% summary()
-
-
-r1=feols(total_deaths_per_million~L1vax|iso_code+month,dfm %&gt;% filter(continent!=&quot;Asia&quot;))
-r1 %&gt;% summary()
-
-
-
-r1=fepois(total_deaths_per_million~vax+L1vax|iso_code+month,dfm)
-r1 %&gt;% summary()
-
-
-r1=fepois(total_deaths_per_million~vax+L1vax|iso_code+month,dfm %&gt;% filter(continent==&quot;Europe&quot;))
-r1 %&gt;% summary()
-
-
-
-
-
-r1=fepois(total_deaths_per_million~total_vaccinations_per_hundred|iso_code+month,dfm)
-r1 %&gt;% summary()
-
-
-
-r1=feols(total_cases_per_million~total_vaccinations_per_hundred+total_tests_per_thousand|iso_code+month,dfm)
-r1 %&gt;% summary()
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNvdmlkIGFuZCB2YXh4aW5hdGlvbiINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCg0KDQoNCiMgTG9hZCBkYXRhDQoNCmBgYHtyfQ0KDQoNCmRmPXJlYWQuY3N2KCJodHRwczovL2NvdmlkLm91cndvcmxkaW5kYXRhLm9yZy9kYXRhL293aWQtY292aWQtZGF0YS5jc3YiKQ0KbmFtZXMoZGYpDQoNCg0KbGlicmFyeShmaXhlc3QpDQpsaWJyYXJ5KGx1YnJpZGF0ZSkNCg0KYGBgDQoNCg0KDQoNCmBgYHtyfQ0KDQpjcm9zcz1jcm9zcyAlPiUgYXJyYW5nZShpc29fY29kZSxkYXRlKSAlPiUgDQogIGdyb3VwX2J5KGlzb19jb2RlKSAlPiUgDQogIG11dGF0ZShEZGVhdGhzPWRlYXRocy1kcGx5cjo6bGFnKGRlYXRocykpICU+JSANCiAgDQogIG11dGF0ZShhY3Jvc3MoIGMoImRlYXRocyIsInZheCIsImxuZGVhdGhzIiwibG52YXgiKSwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB+LngtZHBseXI6OmxhZygueCksDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLm5hbWVzPSJEey5jb2x9IikpDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICANCiAgICANCg0KbGlicmFyeShnZ3Bsb3QyKQ0KDQpjcm9zcyAlPiUgZ2dwbG90KGFlcyh4PUR2YXgsICB5PURkZWF0aHMsIGNvbG9yPWNvbnRpbmVudCkpICtnZW9tX3BvaW50KCkrZ2VvbV9zbW9vdGgobWV0aG9kPSJsbSIsc2U9RikrdGhlbWVfbWluaW1hbCgpDQoNCg0KDQpjcm9zcyAlPiUgZ2dwbG90KGFlcyh4PUR2YXgsICB5PURsbmRlYXRocywgY29sb3I9Y29udGluZW50LGxhYmVsPWxvY2F0aW9uKSkrDQogICAgICAgICAgZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD0ibG0iLHNlPUYpK3RoZW1lX21pbmltYWwoKSsNCiAgICAgICAgICBnZW9tX3RleHQoc2l6ZT0zLGNoZWNrX292ZXJsYXAgPSBUUlVFKQ0KDQoNCmBgYA0KDQoNCkxldCdzIG9ubHkgbG9vayBhdCBFdXJvcGUNCmBgYHtyfQ0KY3Jvc3NfZXVyPWNyb3NzICU+JSBmaWx0ZXIoY29udGluZW50PT0iRXVyb3BlIikgDQoNCg0KDQpjcm9zc19ldXIgJT4lIGdncGxvdChhZXMoeD12YXgsICB5PWRlYXRocywgY29sb3I9Y29udGluZW50LGxhYmVsPWxvY2F0aW9uKSkrDQogICAgICAgICAgZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD0ibG0iLHNlPUYpK3RoZW1lX21pbmltYWwoKSsNCiAgICAgICAgICBnZW9tX3RleHQoc2l6ZT0zKQ0KDQoNCmNyb3NzX2V1ciAlPiUgZ2dwbG90KGFlcyh4PXZheCwgIHk9RGRlYXRocywgY29sb3I9Y29udGluZW50LGxhYmVsPWxvY2F0aW9uKSkrDQogICAgICAgICAgZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD0ibG0iLHNlPUYpK3RoZW1lX21pbmltYWwoKSsNCiAgICAgICAgICBnZW9tX3RleHQoc2l6ZT0zKQ0KDQoNCg0KY3Jvc3MgJT4lIGdncGxvdChhZXMoeD12YXgsICB5PURsbmRlYXRocywgY29sb3I9Y29udGluZW50LGxhYmVsPWxvY2F0aW9uKSkrDQogICAgICAgICAgZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD0ibG0iLHNlPUYpK3RoZW1lX21pbmltYWwoKSsNCiAgICAgICAgICBnZW9tX3RleHQoc2l6ZT0zLGNoZWNrX292ZXJsYXAgPSBUUlVFKQ0KDQoNCg0KY3Jvc3MgJT4lIGdncGxvdChhZXMoeD1EbG52YXgseT1EbG5kZWF0aHMpKSArZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD0ibG0iKQ0KDQoNCmNyb3NzICU+JSBnZ3Bsb3QoYWVzKHg9RHZheCx5PURkZWF0aHMpKSArZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD0ibG0iKQ0KDQpgYGANCg0KDQoNCg0KQSBmaXJzdCByZWdyZXNzaW9uDQoNCg0KYGBge3J9DQoNCg0KDQpyMT1mZW9scyh0b3RhbF9kZWF0aHNfcGVyX21pbGxpb25+dG90YWxfdmFjY2luYXRpb25zX3Blcl9odW5kcmVkK0wxdmF4K3RvdGFsX3Rlc3RzX3Blcl90aG91c2FuZHxpc29fY29kZSttb250aCxkZm0pDQpyMSAlPiUgc3VtbWFyeSgpDQoNCg0KDQpyMT1mZW9scyhsbmRlYXRoc1BjfnRvdGFsX3ZhY2NpbmF0aW9uc19wZXJfaHVuZHJlZCtMMXZheCt0b3RhbF90ZXN0c19wZXJfdGhvdXNhbmR8aXNvX2NvZGUrbW9udGgsZGZtKQ0KcjEgJT4lIHN1bW1hcnkoKQ0KDQoNCg0KcjE9ZmVvbHMobG5kZWF0aHNQY35sbnZheFBjfGlzb19jb2RlK21vbnRoLGRmbSkNCnIxICU+JSBzdW1tYXJ5KCkNCg0KDQoNCg0KDQoNCg0KDQpyMT1mZW9scyh0b3RhbF9kZWF0aHNfcGVyX21pbGxpb25+dmF4K0wxdmF4fGlzb19jb2RlK21vbnRoLGRmbSAlPiUgZmlsdGVyKGNvbnRpbmVudD09IkV1cm9wZSIpKQ0KcjEgJT4lIHN1bW1hcnkoKQ0KDQoNCnIxPWZlb2xzKHRvdGFsX2RlYXRoc19wZXJfbWlsbGlvbn5MMXZheHxpc29fY29kZSttb250aCxkZm0gJT4lIGZpbHRlcihjb250aW5lbnQhPSJBc2lhIikpDQpyMSAlPiUgc3VtbWFyeSgpDQoNCg0KDQpyMT1mZXBvaXModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufnZheCtMMXZheHxpc29fY29kZSttb250aCxkZm0pDQpyMSAlPiUgc3VtbWFyeSgpDQoNCg0KcjE9ZmVwb2lzKHRvdGFsX2RlYXRoc19wZXJfbWlsbGlvbn52YXgrTDF2YXh8aXNvX2NvZGUrbW9udGgsZGZtICU+JSBmaWx0ZXIoY29udGluZW50PT0iRXVyb3BlIikpDQpyMSAlPiUgc3VtbWFyeSgpDQoNCg0KDQoNCg0KcjE9ZmVwb2lzKHRvdGFsX2RlYXRoc19wZXJfbWlsbGlvbn50b3RhbF92YWNjaW5hdGlvbnNfcGVyX2h1bmRyZWR8aXNvX2NvZGUrbW9udGgsZGZtKQ0KcjEgJT4lIHN1bW1hcnkoKQ0KDQoNCg0KcjE9ZmVvbHModG90YWxfY2FzZXNfcGVyX21pbGxpb25+dG90YWxfdmFjY2luYXRpb25zX3Blcl9odW5kcmVkK3RvdGFsX3Rlc3RzX3Blcl90aG91c2FuZHxpc29fY29kZSttb250aCxkZm0pDQpyMSAlPiUgc3VtbWFyeSgpDQoNCg0KYGBgDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNvdmlkIGFuZCB2YXh4aW5hdGlvbiINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCg0KDQoNCiMgTG9hZCBkYXRhDQoNCkRhdGEgY29tZXMgZnJvbSBbT3VyIFdvcmxkIEluIGRhdGFdKGh0dHBzOi8vZ2l0aHViLmNvbS9vd2lkL2NvdmlkLTE5LWRhdGEvdHJlZS9tYXN0ZXIvcHVibGljL2RhdGEpJ3MgQ09WSUQgZGF0YXNldC4NCkkgaGF2ZSBwcmVwYXJlZCB0aGlzIGEgbGl0dGxlIGJpdCBmb3IgeW91Lg0KDQpMZXQncyBnZXQgc3RhcnRlZCB3aXRoIGEgZGF0YXNldCBjYWxsZWQgYGNyb3NzLmNzdmAgd2hpY2ggeW91IGZpbmQgYXMgZm9sbG93cw0KDQpgYGB7cn0NCg0KDQpjcm9zcz1yZWFkLmNzdigiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21vbmRwYW50aGVyL2RhdGFzdG9yaWVzaHViLzk1ZDk0ODYyMTE1ODE5MzUwMjQ3ODIzZjE3NGEyNjMzY2RlMDIzNmIvY29kZS9jcm9zcy5jc3YiKQ0KDQpuYW1lcyhjcm9zcykgIyBzaG93IHRoZSBuYW1lcyBvZiB0aGUgZGF0YWZyYW1lDQoNCmhlYWQoY3Jvc3MpICAjIHNob3cgdGhlIGZpcnN0IGNvdXBsZSBvZiBsaW5lcw0KDQoNCmBgYA0KDQoNCg0KIyBMZXQncyBvbmx5IHRha2UgdGhlICBFVSBwYXJ0IG9mIHRoZSBkYXRhDQoNCmBgYHtyfQ0KbGlicmFyeShkcGx5cikNCg0KY3Jvc3NfZXVyPWNyb3NzICU+JSBmaWx0ZXIoY29udGluZW50PT0iRXVyb3BlIikNCmBgYA0KDQoNClN0YXJ0IGJ5IHBsb3R0aW5nDQoNCmBgYHtyfQ0KDQpsaWJyYXJ5KGdncGxvdDIpDQoNCmNyb3NzX2V1ciAlPiUgZ2dwbG90KCAgYWVzKHg9dmF4LHk9ZGVhdGhzKSAgKSArICMgc2V0dXAgdGhlIGFlc3RoZXRpYw0KICAgICAgICAgICAgICAgICAgICAgICANCiAgICAgICAgICAgICAgICAgICAgICAgZ2VvbV9wb2ludCgpICAgICAgICAgICAgIyB1c2UgaXQgdG8gcGxvdCBwb2luZXMNCg0KDQoNCg0KIyBOb3RlIHRoYXQgYWJvdmUgd2UgYnJva2UgdGhlIGNvbW1hbmQgb3ZlciBzZXZlcmFsIGxpbmVzIHdoaWNoIGNhbiBiZSBhIGdvb2QNCiMgaWRlYSB0byBtYWtlIHRoaW5ncyBtb3JlIGVhc2lseSByZWFkYWJsZS4uLmhvd2V2ZXIgdGhlIGZvbGxvd2luZyBpcyBleGFjdGx5IHRoZSBzYW1lDQojIGNvbW1hbmQ6DQoNCg0KY3Jvc3NfZXVyICU+JSBnZ3Bsb3QoICBhZXMoeD12YXgseT1kZWF0aHMpICApICsgIGdlb21fcG9pbnQoKSAgICAgDQoNCg0KDQoNCmBgYA0KDQoNCkxldCdzIGRvIHRoYXQgYSBiaXQgbmljZXI6DQoNCg0KYGBge3J9DQoNCg0KY3Jvc3NfZXVyICU+JSBnZ3Bsb3QoICBhZXMoeD12YXgseT1kZWF0aHMpICApICsgIA0KICBnZW9tX3BvaW50KCkgKw0KICB5bGFiKCJUb3RhbCBudW1iZXIgb2YgZGVhdGhzIHBlciAxIG1pbGxpb24iKSsNCiAgeGxhYigiVG90YWwgbnVtYmVyIG9mIHZhY2NpbmF0aW9ucyBwZXIgMTAwSyIpKw0KICB0aGVtZV9taW5pbWFsKCkrDQogIGdlb21fc21vb3RoKG1ldGhvZD0ibG0iLHNlPUZBTFNFKQ0KDQoNCg0KYGBgDQoNClZhY2NpbmVzIHNlZW0gdG8gYmUgYXNzb2NpYXRlZCB3aXRoIG1vcmUgZGVhdGhzLiBCZWZvcmUgd2UgZGlzY3VzcyB0aGlzIG1vcmUgbGV0J3MNCg0KDQoNCg==</div>
 
 
 

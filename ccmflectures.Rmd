@@ -139,6 +139,11 @@ You will not be able to analyse data effectively without being familiar with bas
 
 
   slidelinks("^Topic2",folder="code")
+  
+  
+  
+
+  slidelinks("^covidNvax_simple",folder="code")
 
 
 ```
