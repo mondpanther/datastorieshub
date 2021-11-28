@@ -1,0 +1,126 @@
+---
+title: "Twitter Sampling"
+output: html_document
+author: Ralf Martin
+editor_options: 
+  chunk_output_type: inline
+chunk_output_type: inline
+---
+
+
+
+
+
+Last update:  `r format(Sys.time(), '%B %d , %Y - %H:%M ')`
+
+=This is still under construction=
+
+# Introduction
+The `rtweet` package is great for sampling twitter data.
+[Here](https://medium.com/@traffordDataLab/exploring-tweets-in-r-54f6011a193d) is a useful guide for some of the basics.
+[Here](https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/use-twitter-api-r/) is another good description.
+
+Here is an example of a search:
+
+```{r, echo=FALSE,message=FALSE}
+library(rtweet)
+library(httpuv)
+library(tidyverse) 
+library(tidytext)
+```
+
+```{r}
+tweets <- search_tweets(q = "#ClimateEmergency", 
+                        n = 10000,
+                        include_rts = FALSE,
+                        `-filter` = "replies",
+                        lang = "en",retryonratelimit=TRUE)
+
+head(tweets)
+```
+
+
+
+
+# Climate tweets & climate hoaxism
+Here is a little example dataset focusing on climate change related tweets.
+This is based on the tweet sampling I have been doing on climate hoaxism. Within the tweets I sample for COVID hoaxism I have identified tweets that mention the word `climate`. Here is how you can load those tweets:
+
+
+
+```{r ca,cache=F}
+library(lubridate)
+library(dplyr)
+
+climatetweets=read.csv("https://www.dropbox.com/s/1yy0fed6qt7oerp/climatetweets.csv?dl=1")
+library(readr)
+#climatetweets=read.csv("../../../corona/data/climatetweets.csv")
+climatetweets=climatetweets %>% mutate(created_at= as_datetime((created_at)))
+#climatetweets=climatetweets %>% mutate(created_at= as_datetime(as.character(created_at)))
+
+```
+Note this is a really big dataset with information on `r nrow(climatetweets)` tweets so downloading this might take a while and also requires a lot of harddrive and memory space.
+
+Let's compute some figures on the basis of this data.
+
+```{r}
+library(lubridate)
+
+start.date = ymd_hms("2020-01-01 00:00:00")
+#start.date = ymd_hms("2020-01-01 00:00:00")
+end.date   = as_datetime(now()+days(1)) #ymd_hms("2020-04-02 01:00:00")
+#end.date   = ymd_hms("2020-04-04 01:00:00")
+breaks = seq(start.date, end.date, "24 hours")
+
+breaksweeks = seq(start.date, end.date, "1 week")
+climatetweets = climatetweets %>% mutate(week= cut(created_at, breaks=breaksweeks),climatehoax_id=climatehoax_id=="true")
+
+library(data.table)
+fcomb=climatetweets
+
+library(stringr)
+fcomb=fcomb%>%mutate(usid=str_trim(state2dig)!="",climatehoax_id=as.numeric(climatehoax_id))
+fcomb=fcomb%>%mutate(country=ifelse(usid==TRUE,"US",ifelse(str_trim(ukid)!="","UK","other"))   )
+
+
+scomb=fcomb %>%group_by(week,country)%>% dplyr::summarise(climatetweets=n(),climatehoax_id=sum(climatehoax_id,na.rm = T))
+
+scomb=scomb%>%mutate(hoaxsh=climatehoax_id/climatetweets*100)
+
+#test=climatetweets %>% filter(climatehoax_id==T)
+
+scomb=scomb %>% filter(is.na(country)==FALSE & is.na(week)==FALSE) %>% ungroup() %>%mutate(week=as.Date(week))
+#write.csv(scomb, file="../chseries.csv")
+
+```
+
+
+Note that these tweets have been sampled over time at differing sampling rates; i.e. for a while (starting in April) I sampled tweets every two hours. More recently I am only sampling once or twice a day.
+Hence, over time we can only compare statistics that are not affected by this. 
+
+
+```{r Climate Tweets over time}
+library(ggplot2)
+ggplot(scomb,aes(x=week,y=climatetweets,color=country)) +  geom_line() +theme_minimal()
+
+
+```
+
+
+For instance, we can look at the weekly ratio of climate hoax tweets (identified by using the hashtag `#climatehoax`) over all climate related tweets. This is shown in the following figure
+
+```{r climate hoax share}
+
+library(ggplot2)
+ggplot(scomb,aes(x=week,y=hoaxsh,color=country)) +  geom_line() +theme_minimal()
+
+
+```
+
+A first glance would suggest that climate hoaxism is on the delicline over 2020. 
+
+
+
+
+
+
