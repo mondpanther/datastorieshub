@@ -219,133 +219,238 @@ pre code {
 <h1>Load data</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5cbmRmPXJlYWQuY3N2KFwiaHR0cHM6Ly9jb3ZpZC5vdXJ3b3JsZGluZGF0YS5vcmcvZGF0YS9vd2lkLWNvdmlkLWRhdGEuY3N2XCIpXG5uYW1lcyhkZilcblxuXG5saWJyYXJ5KGZpeGVzdClcbmxpYnJhcnkobHVicmlkYXRlKVxuXG5gYGAifQ== -->
-<pre class="r"><code>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuXG5cbmRmPXJlYWQuY3N2KFxcaHR0cHM6Ly9jb3ZpZC5vdXJ3b3JsZGluZGF0YS5vcmcvZGF0YS9vd2lkLWNvdmlkLWRhdGEuY3N2XFwpXG5uYW1lcyhkZilcblxuXG5saWJyYXJ5KGZpeGVzdClcbmxpYnJhcnkobHVicmlkYXRlKVxuXG5gYGBcbmBgYCJ9 -->
+<pre class="r"><code>```r
 
-df=read.csv(&quot;https://covid.ourworldindata.org/data/owid-covid-data.csv&quot;)
+
+df=read.csv(\https://covid.ourworldindata.org/data/owid-covid-data.csv\)
 names(df)
 
 
 library(fixest)
 library(lubridate)
 </code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="prepare-data" class="section level1">
-<h1>Prepare data</h1>
-<p>Aggregate to month; i.e. we wanna analyse this at the country and month level</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGZtID0gZGYgJT4lIG11dGF0ZShtb250aD1zdWJzdHIoZGF0ZSwgMSwgNyksICBkYXRlPWFzX2RhdGUoZGF0ZSkpICU+JSBcbiAgZ3JvdXBfYnkobW9udGgsaXNvX2NvZGUpICU+JSBmaWx0ZXIoZGF0ZT09bWF4KGRhdGUpKSAlPiUgXG4gICAgc2VsZWN0KGlzb19jb2RlLGRhdGUsbG9jYXRpb24sc3RhcnRzX3dpdGgoXCJ0b3RhbF9cIikscG9wdWxhdGlvbixwb3B1bGF0aW9uX2RlbnNpdHksY29udGluZW50KVxuXG5gYGAifQ== -->
-<pre class="r"><code>dfm = df %&gt;% mutate(month=substr(date, 1, 7),  date=as_date(date)) %&gt;% 
-  group_by(month,iso_code) %&gt;% filter(date==max(date)) %&gt;% 
-    select(iso_code,date,location,starts_with(&quot;total_&quot;),population,population_density,continent)
-</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+
+# Prepare data
+
+Aggregate to month; i.e. we wanna analyse this at the country and month level
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5kZm0gPSBkZiAlPiUgbXV0YXRlKG1vbnRoPXN1YnN0cihkYXRlLCAxLCA3KSAgICMgQ3JlYXRlIG1vbnRoIGJ5IHRha2luZyB0aGUgZmlyc3QgNyBjaGFyYWN0ZXJzIG9mIHRoZSBkYXRlIHN0cmluZ1xuICAgICAgICAgICAgICAgICAgICApICU+JSAgICAgXG4gICAgICAgICBncm91cF9ieShtb250aCxpc29fY29kZSkgJT4lICAgICAgICAgICAjIERlZmluZSBncm91cHMgYnkgbW9udGggYW5kIGNvdW50cnlcbiAgICAgICAgIGZpbHRlcihkYXRlPT1tYXgoZGF0ZSkpICU+JSAgICAgICAgICAgICMgVGFrZSBvbmx5IHRoZSBsYXN0IGRheSBvZiBldmVyeSBtb250aFxuICAgICAgICAgc2VsZWN0KGlzb19jb2RlLCAgICAgICAgICAgICAgICAgICAgICAgIyBTZWxlY3Qgb25seSBzb21lIHZhcmlhYmxlcy4uLlxuICAgICAgICAgICAgICAgIGRhdGUsXG4gICAgICAgICAgICAgICAgbG9jYXRpb24sXG4gICAgICAgICAgICAgICAgc3RhcnRzX3dpdGgoXCJ0b3RhbF9cIiksXG4gICAgICAgICAgICAgICAgcG9wdWxhdGlvbixcbiAgICAgICAgICAgICAgICBwb3B1bGF0aW9uX2RlbnNpdHksY29udGluZW50KVxuYGBgIn0= --&gt;
+
+```r
+
+dfm = df %&gt;% mutate(month=substr(date, 1, 7)   # Create month by taking the first 7 characters of the date string
+                    ) %&gt;%     
+         group_by(month,iso_code) %&gt;%           # Define groups by month and country
+         filter(date==max(date)) %&gt;%            # Take only the last day of every month
+         select(iso_code,                       # Select only some variables...
+                date,
+                location,
+                starts_with(&quot;total_&quot;),
+                population,
+                population_density,continent)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiQWRkaW5nIG1pc3NpbmcgZ3JvdXBpbmcgdmFyaWFibGVzOiBgbW9udGhgXG4ifQ== -->
 <pre><code>Adding missing grouping variables: `month`</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5kZm09ZGZtICU+JSBmaWx0ZXIoc3Vic3RyKGlzb19jb2RlLCAxLCA0KSE9XCJPV0lEXCIpXG5cbmBgYCJ9 -->
-<pre class="r"><code>
-dfm=dfm %&gt;% filter(substr(iso_code, 1, 4)!=&quot;OWID&quot;)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGZtPWRmbSAlPiUgZmlsdGVyKHN1YnN0cihpc29fY29kZSwgMSwgNCkhPVwiT1dJRFwiKSAgIyBXZSBnZXQgcmlkIG9mIG9ic2VydmF0aW9ucyB0aGF0IHJlZmVyIHRvIGdyb3VwcyBvZiBjb3VudHJpZXMgKGkuZS4gdGhvc2UgdGhhdCBoYXZlIGFuIE9XSUQgaWRlbnRpZmllcilcblxuXG5cbiMgUmVwbGFjZSB0aGUgbWlzc2luZyB2YWx1ZXMgd2l0aCAwXG4jIGJ1dCBvbmx5IGF0IHRoZSBiZWdpbm5pbmcgYmVjYXVzZSBhdCB0aGUgZW5kIHRoYXQganVzdCBtZWFucyBtaXNzaW5nIHZhbHVlcy4uLlxubGlicmFyeSh0aWR5cikgICMgIHRoaXMgcGFja2FnZSBnaXZlcyB1cyB0aGUgcmVwbGFjZV9uYSgpIGNvbW1hbmRcblxuZGZtPWRmbSAlPiUgYXJyYW5nZShpc29fY29kZSxkYXRlKSAlPiUgXG4gICAgZ3JvdXBfYnkoaXNvX2NvZGUpICU+JSBcbiAgICBtdXRhdGUoIGFjcm9zcyggc3RhcnRzX3dpdGgoXCJ0b3RhbF9cIiksIH5pZmVsc2UoIGlzLm5hKC54KSAmIGN1bXN1bSggcmVwbGFjZV9uYSgueCwgMCkgKT09MCAsMCwueCkpKVxuXG5cbmRmbT1kZm0gJT4lIGZpbHRlcihhc19kYXRlKFwiMjAyMS0xMC0zMFwiKT5kYXRlKVxud3JpdGUuY3N2KGRmbSxcImRmbS5jc3ZcIilcblxuXG5cblxuZGZtPWRmbSAlPiUgbXV0YXRlKGRhdGU9YXNfZGF0ZShkYXRlKSlcbmBgYCJ9 -->
+<pre class="r"><code>dfm=dfm %&gt;% filter(substr(iso_code, 1, 4)!=&quot;OWID&quot;)  # We get rid of observations that refer to groups of countries (i.e. those that have an OWID identifier)
+
+
+
+# Replace the missing values with 0
+# but only at the beginning because at the end that just means missing values...
+library(tidyr)  #  this package gives us the replace_na() command
+
+dfm=dfm %&gt;% arrange(iso_code,date) %&gt;% 
+    group_by(iso_code) %&gt;% 
+    mutate( across( starts_with(&quot;total_&quot;), ~ifelse( is.na(.x) &amp; cumsum( replace_na(.x, 0) )==0 ,0,.x)))
+
+
+dfm=dfm %&gt;% filter(as_date(&quot;2021-10-30&quot;)&gt;date)
+write.csv(dfm,&quot;dfm.csv&quot;)
+
+
+
+
+dfm=dfm %&gt;% mutate(date=as_date(date))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Clean up a bit more</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGZtPWRmbSAlPiUgYXJyYW5nZShpc29fY29kZSxkYXRlKSAlPiUgXG4gICAgXG4gICAgZ3JvdXBfYnkoaXNvX2NvZGUpICU+JSBcbiAgbXV0YXRlKCBhY3Jvc3MoIHN0YXJ0c193aXRoKFwidG90YWxfXCIpLCB+aWZlbHNlKCBpcy5uYSgueCkgJiBjdW1zdW0oIHJlcGxhY2VfbmEoLngsIDApICk9PTAgLDAsLngpKSlcblxuYGBgIn0= -->
-<pre class="r"><code>dfm=dfm %&gt;% arrange(iso_code,date) %&gt;% 
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGZtPWRmbSAlPiUgYXJyYW5nZShpc29fY29kZSxkYXRlKSAlPiUgXG4gICAgXG4gICAgZ3JvdXBfYnkoaXNvX2NvZGUpICU+JSBcbiAgbXV0YXRlKCBhY3Jvc3MoIHN0YXJ0c193aXRoKFxcdG90YWxfXFwpLCB+aWZlbHNlKCBpcy5uYSgueCkgJiBjdW1zdW0oIHJlcGxhY2VfbmEoLngsIDApICk9PTAgLDAsLngpKSlcblxuYGBgXG5gYGAifQ== -->
+<pre class="r"><code>```r
+dfm=dfm %&gt;% arrange(iso_code,date) %&gt;% 
     
     group_by(iso_code) %&gt;% 
-  mutate( across( starts_with(&quot;total_&quot;), ~ifelse( is.na(.x) &amp; cumsum( replace_na(.x, 0) )==0 ,0,.x)))
+  mutate( across( starts_with(\total_\), ~ifelse( is.na(.x) &amp; cumsum( replace_na(.x, 0) )==0 ,0,.x)))
+</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IFByb2JsZW0gd2l0aCBgbXV0YXRlKClgIGlucHV0IGAuLjFgLlxuaSBgLi4xID0gYWNyb3NzKC4uLilgLlxueCBjb3VsZCBub3QgZmluZCBmdW5jdGlvbiBcXHJlcGxhY2VfbmFcXFxuaSBUaGUgZXJyb3Igb2NjdXJyZWQgaW4gZ3JvdXAgMTogaXNvX2NvZGUgPSBcXEFCV1xcLlxuUnVuIGBybGFuZzo6bGFzdF9lcnJvcigpYCB0byBzZWUgd2hlcmUgdGhlIGVycm9yIG9jY3VycmVkLlxuIn0= --&gt;
+</code></pre>
+<p>Error: Problem with <code>mutate()</code> input <code>..1</code>. i <code>..1 = across(...)</code>. x could not find function _na<br />
+i The error occurred in group 1: iso_code = . Run <code>rlang::last_error()</code> to see where the error occurred.</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+## A cross section?
+
+
+Let&#39;s compare 
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5jcm9zcz1kZm0gJT4lIGdyb3VwX2J5KGlzb19jb2RlKSAlPiUgXG4gIGZpbHRlcighaXMubmEodmF4KSAmICFpcy5uYShkZWF0aHMpKSAlPiUgZmlsdGVyKG1vbnRoPT1cIjIwMjEtMDJcIiB8IG1vbnRoPT1tYXgobW9udGgpKSAlPiUgXG4gIGFycmFuZ2UoaXNvX2NvZGUsZGF0ZSkgJT4lIGdyb3VwX2J5KGlzb19jb2RlKSAlPiUgXG4gIG11dGF0ZShwZXJpb2Q9MTpuKCkpXG5cblxud3JpdGUuY3N2KGNyb3NzLFwiY3Jvc3MuY3N2XCIpXG5cblxuXG5gYGAifQ== --&gt;
+
+```r
+
+cross=dfm %&gt;% group_by(iso_code) %&gt;% 
+  filter(!is.na(vax) &amp; !is.na(deaths)) %&gt;% filter(month==&quot;2021-02&quot; | month==max(month)) %&gt;% 
+  arrange(iso_code,date) %&gt;% group_by(iso_code) %&gt;% 
+  mutate(period=1:n())
+
+
+write.csv(cross,&quot;cross.csv&quot;)
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IFByb2JsZW0gd2l0aCBgbXV0YXRlKClgIGlucHV0IGAuLjFgLlxuaSBgLi4xID0gYWNyb3NzKC4uLilgLlxueCBjb3VsZCBub3QgZmluZCBmdW5jdGlvbiBcInJlcGxhY2VfbmFcIlxuaSBUaGUgZXJyb3Igb2NjdXJyZWQgaW4gZ3JvdXAgMTogaXNvX2NvZGUgPSBcIkFCV1wiLlxuUnVuIGBybGFuZzo6bGFzdF9lcnJvcigpYCB0byBzZWUgd2hlcmUgdGhlIGVycm9yIG9jY3VycmVkLlxuIn0= -->
-<pre><code>Error: Problem with `mutate()` input `..1`.
-i `..1 = across(...)`.
-x could not find function &quot;replace_na&quot;
-i The error occurred in group 1: iso_code = &quot;ABW&quot;.
-Run `rlang::last_error()` to see where the error occurred.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="a-cross-section" class="section level2">
-<h2>A cross section?</h2>
-<p>Let’s compare</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5jcm9zcz1jcm9zcyAlPiUgYXJyYW5nZShpc29fY29kZSxkYXRlKSAlPiUgXG4gIGdyb3VwX2J5KGlzb19jb2RlKSAlPiUgXG4gIG11dGF0ZShEZGVhdGhzPWRlYXRocy1kcGx5cjo6bGFnKGRlYXRocykpICU+JSBcbiAgXG4gIG11dGF0ZShhY3Jvc3MoIGMoXCJkZWF0aHNcIixcInZheFwiLFwibG5kZWF0aHNcIixcImxudmF4XCIpLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH4ueC1kcGx5cjo6bGFnKC54KSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAubmFtZXM9XCJEey5jb2x9XCIpKVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgXG5cbmxpYnJhcnkoZ2dwbG90MilcblxuY3Jvc3MgJT4lIGdncGxvdChhZXMoeD1EdmF4LCAgeT1EZGVhdGhzLCBjb2xvcj1jb250aW5lbnQpKSArZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD1cImxtXCIsc2U9RikrdGhlbWVfbWluaW1hbCgpXG5cblxuXG5jcm9zcyAlPiUgZ2dwbG90KGFlcyh4PUR2YXgsICB5PURsbmRlYXRocywgY29sb3I9Y29udGluZW50LGxhYmVsPWxvY2F0aW9uKSkrXG4gICAgICAgICAgZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD1cImxtXCIsc2U9RikrdGhlbWVfbWluaW1hbCgpK1xuICAgICAgICAgIGdlb21fdGV4dChzaXplPTMsY2hlY2tfb3ZlcmxhcCA9IFRSVUUpXG5cblxuYGBgIn0= -->
-<pre class="r"><code>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuXG5jcm9zcz1jcm9zcyAlPiUgYXJyYW5nZShpc29fY29kZSxkYXRlKSAlPiUgXG4gIGdyb3VwX2J5KGlzb19jb2RlKSAlPiUgXG4gIG11dGF0ZShEZGVhdGhzPWRlYXRocy1kcGx5cjo6bGFnKGRlYXRocykpICU+JSBcbiAgXG4gIG11dGF0ZShhY3Jvc3MoIGMoXFxkZWF0aHNcXCxcXHZheFxcLFxcbG5kZWF0aHNcXCxcXGxudmF4XFwpLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH4ueC1kcGx5cjo6bGFnKC54KSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAubmFtZXM9XFxEey5jb2x9XFwpKVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgXG5cbmxpYnJhcnkoZ2dwbG90MilcblxuY3Jvc3MgJT4lIGdncGxvdChhZXMoeD1EdmF4LCAgeT1EZGVhdGhzLCBjb2xvcj1jb250aW5lbnQpKSArZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD1cXGxtXFwsc2U9RikrdGhlbWVfbWluaW1hbCgpXG5cblxuXG5jcm9zcyAlPiUgZ2dwbG90KGFlcyh4PUR2YXgsICB5PURsbmRlYXRocywgY29sb3I9Y29udGluZW50LGxhYmVsPWxvY2F0aW9uKSkrXG4gICAgICAgICAgZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD1cXGxtXFwsc2U9RikrdGhlbWVfbWluaW1hbCgpK1xuICAgICAgICAgIGdlb21fdGV4dChzaXplPTMsY2hlY2tfb3ZlcmxhcCA9IFRSVUUpXG5cblxuYGBgXG5gYGAifQ== -->
+<pre class="r"><code>```r
+
 cross=cross %&gt;% arrange(iso_code,date) %&gt;% 
   group_by(iso_code) %&gt;% 
   mutate(Ddeaths=deaths-dplyr::lag(deaths)) %&gt;% 
   
-  mutate(across( c(&quot;deaths&quot;,&quot;vax&quot;,&quot;lndeaths&quot;,&quot;lnvax&quot;),
+  mutate(across( c(\deaths\,\vax\,\lndeaths\,\lnvax\),
                                         ~.x-dplyr::lag(.x),
-                                        .names=&quot;D{.col}&quot;))
+                                        .names=\D{.col}\))
                                 
                                 
     
 
 library(ggplot2)
 
-cross %&gt;% ggplot(aes(x=Dvax,  y=Ddeaths, color=continent)) +geom_point()+geom_smooth(method=&quot;lm&quot;,se=F)+theme_minimal()
+cross %&gt;% ggplot(aes(x=Dvax,  y=Ddeaths, color=continent)) +geom_point()+geom_smooth(method=\lm\,se=F)+theme_minimal()
 
 
 
 cross %&gt;% ggplot(aes(x=Dvax,  y=Dlndeaths, color=continent,label=location))+
-          geom_point()+geom_smooth(method=&quot;lm&quot;,se=F)+theme_minimal()+
+          geom_point()+geom_smooth(method=\lm\,se=F)+theme_minimal()+
           geom_text(size=3,check_overlap = TRUE)
 </code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Let’s only look at Europe</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3Jvc3NfZXVyPWNyb3NzICU+JSBmaWx0ZXIoY29udGluZW50PT1cIkV1cm9wZVwiKSBcblxuXG5cbmNyb3NzX2V1ciAlPiUgZ2dwbG90KGFlcyh4PXZheCwgIHk9ZGVhdGhzLCBjb2xvcj1jb250aW5lbnQsbGFiZWw9bG9jYXRpb24pKStcbiAgICAgICAgICBnZW9tX3BvaW50KCkrZ2VvbV9zbW9vdGgobWV0aG9kPVwibG1cIixzZT1GKSt0aGVtZV9taW5pbWFsKCkrXG4gICAgICAgICAgZ2VvbV90ZXh0KHNpemU9MylcblxuXG5jcm9zc19ldXIgJT4lIGdncGxvdChhZXMoeD12YXgsICB5PURkZWF0aHMsIGNvbG9yPWNvbnRpbmVudCxsYWJlbD1sb2NhdGlvbikpK1xuICAgICAgICAgIGdlb21fcG9pbnQoKStnZW9tX3Ntb290aChtZXRob2Q9XCJsbVwiLHNlPUYpK3RoZW1lX21pbmltYWwoKStcbiAgICAgICAgICBnZW9tX3RleHQoc2l6ZT0zKVxuXG5cblxuY3Jvc3MgJT4lIGdncGxvdChhZXMoeD12YXgsICB5PURsbmRlYXRocywgY29sb3I9Y29udGluZW50LGxhYmVsPWxvY2F0aW9uKSkrXG4gICAgICAgICAgZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD1cImxtXCIsc2U9RikrdGhlbWVfbWluaW1hbCgpK1xuICAgICAgICAgIGdlb21fdGV4dChzaXplPTMsY2hlY2tfb3ZlcmxhcCA9IFRSVUUpXG5cblxuXG5jcm9zcyAlPiUgZ2dwbG90KGFlcyh4PURsbnZheCx5PURsbmRlYXRocykpICtnZW9tX3BvaW50KCkrZ2VvbV9zbW9vdGgobWV0aG9kPVwibG1cIilcblxuXG5jcm9zcyAlPiUgZ2dwbG90KGFlcyh4PUR2YXgseT1EZGVhdGhzKSkgK2dlb21fcG9pbnQoKStnZW9tX3Ntb290aChtZXRob2Q9XCJsbVwiKVxuXG5gYGAifQ== -->
-<pre class="r"><code>cross_eur=cross %&gt;% filter(continent==&quot;Europe&quot;) 
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+Let&#39;s only look at Europe
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3Jvc3NfZXVyPWNyb3NzICU+JSBmaWx0ZXIoY29udGluZW50PT1cXEV1cm9wZVxcKSBcblxuXG5cbmNyb3NzX2V1ciAlPiUgZ2dwbG90KGFlcyh4PXZheCwgIHk9ZGVhdGhzLCBjb2xvcj1jb250aW5lbnQsbGFiZWw9bG9jYXRpb24pKStcbiAgICAgICAgICBnZW9tX3BvaW50KCkrZ2VvbV9zbW9vdGgobWV0aG9kPVxcbG1cXCxzZT1GKSt0aGVtZV9taW5pbWFsKCkrXG4gICAgICAgICAgZ2VvbV90ZXh0KHNpemU9MylcblxuXG5jcm9zc19ldXIgJT4lIGdncGxvdChhZXMoeD12YXgsICB5PURkZWF0aHMsIGNvbG9yPWNvbnRpbmVudCxsYWJlbD1sb2NhdGlvbikpK1xuICAgICAgICAgIGdlb21fcG9pbnQoKStnZW9tX3Ntb290aChtZXRob2Q9XFxsbVxcLHNlPUYpK3RoZW1lX21pbmltYWwoKStcbiAgICAgICAgICBnZW9tX3RleHQoc2l6ZT0zKVxuXG5cblxuY3Jvc3MgJT4lIGdncGxvdChhZXMoeD12YXgsICB5PURsbmRlYXRocywgY29sb3I9Y29udGluZW50LGxhYmVsPWxvY2F0aW9uKSkrXG4gICAgICAgICAgZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD1cXGxtXFwsc2U9RikrdGhlbWVfbWluaW1hbCgpK1xuICAgICAgICAgIGdlb21fdGV4dChzaXplPTMsY2hlY2tfb3ZlcmxhcCA9IFRSVUUpXG5cblxuXG5jcm9zcyAlPiUgZ2dwbG90KGFlcyh4PURsbnZheCx5PURsbmRlYXRocykpICtnZW9tX3BvaW50KCkrZ2VvbV9zbW9vdGgobWV0aG9kPVxcbG1cXClcblxuXG5jcm9zcyAlPiUgZ2dwbG90KGFlcyh4PUR2YXgseT1EZGVhdGhzKSkgK2dlb21fcG9pbnQoKStnZW9tX3Ntb290aChtZXRob2Q9XFxsbVxcKVxuXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+cross_eur=cross %&gt;% filter(continent==\Europe\) 
 
 
 
 cross_eur %&gt;% ggplot(aes(x=vax,  y=deaths, color=continent,label=location))+
-          geom_point()+geom_smooth(method=&quot;lm&quot;,se=F)+theme_minimal()+
+          geom_point()+geom_smooth(method=\lm\,se=F)+theme_minimal()+
           geom_text(size=3)
 
 
 cross_eur %&gt;% ggplot(aes(x=vax,  y=Ddeaths, color=continent,label=location))+
-          geom_point()+geom_smooth(method=&quot;lm&quot;,se=F)+theme_minimal()+
+          geom_point()+geom_smooth(method=\lm\,se=F)+theme_minimal()+
           geom_text(size=3)
 
 
 
 cross %&gt;% ggplot(aes(x=vax,  y=Dlndeaths, color=continent,label=location))+
-          geom_point()+geom_smooth(method=&quot;lm&quot;,se=F)+theme_minimal()+
+          geom_point()+geom_smooth(method=\lm\,se=F)+theme_minimal()+
           geom_text(size=3,check_overlap = TRUE)
 
 
 
-cross %&gt;% ggplot(aes(x=Dlnvax,y=Dlndeaths)) +geom_point()+geom_smooth(method=&quot;lm&quot;)
+cross %&gt;% ggplot(aes(x=Dlnvax,y=Dlndeaths)) +geom_point()+geom_smooth(method=\lm\)
 
 
-cross %&gt;% ggplot(aes(x=Dvax,y=Ddeaths)) +geom_point()+geom_smooth(method=&quot;lm&quot;)
+cross %&gt;% ggplot(aes(x=Dvax,y=Ddeaths)) +geom_point()+geom_smooth(method=\lm\)
 </code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>A first regression</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5cblxucjE9ZmVvbHModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufnRvdGFsX3ZhY2NpbmF0aW9uc19wZXJfaHVuZHJlZCtMMXZheCt0b3RhbF90ZXN0c19wZXJfdGhvdXNhbmR8aXNvX2NvZGUrbW9udGgsZGZtKVxucjEgJT4lIHN1bW1hcnkoKVxuXG5cblxucjE9ZmVvbHMobG5kZWF0aHNQY350b3RhbF92YWNjaW5hdGlvbnNfcGVyX2h1bmRyZWQrTDF2YXgrdG90YWxfdGVzdHNfcGVyX3Rob3VzYW5kfGlzb19jb2RlK21vbnRoLGRmbSlcbnIxICU+JSBzdW1tYXJ5KClcblxuXG5cbnIxPWZlb2xzKGxuZGVhdGhzUGN+bG52YXhQY3xpc29fY29kZSttb250aCxkZm0pXG5yMSAlPiUgc3VtbWFyeSgpXG5cblxuXG5cblxuXG5cblxucjE9ZmVvbHModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufnZheCtMMXZheHxpc29fY29kZSttb250aCxkZm0gJT4lIGZpbHRlcihjb250aW5lbnQ9PVwiRXVyb3BlXCIpKVxucjEgJT4lIHN1bW1hcnkoKVxuXG5cbnIxPWZlb2xzKHRvdGFsX2RlYXRoc19wZXJfbWlsbGlvbn5MMXZheHxpc29fY29kZSttb250aCxkZm0gJT4lIGZpbHRlcihjb250aW5lbnQhPVwiQXNpYVwiKSlcbnIxICU+JSBzdW1tYXJ5KClcblxuXG5cbnIxPWZlcG9pcyh0b3RhbF9kZWF0aHNfcGVyX21pbGxpb25+dmF4K0wxdmF4fGlzb19jb2RlK21vbnRoLGRmbSlcbnIxICU+JSBzdW1tYXJ5KClcblxuXG5yMT1mZXBvaXModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufnZheCtMMXZheHxpc29fY29kZSttb250aCxkZm0gJT4lIGZpbHRlcihjb250aW5lbnQ9PVwiRXVyb3BlXCIpKVxucjEgJT4lIHN1bW1hcnkoKVxuXG5cblxuXG5cbnIxPWZlcG9pcyh0b3RhbF9kZWF0aHNfcGVyX21pbGxpb25+dG90YWxfdmFjY2luYXRpb25zX3Blcl9odW5kcmVkfGlzb19jb2RlK21vbnRoLGRmbSlcbnIxICU+JSBzdW1tYXJ5KClcblxuXG5cbnIxPWZlb2xzKHRvdGFsX2Nhc2VzX3Blcl9taWxsaW9ufnRvdGFsX3ZhY2NpbmF0aW9uc19wZXJfaHVuZHJlZCt0b3RhbF90ZXN0c19wZXJfdGhvdXNhbmR8aXNvX2NvZGUrbW9udGgsZGZtKVxucjEgJT4lIHN1bW1hcnkoKVxuXG5cbmBgYCJ9 -->
-<pre class="r"><code>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+
+
+A first regression
+
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuXG5cblxucjE9ZmVvbHModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufnRvdGFsX3ZhY2NpbmF0aW9uc19wZXJfaHVuZHJlZCtMMXZheCt0b3RhbF90ZXN0c19wZXJfdGhvdXNhbmR8aXNvX2NvZGUrbW9udGgsZGZtKVxucjEgJT4lIHN1bW1hcnkoKVxuXG5cblxucjE9ZmVvbHMobG5kZWF0aHNQY350b3RhbF92YWNjaW5hdGlvbnNfcGVyX2h1bmRyZWQrTDF2YXgrdG90YWxfdGVzdHNfcGVyX3Rob3VzYW5kfGlzb19jb2RlK21vbnRoLGRmbSlcbnIxICU+JSBzdW1tYXJ5KClcblxuXG5cbnIxPWZlb2xzKGxuZGVhdGhzUGN+bG52YXhQY3xpc29fY29kZSttb250aCxkZm0pXG5yMSAlPiUgc3VtbWFyeSgpXG5cblxuXG5cblxuXG5cblxucjE9ZmVvbHModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufnZheCtMMXZheHxpc29fY29kZSttb250aCxkZm0gJT4lIGZpbHRlcihjb250aW5lbnQ9PVxcRXVyb3BlXFwpKVxucjEgJT4lIHN1bW1hcnkoKVxuXG5cbnIxPWZlb2xzKHRvdGFsX2RlYXRoc19wZXJfbWlsbGlvbn5MMXZheHxpc29fY29kZSttb250aCxkZm0gJT4lIGZpbHRlcihjb250aW5lbnQhPVxcQXNpYVxcKSlcbnIxICU+JSBzdW1tYXJ5KClcblxuXG5cbnIxPWZlcG9pcyh0b3RhbF9kZWF0aHNfcGVyX21pbGxpb25+dmF4K0wxdmF4fGlzb19jb2RlK21vbnRoLGRmbSlcbnIxICU+JSBzdW1tYXJ5KClcblxuXG5yMT1mZXBvaXModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufnZheCtMMXZheHxpc29fY29kZSttb250aCxkZm0gJT4lIGZpbHRlcihjb250aW5lbnQ9PVxcRXVyb3BlXFwpKVxucjEgJT4lIHN1bW1hcnkoKVxuXG5cblxuXG5cbnIxPWZlcG9pcyh0b3RhbF9kZWF0aHNfcGVyX21pbGxpb25+dG90YWxfdmFjY2luYXRpb25zX3Blcl9odW5kcmVkfGlzb19jb2RlK21vbnRoLGRmbSlcbnIxICU+JSBzdW1tYXJ5KClcblxuXG5cbnIxPWZlb2xzKHRvdGFsX2Nhc2VzX3Blcl9taWxsaW9ufnRvdGFsX3ZhY2NpbmF0aW9uc19wZXJfaHVuZHJlZCt0b3RhbF90ZXN0c19wZXJfdGhvdXNhbmR8aXNvX2NvZGUrbW9udGgsZGZtKVxucjEgJT4lIHN1bW1hcnkoKVxuXG5cbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+
 
 
 r1=feols(total_deaths_per_million~total_vaccinations_per_hundred+L1vax+total_tests_per_thousand|iso_code+month,dfm)
@@ -368,11 +473,11 @@ r1 %&gt;% summary()
 
 
 
-r1=feols(total_deaths_per_million~vax+L1vax|iso_code+month,dfm %&gt;% filter(continent==&quot;Europe&quot;))
+r1=feols(total_deaths_per_million~vax+L1vax|iso_code+month,dfm %&gt;% filter(continent==\Europe\))
 r1 %&gt;% summary()
 
 
-r1=feols(total_deaths_per_million~L1vax|iso_code+month,dfm %&gt;% filter(continent!=&quot;Asia&quot;))
+r1=feols(total_deaths_per_million~L1vax|iso_code+month,dfm %&gt;% filter(continent!=\Asia\))
 r1 %&gt;% summary()
 
 
@@ -381,7 +486,7 @@ r1=fepois(total_deaths_per_million~vax+L1vax|iso_code+month,dfm)
 r1 %&gt;% summary()
 
 
-r1=fepois(total_deaths_per_million~vax+L1vax|iso_code+month,dfm %&gt;% filter(continent==&quot;Europe&quot;))
+r1=fepois(total_deaths_per_million~vax+L1vax|iso_code+month,dfm %&gt;% filter(continent==\Europe\))
 r1 %&gt;% summary()
 
 
@@ -396,12 +501,12 @@ r1 %&gt;% summary()
 r1=feols(total_cases_per_million~total_vaccinations_per_hundred+total_tests_per_thousand|iso_code+month,dfm)
 r1 %&gt;% summary()
 </code></pre>
+<p>```</p>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 </div>
-</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNvdmlkIGFuZCB2YXh4aW5hdGlvbiINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCg0KDQoNCiMgTG9hZCBkYXRhDQoNCmBgYHtyfQ0KDQoNCmRmPXJlYWQuY3N2KCJodHRwczovL2NvdmlkLm91cndvcmxkaW5kYXRhLm9yZy9kYXRhL293aWQtY292aWQtZGF0YS5jc3YiKQ0KbmFtZXMoZGYpDQoNCg0KbGlicmFyeShmaXhlc3QpDQpsaWJyYXJ5KGx1YnJpZGF0ZSkNCg0KYGBgDQoNCg0KDQojIFByZXBhcmUgZGF0YQ0KDQpBZ2dyZWdhdGUgdG8gbW9udGg7IGkuZS4gd2Ugd2FubmEgYW5hbHlzZSB0aGlzIGF0IHRoZSBjb3VudHJ5IGFuZCBtb250aCBsZXZlbA0KDQpgYGB7cn0NCg0KZGZtID0gZGYgJT4lIG11dGF0ZShtb250aD1zdWJzdHIoZGF0ZSwgMSwgNyksICAgIyBDcmVhdGUgbW9udGggYnkgdGFraW5nIHRoZSBmaXJzdCA3IGNoYXJhY3RlcnMgb2YgdGhlIGRhdGUgc3RyaW5nDQogICAgICAgICAgICAgICAgICAgIGRhdGU9YXNfZGF0ZShkYXRlKSkgJT4lICAgICAjIEFsc28gdGVsbCBSIHRoYXQgZGF0ZSBpcyBhY3R1YWxseSBhIGRhdGUgdmFyaWFibGUNCiAgICAgICAgIGdyb3VwX2J5KG1vbnRoLGlzb19jb2RlKSAlPiUgICAgICAgICAgICMgRGVmaW5lIGdyb3VwcyBieSBtb250aCBhbmQgY291bnRyeQ0KICAgICAgICAgZmlsdGVyKGRhdGU9PW1heChkYXRlKSkgJT4lICAgICAgICAgICAgIyBUYWtlIG9ubHkgdGhlIGxhc3QgZGF5IG9mIGV2ZXJ5IG1vbnRoDQogICAgICAgICBzZWxlY3QoaXNvX2NvZGUsICAgICAgICAgICAgICAgICAgICAgICAjIFNlbGVjdCBvbmx5IHNvbWUgdmFyaWFibGVzLi4uDQogICAgICAgICAgICAgICAgZGF0ZSwNCiAgICAgICAgICAgICAgICBsb2NhdGlvbiwNCiAgICAgICAgICAgICAgICBzdGFydHNfd2l0aCgidG90YWxfIiksDQogICAgICAgICAgICAgICAgcG9wdWxhdGlvbiwNCiAgICAgICAgICAgICAgICBwb3B1bGF0aW9uX2RlbnNpdHksY29udGluZW50KQ0KDQpkZm09ZGZtICU+JSBmaWx0ZXIoc3Vic3RyKGlzb19jb2RlLCAxLCA0KSE9Ik9XSUQiKSAgIyBXZSBnZXQgcmlkIG9mIG9ic2VydmF0aW9ucyB0aGF0IHJlZmVyIHRvIGdyb3VwcyBvZiBjb3VudHJpZXMgKGkuZS4gdGhvc2UgdGhhdCBoYXZlIGFuIE9XSUQgaWRlbnRpZmllcikNCg0KYGBgDQoNCg0KDQpDbGVhbiB1cCBhIGJpdCBtb3JlDQoNCmBgYHtyfQ0KDQojIFJlcGxhY2UgdGhlIG1pc3NpbmcgdmFsdWVzIHdpdGggMA0KIyBidXQgb25seSBhdCB0aGUgYmVnaW5uaW5nIGJlY2F1c2UgYXQgdGhlIGVuZCB0aGF0IGp1c3QgbWVhbnMgbWlzc2luZyB2YWx1ZXMuLi4NCmxpYnJhcnkodGlkeXIpICAjICB0aGlzIHBhY2thZ2UgZ2l2ZXMgdXMgdGhlIHJlcGxhY2VfbmEoKSBjb21tYW5kDQoNCmRmbT1kZm0gJT4lIGFycmFuZ2UoaXNvX2NvZGUsZGF0ZSkgJT4lIA0KICAgIGdyb3VwX2J5KGlzb19jb2RlKSAlPiUgDQogICAgbXV0YXRlKCBhY3Jvc3MoIHN0YXJ0c193aXRoKCJ0b3RhbF8iKSwgfmlmZWxzZSggaXMubmEoLngpICYgY3Vtc3VtKCByZXBsYWNlX25hKC54LCAwKSApPT0wICwwLC54KSkpDQoNCg0KDQoNCmRmbT1kZm0gJT4lIGFycmFuZ2UoaXNvX2NvZGUsZGF0ZSkgJT4lIA0KICBncm91cF9ieShpc29fY29kZSkgJT4lIG11dGF0ZShMMXZheD1kcGx5cjo6bGFnKHRvdGFsX3ZhY2NpbmF0aW9uc19wZXJfaHVuZHJlZCksDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHZheD10b3RhbF92YWNjaW5hdGlvbnNfcGVyX2h1bmRyZWQsDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxuZGVhdGhzPWxvZygxK3RvdGFsX2RlYXRoc19wZXJfbWlsbGlvbiksDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRlYXRocz10b3RhbF9kZWF0aHNfcGVyX21pbGxpb24sDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxudmF4PWxvZygxK3ZheCkpDQoNCg0KDQpgYGANCg0KDQojIyBBIGNyb3NzIHNlY3Rpb24/DQoNCg0KTGV0J3MgY29tcGFyZSANCg0KYGBge3J9DQoNCmNyb3NzPWRmbSAlPiUgZ3JvdXBfYnkoaXNvX2NvZGUpICU+JSANCiAgZmlsdGVyKCFpcy5uYSh2YXgpICYgIWlzLm5hKGRlYXRocykpICU+JSBmaWx0ZXIobW9udGg9PSIyMDIxLTAyIiB8IG1vbnRoPT1tYXgobW9udGgpKSAlPiUgDQogIGFycmFuZ2UoaXNvX2NvZGUsZGF0ZSkgJT4lIGdyb3VwX2J5KGlzb19jb2RlKSAlPiUgDQogIG11dGF0ZShwZXJpb2Q9MTpuKCkpDQoNCg0Kd3JpdGUuY3N2KGNyb3NzLCJjcm9zcy5jc3YiKQ0KDQoNCg0KYGBgDQoNCg0KYGBge3J9DQoNCmNyb3NzPWNyb3NzICU+JSBhcnJhbmdlKGlzb19jb2RlLGRhdGUpICU+JSANCiAgZ3JvdXBfYnkoaXNvX2NvZGUpICU+JSANCiAgbXV0YXRlKERkZWF0aHM9ZGVhdGhzLWRwbHlyOjpsYWcoZGVhdGhzKSkgJT4lIA0KICANCiAgbXV0YXRlKGFjcm9zcyggYygiZGVhdGhzIiwidmF4IiwibG5kZWF0aHMiLCJsbnZheCIpLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH4ueC1kcGx5cjo6bGFnKC54KSwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAubmFtZXM9IkR7LmNvbH0iKSkNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIA0KICAgIA0KDQpsaWJyYXJ5KGdncGxvdDIpDQoNCmNyb3NzICU+JSBnZ3Bsb3QoYWVzKHg9RHZheCwgIHk9RGRlYXRocywgY29sb3I9Y29udGluZW50KSkgK2dlb21fcG9pbnQoKStnZW9tX3Ntb290aChtZXRob2Q9ImxtIixzZT1GKSt0aGVtZV9taW5pbWFsKCkNCg0KDQoNCmNyb3NzICU+JSBnZ3Bsb3QoYWVzKHg9RHZheCwgIHk9RGxuZGVhdGhzLCBjb2xvcj1jb250aW5lbnQsbGFiZWw9bG9jYXRpb24pKSsNCiAgICAgICAgICBnZW9tX3BvaW50KCkrZ2VvbV9zbW9vdGgobWV0aG9kPSJsbSIsc2U9RikrdGhlbWVfbWluaW1hbCgpKw0KICAgICAgICAgIGdlb21fdGV4dChzaXplPTMsY2hlY2tfb3ZlcmxhcCA9IFRSVUUpDQoNCg0KYGBgDQoNCg0KTGV0J3Mgb25seSBsb29rIGF0IEV1cm9wZQ0KYGBge3J9DQpjcm9zc19ldXI9Y3Jvc3MgJT4lIGZpbHRlcihjb250aW5lbnQ9PSJFdXJvcGUiKSANCg0KDQoNCmNyb3NzX2V1ciAlPiUgZ2dwbG90KGFlcyh4PXZheCwgIHk9ZGVhdGhzLCBjb2xvcj1jb250aW5lbnQsbGFiZWw9bG9jYXRpb24pKSsNCiAgICAgICAgICBnZW9tX3BvaW50KCkrZ2VvbV9zbW9vdGgobWV0aG9kPSJsbSIsc2U9RikrdGhlbWVfbWluaW1hbCgpKw0KICAgICAgICAgIGdlb21fdGV4dChzaXplPTMpDQoNCg0KY3Jvc3NfZXVyICU+JSBnZ3Bsb3QoYWVzKHg9dmF4LCAgeT1EZGVhdGhzLCBjb2xvcj1jb250aW5lbnQsbGFiZWw9bG9jYXRpb24pKSsNCiAgICAgICAgICBnZW9tX3BvaW50KCkrZ2VvbV9zbW9vdGgobWV0aG9kPSJsbSIsc2U9RikrdGhlbWVfbWluaW1hbCgpKw0KICAgICAgICAgIGdlb21fdGV4dChzaXplPTMpDQoNCg0KDQpjcm9zcyAlPiUgZ2dwbG90KGFlcyh4PXZheCwgIHk9RGxuZGVhdGhzLCBjb2xvcj1jb250aW5lbnQsbGFiZWw9bG9jYXRpb24pKSsNCiAgICAgICAgICBnZW9tX3BvaW50KCkrZ2VvbV9zbW9vdGgobWV0aG9kPSJsbSIsc2U9RikrdGhlbWVfbWluaW1hbCgpKw0KICAgICAgICAgIGdlb21fdGV4dChzaXplPTMsY2hlY2tfb3ZlcmxhcCA9IFRSVUUpDQoNCg0KDQpjcm9zcyAlPiUgZ2dwbG90KGFlcyh4PURsbnZheCx5PURsbmRlYXRocykpICtnZW9tX3BvaW50KCkrZ2VvbV9zbW9vdGgobWV0aG9kPSJsbSIpDQoNCg0KY3Jvc3MgJT4lIGdncGxvdChhZXMoeD1EdmF4LHk9RGRlYXRocykpICtnZW9tX3BvaW50KCkrZ2VvbV9zbW9vdGgobWV0aG9kPSJsbSIpDQoNCmBgYA0KDQoNCg0KDQpBIGZpcnN0IHJlZ3Jlc3Npb24NCg0KDQpgYGB7cn0NCg0KDQoNCnIxPWZlb2xzKHRvdGFsX2RlYXRoc19wZXJfbWlsbGlvbn50b3RhbF92YWNjaW5hdGlvbnNfcGVyX2h1bmRyZWQrTDF2YXgrdG90YWxfdGVzdHNfcGVyX3Rob3VzYW5kfGlzb19jb2RlK21vbnRoLGRmbSkNCnIxICU+JSBzdW1tYXJ5KCkNCg0KDQoNCnIxPWZlb2xzKGxuZGVhdGhzUGN+dG90YWxfdmFjY2luYXRpb25zX3Blcl9odW5kcmVkK0wxdmF4K3RvdGFsX3Rlc3RzX3Blcl90aG91c2FuZHxpc29fY29kZSttb250aCxkZm0pDQpyMSAlPiUgc3VtbWFyeSgpDQoNCg0KDQpyMT1mZW9scyhsbmRlYXRoc1BjfmxudmF4UGN8aXNvX2NvZGUrbW9udGgsZGZtKQ0KcjEgJT4lIHN1bW1hcnkoKQ0KDQoNCg0KDQoNCg0KDQoNCnIxPWZlb2xzKHRvdGFsX2RlYXRoc19wZXJfbWlsbGlvbn52YXgrTDF2YXh8aXNvX2NvZGUrbW9udGgsZGZtICU+JSBmaWx0ZXIoY29udGluZW50PT0iRXVyb3BlIikpDQpyMSAlPiUgc3VtbWFyeSgpDQoNCg0KcjE9ZmVvbHModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufkwxdmF4fGlzb19jb2RlK21vbnRoLGRmbSAlPiUgZmlsdGVyKGNvbnRpbmVudCE9IkFzaWEiKSkNCnIxICU+JSBzdW1tYXJ5KCkNCg0KDQoNCnIxPWZlcG9pcyh0b3RhbF9kZWF0aHNfcGVyX21pbGxpb25+dmF4K0wxdmF4fGlzb19jb2RlK21vbnRoLGRmbSkNCnIxICU+JSBzdW1tYXJ5KCkNCg0KDQpyMT1mZXBvaXModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufnZheCtMMXZheHxpc29fY29kZSttb250aCxkZm0gJT4lIGZpbHRlcihjb250aW5lbnQ9PSJFdXJvcGUiKSkNCnIxICU+JSBzdW1tYXJ5KCkNCg0KDQoNCg0KDQpyMT1mZXBvaXModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufnRvdGFsX3ZhY2NpbmF0aW9uc19wZXJfaHVuZHJlZHxpc29fY29kZSttb250aCxkZm0pDQpyMSAlPiUgc3VtbWFyeSgpDQoNCg0KDQpyMT1mZW9scyh0b3RhbF9jYXNlc19wZXJfbWlsbGlvbn50b3RhbF92YWNjaW5hdGlvbnNfcGVyX2h1bmRyZWQrdG90YWxfdGVzdHNfcGVyX3Rob3VzYW5kfGlzb19jb2RlK21vbnRoLGRmbSkNCnIxICU+JSBzdW1tYXJ5KCkNCg0KDQpgYGANCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNvdmlkIGFuZCB2YXh4aW5hdGlvbiINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCg0KDQoNCiMgTG9hZCBkYXRhDQoNCmBgYHtyfQ0KDQoNCmRmPXJlYWQuY3N2KCJodHRwczovL2NvdmlkLm91cndvcmxkaW5kYXRhLm9yZy9kYXRhL293aWQtY292aWQtZGF0YS5jc3YiKQ0KbmFtZXMoZGYpDQoNCg0KbGlicmFyeShmaXhlc3QpDQpsaWJyYXJ5KGx1YnJpZGF0ZSkNCg0KYGBgDQoNCg0KDQojIFByZXBhcmUgZGF0YQ0KDQpBZ2dyZWdhdGUgdG8gbW9udGg7IGkuZS4gd2Ugd2FubmEgYW5hbHlzZSB0aGlzIGF0IHRoZSBjb3VudHJ5IGFuZCBtb250aCBsZXZlbA0KDQpgYGB7cn0NCg0KZGZtID0gZGYgJT4lIG11dGF0ZShtb250aD1zdWJzdHIoZGF0ZSwgMSwgNykgICAjIENyZWF0ZSBtb250aCBieSB0YWtpbmcgdGhlIGZpcnN0IDcgY2hhcmFjdGVycyBvZiB0aGUgZGF0ZSBzdHJpbmcNCiAgICAgICAgICAgICAgICAgICAgKSAlPiUgICAgIA0KICAgICAgICAgZ3JvdXBfYnkobW9udGgsaXNvX2NvZGUpICU+JSAgICAgICAgICAgIyBEZWZpbmUgZ3JvdXBzIGJ5IG1vbnRoIGFuZCBjb3VudHJ5DQogICAgICAgICBmaWx0ZXIoZGF0ZT09bWF4KGRhdGUpKSAlPiUgICAgICAgICAgICAjIFRha2Ugb25seSB0aGUgbGFzdCBkYXkgb2YgZXZlcnkgbW9udGgNCiAgICAgICAgIHNlbGVjdChpc29fY29kZSwgICAgICAgICAgICAgICAgICAgICAgICMgU2VsZWN0IG9ubHkgc29tZSB2YXJpYWJsZXMuLi4NCiAgICAgICAgICAgICAgICBkYXRlLA0KICAgICAgICAgICAgICAgIGxvY2F0aW9uLA0KICAgICAgICAgICAgICAgIHN0YXJ0c193aXRoKCJ0b3RhbF8iKSwNCiAgICAgICAgICAgICAgICBwb3B1bGF0aW9uLA0KICAgICAgICAgICAgICAgIHBvcHVsYXRpb25fZGVuc2l0eSxjb250aW5lbnQpDQoNCmRmbT1kZm0gJT4lIGZpbHRlcihzdWJzdHIoaXNvX2NvZGUsIDEsIDQpIT0iT1dJRCIpICAjIFdlIGdldCByaWQgb2Ygb2JzZXJ2YXRpb25zIHRoYXQgcmVmZXIgdG8gZ3JvdXBzIG9mIGNvdW50cmllcyAoaS5lLiB0aG9zZSB0aGF0IGhhdmUgYW4gT1dJRCBpZGVudGlmaWVyKQ0KDQoNCg0KIyBSZXBsYWNlIHRoZSBtaXNzaW5nIHZhbHVlcyB3aXRoIDANCiMgYnV0IG9ubHkgYXQgdGhlIGJlZ2lubmluZyBiZWNhdXNlIGF0IHRoZSBlbmQgdGhhdCBqdXN0IG1lYW5zIG1pc3NpbmcgdmFsdWVzLi4uDQpsaWJyYXJ5KHRpZHlyKSAgIyAgdGhpcyBwYWNrYWdlIGdpdmVzIHVzIHRoZSByZXBsYWNlX25hKCkgY29tbWFuZA0KDQpkZm09ZGZtICU+JSBhcnJhbmdlKGlzb19jb2RlLGRhdGUpICU+JSANCiAgICBncm91cF9ieShpc29fY29kZSkgJT4lIA0KICAgIG11dGF0ZSggYWNyb3NzKCBzdGFydHNfd2l0aCgidG90YWxfIiksIH5pZmVsc2UoIGlzLm5hKC54KSAmIGN1bXN1bSggcmVwbGFjZV9uYSgueCwgMCkgKT09MCAsMCwueCkpKQ0KDQoNCmRmbT1kZm0gJT4lIGZpbHRlcihhc19kYXRlKCIyMDIxLTEwLTMwIik+ZGF0ZSkNCndyaXRlLmNzdihkZm0sImRmbS5jc3YiKQ0KDQoNCg0KDQpkZm09ZGZtICU+JSBtdXRhdGUoZGF0ZT1hc19kYXRlKGRhdGUpKQ0KDQpgYGANCg0KDQoNCkNsZWFuIHVwIGEgYml0IG1vcmUNCg0KYGBge3J9DQoNCg0KDQoNCg0KZGZtPWRmbSAlPiUgYXJyYW5nZShpc29fY29kZSxkYXRlKSAlPiUgDQogIGdyb3VwX2J5KGlzb19jb2RlKSAlPiUgbXV0YXRlKEwxdmF4PWRwbHlyOjpsYWcodG90YWxfdmFjY2luYXRpb25zX3Blcl9odW5kcmVkKSwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdmF4PXRvdGFsX3ZhY2NpbmF0aW9uc19wZXJfaHVuZHJlZCwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbG5kZWF0aHM9bG9nKDErdG90YWxfZGVhdGhzX3Blcl9taWxsaW9uKSwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZGVhdGhzPXRvdGFsX2RlYXRoc19wZXJfbWlsbGlvbiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbG52YXg9bG9nKDErdmF4KSkNCg0KDQoNCmBgYA0KDQoNCiMjIEEgY3Jvc3Mgc2VjdGlvbj8NCg0KDQpMZXQncyBjb21wYXJlIA0KDQpgYGB7cn0NCg0KY3Jvc3M9ZGZtICU+JSBncm91cF9ieShpc29fY29kZSkgJT4lIA0KICBmaWx0ZXIoIWlzLm5hKHZheCkgJiAhaXMubmEoZGVhdGhzKSkgJT4lIGZpbHRlcihtb250aD09IjIwMjEtMDIiIHwgbW9udGg9PW1heChtb250aCkpICU+JSANCiAgYXJyYW5nZShpc29fY29kZSxkYXRlKSAlPiUgZ3JvdXBfYnkoaXNvX2NvZGUpICU+JSANCiAgbXV0YXRlKHBlcmlvZD0xOm4oKSkNCg0KDQp3cml0ZS5jc3YoY3Jvc3MsImNyb3NzLmNzdiIpDQoNCg0KDQpgYGANCg0KDQpgYGB7cn0NCg0KY3Jvc3M9Y3Jvc3MgJT4lIGFycmFuZ2UoaXNvX2NvZGUsZGF0ZSkgJT4lIA0KICBncm91cF9ieShpc29fY29kZSkgJT4lIA0KICBtdXRhdGUoRGRlYXRocz1kZWF0aHMtZHBseXI6OmxhZyhkZWF0aHMpKSAlPiUgDQogIA0KICBtdXRhdGUoYWNyb3NzKCBjKCJkZWF0aHMiLCJ2YXgiLCJsbmRlYXRocyIsImxudmF4IiksDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfi54LWRwbHlyOjpsYWcoLngpLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC5uYW1lcz0iRHsuY29sfSIpKQ0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICANCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgDQogICAgDQoNCmxpYnJhcnkoZ2dwbG90MikNCg0KY3Jvc3MgJT4lIGdncGxvdChhZXMoeD1EdmF4LCAgeT1EZGVhdGhzLCBjb2xvcj1jb250aW5lbnQpKSArZ2VvbV9wb2ludCgpK2dlb21fc21vb3RoKG1ldGhvZD0ibG0iLHNlPUYpK3RoZW1lX21pbmltYWwoKQ0KDQoNCg0KY3Jvc3MgJT4lIGdncGxvdChhZXMoeD1EdmF4LCAgeT1EbG5kZWF0aHMsIGNvbG9yPWNvbnRpbmVudCxsYWJlbD1sb2NhdGlvbikpKw0KICAgICAgICAgIGdlb21fcG9pbnQoKStnZW9tX3Ntb290aChtZXRob2Q9ImxtIixzZT1GKSt0aGVtZV9taW5pbWFsKCkrDQogICAgICAgICAgZ2VvbV90ZXh0KHNpemU9MyxjaGVja19vdmVybGFwID0gVFJVRSkNCg0KDQpgYGANCg0KDQpMZXQncyBvbmx5IGxvb2sgYXQgRXVyb3BlDQpgYGB7cn0NCmNyb3NzX2V1cj1jcm9zcyAlPiUgZmlsdGVyKGNvbnRpbmVudD09IkV1cm9wZSIpIA0KDQoNCg0KY3Jvc3NfZXVyICU+JSBnZ3Bsb3QoYWVzKHg9dmF4LCAgeT1kZWF0aHMsIGNvbG9yPWNvbnRpbmVudCxsYWJlbD1sb2NhdGlvbikpKw0KICAgICAgICAgIGdlb21fcG9pbnQoKStnZW9tX3Ntb290aChtZXRob2Q9ImxtIixzZT1GKSt0aGVtZV9taW5pbWFsKCkrDQogICAgICAgICAgZ2VvbV90ZXh0KHNpemU9MykNCg0KDQpjcm9zc19ldXIgJT4lIGdncGxvdChhZXMoeD12YXgsICB5PURkZWF0aHMsIGNvbG9yPWNvbnRpbmVudCxsYWJlbD1sb2NhdGlvbikpKw0KICAgICAgICAgIGdlb21fcG9pbnQoKStnZW9tX3Ntb290aChtZXRob2Q9ImxtIixzZT1GKSt0aGVtZV9taW5pbWFsKCkrDQogICAgICAgICAgZ2VvbV90ZXh0KHNpemU9MykNCg0KDQoNCmNyb3NzICU+JSBnZ3Bsb3QoYWVzKHg9dmF4LCAgeT1EbG5kZWF0aHMsIGNvbG9yPWNvbnRpbmVudCxsYWJlbD1sb2NhdGlvbikpKw0KICAgICAgICAgIGdlb21fcG9pbnQoKStnZW9tX3Ntb290aChtZXRob2Q9ImxtIixzZT1GKSt0aGVtZV9taW5pbWFsKCkrDQogICAgICAgICAgZ2VvbV90ZXh0KHNpemU9MyxjaGVja19vdmVybGFwID0gVFJVRSkNCg0KDQoNCmNyb3NzICU+JSBnZ3Bsb3QoYWVzKHg9RGxudmF4LHk9RGxuZGVhdGhzKSkgK2dlb21fcG9pbnQoKStnZW9tX3Ntb290aChtZXRob2Q9ImxtIikNCg0KDQpjcm9zcyAlPiUgZ2dwbG90KGFlcyh4PUR2YXgseT1EZGVhdGhzKSkgK2dlb21fcG9pbnQoKStnZW9tX3Ntb290aChtZXRob2Q9ImxtIikNCg0KYGBgDQoNCg0KDQoNCkEgZmlyc3QgcmVncmVzc2lvbg0KDQoNCmBgYHtyfQ0KDQoNCg0KcjE9ZmVvbHModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufnRvdGFsX3ZhY2NpbmF0aW9uc19wZXJfaHVuZHJlZCtMMXZheCt0b3RhbF90ZXN0c19wZXJfdGhvdXNhbmR8aXNvX2NvZGUrbW9udGgsZGZtKQ0KcjEgJT4lIHN1bW1hcnkoKQ0KDQoNCg0KcjE9ZmVvbHMobG5kZWF0aHNQY350b3RhbF92YWNjaW5hdGlvbnNfcGVyX2h1bmRyZWQrTDF2YXgrdG90YWxfdGVzdHNfcGVyX3Rob3VzYW5kfGlzb19jb2RlK21vbnRoLGRmbSkNCnIxICU+JSBzdW1tYXJ5KCkNCg0KDQoNCnIxPWZlb2xzKGxuZGVhdGhzUGN+bG52YXhQY3xpc29fY29kZSttb250aCxkZm0pDQpyMSAlPiUgc3VtbWFyeSgpDQoNCg0KDQoNCg0KDQoNCg0KcjE9ZmVvbHModG90YWxfZGVhdGhzX3Blcl9taWxsaW9ufnZheCtMMXZheHxpc29fY29kZSttb250aCxkZm0gJT4lIGZpbHRlcihjb250aW5lbnQ9PSJFdXJvcGUiKSkNCnIxICU+JSBzdW1tYXJ5KCkNCg0KDQpyMT1mZW9scyh0b3RhbF9kZWF0aHNfcGVyX21pbGxpb25+TDF2YXh8aXNvX2NvZGUrbW9udGgsZGZtICU+JSBmaWx0ZXIoY29udGluZW50IT0iQXNpYSIpKQ0KcjEgJT4lIHN1bW1hcnkoKQ0KDQoNCg0KcjE9ZmVwb2lzKHRvdGFsX2RlYXRoc19wZXJfbWlsbGlvbn52YXgrTDF2YXh8aXNvX2NvZGUrbW9udGgsZGZtKQ0KcjEgJT4lIHN1bW1hcnkoKQ0KDQoNCnIxPWZlcG9pcyh0b3RhbF9kZWF0aHNfcGVyX21pbGxpb25+dmF4K0wxdmF4fGlzb19jb2RlK21vbnRoLGRmbSAlPiUgZmlsdGVyKGNvbnRpbmVudD09IkV1cm9wZSIpKQ0KcjEgJT4lIHN1bW1hcnkoKQ0KDQoNCg0KDQoNCnIxPWZlcG9pcyh0b3RhbF9kZWF0aHNfcGVyX21pbGxpb25+dG90YWxfdmFjY2luYXRpb25zX3Blcl9odW5kcmVkfGlzb19jb2RlK21vbnRoLGRmbSkNCnIxICU+JSBzdW1tYXJ5KCkNCg0KDQoNCnIxPWZlb2xzKHRvdGFsX2Nhc2VzX3Blcl9taWxsaW9ufnRvdGFsX3ZhY2NpbmF0aW9uc19wZXJfaHVuZHJlZCt0b3RhbF90ZXN0c19wZXJfdGhvdXNhbmR8aXNvX2NvZGUrbW9udGgsZGZtKQ0KcjEgJT4lIHN1bW1hcnkoKQ0KDQoNCmBgYA0K</div>
 
 
 

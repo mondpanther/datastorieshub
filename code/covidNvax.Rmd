@@ -28,8 +28,8 @@ Aggregate to month; i.e. we wanna analyse this at the country and month level
 
 ```{r}
 
-dfm = df %>% mutate(month=substr(date, 1, 7),   # Create month by taking the first 7 characters of the date string
-                    date=as_date(date)) %>%     # Also tell R that date is actually a date variable
+dfm = df %>% mutate(month=substr(date, 1, 7)   # Create month by taking the first 7 characters of the date string
+                    ) %>%     
          group_by(month,iso_code) %>%           # Define groups by month and country
          filter(date==max(date)) %>%            # Take only the last day of every month
          select(iso_code,                       # Select only some variables...
@@ -41,13 +41,7 @@ dfm = df %>% mutate(month=substr(date, 1, 7),   # Create month by taking the fir
 
 dfm=dfm %>% filter(substr(iso_code, 1, 4)!="OWID")  # We get rid of observations that refer to groups of countries (i.e. those that have an OWID identifier)
 
-```
 
-
-
-Clean up a bit more
-
-```{r}
 
 # Replace the missing values with 0
 # but only at the beginning because at the end that just means missing values...
@@ -56,6 +50,24 @@ library(tidyr)  #  this package gives us the replace_na() command
 dfm=dfm %>% arrange(iso_code,date) %>% 
     group_by(iso_code) %>% 
     mutate( across( starts_with("total_"), ~ifelse( is.na(.x) & cumsum( replace_na(.x, 0) )==0 ,0,.x)))
+
+
+dfm=dfm %>% filter(as_date("2021-10-30")>date)
+write.csv(dfm,"dfm.csv")
+
+
+
+
+dfm=dfm %>% mutate(date=as_date(date))
+
+```
+
+
+
+Clean up a bit more
+
+```{r}
+
 
 
 
