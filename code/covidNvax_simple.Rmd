@@ -36,8 +36,12 @@ library(dplyr)
 
 cross %>% group_by(continent) %>% summarize(n())
 
+cross %>% filter(period==1) %>% 
+  group_by(continent) %>% 
+  summarize(n())
 
-cross_euram=cross %>% filter(continent=="Europe" | continent=="North America" & period==2)
+
+cross_euram=cross %>% filter((continent=="Europe" | continent=="North America") & period==2)
 
 
 
@@ -53,7 +57,7 @@ library(ggplot2)
 
 cross_euram %>% ggplot(  aes(x=vax,y=deaths)  ) + # setup the aesthetic
                        
-                       geom_point()            # use it to plot poines
+                       geom_point()              # use it to plot poines
 
 
 
@@ -82,7 +86,7 @@ cross_euram %>% ggplot(  aes(x=vax,y=deaths)  ) +
   ylab("Total number of deaths per 1 million")+
   xlab("Total number of vaccinations per 100K")+
   theme_minimal()+
-  geom_smooth(method="lm",se=FALSE)
+  geom_smooth(method="lm",se=F)
 
 
 
@@ -154,7 +158,7 @@ cross_eur %>% ggplot(  aes(y=deaths,x=epsilonhat)  ) +
 Are vaccinations really causing deaths?
 
 
-![](vaxxx1.png)
+![](https://github.com/mondpanther/datastorieshub/raw/master/code/vaxxx1.png)
 
 
 
@@ -306,7 +310,7 @@ cross %>% ggplot(  aes(x=vax,y=Ddeaths, color=continent)  ) +
 ```{r}
 library(lubridate)
 
-dfm=read.csv("dfm.csv") %>% 
+dfm=read.csv("https://github.com/mondpanther/datastorieshub/raw/master/code/dfm.csv") %>% 
   mutate( vax   =total_vaccinations_per_hundred,
           deaths=total_deaths_per_million)  
 
