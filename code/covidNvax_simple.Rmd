@@ -105,7 +105,8 @@ reg1 %>% summary()  # The summary command provides a nice summary
 ```
 
 
-An increase of 1 additional vaccination per 100K leads to `r round(reg1[["coefficients"]][["vax"]],2)` more deaths per 1 million.
+An increase of 1 additional vaccination per 100K leads to `r abs(round(reg1[["coefficients"]][["vax"]],2))` 
+`r ifelse(reg1[["coefficients"]][["vax"]]<0,"less","more")` deaths per 1 million.
 
 
 Let's look at the relationship between estimated residuals $\hat{\epsilon}$ and explanatory variable $X$; i.e. vaccination rates in our case..
@@ -155,7 +156,9 @@ cross_eur %>% ggplot(  aes(y=deaths,x=epsilonhat)  ) +
 
 
 
-Are vaccinations really causing deaths?
+Is the causal effect of vaccines on detahs  really that low?
+
+The following could be going on:
 
 
 ![](https://github.com/mondpanther/datastorieshub/raw/master/code/vaxxx1.png)
@@ -213,7 +216,7 @@ reg2 %>% summary()  # The summary command provides a nice summary
 ```
 
 
-i.e. an increase of 1 additional vaccination per 100K leads to `r round(reg2[["coefficients"]][["vax"]],2)` less deaths per 1 million.
+i.e. an increase of 1 additional vaccination per 100K leads to `r abs(round(reg2[["coefficients"]][["vax"]],2))` less deaths per 1 million; i.e. a much bigger effect than before.
 
 
 
