@@ -927,4 +927,173 @@ Eating fast food could have an impact on the weight of the student. If weight al
 
 
 
+# Exercise 10.11 Covid and Vax
+
+
+
+Download the dataset [cross.csv](https://raw.githubusercontent.com/mondpanther/datastorieshub/95d94862115819350247823f174a2633cde0236b/code/cross.csv)
+
+
+
+`r hide("How?")`
+
+
+```{r}
+
+cross=read.csv("https://raw.githubusercontent.com/mondpanther/datastorieshub/95d94862115819350247823f174a2633cde0236b/code/cross.csv")
+
+
+```
+
+
+`r unhide()`
+
+
+It contains data on the COVID pandemic across most countries for two different months in 2021. Note that note that not all countries have data reported in the same month.
+
+
+(a) Select the last available month for all countries in Europe and North America and run a regression of the variable `deaths` on `vax`. 
+`deaths` reports the total number of covid related deaths in a particular country by a given months (in deaths per 1 million of the population). `vax` records the total number of (at least once) vaxinated persons (per 100K) by a particular month. Discuss your and interpret your finding.
+
+
+`r hide("Implementing R code")`
+
+
+```{r}
+library(dplyr)
+
+cross_euram=cross %>% filter((continent=="Europe" | continent=="North America") & period==2)
+
+reg1=lm(deaths~vax,cross_euram)
+
+reg1 %>%  summary()
+
+```
+
+
+
+It is also helpful to look at a scatterplot:
+
+```{r}
+
+
+cross_euram %>% ggplot(  aes(x=vax,y=deaths)  ) +  
+  geom_point() +
+  ylab("Total number of deaths per 1 million")+
+  xlab("Total number of vaccinations per 100K")+
+  theme_minimal()+
+  geom_smooth(method="lm",se=F)
+
+
+
+```
+
+`r unhide()`
+
+`r hide("Discussion")`
+
+
+We see that there is a negative relationship between vaccination rates and deaths. 1 additional person vaccinated per 100K would about 1 less deaths per 1 million of the population. However, relationship is not significant.
+
+`r unhide()`
+
+(b) Can you think of any factors that could introduce a bias in your estimates in (a). In particular: can you think of factors that might lead to an upward bias?
+
+`r hide("Answer")`
+
+An upward bias could come from reverse causality. Consider the example of the UK vs Australia: UK engaged in a particularly strong vaccination campaign early on and a large part of the population embraced vaccinations. This was in part driven by the particularly dire covid case rate early in the pandemic and throughout the winter of 2020-21. Australia on the other engaged early in strong measures to prevent the pandemic from spreading - e.g. very strict international travel restrictions and good tracking and tracing. As a consequence there were very few covid cases for most of the pandemic. Once vaccines arrived, Australia did not pursue and agressive vaccine campaign and many Australians didn't get vaccinated because they thought there was no need.
+In other words: what caused higher vaccination rates were high early pandemic case and death rates which are an important part of total pandemic death rates.
+
+
+`r unhide()`
+
+
+(c) With the data at hand, can you propose and implement an improved estimate of the causal effect of higher vaccination rates?
+
+
+`r hide("Answer")`
+
+The dataset contains the death and case rates from early 2021 when vaccines started to be distributed widely. We can use this as a control variable.
+
+Alternatively we can look at the relationship between vaccination rates and changes in deaths since early 2021; or: we could run a panel data regression including country fixed effects.
+
+`r unhide()`
+
+
+
+`r hide("Implementation")`
+
+
+```{r,include=FALSE,echo=FALSE}
+library(knitr)
+hook_output <- knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+  lines <- options$output.lines
+  if (is.null(lines)) {
+    return(hook_output(x, options))  # pass to default hook
+  }
+  x <- unlist(strsplit(x, "\n"))
+  more <- "..."
+  if (length(lines)==1) {        # first n lines
+    if (length(x) > lines) {
+      # truncate the output, but add ....
+      x <- c(head(x, lines), more)
+    }
+  } else {
+    x <- c(more, x[lines], more)
+  }
+  # paste these lines together
+  x <- paste(c(x, ""), collapse = "\n")
+  hook_output(x, options)
+})
+``` 
+
+
+
+```{r}
+
+
+cross_euram2=cross %>%arrange(iso_code,period) %>% 
+  group_by(iso_code) %>% mutate(L1deaths=dplyr::lag(deaths),
+                             Ddeaths=deaths-dplyr::lag(deaths)) %>% 
+  filter((continent=="Europe" | continent=="North America") )
+
+
+reg2=lm(deaths~vax+L1deaths,cross_euram2  )
+reg2 %>%  summary()
+
+
+
+reg3=lm(Ddeaths~vax,cross_euram2)
+reg3 %>%  summary()
+
+
+reg4=lm(deaths~vax+factor(iso_code)+factor(month),cross_euram2)
+```
+
+
+```{r, output.lines=20}
+
+reg4 %>%  summary()
+
+
+
+```
+
+`r unhide()`
+
+
+
+`r hide("Discussion")`
+We see that in all cases the coefficient becomes substantially more negative and
+signficant suggesting more powerful causal effect of vaccines.
+
+
+
+`r unhide()`
+
+
+
+
+
 
