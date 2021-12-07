@@ -1,0 +1,381 @@
+---
+title: "Covid and vaxxination"
+output: html_document
+---
+
+
+
+
+# Load data
+
+Data comes from [Our World In data](https://github.com/owid/covid-19-data/tree/master/public/data)'s COVID dataset.
+I have prepared this a little bit for you.
+
+Let's get started with a dataset called `cross.csv` which you find as follows
+
+```{r}
+
+
+cross=read.csv("https://raw.githubusercontent.com/mondpanther/datastorieshub/95d94862115819350247823f174a2633cde0236b/code/cross.csv")
+
+names(cross) # show the names of the dataframe
+
+head(cross)  # show the first couple of lines
+
+
+```
+
+
+
+# Let's only take the  EU & North America part of the data...
+
+...and only for the second period...
+
+```{r}
+library(dplyr)
+
+cross %>% group_by(continent) %>% summarize(n())
+
+cross %>% filter(period==1) %>% 
+  group_by(continent) %>% 
+  summarize(n())
+
+
+cross_euram=cross %>% filter((continent=="Europe" | continent=="North America") & period==2)
+
+
+
+
+```
+
+
+Start by plotting
+
+```{r}
+
+library(ggplot2)
+
+cross_euram %>% ggplot(  aes(x=vax,y=deaths)  ) + # setup the aesthetic
+                       
+                       geom_point()              # use it to plot poines
+
+
+
+
+# Note that above we broke the command over several lines which can be a good
+# idea to make things more easily readable...however the following is exactly the same
+# command:
+
+
+cross_euram %>% ggplot(  aes(x=vax,y=deaths)  ) +  geom_point()     
+
+
+
+
+```
+
+
+Let's do that a bit nicer:
+
+
+```{r}
+
+
+cross_euram %>% ggplot(  aes(x=vax,y=deaths)  ) +  
+  geom_point() +
+  ylab("Total number of deaths per 1 million")+
+  xlab("Total number of vaccinations per 100K")+
+  theme_minimal()+
+  geom_smooth(method="lm",se=F)
+
+
+
+```
+
+Vaccines seem to be associated with less deaths. Before we discuss this more let's work out the exact parameters
+of the trendline. We use the `lm` command for that:
+
+
+```{r}
+
+reg1=lm(formula=deaths ~ vax,data=cross_euram)
+
+reg1 %>% summary()  # The summary command provides a nice summary
+
+```
+
+
+An increase of 1 additional vaccination per 100K leads to `r abs(round(reg1[["coefficients"]][["vax"]],2))` 
+`r ifelse(reg1[["coefficients"]][["vax"]]<0,"less","more")` deaths per 1 million.
+
+
+Let's look at the relationship between estimated residuals $\hat{\epsilon}$ and explanatory variable $X$; i.e. vaccination rates in our case..
+
+
+
+```{r}
+
+cross_euram=cross_euram %>% mutate(epsilonhat=reg1$residuals)
+
+cross_euram %>% ggplot(  aes(x=vax,y=epsilonhat)  ) +  
+  geom_point() +
+  ylab("epsilon hat")+
+  xlab("Total number of vaccinations per 100K")+
+  theme_minimal()+
+  geom_smooth(method="lm",se=FALSE)
+
+
+
+
+
+
+
+
+cor(cross_euram%>% select(vax,epsilonhat,deaths))
+
+```
+
+
+
+
+
+```{r,eval=FALSE}
+
+cross_eur %>% ggplot(  aes(y=deaths,x=epsilonhat)  ) +  
+  geom_point() +
+  xlab("epsilon hat")+
+  ylab("Deaths")+
+  theme_minimal()+
+  geom_smooth(method="lm",se=FALSE)
+
+
+
+```
+
+
+
+
+
+Is the causal effect of vaccines on detahs  really that low?
+
+The following could be going on:
+
+
+![](https://github.com/mondpanther/datastorieshub/raw/master/code/vaxxx1.png)
+
+
+
+
+We can explore this by looking at the amount of death we had after the arrival of vaccines...
+
+
+
+
+```{r}
+
+
+cross_euram2=cross %>% 
+  filter(continent=="Europe" | continent =="North America") %>%  # this time we include the first period
+                                    # which is from Februrary 2021
+  arrange(iso_code,date) %>%        # i.e. sort
+  group_by(iso_code) %>%            # put in country groups
+  mutate(Ddeaths=deaths-dplyr::lag(deaths) ) # we compute the change in the death variable 
+         
+
+```
+
+
+
+
+```{r}
+
+
+cross_euram2 %>% ggplot(  aes(x=vax,y=Ddeaths)  ) +  
+  geom_point() +
+  ylab("Additional number of deaths per 1 million sinc Feb 2021 (Delta Deaths")+
+  xlab("Total number of vaccinations per 100K")+
+  theme_minimal()+
+  geom_smooth(method="lm",se=FALSE)
+
+
+
+
+```
+
+
+The same as regression:
+```{r}
+
+
+reg2=lm(formula=Ddeaths ~ vax,data=cross_euram2)
+
+reg2 %>% summary()  # The summary command provides a nice summary
+
+
+
+```
+
+
+i.e. an increase of 1 additional vaccination per 100K leads to `r abs(round(reg2[["coefficients"]][["vax"]],2))` less deaths per 1 million; i.e. a much bigger effect than before.
+
+
+
+
+
+# More Visiions
+
+
+## Comparing continents
+
+
+
+```{r}
+
+cross_euram2 %>% ggplot(  aes(x=vax,y=Ddeaths, color=continent)  ) +  
+  geom_point() +
+  ylab("Delta Deaths")+
+  xlab("Total number of vaccinations per 100K")+
+  theme_minimal()+
+  geom_smooth(method="lm",se=FALSE)
+
+
+
+```
+
+
+
+
+Country labels?
+
+```{r}
+
+cross_euram2 %>% ggplot(  aes(x=vax,y=Ddeaths, color=continent,label=location)  ) +  
+  geom_point() +
+  ylab("Delta Deaths")+
+  xlab("Total number of vaccinations per 100K")+
+  theme_minimal()+
+  geom_smooth(method="lm",se=FALSE)+geom_text(size=3)
+
+
+cross_euram2 =cross_euram2 %>% mutate(slabel=ifelse(population>20*10^6,location,""))
+
+
+library(ggrepel)
+cross_euram2 %>% ggplot(  aes(x=vax,y=Ddeaths, color=continent,label=slabel)  ) +  
+  geom_point() +
+  ylab("Delta Deaths")+
+  xlab("Total number of vaccinations per 100K")+
+  theme_minimal()+
+  geom_smooth(method="lm",se=FALSE)+geom_text_repel(size=3)
+
+
+
+```
+
+
+
+
+
+
+## Across all continents.....
+
+
+
+
+An example to exmplore ggplot2
+
+
+
+```{r}
+cross=cross %>% 
+ arrange(iso_code,date) %>%        # i.e. sort
+  group_by(iso_code) %>%            # put in country groups
+  mutate(Ddeaths=deaths-dplyr::lag(deaths) ) # we compute the change in the death variable 
+
+
+
+cross %>% ggplot(  aes(x=vax,y=Ddeaths, color=continent)  ) +  
+  geom_point() +
+  ylab("Delta Deaths")+
+  xlab("Total number of vaccinations per 100K")+
+  theme_minimal()+
+  geom_smooth(method="lm",se=FALSE)
+
+
+
+
+```
+
+## Time series
+
+
+
+```{r}
+library(lubridate)
+
+dfm=read.csv("https://github.com/mondpanther/datastorieshub/raw/master/code/dfm.csv") %>% 
+  mutate( vax   =total_vaccinations_per_hundred,
+          deaths=total_deaths_per_million)  
+
+
+# Tell R about the date variable
+dfm_us=dfm %>% filter(iso_code=="USA")%>% mutate(date=as_date(date))
+
+
+p1=dfm_us %>% ggplot(aes(x=date,y=deaths)) + geom_line() 
+p1
+
+
+p1+theme_minimal()+xlab("Time")+ylab("Total Deaths")
+
+
+```
+
+Sometimes better to look at changes:
+
+
+```{r}
+
+dfm_us=dfm_us %>% arrange(date) %>% mutate(Ddeaths=deaths-dplyr::lag(deaths))
+dfm_us %>% ggplot(aes(x=date,y=Ddeaths)) + geom_line() +
+  theme_minimal()+
+  xlab("Time")+ylab("Total Deaths")
+
+
+```
+
+
+## Histogram's & Density plots
+
+## Histogram
+A histogram allows us to look at the distribution of a variable across a sample. For instance we can look at the daily hoax shares:
+```{r}
+
+crossp2=cross %>% filter(period==2)
+
+crossp2 %>% ggplot( aes(x=deaths)) + geom_histogram() + ylab("Number of countries")+xlab("Cases per 1 million")
+
+```
+
+
+<br>
+An alternative way of looking at histograms is in terms of density. If you multiply the density with the width of a histogram bin you get the share of observations (as opposed to the count) that fall into a particular category: 
+
+```{r}
+
+d1=crossp2 %>% ggplot( aes(x=deaths)) +  geom_histogram(aes(y=..density.. ,fill=..density..))  + 
+  ylab("Number of countries")+xlab("Cases per 1 million")
+
+d1
+
+```
+
+
+## Density
+An outright density plot is often preferable to a histogram. It's kind of like a density histogram where let the bins become every smaller:
+
+```{r}
+d1 + geom_density(color="red",size=2) 
+
+```
+
