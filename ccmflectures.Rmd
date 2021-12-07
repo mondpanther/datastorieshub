@@ -139,6 +139,11 @@ You will not be able to analyse data effectively without being familiar with bas
 
 
   slidelinks("^Topic2",folder="code")
+  
+  
+  
+
+  slidelinks("^covidNvax_simple",folder="code")
 
 
 ```
@@ -537,7 +542,8 @@ To do any data analysis we need different datapoints. Most data we looked at so 
 
 - [Here](https://imperiallondon-my.sharepoint.com/:p:/g/personal/rmartin_ic_ac_uk/EY9MIyQdaPNAuee_L1ytJHIBfRGeS0aeBCPRg_dRJl1nNw)
 
-Alternative download location:
+
+Alternative download location
 
 ```{r echo = FALSE, results = "asis"}
  slidelinks("^summary2021")
