@@ -65,6 +65,9 @@ For each case I give you a suggestion as example when clicking the answer tab. Y
 <!-- These are typically strong correlations that have been found in one dataset or another. For each example, could you think of a mechanism or reason that would support the causal chain to work in both directions: firstly the one explicitly  You might want to share some of your ideas on the course forum. For each case I give you a suggestions as example when clicking the answer tab.
 --->
 
+
+Hi Sam!!!!!!
+
 # Exercise 1.1
 
 Police body worn cameras increase violence against the police?

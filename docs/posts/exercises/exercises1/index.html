@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,17 +74,18 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
 <title>Datastories Hub: Exercises 1</title>
@@ -93,8 +95,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <link rel="canonical" href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises1/"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2021-09-27"/>
-<meta property="article:created" itemprop="dateCreated" content="2021-09-27"/>
+<meta property="article:published" itemprop="datePublished" content="2022-09-13"/>
+<meta property="article:created" itemprop="dateCreated" content="2022-09-13"/>
 <meta name="article:author" content="Ralf Martin"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -120,14 +122,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
 <meta name="citation_title" content="Datastories Hub: Exercises 1"/>
 <meta name="citation_fulltext_html_url" content="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises1/"/>
-<meta name="citation_online_date" content="2021/09/27"/>
-<meta name="citation_publication_date" content="2021/09/27"/>
+<meta name="citation_online_date" content="2022/09/13"/>
+<meta name="citation_publication_date" content="2022/09/13"/>
 <meta name="citation_author" content="Ralf Martin"/>
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 1"]},{"type":"character","attributes":{},"value":["Starting to think like an econometrician."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-09-27"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises1/"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises1/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 1"]},{"type":"character","attributes":{},"value":["Starting to think like an econometrician."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2022-09-13"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises1/"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/datastorieshub/posts/exercises/exercises1/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -809,6 +811,7 @@ d-title .dt-tags {
 d-article table.gt_table td,
 d-article table.gt_table th {
   border-bottom: none;
+  font-size: 100%;
 }
 
 .html-widget {
@@ -1050,10 +1053,6 @@ figure img.external {
   position: relative;
   margin-bottom: 2.5em;
   margin-top: 1.5em;
-}
-
-.figure img {
-  width: 100%;
 }
 
 .figure .caption {
@@ -1885,9 +1884,21 @@ function init_distill() {
 
     // hoverable references
     $('span.citation[data-cites]').each(function() {
+      const citeChild = $(this).children()[0]
+      // Do not process if @xyz has been used without escaping and without bibliography activated
+      // https://github.com/rstudio/distill/issues/466
+      if (citeChild === undefined) return true
+
+      if (citeChild.nodeName == "D-FOOTNOTE") {
+        var fn = citeChild
+        $(this).html(fn.shadowRoot.querySelector("sup"))
+        $(this).id = fn.id
+        fn.remove()
+      }
       var refs = $(this).attr('data-cites').split(" ");
       var refHtml = refs.map(function(ref) {
-        return "<p>" + $('#ref-' + ref).html() + "</p>";
+        // Could use CSS.escape too here, we insure backward compatibility in navigator
+        return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
       }).join("\n");
       window.tippy(this, {
         allowHTML: true,
@@ -1899,6 +1910,31 @@ function init_distill() {
         placement: 'bottom-start'
       });
     });
+
+    // fix footnotes in tables (#411)
+    // replacing broken distill.pub feature
+    $('table d-footnote').each(function() {
+      // we replace internal showAtNode methode which is triggered when hovering a footnote
+      this.hoverBox.showAtNode = function(node) {
+        // ported from https://github.com/distillpub/template/pull/105/files
+        calcOffset = function(elem) {
+            let x = elem.offsetLeft;
+            let y = elem.offsetTop;
+            // Traverse upwards until an `absolute` element is found or `elem`
+            // becomes null.
+            while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                x += elem.offsetLeft;
+                y += elem.offsetTop;
+            }
+
+            return { left: x, top: y };
+        }
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+        const bbox = node.getBoundingClientRect();
+        const offset = calcOffset(node);
+        this.show([offset.left + bbox.width, offset.top + bbox.height]);
+      }
+    })
 
     // clear polling timer
     clearInterval(tid);
@@ -1998,6 +2034,8 @@ function init_common() {
   // mark non-body figures created by knitr chunks as 100% width
   $('.layout-chunk').each(function(i, val) {
     var figures = $(this).find('img, .html-widget');
+    // ignore leaflet img layers (#106)
+    figures = figures.filter(':not(img[class*="leaflet"])')
     if ($(this).attr('data-layout') !== "l-body") {
       figures.css('width', '100%');
     } else {
@@ -2020,7 +2058,7 @@ function init_common() {
   // get rid of index.html references in header
   if (window.location.protocol !== "file:") {
     $('.distill-site-header a[href]').each(function(i,val) {
-      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
     });
   }
 
@@ -2059,8 +2097,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../../site_libs/header-attrs-2.10/header-attrs.js"></script>
-  <script src="../../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../../site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="../../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="../../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2143,7 +2181,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Exercises 1","description":"Starting to think like an econometrician.","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-27T00:00:00.000+01:00","citationText":"Martin, 2021"}
+{"title":"Exercises 1","description":"Starting to think like an econometrician.","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-09-13T00:00:00.000+01:00","citationText":"Martin, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2180,7 +2218,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br/>2021-09-27
+<br/>2022-09-13
 </div>
 
 <div class="d-article">
@@ -2197,7 +2235,9 @@ Lots of great examples...
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="Mente.png" width="75%" data-distill-preview=1 /></p>
 </div>
-<p>In the lecture we discussed the notion of causality. We contrasted the causality mechanism that you might be most interested in (your story) with the causality mechanism(s) that might be driving your data (the data story). For good data-analysis you need to be aware of both: have a clear idea of what you want to analyse or explore as well as of all the things that could be going on in your data. To practise this I ask you to go through a couple of examples. These are suggestive causal relationships typically found on the basis of some correlation in in one dataset or another. In each case:</p>
+<p>In the lecture we discussed the notion of causality. We contrasted the causality mechanism that you might be most interested in (your story) with the causality mechanism(s) that might be driving your data (the data story). For good data-analysis you need to be aware of both: have a clear idea of what you want to analyse or explore as well as of all the things that could be going on in your data. To practise this I ask you to go through a couple of examples.
+These are suggestive causal relationships typically found on the basis of some correlation in in one dataset or another.
+In each case:</p>
 <ul>
 <li>Can you think of a mechanism that would support the causal relationship suggested?</li>
 <li>Can you also think of at least one reason of why the relationship might have been the consequence of confounding drivers in the data or indeed reverse causality? As consequence the effect suggested might be either non-existent or biased?</li>
@@ -2206,6 +2246,7 @@ Lots of great examples...
 <p>For each case I give you a suggestion as example when clicking the answer tab. You might also come across some interesting causal claims that are made e.g. in the news. If so you are very welcome to share those on the course forum.</p>
 <!-- These are typically strong correlations that have been found in one dataset or another. For each example, could you think of a mechanism or reason that would support the causal chain to work in both directions: firstly the one explicitly  You might want to share some of your ideas on the course forum. For each case I give you a suggestions as example when clicking the answer tab.
 --->
+<p>Hi Sam!!!!!!</p>
 <h1 id="exercise-1.1">Exercise 1.1</h1>
 <p>Police body worn cameras increase violence against the police?</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2216,8 +2257,10 @@ Lots of great examples...
 <button>
 Example Answer:
 </button>
-<p>We would typically expect the opposite; i.e. if people are on camera it is more likely that they can be prosecuted and punished for attacking a police officer. But as I suggested: a key skill of an applied data analyst is to think of imaginative stories. So here we can test that skill: Maybe there are people who like a reputation as misfits. Maybe that’s a badge of honour in their peer group. Now what could be better for those people than being known and seen on camera for attacking a police officer? Another story could be as follows: perhaps having a camera changes the behaviour of the officers. They now feel more confident - indeed perhaps overconfident - to engage with people that are more prone to attack officers.</p>
-<p>On the other hand: Maybe the story of the data behind these results is another one. Perhaps the introduction of cameras let violence against police officers to be better measured. Maybe police officers previously did not report all violence against them as doing so would require them to substantiate their claims which is harder if you don’t have a video record. With that available reporting went up but not actual incidence of violence. This “data story” would imply an upward bias on the actual impact of cameras on violence.</p>
+<p>We would typically expect the opposite; i.e. if people are on camera it is more likely that they can be prosecuted and punished for attacking a police officer. But as I suggested: a key skill of an applied data analyst is to think of imaginative stories. So here we can test that skill: Maybe there are people who like a reputation as misfits. Maybe that’s a badge of honour in their peer group. Now what could be better for those people than being known and seen on camera for attacking a police officer?
+Another story could be as follows: perhaps having a camera changes the behaviour of the officers. They now feel more confident - indeed perhaps overconfident - to engage with people that are more prone to attack officers.</p>
+<p>On the other hand: Maybe the story of the data behind these results is another one. Perhaps the introduction of cameras let violence against police officers to be better measured. Maybe police officers previously did not report all violence against them as doing so would require them to substantiate their claims which is harder if you don’t have a video record. With that available reporting went up but not actual incidence of violence.
+This “data story” would imply an upward bias on the actual impact of cameras on violence.</p>
 </div>
 <h1 id="exercise-1.2">Exercise 1.2</h1>
 <p>Guacamole makes you more succesful at online dating?</p>
@@ -2305,8 +2348,7 @@ A new strain of COVID 19 is suspected to be more contagious. This is based on fi
 
 
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/include_url.html'>include_url</a></span><span class='op'>(</span><span class='st'>"https://www.theguardian.com/world/2020/dec/21/european-experts-urge-caution-over-new-covid-mutation-uk?CMP=Share_AndroidApp_Other"</span><span class='op'>)</span>
-</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/include_url.html'>include_url</a></span><span class='op'>(</span><span class='st'>"https://www.theguardian.com/world/2020/dec/21/european-experts-urge-caution-over-new-covid-mutation-uk?CMP=Share_AndroidApp_Other"</span><span class='op'>)</span></span></code></pre></div>
 <iframe src="https://www.theguardian.com/world/2020/dec/21/european-experts-urge-caution-over-new-covid-mutation-uk?CMP=Share_AndroidApp_Other" width="624" height="400px" data-external="1"></iframe>
 
 </div>
@@ -2513,13 +2555,13 @@ window.onload = function() {
 <div class="appendix-bottom">
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Martin (2021, Sept. 27). Datastories Hub: Exercises 1. Retrieved from https://mondpanther.github.io/datastorieshub/posts/exercises/exercises1/</pre>
+  <pre class="citation-appendix short">Martin (2022, Sept. 13). Datastories Hub: Exercises 1. Retrieved from https://mondpanther.github.io/datastorieshub/posts/exercises/exercises1/</pre>
   <p>BibTeX citation</p>
-  <pre class="citation-appendix long">@misc{martin2021exercises,
+  <pre class="citation-appendix long">@misc{martin2022exercises,
   author = {Martin, Ralf},
   title = {Datastories Hub: Exercises 1},
   url = {https://mondpanther.github.io/datastorieshub/posts/exercises/exercises1/},
-  year = {2021}
+  year = {2022}
 }</pre>
 </div>
 <!--/radix_placeholder_appendices-->

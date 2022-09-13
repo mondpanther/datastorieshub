@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -93,8 +94,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-12-08"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-12-08"/>
+  <meta property="article:published" itemprop="datePublished" content="2022-09-13"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-09-13"/>
   <meta name="article:author" content="Ralf Martin"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -113,7 +114,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Assessment for SRM"]},{"type":"character","attributes":{},"value":["More details on your assessment\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-12-08"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["webex.js"]}]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Assessment for SRM"]},{"type":"character","attributes":{},"value":["More details on your assessment\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2022-09-13"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","css","includes"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["webex.css"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["after_body"]}},"value":[{"type":"character","attributes":{},"value":["webex.js"]}]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -791,6 +792,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1032,10 +1034,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1867,9 +1865,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -1881,6 +1891,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1980,6 +2015,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2002,7 +2039,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2041,7 +2078,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11.3/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2125,7 +2162,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Assessment for SRM","description":"More details on your assessment","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-12-08T00:00:00.000+00:00","citationText":"Martin, 2021"}
+{"title":"Assessment for SRM","description":"More details on your assessment","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-09-13T00:00:00.000+01:00","citationText":"Martin, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2159,7 +2196,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-byline">
   Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br/>2021-12-08
+<br/>2022-09-13
 </div>
 
 <div class="d-article">
@@ -2175,31 +2212,36 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3 id="multiple-choice-question-examples">Multiple Choice Question Examples</h3>
 <p>(To check your understanding select what you think is the correct option in the dropdown selection menus. If you are right the menu box should turn blue)</p>
 <h4 id="question-1">Question 1</h4>
-<p>Suppose you have estimated the following regression model on a representative sample of the UK population <span class="math display">\[\log(Weight_i)=\beta_0+\beta_1 Female_i+\beta_2 AGE_i +\beta_3+AGE_i^2+\epsilon_i\]</span></p>
-<p>where Weight_i is weight of a person in 100s of kilograms Suppose you find that <span class="math inline">\(\hat\beta_1=-0.10\)</span> Which of the following is a correct interpretation?</p>
+<p>Suppose you have estimated the following regression model on a representative sample of the UK population
+<span class="math display">\[\log(Weight_i)=\beta_0+\beta_1 Female_i+\beta_2 AGE_i +\beta_3+AGE_i^2+\epsilon_i\]</span></p>
+<p>where Weight_i is weight of a person in 100s of kilograms
+Suppose you find that <span class="math inline">\(\hat\beta_1=-0.10\)</span> Which of the following is a correct interpretation?</p>
 <ol type="a">
 <li>The average weight for women is 10kg</li>
 <li>Women – on average - weigh 10 kg less than men</li>
 <li>Women – on average – weigh 10% less than men</li>
 <li>None of the above.</li>
 </ol>
-<p>Correct answer <select class='webex-solveme' data-answer='["c"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
+<p>Correct answer <select class='webex-select'><option value='blank'></option><option value=''>a</option><option value=''>b</option><option value='answer'>c</option><option value=''>d</option></select></p>
 <p><br></p>
 <h4 id="question-2">Question 2</h4>
-<p>For the model from Question 1: suppose you find that <span class="math inline">\(\hat\beta_2=0.01\)</span> and <span class="math inline">\(\hat\beta_3=-0.0001\)</span> . What does it tell you about the age at which we expect people to be heaviest?</p>
+<p>For the model from Question 1: suppose you find that <span class="math inline">\(\hat\beta_2=0.01\)</span> and <span class="math inline">\(\hat\beta_3=-0.0001\)</span> .
+What does it tell you about the age at which we expect people to be heaviest?</p>
 <ol type="a">
 <li>At 25 years</li>
 <li>At 75 years</li>
 <li>At 40 years</li>
 <li>None of the above</li>
 </ol>
-<p>Correct answer <select class='webex-solveme' data-answer='["d"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
+<p>Correct answer <select class='webex-select'><option value='blank'></option><option value=''>a</option><option value=''>b</option><option value=''>c</option><option value='answer'>d</option></select></p>
 <div class="webex-solution">
 <button>
 Hint
 </button>
-<p>Because <span class="math inline">\(\beta_3\)</span> is negative the weight-age relationship is hump shaped. We can find the maximum of the hump by setting the gradient equal to 0 implying</p>
-<p><span class="math display">\[0.01-2\times 0.0001\times AGE=0\]</span> Consequently:</p>
+<p>Because <span class="math inline">\(\beta_3\)</span> is negative the weight-age relationship is hump shaped. We can find the
+maximum of the hump by setting the gradient equal to 0 implying</p>
+<p><span class="math display">\[0.01-2\times 0.0001\times AGE=0\]</span>
+Consequently:</p>
 <p><span class="math display">\[AGE=\frac{0.01}{2\times 0.0001}=50\]</span></p>
 </div>
 <p><br></p>
@@ -2211,12 +2253,13 @@ Hint
 <li>It depends on the variance of the residuals</li>
 <li>It depends on the variance of the explanatory variable</li>
 </ol>
-<p><select class='webex-solveme' data-answer='["a"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
+<p><select class='webex-select'><option value='blank'></option><option value='answer'>a</option><option value=''>b</option><option value=''>c</option><option value=''>d</option></select></p>
 <div class="webex-solution">
 <button>
 Hint
 </button>
-<p>The t value becomes $t==$21 , which is larger than 1.96, the 5% critical threshold with a standard normal distribution. Note that 1000 observations we can ignore that the t-statistic is only approximately normally distributed.</p>
+<p>The t value becomes $t==$21 , which is larger than 1.96, the 5% critical threshold
+with a standard normal distribution. Note that 1000 observations we can ignore that the t-statistic is only approximately normally distributed.</p>
 </div>
 <p><br></p>
 <h4 id="question-4">Question 4</h4>
@@ -2227,7 +2270,7 @@ Hint
 <li>Upward sloping</li>
 <li>None of the above</li>
 </ol>
-<p><select class='webex-solveme' data-answer='["b"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
+<p><select class='webex-select'><option value='blank'></option><option value=''>a</option><option value='answer'>b</option><option value=''>c</option><option value=''>d</option></select></p>
 <p><br></p>
 <h4 id="question-5">Question 5</h4>
 <p>The probability that a standardised normal variable takes a value of zero or more is:</p>
@@ -2237,14 +2280,15 @@ Hint
 <li>95% for a significance level of 0.1</li>
 <li>I need more information on the variance and probability distribution to answer this question.</li>
 </ol>
-<p><select class='webex-solveme' data-answer='["b"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
+<p><select class='webex-select'><option value='blank'></option><option value=''>a</option><option value='answer'>b</option><option value=''>c</option><option value=''>d</option></select></p>
 <h4 id="question-6">Question 6</h4>
-<p>The R output below shows a regression of COVID19 cases per student among US Universities in Fall 2020. The variable <code>partyrank</code> ranks Universities according to the quality of the local party scene (i.e. the uni with the best partyscene has rank 1). What does the regression suggest abou the relationship between party rank and covid cases?</p>
+<p>The R output below shows a regression of COVID19 cases per student among US Universities in Fall 2020. The variable <code>partyrank</code>
+ranks Universities according to the quality of the local party scene (i.e. the uni with the best partyscene has rank 1).
+What does the regression suggest abou the relationship between party rank and covid cases?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#simple regression of case on partyrank</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>casesOstudent</span><span class='op'>~</span><span class='va'>partyrank</span>,<span class='va'>datafinal2</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#simple regression of case on partyrank</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>casesOstudent</span><span class='op'>~</span><span class='va'>partyrank</span>,<span class='va'>datafinal2</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>
 Call:
@@ -2272,16 +2316,15 @@ F-statistic:  18.8 on 1 and 260 DF,  p-value: 2.078e-05</code></pre>
 <li>... leads to 0.52 less COVID cases in 10,000 students.</li>
 <li>... leads to 5.2 less COVID cases in 1000 students.</li>
 </ol>
-<p><select class='webex-solveme' data-answer='["c"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select> ..</p>
+<p><select class='webex-select'><option value='blank'></option><option value=''>a</option><option value=''>b</option><option value='answer'>c</option><option value=''>d</option></select> ..</p>
 <h4 id="question-7">Question 7</h4>
 <p>The figure below shows the result of a Monte-Carlo study of a parameter estimate. It's a density plot of the estimated parameter for a large number of replications along with the true parameter value (vertical line)</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>obs</span><span class='op'>=</span><span class='fl'>1000</span>
-<span class='va'>df</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>mc<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>obs</span><span class='op'>)</span><span class='op'>+</span><span class='fl'>1</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>df</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>mc</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_density.html'>geom_density</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_vline</a></span><span class='op'>(</span>xintercept<span class='op'>=</span><span class='fl'>2</span>,color<span class='op'>=</span><span class='st'>"red"</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>obs</span><span class='op'>=</span><span class='fl'>1000</span></span>
+<span><span class='va'>df</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>mc<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>obs</span><span class='op'>)</span><span class='op'>+</span><span class='fl'>1</span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>df</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>mc</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_density.html'>geom_density</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_vline</a></span><span class='op'>(</span>xintercept<span class='op'>=</span><span class='fl'>2</span>,color<span class='op'>=</span><span class='st'>"red"</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="srmexamnotes_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
@@ -2291,14 +2334,13 @@ F-statistic:  18.8 on 1 and 260 DF,  p-value: 2.078e-05</code></pre>
 <li>The estimate is downward biased</li>
 <li>There is not enough information to tell</li>
 </ol>
-<p><select class='webex-solveme' data-answer='["c"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
+<p><select class='webex-select'><option value='blank'></option><option value=''>a</option><option value=''>b</option><option value='answer'>c</option><option value=''>d</option></select></p>
 <h4 id="question-8">Question 8</h4>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readxl.tidyverse.org'>readxl</a></span><span class='op'>)</span>
-<span class='va'>set</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='st'>"datastories/worldoilprice/Dataset.xlsx"</span>,  skip <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
-       <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>oilprice<span class='op'>=</span><span class='va'>`WTIspotprice`</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readxl.tidyverse.org'>readxl</a></span><span class='op'>)</span></span>
+<span><span class='va'>set</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='st'>"datastories/worldoilprice/Dataset.xlsx"</span>,  skip <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>       <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>oilprice<span class='op'>=</span><span class='va'>`WTIspotprice`</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Consider the R output below where the variable <code>oilprice</code> is the spot price for oil computed at the monthly level from 2010-19. Based on what is reported below, which of the following can you conclude:</p>
@@ -2308,12 +2350,11 @@ F-statistic:  18.8 on 1 and 260 DF,  p-value: 2.078e-05</code></pre>
 <li>The oil price is stationary only at the 10% significance level.</li>
 <li>The oil price non-stationary at all significance levels.</li>
 </ol>
-<p><select class='webex-solveme' data-answer='["d"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
+<p><select class='webex-select'><option value='blank'></option><option value=''>a</option><option value=''>b</option><option value=''>c</option><option value='answer'>d</option></select></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>urca</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/pkg/urca/man/ur.df.html'>ur.df</a></span><span class='op'>(</span><span class='va'>set</span><span class='op'>$</span><span class='va'>oilprice</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/pkg/urca/man/summary-methods.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>urca</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/pkg/urca/man/ur.df.html'>ur.df</a></span><span class='op'>(</span><span class='va'>set</span><span class='op'>$</span><span class='va'>oilprice</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/pkg/urca/man/summary-methods.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>
 ############################################### 
@@ -2356,11 +2397,10 @@ tau1 -2.58 -1.95 -1.62</code></pre>
 <li>Oil prices are shrinking at a rate of 0.31% on average.</li>
 <li>Oil prices are srhinking at a rate of 0.23% on average.</li>
 </ol>
-<p><select class='webex-solveme' data-answer='["d"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
+<p><select class='webex-select'><option value='blank'></option><option value=''>a</option><option value=''>b</option><option value=''>c</option><option value='answer'>d</option></select></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span>formula<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>oilprice</span><span class='op'>)</span><span class='op'>)</span><span class='op'>~</span><span class='fl'>1</span>,<span class='va'>set</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/pkg/urca/man/summary-methods.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span>formula<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>oilprice</span><span class='op'>)</span><span class='op'>)</span><span class='op'>~</span><span class='fl'>1</span>,<span class='va'>set</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/pkg/urca/man/summary-methods.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>
 Call:
@@ -2386,7 +2426,7 @@ Residual standard error: 0.07896 on 118 degrees of freedom</code></pre>
 <li><span class="math display">\[\hat{y}_i=β_1+β_2 x_{2i}\]</span></li>
 <li><span class="math display">\[\hat{y}_i=\hat{β}_1+\hat{β}_2 \hat{x}_{2i}\]</span></li>
 </ol>
-<p><select class='webex-solveme' data-answer='["b"]'> <option></option> <option>a</option> <option>b</option> <option>c</option> <option>d</option></select></p>
+<p><select class='webex-select'><option value='blank'></option><option value=''>a</option><option value='answer'>b</option><option value=''>c</option><option value=''>d</option></select></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
