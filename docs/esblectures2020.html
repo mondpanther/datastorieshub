@@ -50,17 +50,16 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { color: #00769e; background-color: #f1f3f5; }
+  {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #657422; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #00769e; } /* ControlFlow */
+code span.cf { color: #007ba5; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -74,9 +73,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #00769e; } /* Keyword */
+code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #00769e; } /* Other */
+code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -785,7 +784,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
-    font-size: 100%;
   }
 
   .html-widget {
@@ -1027,6 +1025,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
   }
 
   .figure .caption {
@@ -1858,21 +1860,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        const citeChild = $(this).children()[0]
-        // Do not process if @xyz has been used without escaping and without bibliography activated
-        // https://github.com/rstudio/distill/issues/466
-        if (citeChild === undefined) return true
-
-        if (citeChild.nodeName == "D-FOOTNOTE") {
-          var fn = citeChild
-          $(this).html(fn.shadowRoot.querySelector("sup"))
-          $(this).id = fn.id
-          fn.remove()
-        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          // Could use CSS.escape too here, we insure backward compatibility in navigator
-          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -1884,31 +1874,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
-
-      // fix footnotes in tables (#411)
-      // replacing broken distill.pub feature
-      $('table d-footnote').each(function() {
-        // we replace internal showAtNode methode which is triggered when hovering a footnote
-        this.hoverBox.showAtNode = function(node) {
-          // ported from https://github.com/distillpub/template/pull/105/files
-          calcOffset = function(elem) {
-              let x = elem.offsetLeft;
-              let y = elem.offsetTop;
-              // Traverse upwards until an `absolute` element is found or `elem`
-              // becomes null.
-              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
-                  x += elem.offsetLeft;
-                  y += elem.offsetTop;
-              }
-
-              return { left: x, top: y };
-          }
-          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
-          const bbox = node.getBoundingClientRect();
-          const offset = calcOffset(node);
-          this.show([offset.left + bbox.width, offset.top + bbox.height]);
-        }
-      })
 
       // clear polling timer
       clearInterval(tid);
@@ -2008,8 +1973,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
-      // ignore leaflet img layers (#106)
-      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2032,7 +1995,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
       });
     }
 
@@ -2194,24 +2157,42 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/IntroductionESB.pdf">IntroductionESB.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/IntroductionESB.pptx">IntroductionESB.pptx</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic2_Rrrrr.pdf">Topic2_Rrrrr.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic2_Rrrrr.pptx">Topic2_Rrrrr.pptx</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic3_Visions.pdf">Topic3_Visions.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic3_Visions.pptx">Topic3_Visions.pptx</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic4_TestingTimes.pdf">Topic4_TestingTimes.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic4_TestingTimes.pptx">Topic4_TestingTimes.pptx</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic5_TakingBackControl.pdf">Topic5_TakingBackControl.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic5_TakingBackControl.pptx">Topic5_TakingBackControl.pptx</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic6_EconometricsforDummies.pdf">Topic6_EconometricsforDummies.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic6_EconometricsforDummies.pptx">Topic6_EconometricsforDummies.pptx</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic7_InstrumentalVariables.pdf">Topic7_InstrumentalVariables.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic7_InstrumentalVariables.pptx">Topic7_InstrumentalVariables.pptx</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic8_MachineLearning_Part1.pdf">Topic8_MachineLearning_Part1.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic8_MachineLearning_Part2.pdf">Topic8_MachineLearning_Part2.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic9_TimeSeries.pdf">Topic9_TimeSeries.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic9_TimeSeries.pptx">Topic9_TimeSeries.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/IntroductionESB.pdf">IntroductionESB.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/IntroductionESB.pptx">IntroductionESB.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic2_Rrrrr.pdf">Topic2_Rrrrr.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic2_Rrrrr.pptx">Topic2_Rrrrr.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic3_Visions.pdf">Topic3_Visions.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic3_Visions.pptx">Topic3_Visions.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic4_TestingTimes.pdf">Topic4_TestingTimes.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic4_TestingTimes.pptx">Topic4_TestingTimes.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic5_TakingBackControl.pdf">Topic5_TakingBackControl.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic5_TakingBackControl.pptx">Topic5_TakingBackControl.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic6_EconometricsforDummies.pdf">Topic6_EconometricsforDummies.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic6_EconometricsforDummies.pptx">Topic6_EconometricsforDummies.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic7_InstrumentalVariables.pdf">Topic7_InstrumentalVariables.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic7_InstrumentalVariables.pptx">Topic7_InstrumentalVariables.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic8_MachineLearning_Part1.pdf">Topic8_MachineLearning_Part1.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic8_MachineLearning_Part2.pdf">Topic8_MachineLearning_Part2.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic9_TimeSeries.pdf">Topic9_TimeSeries.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic9_TimeSeries.pptx">Topic9_TimeSeries.pptx</a></li>
 </ul>
 </div>
 <h1 id="r-scripts">R scripts</h1>
@@ -2220,29 +2201,52 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/FarageGarage.html">FarageGarage.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/FarageGarage.Rmd">FarageGarage.Rmd</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic2_mostofR4u.docx">Topic2_mostofR4u.docx</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic2_mostofR4u.html">Topic2_mostofR4u.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic2_mostofR4u.Rmd">Topic2_mostofR4u.Rmd</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic3_Visions.html">Topic3_Visions.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic3_Visions.Rmd">Topic3_Visions.Rmd</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic4_TestingTimes.docx">Topic4_TestingTimes.docx</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic4_TestingTimes.html">Topic4_TestingTimes.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic4_TestingTimes.Rmd">Topic4_TestingTimes.Rmd</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic5_TakingBackControl.docx">Topic5_TakingBackControl.docx</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic5_TakingBackControl.html">Topic5_TakingBackControl.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic5_TakingBackControl.Rmd">Topic5_TakingBackControl.Rmd</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic6_EconometricsforDummies.html">Topic6_EconometricsforDummies.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic6_EconometricsforDummies.Rmd">Topic6_EconometricsforDummies.Rmd</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic7_InstrumentalVariables.html">Topic7_InstrumentalVariables.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic7_InstrumentalVariables.Rmd">Topic7_InstrumentalVariables.Rmd</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic8_LearningLikeaMachine.html">Topic8_LearningLikeaMachine.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic8_LearningLikeaMachine.Rmd">Topic8_LearningLikeaMachine.Rmd</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic9_TimeSeries.docx">Topic9_TimeSeries.docx</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic9_TimeSeries.html">Topic9_TimeSeries.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic9_TimeSeries.Rmd">Topic9_TimeSeries.Rmd</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic9_TimeSeries_files">Topic9_TimeSeries_files</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/FarageGarage.html">FarageGarage.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/FarageGarage.Rmd">FarageGarage.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic2_mostofR4u.docx">Topic2_mostofR4u.docx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic2_mostofR4u.html">Topic2_mostofR4u.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic2_mostofR4u.Rmd">Topic2_mostofR4u.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic3_Visions.html">Topic3_Visions.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic3_Visions.Rmd">Topic3_Visions.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic4_TestingTimes.docx">Topic4_TestingTimes.docx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic4_TestingTimes.html">Topic4_TestingTimes.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic4_TestingTimes.Rmd">Topic4_TestingTimes.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic5_TakingBackControl.docx">Topic5_TakingBackControl.docx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic5_TakingBackControl.html">Topic5_TakingBackControl.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic5_TakingBackControl.Rmd">Topic5_TakingBackControl.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic6_EconometricsforDummies.html">Topic6_EconometricsforDummies.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic6_EconometricsforDummies.Rmd">Topic6_EconometricsforDummies.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic7_InstrumentalVariables.html">Topic7_InstrumentalVariables.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic7_InstrumentalVariables.Rmd">Topic7_InstrumentalVariables.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic8_LearningLikeaMachine.html">Topic8_LearningLikeaMachine.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic8_LearningLikeaMachine.Rmd">Topic8_LearningLikeaMachine.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic9_TimeSeries.docx">Topic9_TimeSeries.docx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic9_TimeSeries.html">Topic9_TimeSeries.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic9_TimeSeries.Rmd">Topic9_TimeSeries.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic9_TimeSeries_files">Topic9_TimeSeries_files</a></li>
 </ul>
 </div>
 <h1 id="guides">Guides</h1>
@@ -2251,54 +2255,93 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.html">CourseworkGuide.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.Rmd">CourseworkGuide.Rmd</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/TwitterSamplingGuide.html">TwitterSamplingGuide.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/TwitterSamplingGuide.Rmd">TwitterSamplingGuide.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.html">CourseworkGuide.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.Rmd">CourseworkGuide.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/TwitterSamplingGuide.html">TwitterSamplingGuide.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/TwitterSamplingGuide.Rmd">TwitterSamplingGuide.Rmd</a></li>
 </ul>
 </div>
 <h1 id="past-graded-exercise-papers">Past graded exercise papers</h1>
 <ul>
-<li><p><a href="https://www.dropbox.com/s/hvd31mgwgjgxunk/Graded%20Assignment%202019%20-%20With%20Solutions.docx?dl=1">Graded Assignment 2019</a></p></li>
-<li><p><a href="https://www.dropbox.com/s/j2p6je4eo98wubi/Graded%20Exercise%20Set%202018%20-%20with%20solutions.docx?dl=1">Graded Assignment 2018</a></p></li>
+<li><p><a
+href="https://www.dropbox.com/s/hvd31mgwgjgxunk/Graded%20Assignment%202019%20-%20With%20Solutions.docx?dl=1">Graded
+Assignment 2019</a></p></li>
+<li><p><a
+href="https://www.dropbox.com/s/j2p6je4eo98wubi/Graded%20Exercise%20Set%202018%20-%20with%20solutions.docx?dl=1">Graded
+Assignment 2018</a></p></li>
 </ul>
-<h2 id="datasets-for-past-papers-and-more">Datasets for past papers (and more)</h2>
+<h2 id="datasets-for-past-papers-and-more">Datasets for past papers (and
+more)</h2>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/back2country_set.dta">back2country_set.dta</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/driving.csv">driving.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/ets_thres_final.csv">ets_thres_final.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/foreigners.csv">foreigners.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/guns.csv">guns.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/hals1prep.csv">hals1prep.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/house.csv">house.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/lfsclean.dta">lfsclean.dta</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/maketable1.csv">maketable1.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/maketable2.csv">maketable2.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/maketable4.csv">maketable4.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/migrants.csv">migrants.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/NH.Ts+dSST.csv">NH.Ts+dSST.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/oj.csv">oj.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/populationclean.csv">populationclean.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/populationdata.csv">populationdata.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/prod.csv">prod.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/prod_balanced.csv">prod_balanced.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/proddata_clean.csv">proddata_clean.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/production2.csv">production2.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/statistic_id183497_population-in-the-states-of-the-us-2019.csv">statistic_id183497_population-in-the-states-of-the-us-2019.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/statistic_id183497_population-in-the-states-of-the-us-2019.xlsx">statistic_id183497_population-in-the-states-of-the-us-2019.xlsx</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/TableWages.csv">TableWages.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/TeachingRatings.csv">TeachingRatings.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/UK%20Gender%20Pay%20Gap%20Data%20-%202017%20to%202018.csv">UK Gender Pay Gap Data - 2017 to 2018.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/unempprep.csv">unempprep.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/unempprep.dta">unempprep.dta</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/us-states.csv">us-states.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/back2country_set.dta">back2country_set.dta</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/driving.csv">driving.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/ets_thres_final.csv">ets_thres_final.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/foreigners.csv">foreigners.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/guns.csv">guns.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/hals1prep.csv">hals1prep.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/house.csv">house.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/lfsclean.dta">lfsclean.dta</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/maketable1.csv">maketable1.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/maketable2.csv">maketable2.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/maketable4.csv">maketable4.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/migrants.csv">migrants.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/NH.Ts+dSST.csv">NH.Ts+dSST.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/oj.csv">oj.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/populationclean.csv">populationclean.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/populationdata.csv">populationdata.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/prod.csv">prod.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/prod_balanced.csv">prod_balanced.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/proddata_clean.csv">proddata_clean.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/production2.csv">production2.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/statistic_id183497_population-in-the-states-of-the-us-2019.csv">statistic_id183497_population-in-the-states-of-the-us-2019.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/statistic_id183497_population-in-the-states-of-the-us-2019.xlsx">statistic_id183497_population-in-the-states-of-the-us-2019.xlsx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/TableWages.csv">TableWages.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/TeachingRatings.csv">TeachingRatings.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/UK%20Gender%20Pay%20Gap%20Data%20-%202017%20to%202018.csv">UK
+Gender Pay Gap Data - 2017 to 2018.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/unempprep.csv">unempprep.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/unempprep.dta">unempprep.dta</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/us-states.csv">us-states.csv</a></li>
 </ul>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -50,17 +50,16 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { color: #00769e; background-color: #f1f3f5; }
+  {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #657422; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #00769e; } /* ControlFlow */
+code span.cf { color: #007ba5; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -74,9 +73,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #00769e; } /* Keyword */
+code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #00769e; } /* Other */
+code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -785,7 +784,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
-    font-size: 100%;
   }
 
   .html-widget {
@@ -1027,6 +1025,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
   }
 
   .figure .caption {
@@ -1858,21 +1860,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        const citeChild = $(this).children()[0]
-        // Do not process if @xyz has been used without escaping and without bibliography activated
-        // https://github.com/rstudio/distill/issues/466
-        if (citeChild === undefined) return true
-
-        if (citeChild.nodeName == "D-FOOTNOTE") {
-          var fn = citeChild
-          $(this).html(fn.shadowRoot.querySelector("sup"))
-          $(this).id = fn.id
-          fn.remove()
-        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          // Could use CSS.escape too here, we insure backward compatibility in navigator
-          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -1884,31 +1874,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
-
-      // fix footnotes in tables (#411)
-      // replacing broken distill.pub feature
-      $('table d-footnote').each(function() {
-        // we replace internal showAtNode methode which is triggered when hovering a footnote
-        this.hoverBox.showAtNode = function(node) {
-          // ported from https://github.com/distillpub/template/pull/105/files
-          calcOffset = function(elem) {
-              let x = elem.offsetLeft;
-              let y = elem.offsetTop;
-              // Traverse upwards until an `absolute` element is found or `elem`
-              // becomes null.
-              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
-                  x += elem.offsetLeft;
-                  y += elem.offsetTop;
-              }
-
-              return { left: x, top: y };
-          }
-          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
-          const bbox = node.getBoundingClientRect();
-          const offset = calcOffset(node);
-          this.show([offset.left + bbox.width, offset.top + bbox.height]);
-        }
-      })
 
       // clear polling timer
       clearInterval(tid);
@@ -2008,8 +1973,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
-      // ignore leaflet img layers (#106)
-      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2032,7 +1995,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
       });
     }
 
@@ -2189,10 +2152,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <script src="https://hypothes.is/embed.js" async></script>
-<p>Welcome to Social Research Methods - Part II( Quantitative Methods).</p>
-<p>In this course we give you an introduction into common concepts and tools for data analysis in economics and business. Emphasis will be on practical data skills as well as the ability to formulate a question appropriately, provide data analysis relevant to the question and interpret the results correctly. As part of the course you will be asked to provide a small piece of data analysis.</p>
+<p>Welcome to Social Research Methods - Part II( Quantitative
+Methods).</p>
+<p>In this course we give you an introduction into common concepts and
+tools for data analysis in economics and business. Emphasis will be on
+practical data skills as well as the ability to formulate a question
+appropriately, provide data analysis relevant to the question and
+interpret the results correctly. As part of the course you will be asked
+to provide a small piece of data analysis.</p>
 <h5 id="class-participation...">Class participation...</h5>
-<p>To get your participation mark please participate in the Datathon Forum with either questions or answers or by sharing relevant stuff (e.g. an interesting dataset or article). You find the forum <a href="https://teams.microsoft.com/l/team/19%3a33e09cf87c974e3181f08097c0eb5252%40thread.skype/conversations?groupId=bee22207-25e0-4515-b861-e0fa99c42aaf&amp;tenantId=2b897507-ee8c-4575-830b-4f8267c3d307">here</a>. You should already be enrolled to participate. But if not let me know. Please only participate with your official Imperial Email address.</p>
+<p>To get your participation mark please participate in the Datathon
+Forum with either questions or answers or by sharing relevant stuff
+(e.g. an interesting dataset or article). You find the forum <a
+href="https://teams.microsoft.com/l/team/19%3a33e09cf87c974e3181f08097c0eb5252%40thread.skype/conversations?groupId=bee22207-25e0-4515-b861-e0fa99c42aaf&amp;tenantId=2b897507-ee8c-4575-830b-4f8267c3d307">here</a>.
+You should already be enrolled to participate. But if not let me know.
+Please only participate with your official Imperial Email address.</p>
 <hr />
 <h1 id="topic-1---introduction">Topic 1 - Introduction</h1>
 <div class="webex-solution">
@@ -2202,26 +2176,36 @@ More...
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
 <li>Understanding what causal relationships are</li>
-<li>Become aware of factors that lead to biased estimates of causal relationships</li>
+<li>Become aware of factors that lead to biased estimates of causal
+relationships</li>
 <li>Understand upward and downward bias</li>
 <li>Understand the concept of endogenous and exogenous variation.</li>
-<li>Discuss causal identification and biases in the context of a univariate linear model</li>
+<li>Discuss causal identification and biases in the context of a
+univariate linear model</li>
 </ul>
 <h2 id="slides">Slides</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/IntroductionESB.pdf">IntroductionESB.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/IntroductionESB.pptx">IntroductionESB.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/IntroductionESB.pdf">IntroductionESB.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/IntroductionESB.pptx">IntroductionESB.pptx</a></li>
 </ul>
 </div>
 <h2 id="exercises">Exercises</h2>
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises1/">Exercises 1</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises1/">Exercises
+1</a></li>
 </ul>
 <h2 id="further-reading">Further reading</h2>
 <ul>
-<li><a href="https://www.econometrics-with-r.org/1-introduction.html">Introduction to Econometrics with R, Chapters 1-3</a></li>
-<li><a href="https://causalscience.org/blog/causal-data-science-in-large-us-firms">Causal Data Science in Large U.S. Firms</a></li>
+<li><a
+href="https://www.econometrics-with-r.org/1-introduction.html">Introduction
+to Econometrics with R, Chapters 1-3</a></li>
+<li><a
+href="https://causalscience.org/blog/causal-data-science-in-large-us-firms">Causal
+Data Science in Large U.S. Firms</a></li>
 </ul>
 </div>
 <hr />
@@ -2230,8 +2214,17 @@ More...
 <button>
 More...
 </button>
-<p>We take a first look at the R software package and programming language, which we will be using throughout this module. For those who have not yet been programming this will be a steep learning curve. However, it should be worth it.</p>
-<p>You will not be able to analyse data effectively without being familiar with basic programming concepts. What’s more, to grasp many aspects of today’s world an understanding of programming is key. Even if you don’t envisage a career as master coder or data analyst, trying these things for yourself will be useful as you will very likely have to manage coders and analysts or rely on their work at some point in your career.</p>
+<p>We take a first look at the R software package and programming
+language, which we will be using throughout this module. For those who
+have not yet been programming this will be a steep learning curve.
+However, it should be worth it.</p>
+<p>You will not be able to analyse data effectively without being
+familiar with basic programming concepts. What’s more, to grasp many
+aspects of today’s world an understanding of programming is key. Even if
+you don’t envisage a career as master coder or data analyst, trying
+these things for yourself will be useful as you will very likely have to
+manage coders and analysts or rely on their work at some point in your
+career.</p>
 <h2 id="learning-objectives-1">Learning Objectives</h2>
 <ul>
 <li>Install R and RStudio on your computer.</li>
@@ -2239,23 +2232,31 @@ More...
 <li>Load a dataset and provide simple analysis of it.</li>
 <li>Have an understanding of programming concepts such as loops</li>
 <li>Be able to merge or join different data sources using code.</li>
-<li>Learn how to create data yourself using random number generators.</li>
+<li>Learn how to create data yourself using random number
+generators.</li>
 </ul>
 <h2 id="slides-1">Slides</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic2_Rrrrr.pdf">Topic2_Rrrrr.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic2_Rrrrr.pptx">Topic2_Rrrrr.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic2_Rrrrr.pdf">Topic2_Rrrrr.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic2_Rrrrr.pptx">Topic2_Rrrrr.pptx</a></li>
 </ul>
 </div>
 <h2 id="additional-material">Additional Material</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/FarageGarage.html">FarageGarage.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/FarageGarage.Rmd">FarageGarage.Rmd</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic2_mostofR4u.docx">Topic2_mostofR4u.docx</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic2_mostofR4u.html">Topic2_mostofR4u.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/code/Topic2_mostofR4u.Rmd">Topic2_mostofR4u.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/FarageGarage.html">FarageGarage.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/FarageGarage.Rmd">FarageGarage.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic2_mostofR4u.docx">Topic2_mostofR4u.docx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic2_mostofR4u.html">Topic2_mostofR4u.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/code/Topic2_mostofR4u.Rmd">Topic2_mostofR4u.Rmd</a></li>
 </ul>
 </div>
 <ul>
@@ -2270,19 +2271,25 @@ More...
 </iframe>
 </div></li>
 <li>Video Guide: Functions in R
-<div style="position: relative; padding-bottom: 62.40740740740741%; height: 0;">
+<div
+style="position: relative; padding-bottom: 62.40740740740741%; height: 0;">
 <iframe src="https://www.loom.com/embed/1134b503afc2465590c748e5d59c3888" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
 </iframe>
 </div></li>
 </ul>
 <h2 id="exercises-1">Exercises</h2>
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/">Exercises 2</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises2/">Exercises
+2</a></li>
 </ul>
 <h2 id="further-reading-1">Further Reading</h2>
 <ul>
-<li><p><a href="https://ebookcentral.proquest.com/lib/imperial/detail.action?docID=4770093">R for Data Science</a></p></li>
-<li><p><a href="https://bookdown.org/yihui/rmarkdown/">The definite guide to R Markdown</a></p></li>
+<li><p><a
+href="https://ebookcentral.proquest.com/lib/imperial/detail.action?docID=4770093">R
+for Data Science</a></p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/">The definite
+guide to R Markdown</a></p></li>
 </ul>
 </div>
 <hr />
@@ -2291,37 +2298,51 @@ More...
 <button>
 More...
 </button>
-<p>Some of the best ways to understand data are graphs and visualisations. R has powerful tools for that purpose.</p>
-<p>We will be deepening our ability to understand the R programming language by looking at some of its graphics commands. We will also discuss some of the pitfalls as well as deliberate manipulations that people engage in when producing data visualisations.</p>
+<p>Some of the best ways to understand data are graphs and
+visualisations. R has powerful tools for that purpose.</p>
+<p>We will be deepening our ability to understand the R programming
+language by looking at some of its graphics commands. We will also
+discuss some of the pitfalls as well as deliberate manipulations that
+people engage in when producing data visualisations.</p>
 <h2 id="learning-objectives-2">Learning Objectives</h2>
 <ul>
-<li>Use the R programming language to create basic and some more advanced graphs and visualisations based on data.</li>
-<li>Avoid common pitfals that lead to misleading or un-informative visualisations.</li>
+<li>Use the R programming language to create basic and some more
+advanced graphs and visualisations based on data.</li>
+<li>Avoid common pitfals that lead to misleading or un-informative
+visualisations.</li>
 </ul>
 <h2 id="slides-2">Slides</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic3_Visions.pdf">Topic3_Visions.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic3_Visions.pptx">Topic3_Visions.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic3_Visions.pdf">Topic3_Visions.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic3_Visions.pptx">Topic3_Visions.pptx</a></li>
 </ul>
 </div>
 <h2 id="additional-material-1">Additional Material</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic3_Visions.html">Topic3_Visions.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic3_Visions.Rmd">Topic3_Visions.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/./code/Topic3_Visions.html">Topic3_Visions.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/./code/Topic3_Visions.Rmd">Topic3_Visions.Rmd</a></li>
 </ul>
 </div>
 <ul>
-<li><a href="https://www.r-graph-gallery.com/">The R Graph Gallery</a></li>
+<li><a href="https://www.r-graph-gallery.com/">The R Graph
+Gallery</a></li>
 </ul>
 <h2 id="exercises-2">Exercises</h2>
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises3/">Exercises 3</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises3/">Exercises
+3</a></li>
 </ul>
 <h2 id="further-reading-2">Further Reading</h2>
 <ul>
-<li><a href="https://www.aeaweb.org/articles?id=10.1257/jep.28.1.209">An Economist's Guide to Visualizing Data</a></li>
+<li><a href="https://www.aeaweb.org/articles?id=10.1257/jep.28.1.209">An
+Economist's Guide to Visualizing Data</a></li>
 </ul>
 </div>
 <hr />
@@ -2330,81 +2351,123 @@ More...
 <button>
 More...
 </button>
-<p>We have discussed how to estimate the parameters of a simple regression model. In this topic we will discuss how work out the reliability of such estimates. We will examine what determines the distribution of the estimates and how we can use hypothesis testing to explore the data and estimates.</p>
+<p>We have discussed how to estimate the parameters of a simple
+regression model. In this topic we will discuss how work out the
+reliability of such estimates. We will examine what determines the
+distribution of the estimates and how we can use hypothesis testing to
+explore the data and estimates.</p>
 <h2 id="learning-objectives-3">Learning Objectives</h2>
 <ul>
-<li>Use the R programming language to create basic and some more advanced graphs and visualisations based on data.</li>
-<li>Avoid common pitfals that lead to misleading or un-informative visualisations.</li>
+<li>Use the R programming language to create basic and some more
+advanced graphs and visualisations based on data.</li>
+<li>Avoid common pitfals that lead to misleading or un-informative
+visualisations.</li>
 </ul>
 <h2 id="slides-3">Slides</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic4_TestingTimes.pdf">Topic4_TestingTimes.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic4_TestingTimes.pptx">Topic4_TestingTimes.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic4_TestingTimes.pdf">Topic4_TestingTimes.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic4_TestingTimes.pptx">Topic4_TestingTimes.pptx</a></li>
 </ul>
 </div>
 <h2 id="additional-material-2">Additional Material</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic4_TestingTimes.html">Topic4_TestingTimes.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic4_TestingTimes.Rmd">Topic4_TestingTimes.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/./code/Topic4_TestingTimes.html">Topic4_TestingTimes.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/./code/Topic4_TestingTimes.Rmd">Topic4_TestingTimes.Rmd</a></li>
 </ul>
 </div>
 <h2 id="exercises-3">Exercises</h2>
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises4/">Exercises 4</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises4/">Exercises
+4</a></li>
 </ul>
 <h2 id="further-reading-3">Further reading</h2>
 <ul>
-<li><p><a href="https://hbr.org/2016/02/a-refresher-on-statistical-significance">A Refresher on Statistical Significance</a></p></li>
-<li><p><a href="https://www.econometrics-with-r.org/4.5-tsdotoe.html#simulation-study-2">Introduction to Econometrics with R, Chapter 4.5 (Siumlation Study 2)</a></p></li>
-<li><p><a href="https://www.econometrics-with-r.org/5-htaciitslrm.html">Introduction to Econometrics with R, Chapter 5</a></p></li>
+<li><p><a
+href="https://hbr.org/2016/02/a-refresher-on-statistical-significance">A
+Refresher on Statistical Significance</a></p></li>
+<li><p><a
+href="https://www.econometrics-with-r.org/4.5-tsdotoe.html#simulation-study-2">Introduction
+to Econometrics with R, Chapter 4.5 (Siumlation Study 2)</a></p></li>
+<li><p><a
+href="https://www.econometrics-with-r.org/5-htaciitslrm.html">Introduction
+to Econometrics with R, Chapter 5</a></p></li>
 </ul>
 </div>
 <hr />
-<h1 id="topic-5---multivariate-regressions">Topic 5 - Multivariate Regressions</h1>
+<h1 id="topic-5---multivariate-regressions">Topic 5 - Multivariate
+Regressions</h1>
 <div class="webex-solution">
 <button>
 More...
 </button>
-<p>we look at multivariate regressions; i.e. regressions where the dependent variable depends on several – not just one – explanatory variables.</p>
+<p>we look at multivariate regressions; i.e. regressions where the
+dependent variable depends on several – not just one – explanatory
+variables.</p>
 <h2 id="learning-objectives-4">Learning Objectives</h2>
 <ul>
-<li>Estimate regression models that depend on multiple explanatory variables</li>
-<li>Be able to interpret output from multivariate regressions correctly</li>
-<li>Understand which variables to include and which ones not to include to improve causal identification.</li>
+<li>Estimate regression models that depend on multiple explanatory
+variables</li>
+<li>Be able to interpret output from multivariate regressions
+correctly</li>
+<li>Understand which variables to include and which ones not to include
+to improve causal identification.</li>
 </ul>
 <h2 id="slides-4">Slides</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic5_TakingBackControl.pdf">Topic5_TakingBackControl.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic5_TakingBackControl.pptx">Topic5_TakingBackControl.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic5_TakingBackControl.pdf">Topic5_TakingBackControl.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic5_TakingBackControl.pptx">Topic5_TakingBackControl.pptx</a></li>
 </ul>
 </div>
 <h2 id="additional-material-3">Additional Material</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic5_TakingBackControl.html">Topic5_TakingBackControl.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic5_TakingBackControl.Rmd">Topic5_TakingBackControl.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/./code/Topic5_TakingBackControl.html">Topic5_TakingBackControl.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/./code/Topic5_TakingBackControl.Rmd">Topic5_TakingBackControl.Rmd</a></li>
 </ul>
 </div>
 <h2 id="exercises-4">Exercises</h2>
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises5/">Exercises 5</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises5/">Exercises
+5</a></li>
 </ul>
 <h2 id="further-reading-4">Further Reading</h2>
 <ul>
-<li><p><a href="https://www.econometrics-with-r.org/6-rmwmr.html">Introduction to Econometrics with R, Chapter 6</a></p></li>
-<li><p><a href="https://ebookcentral.proquest.com/lib/imperial/detail.action?docID=6425560">Causal Inference Mixtape, Pages 65-80</a></p></li>
+<li><p><a
+href="https://www.econometrics-with-r.org/6-rmwmr.html">Introduction to
+Econometrics with R, Chapter 6</a></p></li>
+<li><p><a
+href="https://ebookcentral.proquest.com/lib/imperial/detail.action?docID=6425560">Causal
+Inference Mixtape, Pages 65-80</a></p></li>
 </ul>
 </div>
 <hr />
-<h1 id="topic-6---econometrics-for-dummies">Topic 6 - Econometrics for Dummies</h1>
+<h1 id="topic-6---econometrics-for-dummies">Topic 6 - Econometrics for
+Dummies</h1>
 <div class="webex-solution">
 <button>
 More...
 </button>
-<p>This might be a course about quantitative analysis, but that doesn’t mean we can’t handle qualitative issues as well. To capture qualitative aspects – e.g. an individual in our dataset having a job, the gender of a person, the location of the headquarters of a company, etc. - we can use so called dummy or binary variables; i.e. we simply set variable equal to 1 if the qualitative aspect is true and to 0 if not. We will be discussing what this means for regression analysis. Moreover, we will be looking at some nonlinear regression models.</p>
+<p>This might be a course about quantitative analysis, but that doesn’t
+mean we can’t handle qualitative issues as well. To capture qualitative
+aspects – e.g. an individual in our dataset having a job, the gender of
+a person, the location of the headquarters of a company, etc. - we can
+use so called dummy or binary variables; i.e. we simply set variable
+equal to 1 if the qualitative aspect is true and to 0 if not. We will be
+discussing what this means for regression analysis. Moreover, we will be
+looking at some nonlinear regression models.</p>
 <h2 id="learning-objectives-5">Learning Objectives</h2>
 <ul>
 <li>Conduct regression analysis with dummy variables</li>
@@ -2413,63 +2476,91 @@ More...
 <h2 id="slides-5">Slides</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic6_EconometricsforDummies.pdf">Topic6_EconometricsforDummies.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic6_EconometricsforDummies.pptx">Topic6_EconometricsforDummies.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic6_EconometricsforDummies.pdf">Topic6_EconometricsforDummies.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic6_EconometricsforDummies.pptx">Topic6_EconometricsforDummies.pptx</a></li>
 </ul>
 </div>
 <h2 id="additional-material-4">Additional Material</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic6_EconometricsforDummies.html">Topic6_EconometricsforDummies.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic6_EconometricsforDummies.Rmd">Topic6_EconometricsforDummies.Rmd</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Tutorial3_2021.html">Tutorial3_2021.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Tutorial3_2021.Rmd">Tutorial3_2021.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/./code/Topic6_EconometricsforDummies.html">Topic6_EconometricsforDummies.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/./code/Topic6_EconometricsforDummies.Rmd">Topic6_EconometricsforDummies.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/./code/Tutorial3_2021.html">Tutorial3_2021.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/./code/Tutorial3_2021.Rmd">Tutorial3_2021.Rmd</a></li>
 </ul>
 </div>
 <h2 id="exercises-5">Exercises</h2>
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/">Exercises 6</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises6/">Exercises
+6</a></li>
 </ul>
 <h2 id="further-reading-5">Further Reading</h2>
 <ul>
-<li><p><a href="http://www.urfie.net/read/index.html#page/161">Using R for Introductory Econometrics Chapter 7</a></p></li>
-<li><p><a href="https://ebookcentral.proquest.com/lib/imperial/detail.action?docID=5640381">Introduction to Econometrics Chapters 5.3 and 6.9</a></p></li>
+<li><p><a href="http://www.urfie.net/read/index.html#page/161">Using R
+for Introductory Econometrics Chapter 7</a></p></li>
+<li><p><a
+href="https://ebookcentral.proquest.com/lib/imperial/detail.action?docID=5640381">Introduction
+to Econometrics Chapters 5.3 and 6.9</a></p></li>
 </ul>
 </div>
 <hr />
-<h1 id="topic-7---instrumental-variables">Topic 7 - Instrumental Variables</h1>
+<h1 id="topic-7---instrumental-variables">Topic 7 - Instrumental
+Variables</h1>
 <div class="webex-solution">
 <button>
 More...
 </button>
-<p>Suppose you want to know the causal effect of a variable X on a variable Y but there are concerns that X might be endogenous because of omitted variable bias for instance. Instrumental variables are variables that your are not necessarily interested in for their own sake, but that can help you identify the causal effect that you are interested in despite the endogeneity.</p>
+<p>Suppose you want to know the causal effect of a variable X on a
+variable Y but there are concerns that X might be endogenous because of
+omitted variable bias for instance. Instrumental variables are variables
+that your are not necessarily interested in for their own sake, but that
+can help you identify the causal effect that you are interested in
+despite the endogeneity.</p>
 <h2 id="learning-objectives-6">Learning Objectives</h2>
 <ul>
-<li>Identify the requirements and conditions that make the Instrumental Variables approach feasible</li>
+<li>Identify the requirements and conditions that make the Instrumental
+Variables approach feasible</li>
 <li>Implement Instrumental Variables regressions.</li>
 </ul>
 <h2 id="slides-6">Slides</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic7_InstrumentalVariables.pdf">Topic7_InstrumentalVariables.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic7_InstrumentalVariables.pptx">Topic7_InstrumentalVariables.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic7_InstrumentalVariables.pdf">Topic7_InstrumentalVariables.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic7_InstrumentalVariables.pptx">Topic7_InstrumentalVariables.pptx</a></li>
 </ul>
 </div>
 <h2 id="additional-material-5">Additional Material</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic7_InstrumentalVariables.html">Topic7_InstrumentalVariables.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic7_InstrumentalVariables.Rmd">Topic7_InstrumentalVariables.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/./code/Topic7_InstrumentalVariables.html">Topic7_InstrumentalVariables.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/./code/Topic7_InstrumentalVariables.Rmd">Topic7_InstrumentalVariables.Rmd</a></li>
 </ul>
 </div>
 <h2 id="exercises-6">Exercises</h2>
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises7/">Exercises 7</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises7/">Exercises
+7</a></li>
 </ul>
 <h2 id="further-reading-6">Further Reading</h2>
 <ul>
-<li><p><a href="https://www.econometrics-with-r.org/12-ivr.html">Introduction to Econometrics with R, Chapter 12</a></p></li>
-<li><p><a href="https://ebookcentral.proquest.com/lib/imperial/reader.action?docID=5640381&amp;ppg=428">Introduction to Econometrics Chapter 12</a></p></li>
+<li><p><a
+href="https://www.econometrics-with-r.org/12-ivr.html">Introduction to
+Econometrics with R, Chapter 12</a></p></li>
+<li><p><a
+href="https://ebookcentral.proquest.com/lib/imperial/reader.action?docID=5640381&amp;ppg=428">Introduction
+to Econometrics Chapter 12</a></p></li>
 </ul>
 </div>
 <hr />
@@ -2478,7 +2569,15 @@ More...
 <button>
 More...
 </button>
-<p>To do any data analysis we need different datapoints. Most data we looked at so far was cross sectional data; i.e. datapoints derived from several data units (e.g. individuals, countries, cities, firms). Alternatively, we might have data for just one data unit but over many different periods of time (e.g. years, quarters, days or even sometimes seconds). This creates some specific issues, which we will discuss. Given that time itself causes a form of confounding and correlation from one datapoint to the next, we might get some very biased estimates if we are not careful.</p>
+<p>To do any data analysis we need different datapoints. Most data we
+looked at so far was cross sectional data; i.e. datapoints derived from
+several data units (e.g. individuals, countries, cities, firms).
+Alternatively, we might have data for just one data unit but over many
+different periods of time (e.g. years, quarters, days or even sometimes
+seconds). This creates some specific issues, which we will discuss.
+Given that time itself causes a form of confounding and correlation from
+one datapoint to the next, we might get some very biased estimates if we
+are not careful.</p>
 <h2 id="learning-objectives-7">Learning Objectives</h2>
 <ul>
 <li>Identify the problems related to time series data</li>
@@ -2487,30 +2586,47 @@ More...
 <h2 id="slides-7">Slides</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic9_TimeSeries.pdf">Topic9_TimeSeries.pdf</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/slides/Topic9_TimeSeries.pptx">Topic9_TimeSeries.pptx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic9_TimeSeries.pdf">Topic9_TimeSeries.pdf</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/slides/Topic9_TimeSeries.pptx">Topic9_TimeSeries.pptx</a></li>
 </ul>
 </div>
 <h2 id="additional-material-6">Additional Material</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic9_TimeSeries.html">Topic9_TimeSeries.html</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/./code/Topic9_TimeSeries.Rmd">Topic9_TimeSeries.Rmd</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/./code/Topic9_TimeSeries.html">Topic9_TimeSeries.html</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/./code/Topic9_TimeSeries.Rmd">Topic9_TimeSeries.Rmd</a></li>
 </ul>
 </div>
 <h2 id="exercises-7">Exercises</h2>
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises9/">Exercises 9</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/posts/exercises/exercises9/">Exercises
+9</a></li>
 </ul>
 <h2 id="further-reading-7">Further Reading</h2>
 <ul>
-<li><a href="https://www.econometrics-with-r.org/14-ittsraf.html">Introduction to Econometrics with R, Chapter 14 &amp;15</a></li>
+<li><a
+href="https://www.econometrics-with-r.org/14-ittsraf.html">Introduction
+to Econometrics with R, Chapter 14 &amp;15</a></li>
 </ul>
 </div>
 <hr />
 <h1 id="group-coursework">Group Coursework</h1>
-<p>As part of this course you are asked to hand in a piece of group coursework. For this you are asked to provide some simple a short report on anything you like as long as it involves a discussion of a dataset and some of the methods we discussed in this class. I.e. think of a good question, some data and a strategy to say something towards the answer of the question using data.</p>
-<p>You find a template with further instructions <a href="https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.html">here</a> (<a href="https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.Rmd">RMarkdown Version</a>).</p>
+<p>As part of this course you are asked to hand in a piece of group
+coursework. For this you are asked to provide some simple a short report
+on anything you like as long as it involves a discussion of a dataset
+and some of the methods we discussed in this class. I.e. think of a good
+question, some data and a strategy to say something towards the answer
+of the question using data.</p>
+<p>You find a template with further instructions <a
+href="https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.html">here</a>
+(<a
+href="https://mondpanther.github.io/datastorieshub/code/CourseworkGuide.Rmd">RMarkdown
+Version</a>).</p>
 <hr />
 <h1 id="exam-guidelines">Exam Guidelines</h1>
 <div class="webex-solution">
@@ -2518,10 +2634,13 @@ More...
 More...
 </button>
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/srmexamnotes.html">Exam Question guidelines/examples</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/srmexamnotes.html">Exam
+Question guidelines/examples</a></li>
 </ul>
 </div>
-<h2 id="datasets-for-past-papers-and-more">Datasets for past papers (and more)</h2>
+<h2 id="datasets-for-past-papers-and-more">Datasets for past papers (and
+more)</h2>
 <div class="webex-solution">
 <button>
 More...
@@ -2531,39 +2650,69 @@ More...
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/back2country_set.dta">back2country_set.dta</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/driving.csv">driving.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/ets_thres_final.csv">ets_thres_final.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/foreigners.csv">foreigners.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/guns.csv">guns.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/hals1prep.csv">hals1prep.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/house.csv">house.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/lfsclean.dta">lfsclean.dta</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/maketable1.csv">maketable1.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/maketable2.csv">maketable2.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/maketable4.csv">maketable4.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/migrants.csv">migrants.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/NH.Ts+dSST.csv">NH.Ts+dSST.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/oj.csv">oj.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/populationclean.csv">populationclean.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/populationdata.csv">populationdata.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/prod.csv">prod.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/prod_balanced.csv">prod_balanced.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/proddata_clean.csv">proddata_clean.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/production2.csv">production2.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/statistic_id183497_population-in-the-states-of-the-us-2019.csv">statistic_id183497_population-in-the-states-of-the-us-2019.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/statistic_id183497_population-in-the-states-of-the-us-2019.xlsx">statistic_id183497_population-in-the-states-of-the-us-2019.xlsx</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/TableWages.csv">TableWages.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/TeachingRatings.csv">TeachingRatings.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/UK%20Gender%20Pay%20Gap%20Data%20-%202017%20to%202018.csv">UK Gender Pay Gap Data - 2017 to 2018.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/unempprep.csv">unempprep.csv</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/unempprep.dta">unempprep.dta</a></li>
-<li><a href="https://mondpanther.github.io/datastorieshub/data/us-states.csv">us-states.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/back2country_set.dta">back2country_set.dta</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/driving.csv">driving.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/ets_thres_final.csv">ets_thres_final.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/foreigners.csv">foreigners.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/guns.csv">guns.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/hals1prep.csv">hals1prep.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/house.csv">house.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/lfsclean.dta">lfsclean.dta</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/maketable1.csv">maketable1.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/maketable2.csv">maketable2.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/maketable4.csv">maketable4.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/migrants.csv">migrants.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/NH.Ts+dSST.csv">NH.Ts+dSST.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/oj.csv">oj.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/populationclean.csv">populationclean.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/populationdata.csv">populationdata.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/prod.csv">prod.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/prod_balanced.csv">prod_balanced.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/proddata_clean.csv">proddata_clean.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/production2.csv">production2.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/statistic_id183497_population-in-the-states-of-the-us-2019.csv">statistic_id183497_population-in-the-states-of-the-us-2019.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/statistic_id183497_population-in-the-states-of-the-us-2019.xlsx">statistic_id183497_population-in-the-states-of-the-us-2019.xlsx</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/TableWages.csv">TableWages.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/TeachingRatings.csv">TeachingRatings.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/UK%20Gender%20Pay%20Gap%20Data%20-%202017%20to%202018.csv">UK
+Gender Pay Gap Data - 2017 to 2018.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/unempprep.csv">unempprep.csv</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/unempprep.dta">unempprep.dta</a></li>
+<li><a
+href="https://mondpanther.github.io/datastorieshub/data/us-states.csv">us-states.csv</a></li>
 </ul>
 </div>
 </div>
 <hr />
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

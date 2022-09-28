@@ -382,9 +382,10 @@ ggplot(usbyday, aes(x = hoaxsh*100, y = dayofwf,fill = dayofwf,color=dayofwf )) 
 ## Maps
 As John Snow showed: some of the best visualisations involve plotting data onto maps. Here is an example of how you can do that with the data we used above.
 
-For starters you need map data. `dplyr` has actually a command for that with some pre-specified maps
+For starters you need map data. `ggplot2` has actually a command for that with some pre-specified maps
 ```{r}
 library(dplyr)
+library(ggplot2)
 states_map <- map_data("state")
 head(states_map)
 
