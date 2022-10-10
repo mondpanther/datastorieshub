@@ -521,7 +521,7 @@ Now loop over those states:
 for(s in states){
   print(s)
   p=ggplot(covid  %>% filter(state==s), aes(x=date, y=deathsOcases)) +
-      geom_point() + ggtitle(s)
+      geom_point() + ggtitle(s)+
       scale_x_date(date_breaks="1 month",date_labels = "%b")
   
   print(p)

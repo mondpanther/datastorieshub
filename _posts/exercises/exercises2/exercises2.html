@@ -93,8 +93,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-11-20"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-11-20"/>
+  <meta property="article:published" itemprop="datePublished" content="2022-10-10"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-10-10"/>
   <meta name="article:author" content="Ralf Martin"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -112,7 +112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 2"]},{"type":"character","attributes":{},"value":["Exercises to get familiar with R.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2021-11-20"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Exercises 2"]},{"type":"character","attributes":{},"value":["Exercises to get familiar with R.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ralf Martin"]},{"type":"character","attributes":{},"value":["https://mondpanther.github.io/wwwmondpanther/"]}]}]},{"type":"character","attributes":{},"value":["2022-10-10"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Exercises"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["chunk_output_type"]}},"value":[{"type":"character","attributes":{},"value":["inline"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1438,7 +1438,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="exercises2_files/header-attrs-2.11.3/header-attrs.js"></script>
+  <script src="exercises2_files/header-attrs-2.14/header-attrs.js"></script>
   <script src="exercises2_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="exercises2_files/popper-2.6.0/popper.min.js"></script>
   <link href="exercises2_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1459,7 +1459,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Exercises 2","description":"Exercises to get familiar with R.","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-20T00:00:00.000+00:00","citationText":"Martin, 2021"}
+{"title":"Exercises 2","description":"Exercises to get familiar with R.","authors":[{"author":"Ralf Martin","authorURL":"https://mondpanther.github.io/wwwmondpanther/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-10-10T00:00:00.000+01:00","citationText":"Martin, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1479,27 +1479,50 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-byline">
-  Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/" class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
+  Ralf Martin <a href="https://mondpanther.github.io/wwwmondpanther/"
+class="uri">https://mondpanther.github.io/wwwmondpanther/</a> 
   
-<br/>2021-11-20
+<br/>2022-10-10
 </div>
 
 <div class="d-article">
 <script src="https://hypothes.is/embed.js" async></script>
 <h1 id="exercise-2.1">Exercise 2.1</h1>
-<p>In the lecture we introduced R. The goal of this problem set is for you to work with R by yourself, so that you start to become comfortable with some basic commands, which will be needed throughout the course (and beyond?). Hence, even if you think you could answer a question with a different software package, could you please try using R?</p>
-<p>In this exercise we are using a dataset called <code>auto.csv</code>. It contains various characteristics for a sample of cars. You can download this dataset from <a href="https://www.dropbox.com/s/gm22o5efboc3q0w/auto.csv?dl=1">here</a> from the course data repository. Note that a big part of working with data is to become familiar with different data formats. R can easily work with almost any dataformat imaginable but only if the user (i.e. you) gives it the right instructions. You are probably already familiar with the <code>.csv</code> format. But just in case not: <code>csv</code> stands for comma separated values. In other words: this is a table with arranged as a simple text file where rows represent table rows and the values that go into separate columns are separated by commas.</p>
-<p>To do anything with data you need get a dataset into a dataframe (essentially another word for table) in memory. For that you can first store it on your computer’s harddrive and then load it. You can do that using RStudio’s import file menu very similar to how you would open an Excel worksheet, say:</p>
+<p>In the lecture we introduced R. The goal of this problem set is for
+you to work with R by yourself, so that you start to become comfortable
+with some basic commands, which will be needed throughout the course
+(and beyond?). Hence, even if you think you could answer a question with
+a different software package, could you please try using R?</p>
+<p>In this exercise we are using a dataset called <code>auto.csv</code>.
+It contains various characteristics for a sample of cars. You can
+download this dataset from <a
+href="https://www.dropbox.com/s/gm22o5efboc3q0w/auto.csv?dl=1">here</a>
+from the course data repository. Note that a big part of working with
+data is to become familiar with different data formats. R can easily
+work with almost any dataformat imaginable but only if the user
+(i.e. you) gives it the right instructions. You are probably already
+familiar with the <code>.csv</code> format. But just in case not:
+<code>csv</code> stands for comma separated values. In other words: this
+is a table with arranged as a simple text file where rows represent
+table rows and the values that go into separate columns are separated by
+commas.</p>
+<p>To do anything with data you need get a dataset into a dataframe
+(essentially another word for table) in memory. For that you can first
+store it on your computer’s harddrive and then load it. You can do that
+using RStudio’s import file menu very similar to how you would open an
+Excel worksheet, say:</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="../../../images/fileimport.png" width="419" style="max-width: 500px" /></p>
 </div>
 <h3 id="part-a">Part (a)</h3>
-<p>Instead of using the import dialog, can you load the dataset with an R command either from the console command line or via an R script?</p>
+<p>Instead of using the import dialog, can you load the dataset with an
+R command either from the console command line or via an R script?</p>
 <div class="webex-solution">
 <button>
 Hint:
 </button>
-<p>If you use the RStudio dialog just discussed it will show you the R command that is needed in the Console window</p>
+<p>If you use the RStudio dialog just discussed it will show you the R
+command that is needed in the Console window</p>
 </div>
 <div class="webex-solution">
 <button>
@@ -1511,11 +1534,15 @@ Answer:
 </code></pre>
 </div>
 </div>
-<p>Of course the exact formulation depends on where you saved your file on disk; i.e. it is unlikely it will be in a directory called <code>C:/Users/Ralf Martin/Dropbox/datastories/data/</code>.</p>
-<p>Note that <code>header=TRUE</code> means that R can figure out the column names from the first line of the <code>auto.csv</code> file.</p>
+<p>Of course the exact formulation depends on where you saved your file
+on disk; i.e. it is unlikely it will be in a directory called
+<code>C:/Users/Ralf Martin/Dropbox/datastories/data/</code>.</p>
+<p>Note that <code>header=TRUE</code> means that R can figure out the
+column names from the first line of the <code>auto.csv</code> file.</p>
 </div>
 <h3 id="part-b">Part (b)</h3>
-<p>Can you suggest an alternative version of the previous command with a relative path to locate the file?</p>
+<p>Can you suggest an alternative version of the previous command with a
+relative path to locate the file?</p>
 <div class="webex-solution">
 <button>
 Answer:
@@ -1525,9 +1552,20 @@ Answer:
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;C:/Users/rmart/github/datastorieshub/_posts/exercises/exercises2&quot;</code></pre>
+<pre><code>[1] &quot;C:/Users/rmartin/github/datastorieshub/_posts/exercises/exercises2&quot;</code></pre>
 </div>
-<p>To write a relative path you need to know which the current active directory is. With the <code>getwd()</code> command you can find out. In my case this happens to be the <code>C:/Users/Ralf Martin/Dropbox/datastories/datastorieshub/_posts/exercises/exercises2</code> directory. Hence to get to directory <code>C:/Users/Ralf Martin/Dropbox/datastories/data</code> we need to go 4 directories up (to directory <code>C:/Users/Ralf Martin/Dropbox/datastories</code> ) and then down into the data directory. Note that you can use <code>..</code> to indicate to R that you want to move up one layer of the directory structure. Hence the corect command with relative path notation becomes:</p>
+<p>To write a relative path you need to know which the current active
+directory is. With the <code>getwd()</code> command you can find out. In
+my case this happens to be the
+<code>C:/Users/Ralf Martin/Dropbox/datastories/datastorieshub/_posts/exercises/exercises2</code>
+directory. Hence to get to directory
+<code>C:/Users/Ralf Martin/Dropbox/datastories/data</code> we need to go
+4 directories up (to directory
+<code>C:/Users/Ralf Martin/Dropbox/datastories</code> ) and then down
+into the data directory. Note that you can use <code>..</code> to
+indicate to R that you want to move up one layer of the directory
+structure. Hence the corect command with relative path notation
+becomes:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>auto</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"../../../../data/auto.csv"</span>, header<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
@@ -1536,7 +1574,9 @@ Answer:
 </div>
 </div>
 <h3 id="part-c">Part (c)</h3>
-<p>Probably the easiest way to load a web based CSV file into R is directly from the web. This can be achieved by using the file URL in the <code>read.csv</code> command. Can you work out how?</p>
+<p>Probably the easiest way to load a web based CSV file into R is
+directly from the web. This can be achieved by using the file URL in the
+<code>read.csv</code> command. Can you work out how?</p>
 <div class="webex-solution">
 <button>
 Answer:
@@ -1551,14 +1591,19 @@ Answer:
 </div>
 <h3 id="part-d">Part (d)</h3>
 <p>Describe the data set.</p>
-<p>How many observations does the data set have? <input class='webex-solveme nospaces' size='2' data-answer='["74"]'/></p>
-<p>and how many variables does it have? <input class='webex-solveme nospaces' size='2' data-answer='["13"]'/></p>
+<p>How many observations does the data set have?
+<input class='webex-solveme nospaces' size='2' data-answer='["74"]'/></p>
+<p>and how many variables does it have?
+<input class='webex-solveme nospaces' size='2' data-answer='["13"]'/></p>
 <p>What variables are contained in the dataset?</p>
 <div class="webex-solution">
 <button>
 Hint:
 </button>
-<p>R commands you might want to use for that include summary, nrow, ncol. You can try to type ?<name of function> in the RStudio console to learn more about the function. Alternatively, try googling and see how people use those functions.</p>
+<p>R commands you might want to use for that include summary, nrow,
+ncol. You can try to type ?<name of function> in the RStudio console to
+learn more about the function. Alternatively, try googling and see how
+people use those functions.</p>
 </div>
 <div class="webex-solution">
 <button>
@@ -1626,13 +1671,22 @@ Answer:
 </div>
 </div>
 <h3 id="part-e">Part (e)</h3>
-<p>Much of the power of R derives from extensions (so called packages) that have been contributed to widen the capabilities of the basic software. A particularly nice extension are the dplyr and tidyr packages that allow vastly more efficient and transparent wrangling of data. Can you install those packages on your computer and load them into memory?</p>
+<p>Much of the power of R derives from extensions (so called packages)
+that have been contributed to widen the capabilities of the basic
+software. A particularly nice extension are the dplyr and tidyr packages
+that allow vastly more efficient and transparent wrangling of data. Can
+you install those packages on your computer and load them into
+memory?</p>
 <div class="webex-solution">
 <button>
 Answer:
 </button>
-<p>To install these packages use <code>install.packages("dplyr","tidyr")</code></p>
-<p>Note that you only need to do this once on a given computer (it’s like installing software). However, each time you re-start R you need to load the packages you want to use into memory again. For that you use</p>
+<p>To install these packages use
+<code>install.packages("dplyr","tidyr")</code></p>
+<p>Note that you only need to do this once on a given computer (it’s
+like installing software). However, each time you re-start R you need to
+load the packages you want to use into memory again. For that you
+use</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
@@ -1642,8 +1696,20 @@ Answer:
 </div>
 </div>
 <h3 id="part-f">Part (f)</h3>
-<p>One of the great things included in those packages is the functionality of piping, which we shall be using extensively throughout this course. Piping allows you to send the result from one R command to the next. This typically allows for more transparent code as you will hopefully appreciate maybe not just yet but sometime halfway through the course.</p>
-<p>Just to give you an idea what piping does look at the code below. It does exactly the same as the <code>summary(auto)</code> command but we have now written with the piping operator <code>%&gt;%</code>. What it does is that it sends whatever comes on the left to the right (i.e. flushes it down the <code>%&gt;%</code> pipe ). On the right hand side it is then being used as an argument to the code that comes there (hence we don’t need to put anything in brackets in the summary command)</p>
+<p>One of the great things included in those packages is the
+functionality of piping, which we shall be using extensively throughout
+this course. Piping allows you to send the result from one R command to
+the next. This typically allows for more transparent code as you will
+hopefully appreciate maybe not just yet but sometime halfway through the
+course.</p>
+<p>Just to give you an idea what piping does look at the code below. It
+does exactly the same as the <code>summary(auto)</code> command but we
+have now written with the piping operator <code>%&gt;%</code>. What it
+does is that it sends whatever comes on the left to the right
+(i.e. flushes it down the <code>%&gt;%</code> pipe ). On the right hand
+side it is then being used as an argument to the code that comes there
+(hence we don’t need to put anything in brackets in the summary
+command)</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>auto</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
@@ -1682,7 +1748,8 @@ Answer:
  Max.   :1.0000  
                  </code></pre>
 </div>
-<p>You can even do several of those pipes in a row. For instance, look at the following piece of code. Can you work out what it does?</p>
+<p>You can even do several of those pipes in a row. For instance, look
+at the following piece of code. Can you work out what it does?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>auto_summary</span> <span class='op'>&lt;-</span> <span class='va'>auto</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>mpg</span>, <span class='va'>weight</span><span class='op'>)</span>  <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
@@ -1694,7 +1761,15 @@ Answer:
 <button>
 Answer:
 </button>
-<p>This piece of code takes first selects only 2 columns of the <code>auto</code> dataframe. It sends this smaller dataframe with only 2 variables to the command <code>summarise_all</code>. Summarise all will compute the statistics you mention within <code>list(...)</code> for all the variables in the dataframe it is being given. Note that in the list what comes after the <code>=</code> sign is the statistic you want whereas what comes before is a lable that will appear in the resulting dataframe, which we called <code>auto_summary</code>. You can look at it simply by typing its name in the console or a script:</p>
+<p>This piece of code takes first selects only 2 columns of the
+<code>auto</code> dataframe. It sends this smaller dataframe with only 2
+variables to the command <code>summarise_all</code>. Summarise all will
+compute the statistics you mention within <code>list(...)</code> for all
+the variables in the dataframe it is being given. Note that in the list
+what comes after the <code>=</code> sign is the statistic you want
+whereas what comes before is a lable that will appear in the resulting
+dataframe, which we called <code>auto_summary</code>. You can look at it
+simply by typing its name in the console or a script:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>auto_summary</span>
@@ -1705,7 +1780,12 @@ Answer:
 </div>
 </div>
 <h3 id="part-g">Part (g)</h3>
-<p>The summary statistics in the previous part are not displayed very nice. The dplyr and tidyr offer a lot of nice functions to reshape any output in whichever way you want. Below is a somewhat elaborate example. Below I am explaining step by step what it does. However, before you look at my explanation, maybe you can run those commands yourself step by step and figure what they do?</p>
+<p>The summary statistics in the previous part are not displayed very
+nice. The dplyr and tidyr offer a lot of nice functions to reshape any
+output in whichever way you want. Below is a somewhat elaborate example.
+Below I am explaining step by step what it does. However, before you
+look at my explanation, maybe you can run those commands yourself step
+by step and figure what they do?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>auto_summary_reshape</span> <span class='op'>&lt;-</span> <span class='va'>auto_summary</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span><span class='op'>(</span><span class='va'>stat</span>, <span class='va'>val</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
@@ -1718,7 +1798,8 @@ Answer:
 <button>
 Explanation:
 </button>
-<p>The code above reshapes the <code>auto_summary</code> dataframe so that it looks like this:</p>
+<p>The code above reshapes the <code>auto_summary</code> dataframe so
+that it looks like this:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>auto_summary_reshape</span> 
@@ -1743,7 +1824,11 @@ Explanation:
 5     mpg_sd    5.785503
 6  weight_sd  777.193567</code></pre>
 </div>
-<p>The gather command arranges what you sent them down the pipe as key value pairs; i.e. 2 columns where the first column is the key (i.e. a name or label) for the value that follows in the value column. <code>stat</code> and <code>val</code> are simply how we want to call those two columns</p>
+<p>The gather command arranges what you sent them down the pipe as key
+value pairs; i.e. 2 columns where the first column is the key (i.e. a
+name or label) for the value that follows in the value column.
+<code>stat</code> and <code>val</code> are simply how we want to call
+those two columns</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"> <span class='va'>step</span> <span class='op'>=</span> <span class='va'>step</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://tidyr.tidyverse.org/reference/separate.html'>separate</a></span><span class='op'>(</span><span class='va'>stat</span>, into <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"var"</span>, <span class='st'>"stat"</span><span class='op'>)</span>, sep <span class='op'>=</span> <span class='st'>"_"</span><span class='op'>)</span>
@@ -1758,7 +1843,10 @@ Explanation:
 5    mpg   sd    5.785503
 6 weight   sd  777.193567</code></pre>
 </div>
-<p>The separate command splits the <code>stat</code> column in two new columns, <code>var</code> and <code>stat</code> where <code>sep="_"</code> tells R where to separate the original <code>stat</code> column.</p>
+<p>The separate command splits the <code>stat</code> column in two new
+columns, <code>var</code> and <code>stat</code> where
+<code>sep="_"</code> tells R where to separate the original
+<code>stat</code> column.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"> <span class='va'>step</span> <span class='op'>=</span> <span class='va'>step</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://tidyr.tidyverse.org/reference/spread.html'>spread</a></span><span class='op'>(</span><span class='va'>stat</span>, <span class='va'>val</span><span class='op'>)</span> 
@@ -1769,7 +1857,9 @@ Explanation:
 1    mpg   21.2973   20   5.785503
 2 weight 3019.4595 3190 777.193567</code></pre>
 </div>
-<p>The spread command spreads out the stat column again; i.e. creates a new column for every category represented in stat. Alternatively, we could have spread var:</p>
+<p>The spread command spreads out the stat column again; i.e. creates a
+new column for every category represented in stat. Alternatively, we
+could have spread var:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>auto_summary</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span><span class='op'>(</span><span class='va'>stat</span>, <span class='va'>val</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
@@ -1784,10 +1874,16 @@ Explanation:
 </div>
 </div>
 <h1 id="exercise-2.2">Exercise 2.2</h1>
-<p>This github repository provides COVID related data for the US at the state and county level: <a href="https://github.com/nytimes/covid-19-data">https://github.com/nytimes/covid-19-data</a></p>
+<p>This github repository provides COVID related data for the US at the
+state and county level: <a
+href="https://github.com/nytimes/covid-19-data">https://github.com/nytimes/covid-19-data</a></p>
 <h3 id="parta">Part(a)</h3>
 <p>Download the state level data (in csv format) from</p>
-<p><a href="https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv">here</a> and load it into an R dataframe. Have a look at the dataframe. How many rows are there? What do the rows represent? What do the columns represent?</p>
+<p><a
+href="https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv">here</a>
+and load it into an R dataframe. Have a look at the dataframe. How many
+rows are there? What do the rows represent? What do the columns
+represent?</p>
 <div class="webex-solution">
 <button>
 Answer:
@@ -1799,24 +1895,44 @@ To load the dataset into a dataframe you can use:
 </code></pre>
 </div>
 </div>
-You can view the dataframe like an excel table by clicking on the name of the dataframe in the <code>Global Environment</code> tab, which also shows us the number of rows and columns of the dataframe (note that you might have a different number of rows as the dataframe is constantly updated online)
+You can view the dataframe like an excel table by clicking on the name
+of the dataframe in the <code>Global Environment</code> tab, which also
+shows us the number of rows and columns of the dataframe (note that you
+might have a different number of rows as the dataframe is constantly
+updated online)
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="../../../images/dflook.png" width="988" style="max-width: 400px" /></p>
 </div>
-<p>We see that the dataframe contains daily COVID case and death numbers for every us state. Note that the numbers never reduce which suggests that these are cumulative figues (i.e. total number of cases and deaths up until a give day)</p>
+<p>We see that the dataframe contains daily COVID case and death numbers
+for every us state. Note that the numbers never reduce which suggests
+that these are cumulative figues (i.e. total number of cases and deaths
+up until a give day)</p>
 </div>
 <h3 id="partb">Part(b)</h3>
-<p>Compute the death rate (deaths over cases) for every state by July 31st, 2020 using R. Also add columns that contain the share of deaths in total deaths and the share of cases in total cases</p>
+<p>Compute the death rate (deaths over cases) for every state by July
+31st, 2020 using R. Also add columns that contain the share of deaths in
+total deaths and the share of cases in total cases</p>
 <div class="webex-solution">
 <button>
 Answer
 </button>
-<p>With <code>filter()</code> we can select specific rows of a dataframe. With <code>mutate()</code> we can create new variables in dataframe or modify exisitng ones. Note that the date variable is a factor variable. You can see this in the <code>Global Environment</code> tab:</p>
+<p>With <code>filter()</code> we can select specific rows of a
+dataframe. With <code>mutate()</code> we can create new variables in
+dataframe or modify exisitng ones. Note that the date variable is a
+factor variable. You can see this in the <code>Global Environment</code>
+tab:</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="../../../images/factor.png" width="198" style="max-width: 400px" /></p>
 </div>
-<p>We will talk a lot about factor variables later in the course. For now it’s enough to know that with the function <code>as.character()</code> you can convert the date variable from a factor to a character string which is necessary to compare it to character string such as “2020-08-01”. As ever you can only compare like with like.</p>
-<p>Hence, the following comand provides the result (note I am loading again the library dplyr which is not necessariy if you have done that already in this session)</p>
+<p>We will talk a lot about factor variables later in the course. For
+now it’s enough to know that with the function
+<code>as.character()</code> you can convert the date variable from a
+factor to a character string which is necessary to compare it to
+character string such as “2020-08-01”. As ever you can only compare like
+with like.</p>
+<p>Hence, the following comand provides the result (note I am loading
+again the library dplyr which is not necessariy if you have done that
+already in this session)</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
@@ -1853,10 +1969,14 @@ Answer
 9  0.0038021084 0.002652423
 10 0.0444684198 0.102889776</code></pre>
 </div>
-<p>The <code>head()</code> command shows you the first couple of lines of a dataframe. That is useful if you wann a have a peek to examine larger dataframes.</p>
+<p>The <code>head()</code> command shows you the first couple of lines
+of a dataframe. That is useful if you wann a have a peek to examine
+larger dataframes.</p>
 </div>
 <h3 id="partc">Part(c)</h3>
-<p>Which is the state with the higest death rate (by July 31)? Can you work it out with an R command (rather than just looking through the table)?</p>
+<p>Which is the state with the higest death rate (by July 31)? Can you
+work it out with an R command (rather than just looking through the
+table)?</p>
 <div class="webex-solution">
 <button>
 Answer:
@@ -1873,12 +1993,20 @@ Answer:
 </div>
 </div>
 <h3 id="partd">Part(d)</h3>
-<p>Can you compute daily figures of deaths and cases for the US as a whole from the state level data? We haven’t discussed all commands necessary for that yet. But see if you can work it out from checking online. If that takes too much time just check the answer below. As ever, ther are many different ways how could do that.</p>
+<p>Can you compute daily figures of deaths and cases for the US as a
+whole from the state level data? We haven’t discussed all commands
+necessary for that yet. But see if you can work it out from checking
+online. If that takes too much time just check the answer below. As
+ever, ther are many different ways how could do that.</p>
 <div class="webex-solution">
 <button>
 Answer:
 </button>
-<p>We can use the <code>group_by()</code> command which is par of dplyr. It allows to group rows of a dataframe by one (or several) categorical variables. We can then apply other commands that will be done seperately for each of those groups. In the case below we want to sum over all states for every day:</p>
+<p>We can use the <code>group_by()</code> command which is par of dplyr.
+It allows to group rows of a dataframe by one (or several) categorical
+variables. We can then apply other commands that will be done seperately
+for each of those groups. In the case below we want to sum over all
+states for every day:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>usdaily</span><span class='op'>=</span><span class='va'>covid</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>date</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>deaths<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>deaths</span><span class='op'>)</span>,cases<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>cases</span><span class='op'>)</span><span class='op'>)</span>
@@ -1897,17 +2025,28 @@ Answer:
 </div>
 </div>
 <h3 id="parte">Part(e)</h3>
-<p>Examine the US death rate over time. How would you expect this series to behave? How does it behave? How do you explain what you find?</p>
+<p>Examine the US death rate over time. How would you expect this series
+to behave? How does it behave? How do you explain what you find?</p>
 <div class="webex-solution">
 <button>
 Answer:
 </button>
-<p>The best way to do this is with a figure. We shall be talking in the next lecture a lot more about plotting. However, no harm done trying this out. There are a number of commands to plot something. However, the most versatile is the ggplot command. (You need to install and load the ggplot2 package before you can use it.). Also: things will look better if you tell R that the date column is date. We can do this with the <code>as.Date()</code> command.</p>
+<p>The best way to do this is with a figure. We shall be talking in the
+next lecture a lot more about plotting. However, no harm done trying
+this out. There are a number of commands to plot something. However, the
+most versatile is the ggplot command. (You need to install and load the
+ggplot2 package before you can use it.). Also: things will look better
+if you tell R that the date column is date. We can do this with the
+<code>as.Date()</code> command.</p>
 <p>Couple of words about the ggplot command:</p>
 <ul>
-<li>You start by telling R which dataframe to use (<code>usdaily</code>)</li>
-<li>with <code>aes()</code> for aesthetic you declare which variables to use for x and y axis.</li>
-<li>By adding further commands with a <code>+</code> sign you control how things look; e.g. that you want to see points (<code>geom_point()</code>) and that you want monthly date labels.</li>
+<li>You start by telling R which dataframe to use
+(<code>usdaily</code>)</li>
+<li>with <code>aes()</code> for aesthetic you declare which variables to
+use for x and y axis.</li>
+<li>By adding further commands with a <code>+</code> sign you control
+how things look; e.g. that you want to see points
+(<code>geom_point()</code>) and that you want monthly date labels.</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1921,44 +2060,91 @@ Answer:
 </div>
 <p><img src="../../../images/unnamed-chunk-22-1.png" width="624" /></p>
 </div>
-<p>Now what do we expect to find? To die from COVID you have to get sick and it will take at least a couple of days. Hence, we would expect to see death rates to be low at first and then to increase. Over time we would hope that doctors get better at treating COVID patients. Also, people who know they are at risk will increasingly shielding so that the only people who get sick will be those who are less likely to die. Both factors should bring the death rate down after an initial peak. This is what we are seeing when only looking at the series from the end of March onwards with a peak in mid May. However, there is a first peak in early March. What could explain this? The most plausible explanation is probably measurement error: early on cases of infections where probably not counted properly as there was no systematic way of testing the population. On the other, if somebody was so ill that they die this would almost certainly be picked up by the authorities. Hence death figures were not under counted. Also, early on numbers were low. So a couple of counts too few for cases could easily swing the ratio. <a href="https://www.ft.com/content/c011e214-fb95-4a64-b23c-2bd87ebb29d7?utm_source=pocket-newtab-global-en-GB">Here</a> is some further discussion of this.</p>
+<p>Now what do we expect to find? To die from COVID you have to get sick
+and it will take at least a couple of days. Hence, we would expect to
+see death rates to be low at first and then to increase. Over time we
+would hope that doctors get better at treating COVID patients. Also,
+people who know they are at risk will increasingly shielding so that the
+only people who get sick will be those who are less likely to die. Both
+factors should bring the death rate down after an initial peak. This is
+what we are seeing when only looking at the series from the end of March
+onwards with a peak in mid May. However, there is a first peak in early
+March. What could explain this? The most plausible explanation is
+probably measurement error: early on cases of infections where probably
+not counted properly as there was no systematic way of testing the
+population. On the other, if somebody was so ill that they die this
+would almost certainly be picked up by the authorities. Hence death
+figures were not under counted. Also, early on numbers were low. So a
+couple of counts too few for cases could easily swing the ratio. <a
+href="https://www.ft.com/content/c011e214-fb95-4a64-b23c-2bd87ebb29d7?utm_source=pocket-newtab-global-en-GB">Here</a>
+is some further discussion of this.</p>
 </div>
 <h3 id="partf">Part(f)</h3>
-<p>A large part of data analysis work is getting the data into a format that lends itself to analysis. And a very big part of that is the process of combining datasets from different sources. Here we start learning how this can be done in an efficient way. <a href="%22https://www.dropbox.com/s/tp4kiq8if372rcz/populationdata.csv?dl=1%22">Here</a> you find a dataset in csv format with information on the size (in terms of population) of different US states. Can you combine this with the COVID case count dataframe for US states at the end of July that we created earlier?</p>
+<p>A large part of data analysis work is getting the data into a format
+that lends itself to analysis. And a very big part of that is the
+process of combining datasets from different sources. Here we start
+learning how this can be done in an efficient way. <a
+href="%22https://www.dropbox.com/s/tp4kiq8if372rcz/populationdata.csv?dl=1%22">Here</a>
+you find a dataset in csv format with information on the size (in terms
+of population) of different US states. Can you combine this with the
+COVID case count dataframe for US states at the end of July that we
+created earlier?</p>
 <div class="webex-solution">
 <button>
 Answer:
 </button>
-<p>First you need to load the population dataset into a dataframe as well:</p>
+<p>First you need to load the population dataset into a dataframe as
+well:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pop</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"https://mondpanther.github.io/datastorieshub/data/populationdata.csv"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>To combine the two dataframes we can use a command called <code>merge()</code>:</p>
+<p>To combine the two dataframes we can use a command called
+<code>merge()</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>covid_julyb</span><span class='op'>=</span><span class='va'>covid_july</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>pop</span>,by<span class='op'>=</span><span class='st'>"state"</span>, all.x<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>This tells R to create a new dataframe (<code>covid_julyb</code>) by combinig the information in <code>covid_july</code> and <code>pop</code>. Rows are being matched using the variable <code>state</code>. Maybe you noted that pop has only 52 observations whereas <code>covid_july</code> has 55. This is because <code>pop</code> doesn’t include information on places such as Guam and a couple of other Islands that are not formal US states but controlled by the US, whereas <code>covid_july</code> does. The <code>all.x</code> option tells R to keep observations from the first dataset (i.e. <code>covid_july</code>) even if no equivalent observation in the second dataset can be found. This is also known as a left join. Similarly there is a right join with <code>all.y=TRUE</code> or a full join with <code>all=TRUE</code>. You might want to read a bit more about the merge command e.g. <a href="https://www.dummies.com/programming/r/how-to-use-the-merge-function-with-data-sets-in-r/">here</a></p>
+<p>This tells R to create a new dataframe (<code>covid_julyb</code>) by
+combinig the information in <code>covid_july</code> and
+<code>pop</code>. Rows are being matched using the variable
+<code>state</code>. Maybe you noted that pop has only 52 observations
+whereas <code>covid_july</code> has 55. This is because <code>pop</code>
+doesn’t include information on places such as Guam and a couple of other
+Islands that are not formal US states but controlled by the US, whereas
+<code>covid_july</code> does. The <code>all.x</code> option tells R to
+keep observations from the first dataset (i.e. <code>covid_july</code>)
+even if no equivalent observation in the second dataset can be found.
+This is also known as a left join. Similarly there is a right join with
+<code>all.y=TRUE</code> or a full join with <code>all=TRUE</code>. You
+might want to read a bit more about the merge command e.g. <a
+href="https://www.dummies.com/programming/r/how-to-use-the-merge-function-with-data-sets-in-r/">here</a></p>
 </div>
 <h3 id="partg">Part(g)</h3>
-<p>Using the newly created dataframe create a new variable COVID cases per capita (i.e. per head of population). Explore the relationship between per capita cases and population density. What kind of relationship would you expect? What do you find?</p>
+<p>Using the newly created dataframe create a new variable COVID cases
+per capita (i.e. per head of population). Explore the relationship
+between per capita cases and population density. What kind of
+relationship would you expect? What do you find?</p>
 <div class="webex-solution">
 <button>
 Answer:
 </button>
-<p>Add per capita cases with mutate (to make things easier to read we use cases per 1000 of population):</p>
+<p>Add per capita cases with mutate (to make things easier to read we
+use cases per 1000 of population):</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>covid_julyb</span><span class='op'>=</span><span class='va'>covid_julyb</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>casesOpop000<span class='op'>=</span><span class='va'>cases</span><span class='op'>/</span><span class='va'>pop</span><span class='op'>*</span><span class='fl'>1000</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>We would we expect a positive relationship between per capita cases and density. A scatter plot is usually the best way to get going on a question like this. We can once more use the ggplot command (geom_smooth(method=lm) and add a regression line):</p>
+<p>We would we expect a positive relationship between per capita cases
+and density. A scatter plot is usually the best way to get going on a
+question like this. We can once more use the ggplot command
+(geom_smooth(method=lm) and add a regression line):</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>usdaily</span><span class='op'>=</span><span class='va'>usdaily</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>date<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='va'>date</span><span class='op'>)</span>, deathsOcases<span class='op'>=</span><span class='va'>deaths</span><span class='op'>/</span><span class='va'>cases</span><span class='op'>)</span>
@@ -1969,7 +2155,8 @@ Answer:
 </div>
 <p><img src="../../../images/unnamed-chunk-26-1.png" width="624" /></p>
 </div>
-<p>Dropping the outlier on the right (i.e. Washington DC which is not really a State).</p>
+<p>Dropping the outlier on the right (i.e. Washington DC which is not
+really a State).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>covid_julyb</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>density</span><span class='op'>&lt;</span><span class='fl'>6000</span><span class='op'>)</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>density</span>, y<span class='op'>=</span><span class='va'>casesOpop000</span> <span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> 
@@ -1978,7 +2165,10 @@ Answer:
 </div>
 <p><img src="../../../images/unnamed-chunk-27-1.png" width="624" /></p>
 </div>
-<p>Hence, there is clearly a positive relationship between density and covid cases. It becomes more pro-nounced when dropping Washington DC. This is also confirmed when looking at the parameters of the regression line directly, which we can do with the lm() command.</p>
+<p>Hence, there is clearly a positive relationship between density and
+covid cases. It becomes more pro-nounced when dropping Washington DC.
+This is also confirmed when looking at the parameters of the regression
+line directly, which we can do with the lm() command.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>casesOpop000</span><span class='op'>~</span><span class='va'>density</span>,<span class='va'>covid_julyb</span>  <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>density</span><span class='op'>&lt;</span><span class='fl'>6000</span><span class='op'>)</span> <span class='op'>)</span><span class='op'>)</span>
@@ -2006,12 +2196,19 @@ F-statistic: 6.328 on 1 and 49 DF,  p-value: 0.01521</code></pre>
 </div>
 </div>
 <h3 id="part-h">Part (h)</h3>
-<p>Computers - unlike humans - are good at doing repeated tasks reliably without frustration. A basic way to accomplish that in a programming language are are loops. Let’s look at a concrete example. Suppose you want to create time series figures of COVID death rates for several US states: California, Texas, New York and Alaska, say. Try if you can work out how to do that with a for loop using the help function and online googling. If your are stuck check out the answer below.</p>
+<p>Computers - unlike humans - are good at doing repeated tasks reliably
+without frustration. A basic way to accomplish that in a programming
+language are are loops. Let’s look at a concrete example. Suppose you
+want to create time series figures of COVID death rates for several US
+states: California, Texas, New York and Alaska, say. Try if you can work
+out how to do that with a for loop using the help function and online
+googling. If your are stuck check out the answer below.</p>
 <div class="webex-solution">
 <button>
 Answer:
 </button>
-<p>Let’s start by arranging the states in a collection. Also add a death rate column to the covid dataframe (and clear up the date variable):</p>
+<p>Let’s start by arranging the states in a collection. Also add a death
+rate column to the covid dataframe (and clear up the date variable):</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>states</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"California"</span>,<span class='st'>"Texas"</span>,<span class='st'>"New York"</span>,<span class='st'>"Alaska"</span><span class='op'>)</span>
@@ -2026,7 +2223,7 @@ Answer:
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'>for</span><span class='op'>(</span><span class='va'>s</span> <span class='kw'>in</span> <span class='va'>states</span><span class='op'>)</span><span class='op'>{</span>
   <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>)</span>
   <span class='va'>p</span><span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>covid</span>  <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>state</span><span class='op'>==</span><span class='va'>s</span><span class='op'>)</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>date</span>, y<span class='op'>=</span><span class='va'>deathsOcases</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-      <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>)</span>
+      <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>)</span><span class='op'>+</span>
       <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_date.html'>scale_x_date</a></span><span class='op'>(</span>date_breaks<span class='op'>=</span><span class='st'>"1 month"</span>,date_labels <span class='op'>=</span> <span class='st'>"%b"</span><span class='op'>)</span>
   
   <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
@@ -2042,25 +2239,44 @@ Answer:
 <pre><code>[1] &quot;Alaska&quot;</code></pre>
 <p><img src="../../../images/unnamed-chunk-30-4.png" width="624" /></p>
 </div>
-<p>It’s interesting to see quite a variation in the shape of this series between different states. New York hasn’t managed a meaningful decline in death rates. In Texas on the other hand death rates are increasing again after a substantial decline in July.</p>
+<p>It’s interesting to see quite a variation in the shape of this series
+between different states. New York hasn’t managed a meaningful decline
+in death rates. In Texas on the other hand death rates are increasing
+again after a substantial decline in July.</p>
 </div>
 <h1 id="exercise-2.3">Exercise 2.3</h1>
 <h3 id="part-a-1">Part (a)</h3>
-<p>Besides analysing data we can use R to make up data. Why would we do that? It’s a common approach called “Monte-Carlo Analysis”. If we make up the data we know the underlying model that is driving the data. We can use to this to test the methods we are using. Do they lead us to the true underlying model or do they have biases that give us the wrong answer? In this exercise we walk through how this can be done in a simple case. As ever: try to work through all of this while creating an R script or R markdown file. First we need to decide about the sample size. Let’s use a sample of size 100. It makes sense to assign this number to a variable as follows:</p>
+<p>Besides analysing data we can use R to make up data. Why would we do
+that? It’s a common approach called “Monte-Carlo Analysis”. If we make
+up the data we know the underlying model that is driving the data. We
+can use to this to test the methods we are using. Do they lead us to the
+true underlying model or do they have biases that give us the wrong
+answer? In this exercise we walk through how this can be done in a
+simple case. As ever: try to work through all of this while creating an
+R script or R markdown file. First we need to decide about the sample
+size. Let’s use a sample of size 100. It makes sense to assign this
+number to a variable as follows:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>obs</span><span class='op'>&lt;-</span><span class='fl'>100</span>
 </code></pre>
 </div>
 </div>
-<p>Assume that the data is driven by the following true model <span class="math inline">\(Y=2+0.5 X +\epsilon\)</span> where <span class="math inline">\(\epsilon\)</span> is a random variable that follows a standard normal distribution; i.e. its distribution follows the famous bell curve. Using R you can draw realisations of such a random variable using the function <code>rnorm()</code> To assign those values to a variable called <code>eps</code> we can write</p>
+<p>Assume that the data is driven by the following true model <span
+class="math inline">\(Y=2+0.5 X +\epsilon\)</span> where <span
+class="math inline">\(\epsilon\)</span> is a random variable that
+follows a standard normal distribution; i.e. its distribution follows
+the famous bell curve. Using R you can draw realisations of such a
+random variable using the function <code>rnorm()</code> To assign those
+values to a variable called <code>eps</code> we can write</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>eps<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>obs</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>where the <code>data.frame</code> command arranges the newly created variable eps into a dataframe rather than being standalone.</p>
+<p>where the <code>data.frame</code> command arranges the newly created
+variable eps into a dataframe rather than being standalone.</p>
 <p>Similarly we can generate the explanatory variable X as:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2068,23 +2284,26 @@ Answer:
 </code></pre>
 </div>
 </div>
-<p>This will draw the values of X by drawing random variables on the interval between 0 and 1 with uniform (i.e. all values have the same) probility. Look at the values of X and <span class="math inline">\(\epsilon\)</span>. Here are the first 10:</p>
+<p>This will draw the values of X by drawing random variables on the
+interval between 0 and 1 with uniform (i.e. all values have the same)
+probility. Look at the values of X and <span
+class="math inline">\(\epsilon\)</span>. Here are the first 10:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>df</span>,<span class='fl'>10</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>          eps           X
-1   1.4524510 0.938935137
-2  -1.3039081 0.840649929
-3   0.9070573 0.418798731
-4   0.4385258 0.119107862
-5   0.4653380 0.806732183
-6   0.4948277 0.201974761
-7   0.4927661 0.561229072
-8   0.8636348 0.383915497
-9  -0.1662868 0.003439755
-10 -0.6415598 0.308118376</code></pre>
+<pre><code>          eps          X
+1   0.7087166 0.01557453
+2  -0.7568827 0.63896289
+3  -0.7173113 0.50702648
+4  -2.1784831 0.50394019
+5   1.2146494 0.73980429
+6   0.3188138 0.29162189
+7  -0.7861682 0.42168957
+8  -0.2599122 0.60679514
+9  -0.4659159 0.94634844
+10 -1.4880522 0.11489128</code></pre>
 </div>
 <h3 id="part-b-1">Part (b)</h3>
 <p>Now create the Y variable according to the formula above.</p>
@@ -2100,7 +2319,8 @@ Answer:
 </div>
 </div>
 <h3 id="part-c-1">Part (c)</h3>
-<p>Run a regression of Y on X. What value do you find for the coefficient on X? Would you think this is an unbiased estimate?</p>
+<p>Run a regression of Y on X. What value do you find for the
+coefficient on X? Would you think this is an unbiased estimate?</p>
 <div class="webex-solution">
 <button>
 Answer:
@@ -2116,28 +2336,31 @@ Call:
 lm(formula = Y ~ X, data = df)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--2.23820 -0.62922 -0.03119  0.46798  2.94084 
+    Min      1Q  Median      3Q     Max 
+-2.6671 -0.7811  0.1055  0.7418  1.9315 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   2.2266     0.1859   11.98   &lt;2e-16 ***
-X             0.2815     0.3129    0.90     0.37    
+(Intercept)   1.8517     0.2006   9.233  5.6e-15 ***
+X             0.9012     0.3618   2.491   0.0144 *  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.9111 on 98 degrees of freedom
-Multiple R-squared:  0.008192,  Adjusted R-squared:  -0.001929 
-F-statistic: 0.8094 on 1 and 98 DF,  p-value: 0.3705</code></pre>
+Residual standard error: 0.9863 on 98 degrees of freedom
+Multiple R-squared:  0.05954,   Adjusted R-squared:  0.04994 
+F-statistic: 6.204 on 1 and 98 DF,  p-value: 0.01443</code></pre>
 </div>
 </div>
 <h3 id="part-d-1">Part (d)</h3>
-<p>Now use a “for”-loop to repeat the steps from section (a)-(c) 1000 times.</p>
+<p>Now use a “for”-loop to repeat the steps from section (a)-(c) 1000
+times.</p>
 <p>We can do this in R with the following for-loop command</p>
 <p><code>for(i in 1:1000) {</code></p>
 <p><code>&lt;several lines of code &gt;</code></p>
 <p><code>}</code></p>
-<p>i.e. the lines of code between the first line and <code>}</code> will be repeated 1000 times. The variable <code>i</code> will increase by 1 on each round.</p>
+<p>i.e. the lines of code between the first line and <code>}</code> will
+be repeated 1000 times. The variable <code>i</code> will increase by 1
+on each round.</p>
 <div class="webex-solution">
 <button>
 Answer:
@@ -2158,10 +2381,13 @@ Answer:
 </code></pre>
 </div>
 </div>
-<p>Note: with <code>$coefficients[[2]]</code> we extract the coefficient estimate of the second (i.e. the slope) coefficient from the regression results and store it in a vector called <code>beta</code></p>
+<p>Note: with <code>$coefficients[[2]]</code> we extract the coefficient
+estimate of the second (i.e. the slope) coefficient from the regression
+results and store it in a vector called <code>beta</code></p>
 </div>
 <h3 id="part-e-1">Part (e)</h3>
-<p>Compute the average value of the estimate of the X coefficient across the 1000 repetitions.</p>
+<p>Compute the average value of the estimate of the X coefficient across
+the 1000 repetitions.</p>
 <div class="webex-solution">
 <button>
 Answer:
@@ -2171,7 +2397,7 @@ Answer:
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>beta</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 0.5083768</code></pre>
+<pre><code>[1] 0.5042947</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>results</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>beta</span><span class='op'>)</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>results</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>beta</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
@@ -2181,9 +2407,13 @@ Answer:
 </div>
 <p><img src="../../../images/unnamed-chunk-38-1.png" width="624" /></p>
 </div>
-<p>Note: we can use ggplot to draw a histogram of all the results for beta as well. This shows that while we not always get a value close to 0.5, over many replications the value we find are centered around the true value of 0.5</p>
+<p>Note: we can use ggplot to draw a histogram of all the results for
+beta as well. This shows that while we not always get a value close to
+0.5, over many replications the value we find are centered around the
+true value of 0.5</p>
 </div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
